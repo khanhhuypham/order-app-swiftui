@@ -85,10 +85,10 @@ struct CreateCategory: View {
                 if category.id > 0{
          
                     Button(action: {
-                        category.status = category.status == ACTIVE ? DEACTIVE : ACTIVE
+                        category.active = !category.active
                     }) {
                         HStack{
-                            Image(category.status == ACTIVE ? "icon-check-square" : "icon-uncheck-square", bundle: .main)
+                            Image(category.active ? "icon-check-square" : "icon-uncheck-square", bundle: .main)
                             Text("ĐANG KINH DOANH")
                                 .font(font.r_14)
                                 .foregroundColor(.black)

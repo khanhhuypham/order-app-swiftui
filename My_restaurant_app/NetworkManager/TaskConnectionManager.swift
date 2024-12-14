@@ -536,9 +536,9 @@ extension NetworkManager{
             case .createArea(let branch_id, let area, let is_confirmed):
                 var parameter:[String:Any] = [
                     "id": area.id,
-                    "branch_id":branch_id.description,
+//                    "branch_id":branch_id.description,
                     "name": area.name,
-                    "status":area.status,
+//                    "active":area.status,
 
                 ]
                 if is_confirmed != nil{
@@ -796,13 +796,13 @@ extension NetworkManager{
                     "branch_id": note.branch_id?.description
                 ]
                 
-            case .createCategory(let id,let name,let description, let type, let status):
+            case .createCategory(let id,let name,let description, let type, let active):
 
                 var body =  [
                     "name":name,
                     "restaurant_brand_id": (Constants.brand.id ?? 0).description,
                     "type":type,
-                    "status":status,
+                    "active":active,
                 ] as [String : Any]
                 
                 if let desc = description {

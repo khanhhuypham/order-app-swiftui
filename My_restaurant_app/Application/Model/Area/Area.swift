@@ -8,11 +8,10 @@
 
 
 
-struct Area: Codable {
+struct Area {
     var id:Int = 0
     var name:String = ""
-    var status:Int = 0
-
+    var active:Bool = false
     var is_take_away:Int = DEACTIVE
     var isSelect:Bool = false
     
@@ -21,8 +20,7 @@ struct Area: Codable {
     enum CodingKeys: String, CodingKey {
         case id
         case name
-        case status
-//        case is_take_away
+        case active
     }
     
     init(id:Int, name:String, isSelect:Bool){
@@ -32,3 +30,15 @@ struct Area: Codable {
     }
    
 }
+
+extension Area: Codable {
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decodeIfPresent(Int.self, forKey: .id) ?? 0
+        name = try container.decodeIfPresent(String.self, forKey: .name) ?? ""
+        active = try container.decodeIfPresent(Bool.self, forKey: .active) ?? false
+    }
+}
+
+

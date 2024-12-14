@@ -101,7 +101,7 @@ enum NetworkManager{
 ////    case updateKitchen(branch_id:Int, kitchen:Kitchen)
 ////    case updatePrinter(printer:Kitchen)
     case createNote(note:Note)
-    case createCategory(id:Int ,name:String, description:String?, type:Int, status:Int)
+    case createCategory(id:Int ,name:String, description:String?, type:Int, active:Bool)
 //    case ordersHistory(brand_id:Int, branch_id:Int,id:Int, report_type:Int, time : String, limit : Int, page : Int, key_search:String,is_take_away_table:Int,is_take_away:Int)
     case units
     case createFood(branch_id:Int, item:Food)

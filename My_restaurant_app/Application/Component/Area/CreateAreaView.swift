@@ -59,10 +59,10 @@ struct CreateAreaView: View {
                 if area.id > 0{
                     
                     Button(action: {
-                        area.status = area.status == ACTIVE ? DEACTIVE : ACTIVE
+                        area.active = !area.active
                     }) {
                         HStack{
-                            Image(area.status == ACTIVE ? "icon-check-square" : "icon-uncheck-square", bundle: .main)
+                            Image(area.active ? "icon-check-square" : "icon-uncheck-square", bundle: .main)
                             Text("ĐANG HOẠT ĐỘNG")
                                 .font(font.r_14)
                                 .foregroundColor(.black)
@@ -91,7 +91,7 @@ struct CreateAreaView: View {
                     
                     if let confirm = self.onConfirmPress,valid{
                         if area.id == 0{
-                            area.status = ACTIVE
+                            area.active = true
                         }
                        
                         confirm(area)

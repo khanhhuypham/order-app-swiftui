@@ -8,7 +8,7 @@
 import UIKit
 
 extension NetworkManager{
-    private static let version = "v11"
+    private static let version = "v1"
     private static let version_oauth_service = "v10"
     private static let prefix = ""
     
@@ -158,10 +158,10 @@ extension NetworkManager{
             
         
             case .areas(_, _):
-                return String(format: "/area", NetworkManager.version)
+                return String(format: "/api/%@/area", NetworkManager.version)
 //
             case .tables(_, _, _, _, _,_):
-                return String(format: "/table",NetworkManager.version)
+                return String(format: "/api/%@/table",NetworkManager.version)
 //
 //            case .brands(_, _):
 //                return APIEndPoint.Name.urlBrands

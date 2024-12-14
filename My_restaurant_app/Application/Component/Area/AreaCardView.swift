@@ -15,7 +15,7 @@ struct AreaCardView: View {
     var body:some View{
         ZStack {
             Rectangle()
-                .fill(item.status == ACTIVE ? color.blue_brand_700 : color.gray_400)
+                .fill(item.active ? color.blue_brand_700 : color.gray_400)
                 .cornerRadius(8)
 
 

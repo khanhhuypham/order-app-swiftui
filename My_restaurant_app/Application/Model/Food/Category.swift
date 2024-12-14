@@ -7,10 +7,11 @@
 
 
 struct Category: Codable,Identifiable {
+    
     var id:Int = 0
     var name:String = ""
     var description:String?
-    var status:Int = 0
+    var active:Bool = false
     var type:CATEGORY_TYPE = .processed
     
     /*
@@ -21,7 +22,6 @@ struct Category: Codable,Identifiable {
      */
 //    var type:Int = 0
     
-    
     var isSelect:Bool = false
     
 
@@ -29,7 +29,7 @@ struct Category: Codable,Identifiable {
         case id
         case name
         case description
-        case status
+        case active
         case type
     }
 }

@@ -66,9 +66,9 @@ struct CategoryManagement: View {
             VStack(alignment:.leading){
                 Text(category.wrappedValue.name)
                     .font(font.r_16)
-                Text(category.wrappedValue.status == ACTIVE ? "ĐANG KINH DOANH" : "NGỪNG KINH DOANH")
+                Text(category.wrappedValue.active ? "ĐANG KINH DOANH" : "NGỪNG KINH DOANH")
                     .font(font.m_12)
-                    .foregroundColor(category.wrappedValue.status == ACTIVE ? color.green_600 : color.red_600)
+                    .foregroundColor(category.wrappedValue.active ? color.green_600 : color.red_600)
             }
             Spacer()
             Image(systemName: "chevron.right")
