@@ -90,9 +90,10 @@ enum BookingStatus:Int,Codable {
 
 enum TableStatus:Int,Codable {
     
-    case using = 2
+
     case closed = 0
     case booking = 1
+    case using = 2
     case mergered = 3
     
 
@@ -137,21 +138,6 @@ enum CATEGORY_TYPE:Int,Codable,CaseIterable{
     case processed = 1
     case nonProcessed = 2
     case nonProcessedOther = 3
-
-   
-    
-    var value: Int {
-        switch self {
-            case .processed:
-                return 1
-            case .nonProcessed:
-                return 2
-            case .nonProcessedOther:
-                return 3
-
-        }
-    }
-    
     
     var name: String {
         switch self {
@@ -323,6 +309,9 @@ enum PRINTER_TYPE:Int,Codable{
     case cashier = 2
     case fish_tank = 3
     case stamp = 4
+    case scangle = 5
+    case cashier_of_food_app = 6
+    case stamp_of_food_app = 7
 }
 
 
@@ -332,6 +321,7 @@ enum CONNECTION_TYPE:Int,Codable{
     case sunmi = 2
     case usb = 3
     case blueTooth = 4
+    
 }
 
 //@objc(PRINTER_METHOD)

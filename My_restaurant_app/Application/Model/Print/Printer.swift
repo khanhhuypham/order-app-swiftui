@@ -17,7 +17,7 @@ struct Printer: Codable,Identifiable {
     var connection_type:CONNECTION_TYPE
     var print_number:Int
     var is_print_each_paper:Bool
-    var status:Bool
+    var active:Bool
     var type:PRINTER_TYPE
     var isSelect:Bool = false
  
@@ -30,7 +30,7 @@ struct Printer: Codable,Identifiable {
         case connection_type
         case print_number
         case is_print_each_paper
-        case status
+        case active
         case type
     }
 }

@@ -22,7 +22,7 @@ extension AreaViewModel{
 
     func getAreas(){
         
-        NetworkManager.callAPI(netWorkManger: .areas(branch_id: Constants.branch.id ?? 0, status: ACTIVE)){[weak self] result in
+        NetworkManager.callAPI(netWorkManger: .areas(branch_id: Constants.branch.id ?? 0, active:true)){[weak self] result in
             guard let self = self else { return }
             switch result {
                   case .success(let data):

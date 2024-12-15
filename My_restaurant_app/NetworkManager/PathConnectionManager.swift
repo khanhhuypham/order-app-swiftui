@@ -34,7 +34,7 @@ extension NetworkManager{
                 return String(format: "/api/%@/restaurant-brands/%d/setting", NetworkManager.version,brand_id)
             
             case .getPrinters(_,_):
-                return String(format: "/printer",NetworkManager.version )
+                return String(format: "/api/%@/printer",NetworkManager.version )
             
             case .postApplyOnlyCashAmount(let branchId):
                 return String(format: "/api/%@/branches/%d/setting/is-apply-only-cash-amount", NetworkManager.version,branchId)
@@ -261,19 +261,18 @@ extension NetworkManager{
 ////                return APIEndPoint.Name.urlTablesManagement
 ////                
             case .createArea(_,let area,_):
-            
                 return area.id == 0
-                ? String(format:"/area",NetworkManager.version)
-                : String(format:"/area/%d",area.id)
+                ? String(format:"/api/%@/area",NetworkManager.version)
+                : String(format:"/api/%@/area/%d",NetworkManager.version,area.id)
             
             
             case .foodsManagement(_, _, _, _):
-                return String(format: "/item",NetworkManager.version)
+                return String(format: "/api/%@/item",NetworkManager.version)
             case .childrenItem:
-                return String(format: "/children-item",NetworkManager.version)
+                return String(format: "/api/%@/children-item",NetworkManager.version)
             
             case .categories(_,_,_):
-                return String(format: "/category", NetworkManager.version)
+                return String(format: "/api/%@/category", NetworkManager.version)
             
                 
 
@@ -282,8 +281,8 @@ extension NetworkManager{
 //
             case .createTable(_, let table_id, _, _, _, _):
                 return table_id == 0
-                ? String(format:"/table",NetworkManager.version)
-                : String(format:"/table/%d",table_id)
+                ? String(format:"/api/%@/table",NetworkManager.version)
+                : String(format:"/api/%@/table/%d",NetworkManager.version,table_id)
 //                return String(format:"/table",NetworkManager.version)
 //
 //          
@@ -349,21 +348,21 @@ extension NetworkManager{
 //
             case .createCategory(let id, _, _, _,_):
                 return id == 0
-                ? String(format:"/category",NetworkManager.version)
-                : String(format:"/category/%d",id)
+                ? String(format:"/api/%@/category",NetworkManager.version)
+                : String(format:"/api/%@/category/%d",NetworkManager.version,id)
 
 //
 //            case .ordersHistory(_, _, let id, _, _, _,_,_,_,_):
 //                return String(format: APIEndPoint.Name.urlOrdersHistory, id)
 //                
             case .units:
-                return String(format:"/unit",NetworkManager.version )
+                return String(format:"/api/%@/unit",NetworkManager.version )
 //
             case .createFood(_, let item):
                 
                 return item.id == 0
-                    ? String(format:"/item",NetworkManager.version)
-                    : String(format:"/item/%d",item.id)
+                    ? String(format:"/api/%@/item",NetworkManager.version)
+                    : String(format:"/api/%@/item/%d",item.id)
 //
 //                
 //            case .generateFileNameResource(_):
@@ -511,7 +510,7 @@ extension NetworkManager{
 //                return String(format: APIEndPoint.Name.urlMoveExtraFoods, order_id)
 //                
             case .getFoodsBookingStatus(let order_id):
-                return String(format: "api/%@/order-details/%d/booking" ,NetworkManager.version,order_id)
+                return String(format: "/api/%@/order-details/%d/booking" ,NetworkManager.version,order_id)
 //
 //            case .updateBranch(let branch):
 //                return String(format: APIEndPoint.Name.urlUpdateBranch, branch.id)
@@ -585,7 +584,7 @@ extension NetworkManager{
 //                 return APIEndPoint.Name.urlGetLastLoginDevice
 //                
             case .postCreateOrder(_,_,_):
-                return String(format: "api/%@/orders/create", NetworkManager.version)
+                return String(format: "/api/%@/orders/create", NetworkManager.version)
 //
 //            
 //            case .getBranchRights(_,_):
@@ -620,7 +619,7 @@ extension NetworkManager{
 //                return String(format: APIEndPoint.Name.urlPostApplyTakeAwayTable, branch_id)
 //                
             case .postCreateTableList(_,_):
-                return String(format:"/table/batch-create")
+                return String(format:"/api/%@/table/batch-create",NetworkManager.version)
 //
 //            case .getPrintItem(_,_,_):
 //                return APIEndPoint.Name.urlGetPrintItem

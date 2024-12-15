@@ -74,8 +74,7 @@ struct CreateCategory: View {
                         Text(category.type.name)
                         .frame(maxWidth:.infinity,alignment:.leading)
                         .commonTextFieldDecor(height: 38)
-                        
-                    }
+                    }.disabled(category.id > 0)
                     
                 }.font(font.r_13)
                 

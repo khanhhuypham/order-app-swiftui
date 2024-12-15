@@ -204,8 +204,13 @@ extension NetworkManager{
 //                    encoding: self.encoding(.get)
 //                )
 //            
-            case .areas(let branch_id, let status):
-                return ["branch_id": branch_id.description,"status": status.description]
+            case .areas(let branch_id, let active):
+                var parameter:[String:Any] = ["branch_id": branch_id.description]
+                if active != nil {
+                    parameter.updateValue(active?.description, forKey: "active")
+                }
+        
+                return parameter
 //
 //            
             case .tables(let branch_dd, let area_id, let status, let exclude_table_id, let order_statuses,let buffet_ticket_id):
@@ -535,11 +540,8 @@ extension NetworkManager{
 //            
             case .createArea(let branch_id, let area, let is_confirmed):
                 var parameter:[String:Any] = [
-                    "id": area.id,
-//                    "branch_id":branch_id.description,
                     "name": area.name,
-//                    "active":area.status,
-
+                    "active":area.active,
                 ]
                 if is_confirmed != nil{
                     parameter.updateValue(is_confirmed, forKey: "is_confirmed")
@@ -574,14 +576,14 @@ extension NetworkManager{
                     "status": status.description
                 ]
 
-            case .createTable(let branch_id, let table_id, let table_name, let area_id, let total_slot, let status):
+            case .createTable(let branch_id, let table_id, let table_name, let area_id, let total_slot, let active):
                  return [
                     "branch_id":branch_id.description,
                     "table_id":table_id,
                     "name":table_name,
                     "area_id":area_id,
                     "total_slot":total_slot,
-                    "is_active":status
+                    "active":active
                 ]
 //
 //            case .prints(let branch_id, let is_have_printer, let is_print_bill, let status):
@@ -848,7 +850,7 @@ extension NetworkManager{
                     "unit_id": food.unit_id,
                     "category_id": food.category_id,
                     "out_of_stock": false,
-                    "is_sell_by_weight": food.is_sell_by_weight,
+                    "is_sell_by_weight": food.sell_by_weight.description,
                     "description": food.description
                 ] as [String : Any]
             

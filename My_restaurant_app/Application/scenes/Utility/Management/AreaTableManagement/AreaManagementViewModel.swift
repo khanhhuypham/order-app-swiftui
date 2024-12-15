@@ -47,7 +47,7 @@ class AreaManagementViewModel: ObservableObject {
     
     func getAreaList(){
         
-        NetworkManager.callAPI(netWorkManger: .areas(branch_id: branchId, status: ALL)){[weak self] result in
+        NetworkManager.callAPI(netWorkManger: .areas(branch_id: branchId)){[weak self] result in
             
             guard let self = self else { return }
             
@@ -93,8 +93,7 @@ class AreaManagementViewModel: ObservableObject {
                     }
                     
                     for (i,table) in res.data.enumerated(){
-                        
-                        res.data[i].status = table.is_active == ACTIVE ? .using : .closed
+                        res.data[i].status = table.active ?? false ? .using : .closed
                     }
                 
                     self.table = res.data
@@ -171,7 +170,7 @@ extension AreaManagementViewModel {
             table_name:table.name ?? "",
             area_id:table.area_id ?? 0,
             total_slot:table.slot_number ?? 0,
-            status:table.is_active ?? 0
+            active: table.active ?? true
         )){[weak self] result in
             guard let self = self else { return }
             

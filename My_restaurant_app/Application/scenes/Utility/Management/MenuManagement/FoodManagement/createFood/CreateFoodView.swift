@@ -170,9 +170,9 @@ struct CreateFoodView: View {
                     HStack {
                         Button(action: {
                         
-                            viewModel.food.is_sell_by_weight.toggle()
+                            viewModel.food.sell_by_weight.toggle()
                         }) {
-                            Image(viewModel.food.is_sell_by_weight ? "icon-check-square" : "icon-uncheck-square", bundle: .main)
+                            Image(viewModel.food.sell_by_weight ? "icon-check-square" : "icon-uncheck-square", bundle: .main)
                                 .resizable()
                                 .frame(width: 20, height: 20)
                         }

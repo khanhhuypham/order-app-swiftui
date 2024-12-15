@@ -126,10 +126,10 @@ struct CreateTableView: View {
                 if table.id ?? 0 > 0{
          
                     Button(action: {
-                        table.is_active = table.is_active == ACTIVE ? DEACTIVE : ACTIVE
+                        table.active?.toggle()
                     }) {
                         HStack{
-                            Image(table.is_active == ACTIVE ? "icon-check-square" : "icon-uncheck-square", bundle: .main)
+                            Image(table.active ?? false ? "icon-check-square" : "icon-uncheck-square", bundle: .main)
                             Text("ĐANG HOẠT ĐỘNG")
                                 .font(font.r_14)
                                 .foregroundColor(.black)
@@ -161,9 +161,9 @@ struct CreateTableView: View {
                     if let confirm = self.onConfirmPress,validForm{
                   
                         if table.id == nil{
-                            table.is_active = ACTIVE
+                            table.active = true
                         }
-                        
+                            
                         confirm(table)
                         isPresent = false
                     }

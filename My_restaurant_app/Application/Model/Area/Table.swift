@@ -16,7 +16,7 @@ struct Table:Codable,Identifiable,Hashable {
     var area_id:Int?
     var order_id:Int?
     var order_status:Int?
-    var is_active:Int?
+    var active:Bool?
     var is_selected:Bool = false
     var slot_number:Int?
  
@@ -27,7 +27,7 @@ struct Table:Codable,Identifiable,Hashable {
         case area_id
         case order_id
         case order_status
-        case is_active
+        case active
         case slot_number
     }
     
@@ -41,21 +41,22 @@ struct Table:Codable,Identifiable,Hashable {
 struct CreateTableQuickly:Codable,Hashable {
     var name:String?
     var area_id:Int?
-    var is_active:Int?
+    var active:Bool?
     var total_slot:Int?
  
     enum CodingKeys: String, CodingKey {
         case name
         case area_id
-        case is_active
+        case active
         case total_slot
     }
   
     init(){}
-    init(area_id:Int,name:String,total_slot:Int,is_active:Int = ACTIVE) {
+    
+    init(area_id:Int,name:String,total_slot:Int,active:Bool = true) {
         self.area_id = area_id
         self.name = name
-        self.is_active = is_active
+        self.active = active
         self.total_slot = total_slot
     }
 

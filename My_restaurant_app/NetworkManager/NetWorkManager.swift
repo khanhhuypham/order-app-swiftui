@@ -37,7 +37,7 @@ enum NetworkManager{
     case addGiftFoods(branch_id:Int, order_id:Int, foods:[FoodRequest], is_use_point:Int)
     case kitchenes(branch_id:Int, brand_id:Int, status:Int = 1)
     case vats
-    case areas(branch_id:Int, status:Int)
+    case areas(branch_id:Int, active:Bool? = nil)
     case tables(branchId:Int, area_id:Int, status:String, exclude_table_id:Int = 0, order_statuses:String = "",buffet_ticket_id:Int = 0)
 //    case addFoods(branch_id:Int, order_id:Int, foods:[FoodRequest], is_use_point:Int)
 //    case addGiftFoods(branch_id:Int, order_id:Int, foods:[FoodRequest], is_use_point:Int)
@@ -71,8 +71,8 @@ enum NetworkManager{
     case categories(brand_id:Int, status:Int = -1,type:Int = -1)
     case notesManagement(branch_id:Int, status:Int = -1)
 //    
-    case createTable(branch_id:Int, table_id:Int, table_name:String, area_id:Int, total_slot:Int,status:Int)
-//    
+    case createTable(branch_id:Int, table_id:Int, table_name:String, area_id:Int, total_slot:Int,active:Bool)
+//
 //    case prints(branch_id:Int, is_have_printer:Int,is_print_bill:Int, status:Int = -1)
 //    
 //    case openSession(before_cash:Int, branch_working_session_id:Int)
@@ -349,8 +349,10 @@ extension NetworkManager{
         
 
         //============================================ Define parameter for method get=================================================
-        dLog(netWorkManger.method)
-        if netWorkManger.method == .POST || netWorkManger.method == .PATCH{
+     
+        print(String(format: "Method Description: %@", netWorkManger.method.description))
+        
+        if netWorkManger.method == .POST || netWorkManger.method == .PUT{
             print(String(format: "%@://%@%@", components?.scheme ?? "http", components?.host ?? "", components?.path ?? ""))
         }else{
             var queryItems:[URLQueryItem] = []
@@ -394,10 +396,8 @@ extension NetworkManager{
         }
      
         
-        
-      
         //============================================ Define body for method post  =================================================
-        if netWorkManger.method == .POST || netWorkManger.method == .PATCH{
+        if netWorkManger.method == .POST || netWorkManger.method == .PUT{
            
             do {
                 let jsonData = try JSONSerialization.data(withJSONObject: netWorkManger.task, options: [.prettyPrinted])

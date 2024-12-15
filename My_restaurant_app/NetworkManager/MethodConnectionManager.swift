@@ -188,7 +188,7 @@ extension NetworkManager{
 ////            case .tablesManagement(_, _, _):
 ////                return .get
             case .createArea(_,let area ,_):
-                return  area.id == 0 ?  .POST : .PATCH
+                return  area.id == 0 ? .POST : .PUT
                 
             case .foodsManagement(_, _, _, _):
                 return .GET
@@ -203,7 +203,7 @@ extension NetworkManager{
                 return .GET
             
             case .createTable(_, let table_id, _, _, _, _):
-                return  table_id > 0 ?  .PATCH : .POST
+                return  table_id > 0 ? .PUT : .POST
 //            case .prints(_, _, _, _):
 //                return .post
 //            case .openSession(_, _):
@@ -244,7 +244,7 @@ extension NetworkManager{
             case .createNote(_):
                 return .POST
             case .createCategory(let id, _, _, _,_):
-                return  id > 0 ?  .PATCH : .POST
+                return  id > 0 ?  .PUT : .POST
 //            case .ordersHistory(_, _, _, _, _, _,_,_,_,_):
 //                return .get
 //            
@@ -252,7 +252,7 @@ extension NetworkManager{
                 return .GET
             
             case .createFood(_, let item):
-                return  item.id > 0 ?  .PATCH : .POST
+                return  item.id > 0 ?  .PUT : .POST
 //            case .generateFileNameResource(_):
 //                return .post
 //            case .updateFood(_, _):

@@ -112,7 +112,7 @@ extension CreateFoodViewModel{
 
 
                 case .failure(let error):
-                print(error)
+                    print(error)
             }
         }
     }
@@ -144,7 +144,7 @@ extension CreateFoodViewModel{
 
 
                 case .failure(let error):
-                print(error)
+                    print(error)
             }
         }
     }

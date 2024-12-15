@@ -58,7 +58,7 @@ struct FoodListCell: View {
                     Spacer()
                     
                 }.onTapGesture(perform: {
-                    item.setQuantity(quantity: item.quantity + (item.is_sell_by_weight ? 0.01 : 1))
+                    item.setQuantity(quantity: item.quantity + (item.sell_by_weight ? 0.01 : 1))
                 })
                 
                 if item.isSelect{
@@ -130,7 +130,7 @@ struct FoodListCell: View {
             if item.category_type != .service{
                 
                 Button(action: {
-                    item.setQuantity(quantity: item.quantity - (item.is_sell_by_weight ? 0.01 : 1))
+                    item.setQuantity(quantity: item.quantity - (item.sell_by_weight ? 0.01 : 1))
                 }, label: {
                     Image(systemName: "minus")
                         .frame(width: 30,height: 30)
@@ -155,7 +155,7 @@ struct FoodListCell: View {
             if item.category_type != .service{
                 Button(action: {
                     
-                    item.setQuantity(quantity: item.quantity + (item.is_sell_by_weight ? 0.01 : 1))
+                    item.setQuantity(quantity: item.quantity + (item.sell_by_weight ? 0.01 : 1))
                     
                 }, label: {
                     Image(systemName: "plus")

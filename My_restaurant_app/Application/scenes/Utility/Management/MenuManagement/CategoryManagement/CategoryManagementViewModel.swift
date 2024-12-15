@@ -62,7 +62,7 @@ extension CategoryManagementViewModel{
             id: category.id,
             name: category.name,
             description: category.description,
-            type: category.type.value,
+            type: category.type.rawValue,
             active: category.active
                                                     
         )){[weak self] result in

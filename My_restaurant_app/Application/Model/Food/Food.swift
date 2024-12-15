@@ -32,7 +32,7 @@ struct Food:Identifiable {
     var category_id:Int = 0
     var avatar:String = ""
     var temporary_price:Double = 0
-    var is_sell_by_weight:Bool = false
+    var sell_by_weight:Bool = false
     var category_type:FOOD_CATEGORY = .food
     var printer_id:Int = 0
     var food_in_combo:[FoodAddition] = []
@@ -69,7 +69,7 @@ struct Food:Identifiable {
         case category_id
         case avatar
         case temporary_price
-        case is_sell_by_weight
+        case sell_by_weight
         case category_type
         case printer_id
         case food_in_combo
@@ -158,7 +158,7 @@ extension Food: Codable {
         unit_type = try container.decodeIfPresent(String.self, forKey: .unit_type) ?? ""
         category_id = try container.decodeIfPresent(Int.self, forKey: .category_id) ?? 0
         avatar = try container.decodeIfPresent(String.self, forKey: .avatar) ?? ""
-        is_sell_by_weight = try container.decodeIfPresent(Bool.self, forKey: .is_sell_by_weight) ?? false
+        sell_by_weight = try container.decodeIfPresent(Bool.self, forKey: .sell_by_weight) ?? false
         category_type = try container.decodeIfPresent(FOOD_CATEGORY.self, forKey: .category_type) ?? .food
         printer_id = try container.decodeIfPresent(Int.self, forKey: .printer_id) ?? 0
         food_in_combo = try container.decodeIfPresent([FoodAddition].self, forKey: .food_in_combo) ?? []
@@ -182,7 +182,7 @@ extension Food{
     mutating func select() -> Void {
         isSelect = true
         if quantity <= 0 && isSelect{
-            quantity = is_sell_by_weight ? 0.01 : 1
+            quantity = sell_by_weight ? 0.01 : 1
         }
     }
     
@@ -222,7 +222,7 @@ extension Food{
                                   if món chính không bán theo kg -> thì số lượng món con luôn = số lượng món chính
                               các số lượng các món con được check sẽ = với số lượng món chính
                           */
-                      self.addition_foods[i].quantity = self.is_sell_by_weight ? Int(1) : Int(self.quantity)
+                      self.addition_foods[i].quantity = self.sell_by_weight ? Int(1) : Int(self.quantity)
                   }
               }
               if self.category_type == .service && self.quantity > 1{
@@ -262,7 +262,7 @@ extension Food{
                        if món chính không bán theo kg -> thì số lượng món con luôn = số lượng món chính
                        các số lượng các món con được check sẽ = với số lượng món chính
                     */
-                    addition_foods[i].quantity = is_sell_by_weight ? Int(1) : Int(quantity)
+                    addition_foods[i].quantity = sell_by_weight ? Int(1) : Int(quantity)
                     addition_foods[i].isSelect = true
                 }else {
                     addition_foods[i].select()
