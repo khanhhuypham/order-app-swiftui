@@ -18,15 +18,18 @@ class OrderListViewModel: ObservableObject {
     @Published var APIParameter:(
         branch_id:Int,
         userId: Int,
-        order_status: String,
+        status: String,
         key_word:String,
-        is_take_away:Int
+        limit:Int,
+        page:Int
     ) = (
         branch_id:0,
-        userId: 0,
-        order_status: "",
+        userId: 1,
+        status: "1,2,5",
         key_word:"",
-        is_take_away:(PermissionUtils.GPBH_1 || PermissionUtils.GPBH_2_o_1) ? ALL : DEACTIVE)
+        limit:10,
+        page:1
+    )
     private var cancellables = Set<AnyCancellable>()
     
     init() {
@@ -58,24 +61,25 @@ class OrderListViewModel: ObservableObject {
     func getOrders(){
        
         NetworkManager.callAPI(netWorkManger: .orders(
-                        userId: APIParameter.userId,
-                        order_status: APIParameter.order_status,
-                        key_word:"",
-                        branch_id:Constants.branch.id ?? 0,
-                        is_take_away:APIParameter.is_take_away))
-        {result in
+            userId: APIParameter.userId,
+            status: APIParameter.status,
+            search_key:"",
+            branch_id:Constants.branch.id ?? 0,
+            limit:APIParameter.limit,
+            page:APIParameter.page
+        )){result in
             
             switch result {
                 case .success(let data):
                     
-                    guard let res = try? JSONDecoder().decode(APIResponse<[Order]>.self, from: data) else{
+                    guard let res = try? JSONDecoder().decode(APIResponse<OrderResponse>.self, from: data) else{
                         return
                     }
                 
                 
                     DispatchQueue.main.async {
-                        self.orderList = res.data
-                        self.fullList = res.data
+                        self.orderList = res.data.list
+                        self.fullList = res.data.list
 //                        self.utils.toastUtils.alertToast = AlertToast(displayMode: .banner(.pop), type: .complete(.green), title:"Success", subTitle: "Load dữ liệu thành công")
                     }
                 

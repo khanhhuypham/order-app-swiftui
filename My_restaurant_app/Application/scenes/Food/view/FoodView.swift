@@ -30,10 +30,13 @@ struct FoodView: View {
                 handleChooseCategory(id: id)
             }
             
-            
-            if viewModel.APIParameter.category_type != .buffet_ticket && viewModel.APIParameter.is_out_stock == ALL && !viewModel.categories.isEmpty{
+            if (viewModel.APIParameter.category_type != .buffet_ticket ||
+                viewModel.APIParameter.category_type != nil) &&
+                !viewModel.APIParameter.out_of_stock &&
+                !viewModel.categories.isEmpty
+            {
                 Divider()
-                categoryCollection
+                categoryCollection	
                 Divider()
             }
             
@@ -56,19 +59,13 @@ struct FoodView: View {
             }
         }
         .onAppear(perform: {
-            
-          
-            
+        
             if let order = self.order{
                 viewModel.order = order
-              
                 viewModel.APIParameter.is_allow_employee_gift = 0
-                dLog(viewModel.APIParameter.is_allow_employee_gift)
             }
-            
+          
             self.firstSetup(order: viewModel.order)
-            
-            
             viewModel.reloadContent()
         })
         .onReceive(viewModel.$navigateTag) { tag in
@@ -80,36 +77,29 @@ struct FoodView: View {
                 appRouter.currentPage = .order
             }
         }
-        .popup(isPresented:$viewModel.showPopup.show) {
-
+        .presentDialog(isPresented: $viewModel.showPopup.show,content: {
             let item = viewModel.showPopup.item
           
-            switch viewModel.showPopup.PopupType{
+            switch viewModel.showPopup.popupType{
                 case .note:
-                    NoteView(delegate: self,id: item?.id ?? 0,inputText: item?.note ?? "")
+                    NoteView(isPresent:$viewModel.showPopup.show, id: item?.id ?? 0,inputText: item?.note ?? "")
                 
                 case .discount:
-                    EnterPercentView(
-                        delegate: self,
-                        id:item?.id ?? 0,
-                        percent:item?.discount_percent ?? 0,
-                        title: "GIẢM GIÁ",
-                        placeholder: "Vui lòng nhập % bạn muốn giảm giá"
-                    )
+                    EnterPercentView(isPresent:$viewModel.showPopup.show)
+//                    EnterPercentView(
+//                        delegate: self,
+//                        id:item?.id ?? 0,
+//                        percent:item?.discount_percent ?? 0,
+//                        title: "GIẢM GIÁ",
+//                        placeholder: "Vui lòng nhập % bạn muốn giảm giá"
+//                    )
    
                 default:
                     EmptyView()
             }
             
-        } customize: {
-            $0.closeOnTapOutside(true)
-                .type(.floater())
-                .disappearTo(.centerScale)
-                .position(.center)
-                .closeOnTap(false)
-                .backgroundColor(.black.opacity(0.4))
-                
-        }
+        })
+  
         
         
     }
@@ -120,11 +110,17 @@ struct FoodView: View {
             HStack{
                 ForEach(viewModel.categories, id: \.id){cate in
                     Button(action: {
+
                         for (i,category) in viewModel.categories.enumerated() {
-                            viewModel.categories[i].isSelect = cate.id == category.id ? true : false
+                            viewModel.categories[i].isSelect = cate.id == category.id 
+                            ? true
+                            : false
                         }
-    
-                        viewModel.APIParameter.category_id = cate.id
+
+                        viewModel.APIParameter.category_id = cate.id == -1 
+                        ? nil
+                        : cate.id
+                        
                         viewModel.reloadContent()
                         
                     }) {

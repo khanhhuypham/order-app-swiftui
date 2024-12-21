@@ -42,14 +42,14 @@ extension NetworkManager{
             case .getApplyOnlyCashAmount(let branchId):
                 return String(format: "/api/%@/branches/%d/setting/is-apply-only-cash-amount",NetworkManager.version,branchId)
             
-            case .orders(_, _, _, _,_):
-                return String(format: "/order",NetworkManager.version)
+            case .orders(_, _, _, _,_,_):
+                return String(format: "/api/%@/order",NetworkManager.version)
                         
-            case .getOrderDetail(let order_id, _):
-               return String(format:"/order/%d",order_id)
+            case .getOrderDetail(let id, _):
+               return String(format:"/api/%@/order/%d",NetworkManager.version,id)
 
-            case .foods(_,_,_,_,_,_,_,_,_,_):
-                return String(format: "/item", NetworkManager.version)
+            case .foods(_,_,_,_,_,_,_):
+                return String(format: "/api/%@/item", NetworkManager.version)
 
             case .addFoods(_, let  order_id, _, _):
                return String(format: "/api/%@/orders/%d/add-food",NetworkManager.version ,order_id)

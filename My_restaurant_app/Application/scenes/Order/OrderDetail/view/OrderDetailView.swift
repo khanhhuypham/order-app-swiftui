@@ -58,59 +58,38 @@ struct OrderDetailView:View{
         }.onAppear(perform: {
             viewModel.getOrder()
         })
-        .popup(isPresented: $viewModel.showPopup.show) {
+
+//            .confirmationDialog(String("Are you sure?"),isPresented: $viewModel.showDialog,titleVisibility: .hidden) {
+//                Button("Yes") { }
+//                Button("No", role: .cancel) { }
+//    
+//            } message: {
+//                Text("This action cannot be undone. Would you like to proceed?")
+//            }
+        .presentDialog(isPresented: $viewModel.showPopup.show,content: {
             let item = viewModel.showPopup.item
-            
-            switch viewModel.showPopup.PopupType{
+    
+       
+            switch viewModel.showPopup.type{
                 case .note:
-                    NoteView(delegate: self,id: item?.id ?? 0,inputText: item?.note ?? "")
-        
+                    NoteView(isPresent:$viewModel.showPopup.show, id: item?.id ?? 0,inputText: item?.note ?? "")
+
                 case .discount:
-                    EnterPercentView(
-                        delegate: self,
-                        id:item?.id ?? 0,
-                        percent:item?.discount_percent ?? 0,
-                        title: "GIẢM GIÁ",
-                        placeholder: "Vui lòng nhập % bạn muốn giảm giá"
-                    )
-   
-                case .edit:
+                    EnterPercentView(isPresent:$viewModel.showPopup.show)
+
+                case .edit,.split:
                     EmptyView()
-                
-                case .split:
-                    EmptyView()
-                
+
                 case .cancel:
-                    PopupMiddle(delegate:self,item: viewModel.showPopup.item)
+                    TableOfCancelReasonView(isPresent:$viewModel.showPopup.show)
+            
+            
             }
             
-
-        } customize: {
-            $0.closeOnTapOutside(true)
-            .type(.floater())
-            .disappearTo(.centerScale)
-            .position(.center)
-            .closeOnTap(false)
-            .backgroundColor(.black.opacity(0.4))
-        }
-        //        .popover(isPresented: $viewModel.showpopup) {
-        //            Text("Your content here")
-        //              .font(.headline)
-        //              .padding()
-        //        }
-        //        .confirmationDialog(String("Are you sure?"),isPresented: $viewModel.showDialog,titleVisibility: .hidden) {
-        //            Button("Yes") { }
-        //            Button("No", role: .cancel) { }
-        //
-        //        } message: {
-        //            Text("This action cannot be undone. Would you like to proceed?")
-        //        }
-        //        .sheet(isPresented: $viewModel.showSheet, content: {
-        //            Text("Phạm khánh huy")
-        //        })
-        //        .fullScreenCover(isPresented: $viewModel.showingFullScreen) {
-        //            Text("Phạm khánh huy")
-        //        }
+        })
+        .sheet(isPresented: $viewModel.showSheet, content: {
+            AreaView(title:String(format: "TÁCH MÓN TỪ BÀN %@", viewModel.order.table_name))
+        })
 
 
     }
@@ -128,7 +107,7 @@ struct OrderDetailView:View{
                     .font(font.r_14)
                     .foregroundColor(color.gray_600)
                 
-                Text(viewModel.order.total_amount.toString)
+                Text(viewModel.order.net_amount.toString)
                     .foregroundColor(viewModel.order.status.fgColor)
                     .font(font.sb_16)
             }
@@ -287,31 +266,34 @@ struct OrderDetailView:View{
                     
             }
             
-            NavigationLink(destination: Text("Tách món"), label: {
+            Button(action: {
+                viewModel.showSheet = true
+            }) {
                 VStack(alignment:.center){
                     Spacer()
-                    
+
                     Image("icon-split", bundle: .main)
                         .resizable()
                         .frame(width: 20,height: 20)
                         .padding(.bottom,1)
-                    
-                    
-              
+
+
+
                     Text("Tách món")
                         .font(font.b_12)
                         .minimumScaleFactor(0.5)
-                    
+
                     Spacer()
-                    
+
                 }
                 .frame(maxWidth: .infinity)
                 .padding(5)
                 .foregroundColor(viewModel.order.status.fgColor)
                 .background(viewModel.order.status.bgColor)
                 .cornerRadius(cornerRadius)
-            })
+            }
             
+                        
             NavigationLink(destination:lazyNavigate(FoodView(order:viewModel.order,is_gift: ACTIVE)),isActive:$isLinkActive) {
                 VStack{
                     Spacer()

@@ -7,31 +7,40 @@
 
 import SwiftUI
 import Combine
+
+
 struct EnterTextView: View {
+    @Binding var isPresent:Bool
+    var body: some View {
+        PopupWrapper(isPresented: $isPresent){
+            EnterTextContent(isPresent: $isPresent)
+        }
+    }
+}
+
+
+private struct EnterTextContent: View {
+    @Binding var isPresent:Bool
     var delegate:EnterPercentDelegate?
     @Injected(\.fonts) private var font
     @Injected(\.colors) private var color
 
     var id = 0
     @State var text:String = ""
-    @Binding var isPresent:Bool
+ 
     
     var title:String = "Thêm khu vực"
     var placeholder:String = "Tên khu vực"
-
     var titleOfBtnConfirm:String = "THÊM MỚI"
-
     var onConfirmPress: () -> Void = {}
 
-   
     var body: some View {
         
         VStack{
             Spacer()
             mainContent
             Spacer()
-        }
-        
+        }.background(.clear)
     }
     
     private var mainContent:some View{
@@ -57,10 +66,9 @@ struct EnterTextView: View {
                 .padding(.vertical,20).padding(.horizontal,20)
                 
     
-    
             HStack(spacing:0){
                 Button {
-//                    dismiss?()
+
                     isPresent = false
                 } label: {
                     Text("HUỶ")
@@ -106,7 +114,6 @@ struct EnterTextView: View {
 
 #Preview {
     ZStack {
-        Rectangle()
         EnterTextView(isPresent:.constant(true))
     }
    

@@ -44,7 +44,6 @@ struct OrderListView<Model>: View where Model: OrderListViewModel{
                     List {
                         ForEach($viewModel.orderList){order in
                             OrderCardView(order:order).onTapGesture {
-                       
                                 routeLink = (tag:"OrderDetail",order:order.wrappedValue)
                             }
                             .alignmentGuide(.listRowSeparatorLeading) { d in d[.leading] }

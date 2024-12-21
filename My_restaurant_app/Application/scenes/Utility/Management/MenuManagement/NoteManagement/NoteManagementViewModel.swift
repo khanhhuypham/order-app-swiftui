@@ -25,7 +25,7 @@ class NoteManagementViewModel: ObservableObject, NotFoodDelegate {
            set: { self.isPresent = $0 }
         )
         isPresent = true
-        popup = NoteView(delegate: self,id: note.id ,inputText:note.content)
+//        popup = NoteView(delegate: self,id: note.id ,inputText:note.content)
     }
     func callBackNoteFood(id: Int, note: String) {
         if var first = self.NoteList.first{$0.id == id}{

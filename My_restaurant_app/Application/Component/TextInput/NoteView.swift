@@ -8,16 +8,32 @@
 import SwiftUI
 import PopupView
 import Combine
+
+
 struct NoteView: View {
+    @Binding var isPresent:Bool
+    var id = 0
+    @State var inputText = ""
+   
+    var body: some View {
+        PopupWrapper(isPresented: $isPresent){
+            NoteContent(isPresent: $isPresent,id:id,inputText: inputText)
+        }.background(.clear)
+    }
+}
+
+
+
+private struct NoteContent: View {
+    @Binding var isPresent:Bool
     var delegate:NotFoodDelegate?
     var id = 0
-    @Environment(\.popupDismiss) var dismiss
+
+
     @State private var valid:Bool = false
     @State var inputText = ""
     
-    
     var body: some View {
-        
         
         VStack(spacing:0) {
             
@@ -60,7 +76,7 @@ struct NoteView: View {
             
             HStack(spacing:0){
                 Button {
-                    dismiss?()
+                    isPresent = false
                 } label: {
                     Text("HUỶ")
                         .font(.system(size: 18, weight: .bold))
@@ -70,9 +86,8 @@ struct NoteView: View {
                 }.buttonStyle(.plain)
                 
                 Button {
-                    dismiss?()
+                    isPresent = false
                     delegate?.callBackNoteFood(id:self.id, note:inputText)
-                    
                 } label: {
                     Text("CẬP NHẬT")
                         .font(.system(size: 18, weight: .bold))
@@ -99,41 +114,9 @@ struct NoteView: View {
 
 
 
-struct TextEditorWithPlaceholder: View {
-    @Binding var text: String
-    
-    var body: some View {
-        ZStack(alignment: .leading) {
-            if text.isEmpty {
-                VStack {
-                    Text("Write something...")
-                        .padding(.top, 10)
-                        .padding(.leading, 6)
-                        .opacity(0.6)
-                    Spacer()
-                }
-            }
-            
-            VStack {
-                TextEditor(text: $text)
-                    .frame(minHeight: 150, maxHeight: 300)
-                    .opacity(text.isEmpty ? 0.85 : 1)
-                Spacer()
-            }
-        }
-    }
-}
-
 #Preview {
     ZStack {
-        Rectangle()
-        NoteView()
-        
-        //        Form {
-        //           Section {
-        //               NoteView()
-        //           }
-        //       }
+        NoteView(isPresent:.constant(true))
     }
 }
 

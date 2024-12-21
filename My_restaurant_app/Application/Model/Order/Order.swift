@@ -11,6 +11,7 @@ import UIKit
 struct OrderResponse:Decodable{
     var limit: Int?
     var total_record:Int?
+    var list: [Order] = []
 }
 
 
@@ -19,7 +20,7 @@ struct Order:Codable,Identifiable {
     var table_name:String = ""
     var table_id:Int = 0
     var table_merged_names:[String] = []
-    var using_slot:Int = 0
+    var using_slot:Int?
     var order_status:OrderStatus = .open
     var using_time_minutes_string:String = ""
     var total_amount:Double = 0
@@ -27,7 +28,7 @@ struct Order:Codable,Identifiable {
     var buffet_ticket_id:Int? = nil
     var booking_status:BookingStatus? = .none
     var isSelect:Bool = false
-    var amount:Double = 0
+    var net_amount:Double = 0
    
 
     
@@ -40,7 +41,7 @@ struct Order:Codable,Identifiable {
         case order_status
         case using_time_minutes_string
         case total_amount
-        case amount
+        case net_amount
         case booking_infor_id
         case buffet_ticket_id
         case booking_status
@@ -79,7 +80,7 @@ extension Order {
         order_status = try container.decodeIfPresent(OrderStatus.self, forKey: .order_status) ?? .open
         using_time_minutes_string = try container.decodeIfPresent(String.self, forKey: .using_time_minutes_string) ?? ""
         total_amount = try container.decodeIfPresent(Double.self, forKey: .total_amount) ?? 0
-        amount = try container.decodeIfPresent(Double.self, forKey: .amount) ?? 0
+        net_amount = try container.decodeIfPresent(Double.self, forKey: .net_amount) ?? 0
        
     }
     

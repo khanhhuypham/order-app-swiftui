@@ -9,9 +9,23 @@ import SwiftUI
 import PopupView
 import Combine
 
+
+
 struct EnterPercentView: View {
+    
+    @Binding var isPresent:Bool
+    var body: some View {
+        dialog(isPresented: $isPresent){
+           EnterPercentContent(isPresent: $isPresent)
+        }
+    }
+
+}
+
+struct EnterPercentContent: View {
+    @Binding var isPresent:Bool
     var delegate:EnterPercentDelegate?
-    @Environment(\.popupDismiss) var dismiss
+//    @Environment(\.popupDismiss) var dismiss
     var id = 0
     @State var percent:Int? = nil
     
@@ -49,12 +63,11 @@ struct EnterPercentView: View {
                     
                 }
     
-              
-
+            
     
             HStack(spacing:0){
                 Button {
-                    dismiss?()
+                    isPresent = false
                 } label: {
                     Text("HUỶ")
                         .font(.system(size: 18, weight: .bold))
@@ -64,7 +77,7 @@ struct EnterPercentView: View {
                 }.buttonStyle(.plain)
                 
                 Button {
-                    dismiss?()
+                    isPresent = false
                
                     if let percent = self.percent{
                         delegate?.callbackToGetPercent(id: self.id, percent: percent)
@@ -98,7 +111,6 @@ struct EnterPercentView: View {
 #Preview {
 
     ZStack {
-        Rectangle()
-        EnterPercentView()
+        EnterPercentView(isPresent: .constant(true))
     }
 }

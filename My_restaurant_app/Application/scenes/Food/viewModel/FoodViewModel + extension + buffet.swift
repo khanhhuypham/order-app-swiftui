@@ -49,7 +49,7 @@ extension FoodViewModel {
         
         NetworkManager.callAPI(netWorkManger:.getDetailOfBuffetTicket(
             branch_id: Constants.branch.id ?? 0,
-            category_id: APIParameter.category_id,
+            category_id: APIParameter.category_id ?? 0,
             buffet_ticket_id: buffet.buffet_ticket_id ?? 0,
             key_search: APIParameter.key_word,
             limit: APIParameter.limit,

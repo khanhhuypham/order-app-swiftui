@@ -24,24 +24,22 @@ class FoodViewModel: ObservableObject {
     public var selectedBuffet:Buffet? = nil
     
     @Published var APIParameter : (
-        category_id:Int,
-        category_type:FOOD_CATEGORY,
+        category_id:Int?,
+        category_type:CATEGORY_TYPE?,
         is_allow_employee_gift:Int,
-        is_sell_by_weight:Int,
-        is_out_stock:Int,
         is_use_point:Int,
+        out_of_stock:Bool,
         key_word:String,
         limit:Int,
         page:Int,
         total_record:Int,
         buffet_ticket_id:Int?
     ) =  (
-            category_id:-1,
-            category_type:.all,
+            category_id:nil,
+            category_type:nil,
             is_allow_employee_gift:-1,
-            is_sell_by_weight:ALL,
-            is_out_stock:-1,
-            is_use_point:0,
+            is_use_point:-1,
+            out_of_stock:false,
             key_word:"",
             limit:50,
             page:1,
@@ -51,7 +49,7 @@ class FoodViewModel: ObservableObject {
     
     @Published public var showPopup:(
         show:Bool,
-        PopupType:popupType,
+        popupType:PopupType,
         item:Food?
     ) = (false,.cancel,nil)
    
@@ -76,7 +74,6 @@ class FoodViewModel: ObservableObject {
 
             case .buffet_ticket:
                 getBuffetTickets()
-
             default:
                 if let buffet = order.buffet, APIParameter.buffet_ticket_id != nil  {
                     self.getDetailOfBuffetTicket(buffet: buffet)
@@ -145,8 +142,8 @@ extension FoodViewModel{
         
         NetworkManager.callAPI(netWorkManger: .categories(
             brand_id: Constants.brand.id ?? 0,
-            status: ACTIVE,
-            type:  APIParameter.category_type == .all ? 0 : APIParameter.category_type.rawValue)
+            active: true,
+            type: APIParameter.category_type)
         ){[weak self] result in
             guard let self = self else { return }
             switch result {
@@ -164,10 +161,10 @@ extension FoodViewModel{
                     cate.isSelect = true
                     
                     list.insert(cate, at: 0)
-                    dLog(list)
+
                     self.categories = list
                     
-                    self.APIParameter.category_id = cate.id
+                    self.APIParameter.category_id = nil
                     
                     self.reloadContent()
             
@@ -182,12 +179,9 @@ extension FoodViewModel{
     func getFoods(){
         NetworkManager.callAPI(netWorkManger:.foods(
             branch_id: Constants.branch.id ?? 0,
-            area_id: PermissionUtils.GPBH_1 ? -1 : order.area_id,
             category_id: APIParameter.category_id,
-            category_type: APIParameter.category_type.rawValue,
-            is_allow_employee_gift: APIParameter.is_allow_employee_gift,
-            is_sell_by_weight: APIParameter.is_sell_by_weight,
-            is_out_stock: APIParameter.is_out_stock,
+            category_type: APIParameter.category_type,
+            out_of_stock: APIParameter.out_of_stock,
             key_word: APIParameter.key_word,
             limit: APIParameter.limit,
             page:APIParameter.page
@@ -201,19 +195,16 @@ extension FoodViewModel{
                         dLog("parse model sai rồi")
                         return
                     }
-                  
-                
-                  
                     self.APIParameter.total_record = res.data.total_record
-                    
-                    
+                
                     for (i,element) in res.data.list.enumerated(){
                         if let selectedItem = self.selectedFoods.first(where: {$0.id == element.id}){
                             res.data.list[i] = selectedItem
                         }
                     }
                     self.foods.append(contentsOf: res.data.list)
-                    
+                    dLog(self.foods.first)
+                
                   case .failure(let error):
                     dLog(error)
             }

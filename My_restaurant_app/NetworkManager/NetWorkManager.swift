@@ -27,11 +27,11 @@ enum NetworkManager{
     
     case postApplyOnlyCashAmount(branchId:Int)
     case getApplyOnlyCashAmount(branchId:Int)
-    case orders(userId:Int, order_status:String, key_word:String = "", branch_id:Int = -1,is_take_away:Int=DEACTIVE)
+    case orders(userId:Int,status:String, search_key:String = "", branch_id:Int = -1,limit:Int,page:Int)
     
     
-    case getOrderDetail(order_id:Int, branch_id:Int)
-    case foods(branch_id:Int, area_id:Int = -1, category_id:Int, category_type:Int, is_allow_employee_gift:Int = -1, is_sell_by_weight:Int = -1, is_out_stock:Int = 0, key_word:String = "",limit:Int,page:Int)
+    case getOrderDetail(id:Int, branch_id:Int)
+    case foods(branch_id:Int, category_id:Int?, category_type:CATEGORY_TYPE?, out_of_stock:Bool = false, key_word:String = "",limit:Int,page:Int)
     
     case addFoods(branch_id:Int, order_id:Int,foods:[FoodRequest], is_use_point:Int)
     case addGiftFoods(branch_id:Int, order_id:Int, foods:[FoodRequest], is_use_point:Int)
@@ -68,7 +68,7 @@ enum NetworkManager{
     case createArea(branch_id:Int, area:Area, is_confirm:Int? = nil)
     case foodsManagement(category_id:Int, search_key:String, limit:Int,page:Int)
     case childrenItem
-    case categories(brand_id:Int, status:Int = -1,type:Int = -1)
+    case categories(brand_id:Int, active:Bool? = nil,type:CATEGORY_TYPE? = nil)
     case notesManagement(branch_id:Int, status:Int = -1)
 //    
     case createTable(branch_id:Int, table_id:Int, table_name:String, area_id:Int, total_slot:Int,active:Bool)

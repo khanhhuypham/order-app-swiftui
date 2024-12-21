@@ -33,7 +33,7 @@ struct Food:Identifiable {
     var avatar:String = ""
     var temporary_price:Double = 0
     var sell_by_weight:Bool = false
-    var category_type:FOOD_CATEGORY = .food
+    var category_type:CATEGORY_TYPE = .food
     var printer_id:Int = 0
     var food_in_combo:[FoodAddition] = []
     var addition_foods:[FoodAddition] = []
@@ -159,7 +159,7 @@ extension Food: Codable {
         category_id = try container.decodeIfPresent(Int.self, forKey: .category_id) ?? 0
         avatar = try container.decodeIfPresent(String.self, forKey: .avatar) ?? ""
         sell_by_weight = try container.decodeIfPresent(Bool.self, forKey: .sell_by_weight) ?? false
-        category_type = try container.decodeIfPresent(FOOD_CATEGORY.self, forKey: .category_type) ?? .food
+        category_type = try container.decodeIfPresent(CATEGORY_TYPE.self, forKey: .category_type) ?? .food
         printer_id = try container.decodeIfPresent(Int.self, forKey: .printer_id) ?? 0
         food_in_combo = try container.decodeIfPresent([FoodAddition].self, forKey: .food_in_combo) ?? []
         addition_foods = try container.decodeIfPresent([FoodAddition].self, forKey: .addition_foods) ?? []

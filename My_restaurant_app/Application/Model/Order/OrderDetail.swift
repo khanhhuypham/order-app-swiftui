@@ -13,8 +13,8 @@ struct OrderDetail: Codable {
     var area_id:Int = 0
     var table_id:Int = 0
     var table_name:String = ""
+    var net_amount:Double = 0
     var amount:Double = 0
-    var total_amount:Double = 0
     var status:OrderStatus = .cancel
     var orderItems:[OrderItem] = []
     var booking_status:BookingStatus?
@@ -35,7 +35,7 @@ struct OrderDetail: Codable {
         case table_name
         case status
         case amount
-        case total_amount
+        case net_amount
         case orderItems = "items"
         case booking_status = "booking_status"
         case buffet = "order_buffet_ticket"
@@ -49,8 +49,7 @@ struct OrderDetail: Codable {
         self.table_id = order.table_id
         self.table_name = order.table_name
         self.status = order.order_status
-        self.total_amount = order.total_amount
-        self.amount = order.total_amount
+        self.net_amount = order.net_amount
     }
     
     init(table:Table) {
@@ -74,8 +73,9 @@ extension OrderDetail {
         table_name = try container.decodeIfPresent(String.self, forKey: .table_name) ?? ""
         table_id = try container.decodeIfPresent(Int.self, forKey: .table_id) ?? 0
         status = try container.decodeIfPresent(OrderStatus.self, forKey: .status) ?? .open
-        total_amount = try container.decodeIfPresent(Double.self, forKey: .total_amount) ?? 0
         amount = try container.decodeIfPresent(Double.self, forKey: .amount) ?? 0
+        net_amount = try container.decodeIfPresent(Double.self, forKey: .net_amount) ?? 0
+        
         orderItems = try container.decodeIfPresent([OrderItem].self, forKey: .orderItems) ?? []
        
     }

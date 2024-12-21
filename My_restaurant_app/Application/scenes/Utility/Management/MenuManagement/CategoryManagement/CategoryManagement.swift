@@ -45,17 +45,13 @@ struct CategoryManagement: View {
             }.padding()
            
         }
-        .fullScreenCover(isPresented: $viewModel.isPresent, content: {
-            
+        .presentDialog(isPresented:$viewModel.isPresent,content: {
             if let popup = viewModel.popup{
-                dialog(isPresented: $viewModel.isPresent){
-                    AnyView(popup)
-                }
-            }
-            
+                AnyView(popup)
+           }
         })
+
         
-       
     }
     
     private func renderCell(category:Binding<Category>) -> (some View){

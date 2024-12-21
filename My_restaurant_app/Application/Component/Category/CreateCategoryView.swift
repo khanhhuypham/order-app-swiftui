@@ -63,15 +63,20 @@ struct CreateCategory: View {
                     Text("Loại danh mục: ")
                   
                     Menu {
-                        ForEach(CATEGORY_TYPE.allCases, id: \.self) { cate in
+                        ForEach(CATEGORY_TYPE.allCases.filter{
+                            $0 == CATEGORY_TYPE.drink ||
+                            $0 == CATEGORY_TYPE.food ||
+                            $0 == CATEGORY_TYPE.other ||
+                            $0 == CATEGORY_TYPE.service
+                        },id: \.self){ cate in
                             Button(action: {
                                 category.type = cate
                             }) {
-                                Label(cate.name, systemImage: cate == category.type ? "checkmark" : "")
+                                Label(cate.description, systemImage: cate == category.type ? "checkmark" : "")
                             }
                          }
                     } label: {
-                        Text(category.type.name)
+                        Text(category.type.description)
                         .frame(maxWidth:.infinity,alignment:.leading)
                         .commonTextFieldDecor(height: 38)
                     }.disabled(category.id > 0)

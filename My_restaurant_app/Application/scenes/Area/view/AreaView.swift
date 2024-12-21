@@ -7,18 +7,12 @@
 
 import SwiftUI
 
-struct ResultView: View {
-    var choice: String
-
-    var body: some View {
-        Text("You chose \(choice)")
-    }
-}
 
 struct AreaView: View {
-    
+    @Injected(\.colors) var color: ColorPalette
+    @Injected(\.fonts) var font: Fonts
     @ObservedObject var viewModel:AreaViewModel = AreaViewModel()
-    
+    @State var title: String? = nil
     @State private var selection: String? = nil
     
     let columns = [
@@ -30,8 +24,17 @@ struct AreaView: View {
 
     var body: some View {
         
-        VStack{
+        VStack(spacing:0){
+            if let title = self.title{
+                Text(title)
+                    .foregroundColor(.white)
+                    .font(font.b_18)
+                    .frame(maxWidth: .infinity,maxHeight: 50)
+                    .background(color.orange_brand_900)
+                
+            }
             Divider()
+            
             AreaHeader(areaArray: $viewModel.area,closure: {
                 if let area = viewModel.area.filter{$0.isSelect}.first{
                     viewModel.getTables(areaId: area.id)
@@ -84,8 +87,7 @@ struct AreaView: View {
                     .foregroundColor(.primary)
             }
 
-            
-            
+                        
             HStack{
                 Circle()
                     .fill(.blue)
@@ -121,19 +123,6 @@ struct AreaView: View {
         .background(Color(UIColor.systemGray6)) // Light gray background
     }
     
-//    private func renderTable(table:Table) -> some View {
-//        VStack(alignment: .leading){
-//            ZStack{
-//                Image("icon-table")
-//                Text(table.name)
-//                    .foregroundColor(.white)
-//                    .font(.system(size: 16,weight: .semibold))
-//            }
-//          
-//        }
-//        .foregroundColor(table.status.fgColor)
-//       
-//    }
 }
 
 #Preview {

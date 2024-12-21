@@ -312,7 +312,6 @@ struct OrderListItem: View {
                 return color.blue_brand_700
         }
 
-           
     }
     
 }

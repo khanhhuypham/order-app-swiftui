@@ -36,7 +36,5 @@ extension OrderDetailView: NotFoodDelegate {
         }
     }
     
-    
-  
-    
+
 }

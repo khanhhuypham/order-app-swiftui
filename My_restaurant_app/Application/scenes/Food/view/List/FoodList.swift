@@ -32,42 +32,37 @@ struct FoodList: View {
     
     
     private var foodSection:some View{
-        let category = viewModel.categories.first(where: {$0.isSelect})?.name ?? viewModel.APIParameter.category_type.description
+        let category = viewModel.categories.first(where: {$0.isSelect})?.name ?? "Tất cả món ăn"
         
         return Section(header: Text(category)) {
             
             ForEach(Array($viewModel.foods.enumerated()),id:\.1.id) {index, item in
                 
-                FoodListCell(item: item)
-                    .swipeActions(edge: .trailing,allowsFullSwipe: false) {
+                FoodListCell(item: item).swipeActions(edge: .trailing,allowsFullSwipe: false){
                     
-                        let note = SwipeAction.note(action: {
-                            viewModel.showPopup = (true,.note,item.wrappedValue)
-                        })
-                        
-                        let discount = SwipeAction.discount(action: {
-                         
-                            viewModel.showPopup = (true,.discount,item.wrappedValue)
-                        })
-                        
-    
-                        SwipeActionView(actions: [discount,note])
-                    }
-                    .onAppear(perform: {
-             
-                        viewModel.loadMoreContent(currentItem: item.wrappedValue)
-                       
+                    let note = SwipeAction.note(action: {
+                        viewModel.showPopup = (true,.note,item.wrappedValue)
                     })
+                    
+                    let discount = SwipeAction.discount(action: {
+                     
+                        viewModel.showPopup = (true,.discount,item.wrappedValue)
+                    })
+                    
+                    SwipeActionView(actions: [discount,note])
+                }.onAppear(perform: {
+                    viewModel.loadMoreContent(currentItem: item.wrappedValue)
+                })
                
-                
-            } .defaultListRowStyle()
+            } 
+            .defaultListRowStyle()
 
         }
     }
     
     private var buffetSection:some View{
         
-        Section(header: Text(viewModel.APIParameter.category_type.description)) {
+        Section(header: Text(viewModel.APIParameter.category_type?.description ?? "")) {
             ForEach($viewModel.buffets) { item in
              
                 BuffetListCell(viewModel:viewModel,item: item)

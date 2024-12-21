@@ -148,7 +148,7 @@ struct OrderCardView: View {
                     
                     VStack (alignment:.leading,spacing: 10){
                         
-                        Text(String(order.amount.toString))
+                        Text(String(order.net_amount.toString))
                             .font(.title3)
                             .fontWeight(.bold)
                             .foregroundColor(order.order_status.fgColor)

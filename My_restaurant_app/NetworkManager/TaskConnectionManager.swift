@@ -71,13 +71,14 @@ extension NetworkManager{
                 return [:]
             
             
-            case .orders(let userId, let order_status, let key_word, let branch_id,let is_take_away):
+            case .orders(let userId,let status, let search_key, let branch_id, let limit, let page):
                 return  [
-                    "employee_id": String(userId),
-                    "order_status": String(order_status),
-                    "key_word": key_word,
-                    "branch_id":String(branch_id),
-                    "is_take_away":String(is_take_away)
+                    "user_id": String(userId),
+                    "status": status,
+                    "search_key": search_key,
+//                    "branch_id":String(branch_id),
+                    "page":page.description,
+                    "limit":limit.description
                 ]
             
             
@@ -87,21 +88,29 @@ extension NetworkManager{
                     "branch_id": String(branch_id)
                 ]
          
-                 case .foods(let branch_id, let area_id, let category_id, let category_type, let is_allow_employee_gift, let is_sell_by_weight, let is_out_stock, let keyword, let limit, let page):
-                     return [
+                 case .foods(let branch_id, let category_id, let category_type, let out_of_stock, let keyword, let limit, let page):
+                   
+                    var parameter =  [
                         "branch_id":branch_id.description,
-                        "area_id": area_id.description,
-                        "category_id": category_id.description,
-                        "category_type": category_type.description,
-                        "is_allow_employee_gift": is_allow_employee_gift.description,
-                        "is_sell_by_weight": is_sell_by_weight.description,
-                        "is_out_stock": is_out_stock.description,
-                        "key_search": keyword,
+//                        "area_id": area_id.description,
+                        "out_of_stock": out_of_stock.description,
+                        "search_key": keyword,
                         "is_get_restaurant_kitchen_place": ALL.description,
-                        "status":ACTIVE.description,
+//                        "status":ACTIVE.description,
                         "limit": limit.description,
                         "page": page.description
-                    ]
+                    ] as [String : Any]
+
+                    if category_id != nil {
+                        parameter["category_id"] = category_id?.description
+                    }
+
+                    if category_type != nil {
+                        parameter["category_type"] = category_type?.rawValue.description
+                    }
+            
+            
+                     return parameter
      
                  case .addFoods(let branch_id, let order_id, let foods, let is_use_point):
                      return [
@@ -562,13 +571,20 @@ extension NetworkManager{
             case .childrenItem:
                 return [:]
 
-            case .categories(let brand_id, let status, let type):
+            case .categories(let brand_id, let active, let type):
                
-                return [
-                    "restaurant_brand_id":brand_id.description,
-                    "status": status.description,
-                    "type":type.description
-                ]
+                var parameter:[String:Any] = [:]
+                if active != nil{
+                    parameter.updateValue(active?.description, forKey: "active")
+                }
+            
+                if type != nil{
+                    parameter.updateValue(type?.rawValue.description, forKey: "type")
+                }
+            
+                
+                            
+                return parameter
 
             case .notesManagement(let branch_id, let status):
                 return [

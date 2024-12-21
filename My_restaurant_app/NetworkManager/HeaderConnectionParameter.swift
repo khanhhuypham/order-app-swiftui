@@ -71,13 +71,15 @@ extension NetworkManager{
             case  .getApplyOnlyCashAmount(_):
                 return headerJava(ProjectId: .PROJECT_ID_DASHBOARD, Method: .GET)
             
-            case .orders(_, _, _, _,_):
+            case .orders(_, _, _, _,_,_):
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .GET)
             
             case .getOrderDetail(_, _):
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .GET)
-            case .foods(_,_,_,_,_,_,_,_,_,_):
+            
+            case .foods(_,_,_,_,_,_,_):
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .GET)
+            
             case .addFoods(_, _, _, _):
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)
 

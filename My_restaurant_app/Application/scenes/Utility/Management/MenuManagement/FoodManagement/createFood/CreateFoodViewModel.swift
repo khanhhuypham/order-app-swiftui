@@ -30,7 +30,7 @@ extension CreateFoodViewModel{
     
     func getCategories(){
 
-        NetworkManager.callAPI(netWorkManger:.categories(brand_id:brandId,status:ACTIVE)){[weak self] result in
+        NetworkManager.callAPI(netWorkManger:.categories(brand_id:brandId,active:true)){[weak self] result in
 
             guard let self = self else { return }
 

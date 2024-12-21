@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 
-enum popupType{
+enum PopupType{
     case note
     case discount
     case edit
@@ -24,17 +24,15 @@ class OrderDetailViewModel: ObservableObject {
     @Published var selectedItem:OrderItem? = nil
     
     @Published var printItems:[PrintItem] = []
-    
-    @Published var showpopup:Bool = false
-    @Published var showSheet:Bool = false
-    @Published var showDialog:Bool = false
-    @Published var showingFullScreen:Bool = false
-    
+
     @Published public var showPopup:(
         show:Bool,
-        PopupType:popupType,
+        type:PopupType,
         item:OrderItem?
     ) = (false,.cancel,nil)
+    
+    @Published public var showSheet:Bool = false
+    
     
     
     
@@ -48,7 +46,7 @@ class OrderDetailViewModel: ObservableObject {
 
     func getOrder(){
         
-        NetworkManager.callAPI(netWorkManger: .getOrderDetail(order_id: order.id , branch_id: Constants.branch.id ?? 0)){[weak self] result in
+        NetworkManager.callAPI(netWorkManger: .getOrderDetail(id: order.id , branch_id: Constants.branch.id ?? 0)){[weak self] result in
             
             guard let self = self else { return }
             
@@ -93,11 +91,10 @@ class OrderDetailViewModel: ObservableObject {
             order.orderItems[index].setQuantity(quantity: quantity)
             
 //            if quantity < 0.01{
-//                order.orderItems[index].quantity = item.is_sell_by_weight == ACTIVE ? 0.01 : 1
+//                order.orderItems[index].quantity = item.sell_by_weight ? 0.01 : 1
 //            }else{
 //                order.orderItems[index].quantity = quantity
 //            }
-
         }
     }
     

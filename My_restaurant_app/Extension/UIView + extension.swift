@@ -114,3 +114,59 @@ public struct LazyNavigate<Destination: View,Label: View>: View {
         }
     }
 }
+
+
+
+
+
+fileprivate var currentOverCurrentContextUIHost: UIHostingController<AnyView>?
+
+struct BackgroundClearView: UIViewRepresentable {
+    func makeUIView(context: Context) -> UIView {
+        let view = UIView()
+        DispatchQueue.main.async {
+            view.superview?.superview?.backgroundColor = .black.withAlphaComponent(0.7)
+        }
+        return view
+    }
+    func updateUIView(_ uiView: UIView, context: Context) {}
+}
+
+extension View {
+    public func presentDialog<Content: View>(
+        isPresented: Binding<Bool>,
+        showWithAnimation: Bool = true,
+        dismissWithAnimation: Bool = true,
+        afterDismiss: (() -> Void)? = nil,
+        @ViewBuilder content: @escaping () -> Content
+    ) -> some View {
+        onChange(of: isPresented.wrappedValue) { newValue in
+            newValue
+            ? present(content,showWithAnimation:showWithAnimation)
+            : dismiss(dismissWithAnimation, afterDismiss: afterDismiss)
+        }
+    }
+
+    private func present<Content: View>(
+        _ content: @escaping () -> Content,
+        showWithAnimation: Bool
+    ) {
+        let uiHost = UIHostingController(
+            rootView: AnyView(content().background(BackgroundClearView()))
+        )
+        uiHost.modalPresentationStyle = .overCurrentContext
+        uiHost.modalTransitionStyle = .crossDissolve
+        uiHost.view.backgroundColor = .clear
+
+        currentOverCurrentContextUIHost = uiHost
+        UIApplication.shared.windows.first?.rootViewController?.present(uiHost, animated: showWithAnimation, completion: nil)
+    }
+
+    private func dismiss(_ animated: Bool, afterDismiss: (() -> Void)?) {
+        guard let existingHost = currentOverCurrentContextUIHost else { return }
+        existingHost.dismiss(animated: animated) {
+            currentOverCurrentContextUIHost = nil
+            afterDismiss?()
+        }
+    }
+}

@@ -14,7 +14,7 @@ enum OrderAction {
     case moveTable
     case mergeTable
     case splitFood
-    case cancelOrder
+    case cancelOrder		
     case sharePoint
 }
 
@@ -96,9 +96,6 @@ enum TableStatus:Int,Codable {
     case using = 2
     case mergered = 3
     
-
-    
-    
     var fgColor:Color {
         switch self {
             case .using:
@@ -134,25 +131,25 @@ enum Bill_TYPE:Int{
 }
 
 
+//enum CATEGORY_TYPE:Int,Codable,CaseIterable{
+//    case processed = 1
+//    case nonProcessed = 2
+//    case nonProcessedOther = 3
+//    
+//    var name: String {
+//        switch self {
+//            case .processed:
+//                return "Có chế biến/Pha chế"
+//            case .nonProcessed:
+//                return "Không chế biến"
+//            case .nonProcessedOther:
+//                return "Khác (Không chế biến)"
+//
+//        }
+//    }
+//}
+
 enum CATEGORY_TYPE:Int,Codable,CaseIterable{
-    case processed = 1
-    case nonProcessed = 2
-    case nonProcessedOther = 3
-    
-    var name: String {
-        switch self {
-            case .processed:
-                return "Có chế biến/Pha chế"
-            case .nonProcessed:
-                return "Không chế biến"
-            case .nonProcessedOther:
-                return "Khác (Không chế biến)"
-
-        }
-    }
-}
-
-enum FOOD_CATEGORY:Int,Codable{
     case food = 1
     case drink = 2
     case other = 3
@@ -160,7 +157,7 @@ enum FOOD_CATEGORY:Int,Codable{
     case seafood = 4
     case service = 5
     case buffet_ticket = 6
-    case all = -1
+//    case all = -1
     
     var description: String {
         switch self {
@@ -180,8 +177,8 @@ enum FOOD_CATEGORY:Int,Codable{
                 return "Dịch vụ"
             case .buffet_ticket:
                 return "Buffet"
-            case .all:
-                return "Tất cả"
+//            case .all:
+//                return "Tất cả"
         }
     }
     

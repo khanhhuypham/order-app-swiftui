@@ -36,7 +36,7 @@ class CategoryManagementViewModel: ObservableObject {
 extension CategoryManagementViewModel{
     func getCategories(){
         
-        NetworkManager.callAPI(netWorkManger:.categories(brand_id:brandId,status:-1)){[weak self] result in
+        NetworkManager.callAPI(netWorkManger:.categories(brand_id:brandId)){[weak self] result in
             
             guard let self = self else { return }
             

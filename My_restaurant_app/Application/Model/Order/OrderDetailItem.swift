@@ -230,22 +230,21 @@ struct OrderItem: Codable,Identifiable {
     
     var id:Int = 0
     var order_id:Int = 0
-    var avatar:String = ""
     var food_id:Int = 0
+    var avatar:String = ""
     var name:String = ""
     var price:Double = 0
     var quantity:Float = 0
-
-
     var status:FOOD_STATUS = .pending
-    var category_type:FOOD_CATEGORY = .food
+    var category_type:CATEGORY_TYPE = .food
+    
     var is_gift:Bool = false
-    var enable_return_beer:Bool = false
+    var allow_return:Bool = false
     var note:String = ""
     var is_extra_charge:Bool = false
     var isChange:Bool = false
 
-    var is_sell_by_weight:Bool = false
+    var sell_by_weight:Bool = false
     var review_score:Int = 0
     var is_allow_print_stamp:Bool = false
     var order_detail_additions:[OrderDetailAddition] = []
@@ -278,14 +277,14 @@ struct OrderItem: Codable,Identifiable {
         case quantity
 
 
-        case status = "ss"
+        case status
         case category_type
         case is_gift
-        case enable_return_beer
+        case allow_return
         case note
         case is_extra_charge
 
-        case is_sell_by_weight
+        case sell_by_weight
         case review_score
         case is_allow_print_stamp
         case order_detail_additions
@@ -315,9 +314,9 @@ struct OrderItem: Codable,Identifiable {
     }
     
     mutating func setQuantity(quantity:Float) -> Void {
-        let maximumNumber:Float = self.is_sell_by_weight ? 200 : 1000
+        let maximumNumber:Float = self.sell_by_weight ? 200 : 1000
         
-        if self.is_gift {
+        if !self.is_gift  {
        
             self.quantity = quantity
           
@@ -384,16 +383,16 @@ extension OrderItem {
         price = try container.decodeIfPresent(Double.self, forKey: .price) ?? 150000
         quantity = try container.decodeIfPresent(Float.self, forKey: .quantity) ?? 0
         status = try container.decodeIfPresent(FOOD_STATUS.self, forKey: .status) ?? .pending
-        category_type = try container.decodeIfPresent(FOOD_CATEGORY.self, forKey: .category_type) ?? .food
+        category_type = try container.decodeIfPresent(CATEGORY_TYPE.self, forKey: .category_type) ?? .food
         is_gift = try container.decodeIfPresent(Bool.self, forKey: .is_gift) ?? false
-        enable_return_beer = try container.decodeIfPresent(Bool.self, forKey: .enable_return_beer) ?? true
+        allow_return = try container.decodeIfPresent(Bool.self, forKey: .allow_return) ?? true
         note = try container.decodeIfPresent(String.self, forKey: .note) ?? ""
         is_extra_charge = try container.decodeIfPresent(Bool.self, forKey: .is_extra_charge) ?? false
-        is_sell_by_weight = try container.decodeIfPresent(Bool.self, forKey: .is_sell_by_weight) ?? false
+        sell_by_weight = try container.decodeIfPresent(Bool.self, forKey: .sell_by_weight) ?? false
         review_score = try container.decodeIfPresent(Int.self, forKey: .review_score) ?? 0
         is_allow_print_stamp = try container.decodeIfPresent(Bool.self, forKey: .is_allow_print_stamp) ?? false
-        order_detail_additions = try container.decodeIfPresent([OrderDetailAddition].self, forKey: .order_detail_additions) ?? []
-        order_detail_combo = try container.decodeIfPresent([OrderDetailAddition].self, forKey: .order_detail_combo) ?? []
+//        order_detail_additions = try container.decodeIfPresent([OrderDetailAddition].self, forKey: .order_detail_additions) ?? []
+//        order_detail_combo = try container.decodeIfPresent([OrderDetailAddition].self, forKey: .order_detail_combo) ?? []
         children = try container.decodeIfPresent([ChildrenItem].self, forKey: .children) ?? []
     
         discount_percent = try container.decodeIfPresent(Int.self, forKey: .discount_percent) ?? 0

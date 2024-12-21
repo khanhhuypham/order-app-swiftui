@@ -40,7 +40,7 @@ extension NetworkManager{
             case  .getApplyOnlyCashAmount(_):
                 return .GET
             
-            case .orders(_, _, _, _,_):
+            case .orders(_, _, _, _,_,_):
                 return .GET
             
             
@@ -48,7 +48,7 @@ extension NetworkManager{
 
             case .getOrderDetail(_, _):
                 return .GET
-            case .foods(_,_,_,_,_,_,_,_,_,_):
+            case .foods(_,_,_,_,_,_,_):
                 return .GET
             case .addFoods(_, _, _, _):
                 return .POST

@@ -9,7 +9,7 @@ struct Category: Identifiable, Codable {
     var id: Int = 0
     var name: String = ""   
     var active: Bool = false
-    var type: CATEGORY_TYPE = .processed
+    var type: CATEGORY_TYPE = .food
     var description: String?
     /*
         biến này chỉ sử dụng riêng cho module ReportBusinessAnalystic
@@ -37,6 +37,6 @@ struct Category: Identifiable, Codable {
         name = try container.decodeIfPresent(String.self, forKey: .name) ?? ""
         active = try container.decodeIfPresent(Bool.self, forKey: .active) ?? false
         description = try container.decodeIfPresent(String.self, forKey: .description) ?? ""
-        type = try container.decodeIfPresent(CATEGORY_TYPE.self, forKey: .type) ?? .processed
+        type = try container.decodeIfPresent(CATEGORY_TYPE.self, forKey: .type) ?? .food
     }
 }

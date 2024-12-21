@@ -130,7 +130,6 @@ struct ActionSheetView: View {
             } label: {
                 Text("more action")
             }
-            
             BottomSheet(isShowing: $isShowingBottomSheet)
         }
     }

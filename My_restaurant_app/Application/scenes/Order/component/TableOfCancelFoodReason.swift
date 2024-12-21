@@ -8,10 +8,23 @@
 import SwiftUI
 import PopupView
 
-struct PopupMiddle: View {
+struct TableOfCancelReasonView: View {
+    @Binding var isPresent:Bool
+    var id = 0
+    @State var inputText = ""
+   
+    var body: some View {
+        PopupWrapper(isPresented: $isPresent){
+            TableOfCancelReasoncontent(isPresent: $isPresent)
+        }
+    }
+}
+
+private struct TableOfCancelReasoncontent: View {
+    @Binding var isPresent:Bool
     var delegate:ReasonCancelItemDelegate?
     @State var item:OrderItem? = nil
-    @Environment(\.popupDismiss) var dismiss
+//    @Environment(\.popupDismiss) var dismiss
     @Injected(\.fonts) private var fonts
     @State var list:[CancelReason] = []
     
@@ -57,7 +70,8 @@ struct PopupMiddle: View {
         
             HStack(spacing:0){
                 Button {
-                    dismiss?()
+//                    dismiss?()
+                    isPresent = false
                 } label: {
                     Text("HUỶ")
                         .font(.system(size: 18, weight: .bold))
@@ -69,7 +83,7 @@ struct PopupMiddle: View {
                 Button {
                     guard let item = self.item else {return }
                     delegate?.cancel(item: item)
-                    dismiss?()
+                    isPresent = false
                 } label: {
                     Text("ĐỒNG Ý")
                         .font(.system(size: 18, weight: .bold))
@@ -116,31 +130,19 @@ struct PopupMiddle: View {
     
     
 }
-//struct Popups_Previews: PreviewProvider {
-//    static var previews: some View {
-//        
-//        
-//        ZStack {
-//            Rectangle()
-//                .ignoresSafeArea()
-//            PopupMiddle()
-//        }
-//        
-//        
-//    }
-//}
+
 
 #Preview {
     
-    let list = CancelReason.getDummyData()
-    if  !list.isEmpty {
-        return ZStack {
-            Rectangle()
-                .ignoresSafeArea()
-            PopupMiddle(list:list)
-        }
-    }
-    
+//    let list = CancelReason.getDummyData()
+//    if  !list.isEmpty {
+//        return ZStack {
+//            Rectangle()
+//                .ignoresSafeArea()
+//            PopupMiddle(list:list)
+//        }
+//    }
+//    
     return EmptyView()
     
    

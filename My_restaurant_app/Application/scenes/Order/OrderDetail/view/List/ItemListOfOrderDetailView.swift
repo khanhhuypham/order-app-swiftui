@@ -63,17 +63,17 @@ struct OrderList: View, ReasonCancelItemDelegate {
     
                         let item = data.wrappedValue
                         
-                        item.is_gift
-                        ? viewModel.setQuantity(for: item, quantity:item.quantity + (item.is_sell_by_weight ? 0.01 : 1))
-                        : {}()
+                        if !item.is_gift{
+                            viewModel.setQuantity(for: item, quantity:item.quantity + (item.sell_by_weight ? 0.01 : 1))
+                        }
                         
                     },
                     onDecrease: {
                         let item = data.wrappedValue
-                        
-                        item.is_gift
-                        ? viewModel.setQuantity(for: item, quantity:item.quantity - (item.is_sell_by_weight ? 0.01 : 1))
-                        : {}()
+                        if !item.is_gift{
+                            viewModel.setQuantity(for: item, quantity:item.quantity - (item.sell_by_weight ? 0.01 : 1))
+                        }
+                       
                     }
                 )
 //                .task {}
@@ -87,11 +87,6 @@ struct OrderList: View, ReasonCancelItemDelegate {
                 .defaultListRowStyle()
                 
             }
-            
-            
-          
-            
-         
         }
         .listStyle(.plain)
     
@@ -103,15 +98,19 @@ struct OrderList: View, ReasonCancelItemDelegate {
         let note = SwipeAction.note(action: {
             viewModel.showPopup = (true,.note,data)
         })
+        
         let discount = SwipeAction.discount(action: {
             viewModel.showPopup = (true,.discount,data)
         })
         let edit = SwipeAction.edit(action: {
-            dLog("action edit")
+            viewModel.showPopup = (true,.edit,data)
         })
+        
         let split = SwipeAction.split(action: {
-            dLog("action split")
+            viewModel.showPopup.show = false
+            viewModel.showSheet = true
         })
+        
         let cancel = SwipeAction.cancel(action: {
             viewModel.showPopup = (true,.cancel,data)
         })

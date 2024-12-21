@@ -17,7 +17,6 @@ struct FoodListCell: View {
             HStack(spacing:0){
                 
                 Button(action: {
-                    
                     item.isSelect
                     ? item.deSelect()
                     : item.select()
@@ -35,8 +34,6 @@ struct FoodListCell: View {
                     VStack(alignment:.leading,spacing:2) {
                         Text(item.name)
                             .font(fonts.r_14)
-
-
                         if item.temporary_price < 0 {
                             Group{
                                 Text(String(format:"%@/%@",item.price.toString,item.unit_type )){$0.strokeColor = ColorUtils.red_600()} +

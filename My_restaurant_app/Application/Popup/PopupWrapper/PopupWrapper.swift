@@ -1,13 +1,14 @@
 //
-//  Dialog.swift
-//  DAIHY-ORDER
+//  PopupWrapper.swift
+//  My_restaurant_app
 //
-//  Created by Pham Khanh Huy on 28/09/2024.
+//  Created by Pham Khanh Huy on 20/12/2024.
 //
 
 import SwiftUI
 
-struct dialog<Content: View>: View {
+
+struct PopupWrapper<Content: View>: View {
     @Injected(\.fonts) private var font
     @Injected(\.colors) private var color
 
@@ -15,7 +16,6 @@ struct dialog<Content: View>: View {
     @State private var showing = false
     var dismissOnTapOutside: Bool = true
     let viewBuilder: () -> Content
-
 
     var body: some View {
         
@@ -38,40 +38,31 @@ struct dialog<Content: View>: View {
                 }
               
             }
-
+            .background(BackgroundClearView())
         }
         
     }
-
+    
+    // function for background clear
+    struct BackgroundClearView: UIViewRepresentable {
+        func makeUIView(context: Context) -> UIView {
+            let view = UIView()
+            DispatchQueue.main.async {
+                view.superview?.superview?.backgroundColor = .clear
+                view.superview?.superview?.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+            }
+            return view
+        }
+        func updateUIView(_ uiView: UIView, context: Context) {}
+    }
 
     
 }
 
+#Preview {
+    @State var isPresented = false
 
-
-struct DialogTest: View {
-    
-    @State private var isPresented = false
-
-       var body: some View {
-
-           Button {
-               isPresented = true
-             
-           } label: {
-               Text("Present Pop-up Dialog")
-           }
-//           .presentView(isPresented: $isPresented, content: {
-//               dialog(isPresented: $isPresented){
-//                   EnterTextView(isPresent: $isPresented)
-//               }
-//           })
-
-        
-       }
-
+    return dialog(isPresented: $isPresented){
+        EnterTextView(isPresent: $isPresented)
+    }
 }
-
-#Preview(body: {
-    DialogTest()
-})
