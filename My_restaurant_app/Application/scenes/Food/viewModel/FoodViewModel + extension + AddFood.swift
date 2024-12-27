@@ -14,17 +14,19 @@ extension FoodViewModel {
         if !selectedFoods.isEmpty{
         
             let items = selectedFoods.map{(food) in
-                var food_request = FoodRequest.init()
-                food_request.id = food.id
-                food_request.quantity = food.quantity
-                food_request.note = food.note
-                food_request.discount_percent = food.discount_percent
-                //CHECK ADDITION FOOD
-                food_request.addition_foods = food.addition_foods.filter{$0.isSelect && $0.quantity > 0}
-                // CHECK MUA 1 TANG 1
-                food_request.buy_one_get_one_foods = food.food_list_in_promotion_buy_one_get_one.filter{$0.isSelect && $0.quantity > 0}
-                return food_request
+                var obj = FoodRequest.init()
+                obj.id = food.id
+                obj.quantity = food.quantity
+                obj.note = food.note
+                obj.discount_percent = food.discount_percent
+                obj.children = food.children
+                        .filter { $0.isSelect && $0.quantity > 0 }
+                        .map { FoodRequestChild(id: $0.id, quantity: $0.quantity) }
+
+                return obj
             }
+            
+            dLog(items.toJSON())
             APIParameter.is_allow_employee_gift == ADD_GIFT ? addGiftFoods(items:items) : addFoods(items:items)
         }
         
@@ -56,8 +58,7 @@ extension FoodViewModel {
         NetworkManager.callAPI(netWorkManger:.addFoods(
             branch_id: Constants.branch.id ?? 0,
             order_id: order.id,
-            foods: items,
-            is_use_point: APIParameter.is_use_point
+            foods: items
         )){[weak self] result in
             guard let self = self else { return }
             

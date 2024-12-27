@@ -10,47 +10,67 @@ import SwiftUI
 import Combine
 struct ChildrenOfFoodListCell: View {
     @Injected(\.fonts) private var fonts
-    @Binding var child:FoodAddition
-    
+    @Injected(\.colors) private var color
+    @Binding var child:ChildrenItem
+    var category_type:CATEGORY_TYPE
     var body: some View {
 
         HStack(spacing:0) {
-            Button(action: {
-               
-                child.isSelect
-                ? child.deSelect()
-                : child.select()
+            
+            if category_type == .combo{
+                Rectangle()
+                    .frame(width: 50,height: 50)
+                    .foregroundColor(.clear)
+            }else{
                 
-            }) {
-                Image(child.isSelect ? "icon-check-square" : "icon-uncheck-square", bundle: .main)
-                    .padding(.leading, 20)
-            }.frame(width: 50,height: 50)
+                Button(action: {
+                    child.isSelect
+                    ? child.deSelect()
+                    : child.select()
+                    
+                }) {
+                    Image(child.isSelect ? "icon-check-square" : "icon-uncheck-square", bundle: .main)
+                        .padding(.leading, 20)
+                    
+            
+                }.frame(width: 50,height: 50)
+            }
         
 
             VStack(alignment: .leading,spacing:-10) {
                 Text(child.name)
-                    .font(fonts.m_12)
                     .fullBox(alignment: .leading)
-                   
-                Text(String(format: "%@/%@", child.price.description,child.unit_type))
-                    .font(fonts.m_12)
-                    .fullBox(alignment: .leading)
+                
+                Group{
+                    Text(child.price.toString){ $0.foregroundColor = color.orange_brand_900} +
+                    Text(String(format:"/%@",child.unit_type )){ $0.foregroundColor = color.gray_600}
+                }
                    
             }
+            .font(fonts.r_14)
             .onTapGesture(perform: {
-                print("Phm khnh1 h")
                 child.setQuantity(quantity: child.quantity + 1)
             })
-       
+            
+            
+            if category_type == .combo{
+                Text(child.quantity.description)
+                    .font(fonts.m_12)
+                    .padding(.trailing,8)
+                   
+            }else{
+                actionView
+                .padding(.trailing,8)
+            }
         
-            actionView
-            .padding(.trailing,8)
+           
         
         }
     }
     
     private var actionView:some View{
         HStack(alignment:.center,spacing: 0){
+            
             Button(action: {
                 child.setQuantity(quantity: child.quantity - 1)
             }, label: {
@@ -91,20 +111,17 @@ struct ChildrenOfFoodListCell: View {
     }
 }
 
-#Preview {
-    
-    if let data = FoodAddition.getDummyData().first {
-        return ZStack{
-            
-            Rectangle()
-            
-            ChildrenOfFoodListCell(child: .constant(data))
-                .background(.white)
-                .frame(maxHeight:80).background(.white)
-        }
-    }else{
-        return Text("Error of parsing JSON data")
-    }
-    
-    
-}
+//#Preview {
+//    if let data = FoodAddition.getDummyData().first {
+//        return ZStack{
+//            
+//            Rectangle()
+//            
+//            ChildrenOfFoodListCell(child: .constant(data))
+//                .background(.white)
+//                .frame(maxHeight:80).background(.white)
+//        }
+//    }else{
+//        return Text("Error of parsing JSON data")
+//    }
+//}

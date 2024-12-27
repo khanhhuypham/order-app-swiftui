@@ -29,7 +29,7 @@ enum EnvironmentMode {
         switch self {
             
             case .develop:
-                return "http://192.168.1.10:8080"
+                return "http://172.16.2.176:8080"
 //                return AppState.shared.userState == .notLoggedIn ? "beta.api.gateway.overate-vntech.com" : "http://172.16.2.176:8080"
             
             case .staging:

@@ -35,17 +35,17 @@ class FoodViewModel: ObservableObject {
         total_record:Int,
         buffet_ticket_id:Int?
     ) =  (
-            category_id:nil,
-            category_type:nil,
-            is_allow_employee_gift:-1,
-            is_use_point:-1,
-            out_of_stock:false,
-            key_word:"",
-            limit:50,
-            page:1,
-            total_record:2,
-            buffet_ticket_id:nil
-        )
+        category_id:nil,
+        category_type:nil,
+        is_allow_employee_gift:-1,
+        is_use_point:-1,
+        out_of_stock:false,
+        key_word:"",
+        limit:30,
+        page:1,
+        total_record:0,
+        buffet_ticket_id:nil
+    )
     
     @Published public var showPopup:(
         show:Bool,
@@ -56,10 +56,11 @@ class FoodViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     
     //MARK: - PAGINATION
-    func loadMoreContent(currentItem item: Food){
+    func loadMoreContent(){
 
         if self.foods.endIndex < APIParameter.total_record {
             APIParameter.page += 1
+            dLog(String(format: "page: %d", APIParameter.page))
             getFoods()
         }
         
@@ -71,7 +72,6 @@ class FoodViewModel: ObservableObject {
         foods.removeAll()
         buffets.removeAll()
         switch APIParameter.category_type{
-
             case .buffet_ticket:
                 getBuffetTickets()
             default:
@@ -177,10 +177,16 @@ extension FoodViewModel{
     
     
     func getFoods(){
+    
+        var categoryString = APIParameter.category_type?.rawValue.description
+        if APIParameter.category_type == .food {
+            categoryString = [CATEGORY_TYPE.food,CATEGORY_TYPE.combo,CATEGORY_TYPE.add_ons].map{$0.rawValue.description}.joined(separator: ",")
+        }
+       
         NetworkManager.callAPI(netWorkManger:.foods(
             branch_id: Constants.branch.id ?? 0,
             category_id: APIParameter.category_id,
-            category_type: APIParameter.category_type,
+            category_type: categoryString,
             out_of_stock: APIParameter.out_of_stock,
             key_word: APIParameter.key_word,
             limit: APIParameter.limit,
@@ -202,8 +208,10 @@ extension FoodViewModel{
                             res.data.list[i] = selectedItem
                         }
                     }
-                    self.foods.append(contentsOf: res.data.list)
-                    dLog(self.foods.first)
+
+                
+                 self.foods.append(contentsOf: res.data.list)
+                
                 
                   case .failure(let error):
                     dLog(error)

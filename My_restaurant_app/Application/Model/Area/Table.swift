@@ -6,27 +6,22 @@
 //
 
 
-
-
-
-struct Table:Codable,Identifiable,Hashable {
-    var id:Int?
+struct Table:Codable,Identifiable{
+    var id:Int = 0
     var name:String?
     var status:TableStatus?
     var area_id:Int?
-    var order_id:Int?
-    var order_status:Int?
+    var order:PrivateOrder?
     var active:Bool?
-    var is_selected:Bool = false
     var slot_number:Int?
+    var is_selected:Bool = false
  
     enum CodingKeys: String, CodingKey {
         case id
         case name
         case status
         case area_id
-        case order_id
-        case order_status
+        case order
         case active
         case slot_number
     }
@@ -34,7 +29,17 @@ struct Table:Codable,Identifiable,Hashable {
     init(name:String){
         self.name = name
     }
+    
     init(){}
+    
+    struct PrivateOrder:Codable {
+        var id:Int?
+        var status:OrderStatus?
+        enum CodingKeys: String, CodingKey {
+            case id
+            case status
+        }
+    }
     
 }
 

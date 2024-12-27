@@ -10,8 +10,8 @@ import SwiftUI
 struct HorizontalBtnGroup: View {
     @Injected(\.fonts) var font: Fonts
     @Injected(\.colors) var color: ColorPalette
-    @Binding var btnArray:[(id:Int,title:String,isSelect:Bool)]
-    var clickClosure:((Int) -> Void)? = nil
+    @Binding var btnArray:[(id:Int?,title:String,isSelect:Bool)]
+    var clickClosure:((Int?) -> Void)? = nil
 
     var body: some View {
         ScrollView(.horizontal,showsIndicators: false){

@@ -9,7 +9,7 @@
 
 
 struct Area {
-    var id:Int = 0
+    var id:Int?
     var name:String = ""
     var active:Bool = false
     var is_take_away:Int = DEACTIVE
@@ -23,7 +23,7 @@ struct Area {
         case active
     }
     
-    init(id:Int, name:String, isSelect:Bool){
+    init(id:Int? = nil, name:String, isSelect:Bool){
         self.id = id
         self.name = name
         self.isSelect = isSelect

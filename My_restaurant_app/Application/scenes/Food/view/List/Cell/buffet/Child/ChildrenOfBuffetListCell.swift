@@ -96,20 +96,20 @@ struct ChildrenOfBuffetListCell: View {
     }
 }
 
-#Preview {
-    
-    if let data = FoodAddition.getDummyData().first {
-        return ZStack{
-            
-            Rectangle()
-            
-            ChildrenOfFoodListCell(child: .constant(data))
-                .background(.white)
-                .frame(maxHeight:80).background(.white)
-        }
-    }else{
-        return Text("Error of parsing JSON data")
-    }
-    
-    
-}
+//#Preview {
+//    
+//    if let data = FoodAddition.getDummyData().first {
+//        return ZStack{
+//            
+//            Rectangle()
+//            
+//            ChildrenOfFoodListCell(child: .constant(data))
+//                .background(.white)
+//                .frame(maxHeight:80).background(.white)
+//        }
+//    }else{
+//        return Text("Error of parsing JSON data")
+//    }
+//    
+//    
+//}

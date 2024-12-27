@@ -45,7 +45,6 @@ struct FoodView: View {
             if (viewModel.APIParameter.category_type == .buffet_ticket && !viewModel.buffets.filter{$0.isSelect}.isEmpty) ||
                 (viewModel.APIParameter.category_type != .buffet_ticket && !viewModel.foods.filter{$0.isSelect}.isEmpty)
             {
-                
                 bottomBtn
             }
            
@@ -158,9 +157,8 @@ struct FoodView: View {
             }
             
             Button(action: {
-                
-      
-                
+            
+            
                 if viewModel.order.id > 0{
                     
                     viewModel.processToAddFood()
@@ -170,9 +168,8 @@ struct FoodView: View {
                     if viewModel.order.table_id == 0{
                         
 //                        viewModel.createTakeOutOder()
-            
-                    }else{
     
+                    }else{
                         viewModel.createDineInOrder()
                     }
                 }

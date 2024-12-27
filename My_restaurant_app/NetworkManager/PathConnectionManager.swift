@@ -51,8 +51,8 @@ extension NetworkManager{
             case .foods(_,_,_,_,_,_,_):
                 return String(format: "/api/%@/item", NetworkManager.version)
 
-            case .addFoods(_, let  order_id, _, _):
-               return String(format: "/api/%@/orders/%d/add-food",NetworkManager.version ,order_id)
+            case .addFoods(_, let  order_id, _):
+               return String(format: "/api/%@/order/%d/add-items",NetworkManager.version ,order_id)
 
             case .addGiftFoods(_, let order_id, _, _):
                return String(format:"/api/%@/orders/%d/gift-food", NetworkManager.version,order_id)
@@ -160,7 +160,7 @@ extension NetworkManager{
             case .areas(_, _):
                 return String(format: "/api/%@/area", NetworkManager.version)
 //
-            case .tables(_, _, _, _, _,_):
+            case .tables(_, _, _, _):
                 return String(format: "/api/%@/table",NetworkManager.version)
 //
 //            case .brands(_, _):
@@ -194,8 +194,8 @@ extension NetworkManager{
                 return String(format: "/note",NetworkManager.version,order_detail_id)
 //
 //                
-            case .reasonCancelFoods(_):
-                return String(format: "/api/%@/orders/cancel-reasons",NetworkManager.version)
+            case .reasonCancelItems(_):
+                return String(format: "/api/%@/cancel-reason",NetworkManager.version)
 //
 //            case .cancelFood(_, let order_id, _, _, _):
 //                return String(format: APIEndPoint.Name.urlCancelFood, order_id)
@@ -263,7 +263,7 @@ extension NetworkManager{
             case .createArea(_,let area,_):
                 return area.id == 0
                 ? String(format:"/api/%@/area",NetworkManager.version)
-                : String(format:"/api/%@/area/%d",NetworkManager.version,area.id)
+                : String(format:"/api/%@/area/%d",NetworkManager.version,area.id ?? 0)
             
             
             case .foodsManagement(_, _, _, _):
@@ -283,7 +283,7 @@ extension NetworkManager{
                 return table_id == 0
                 ? String(format:"/api/%@/table",NetworkManager.version)
                 : String(format:"/api/%@/table/%d",NetworkManager.version,table_id)
-//                return String(format:"/table",NetworkManager.version)
+
 //
 //          
 //            case .prints(_, _, _, _):
@@ -432,8 +432,7 @@ extension NetworkManager{
 //            case .useGift(_,let order_id, _, _):
 //                return String(format: APIEndPoint.Name.urlUseGift, order_id)
 //                
-            case .tablesManager(_, _, _, _):
-                return String(format: "/api/%@/tables/manage", NetworkManager.version)
+
 //
 //            case .notesByFood(let order_detail_id, _):
 //                return String(format: APIEndPoint.Name.urlNotesByFood, order_detail_id)

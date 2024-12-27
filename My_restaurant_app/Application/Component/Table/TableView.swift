@@ -20,7 +20,6 @@ struct TableView: View {
                     .foregroundColor(.white)
                     .font(font.sb_16)
             }
-          
         }
         .foregroundColor(table.status?.fgColor)
     }

@@ -104,20 +104,21 @@ extension NetworkManager{
                     if category_id != nil {
                         parameter["category_id"] = category_id?.description
                     }
+            
+                
 
-                    if category_type != nil {
-                        parameter["category_type"] = category_type?.rawValue.description
+                    if category_type != nil{
+                      
+                        parameter["category_type"] = category_type
                     }
-            
-            
+    
+        
                      return parameter
      
-                 case .addFoods(let branch_id, let order_id, let foods, let is_use_point):
+                 case .addFoods(let branch_id, let order_id, let foods):
                      return [
-                        "branch_id": branch_id.description,
-                        "order_id": String(order_id),
-                        "foods": foods.toDictionary(),
-                        "is_use_point": String(is_use_point)
+//                        "branch_id": branch_id.description,
+                        "items": foods.toDictionary(),
                     ]
      
                  case .addGiftFoods(let branch_id, let order_id, let foods, let is_use_point):
@@ -222,16 +223,20 @@ extension NetworkManager{
                 return parameter
 //
 //            
-            case .tables(let branch_dd, let area_id, let status, let exclude_table_id, let order_statuses,let buffet_ticket_id):
-                return [
-                    "branch_id": branch_dd.description,
-                    "area_id": area_id.description,
-                    "status":status,
-                    "exclude_table_id":exclude_table_id.description,
-                    "order_statuses":order_statuses,
-                    "is_active": "",
-                    "buffet_ticket_id": buffet_ticket_id.description
+            case .tables(let branch_dd, let area_id, let active,let buffet_ticket_id):
+                var parameter:[String:Any] = [
+                    :
+//                    "branch_id": branch_dd.description,
+//                    "buffet_ticket_id": buffet_ticket_id.description
                 ]
+                if active != nil {
+                    parameter.updateValue(active?.description, forKey: "active")
+                }
+                if area_id != nil {
+                    parameter.updateValue(area_id?.description, forKey: "area_id")
+                }
+                    
+                return parameter
 //
 //            
 //            case .brands(let key_search, let status):
@@ -356,9 +361,9 @@ extension NetworkManager{
                     "note": note
                 ]
             
-            case .reasonCancelFoods(let branch_id):
-                return ["branch_id": String(branch_id)]
-//
+            case .reasonCancelItems(let branch_id):
+                return [:]
+
             case .cancelFood(let branch_id, let order_id, let reason, let order_detail_id, let quantity):
                 return [
                     "branch_id": String(branch_id),
@@ -1125,14 +1130,7 @@ extension NetworkManager{
 //                )
 //                
 //                
-            case .tablesManager(let area_id, let branch_id, let status, let is_deleted):
-                return [
-                    "area_id": area_id.description,
-                    "branch_id": branch_id.description,
-                    "status":status.description,
-                    "is_deleted":is_deleted.description
-                ]
-//
+
 //                
 //            case .notesByFood(let order_detail_id, let branch_id):
 //                return .requestParameters(

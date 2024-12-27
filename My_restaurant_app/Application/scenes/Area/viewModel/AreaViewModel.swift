@@ -36,9 +36,9 @@ extension AreaViewModel{
                     
                     DispatchQueue.main.async {
                         var list = res.data
-                        list.insert(Area(id: -1, name: "Tất cả khu vực", isSelect: true), at: 0)
+                        list.insert(Area(name: "Tất cả khu vực", isSelect: true), at: 0)
                         self.area = list
-                        self.getTables(areaId: -1)
+                        self.getTables()
                     }
                 
                   case .failure(let error):
@@ -48,9 +48,9 @@ extension AreaViewModel{
     }
     
     
-    func getTables(areaId:Int){
+    func getTables(areaId:Int? = nil){
         
-        NetworkManager.callAPI(netWorkManger: .tables(branchId: Constants.branch.id ?? 0, area_id: areaId, status: "", exclude_table_id: 0)){[weak self] result in
+        NetworkManager.callAPI(netWorkManger: .tables(branchId: Constants.branch.id ?? 0, area_id: areaId,active: true)){[weak self] result in
             guard let self = self else { return }
             
             switch result {
@@ -69,8 +69,5 @@ extension AreaViewModel{
             }
         }
     }
-    
-  
-    
     
 }

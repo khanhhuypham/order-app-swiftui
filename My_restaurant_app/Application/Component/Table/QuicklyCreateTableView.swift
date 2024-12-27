@@ -68,7 +68,7 @@ struct QuicklyCreateTableView: View {
         }.onAppear(perform: {
             if !areaArray.isEmpty{
                 areaArray[0].isSelect = true
-                parameter.area_id = areaArray[0].id
+                parameter.area_id = areaArray[0].id ?? 0
                 
             }
             
@@ -125,7 +125,7 @@ struct QuicklyCreateTableView: View {
                             for (index,element) in areaArray.enumerated(){
                                 if element.id == area.id{
                                     areaArray[index].isSelect = true
-                                    parameter.area_id = area.id
+                                    parameter.area_id = area.id ?? 0
                                 }else{
                                     areaArray[index].isSelect = false
                                 }

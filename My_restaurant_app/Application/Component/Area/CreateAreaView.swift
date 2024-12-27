@@ -56,7 +56,7 @@ struct CreateAreaView: View {
                     .background(color.gray_200)
                 
                 
-                if area.id > 0{
+                if area.id ?? 0 > 0{
                     
                     Button(action: {
                         area.active = !area.active

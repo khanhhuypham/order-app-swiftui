@@ -13,8 +13,7 @@ struct AreaView: View {
     @Injected(\.fonts) var font: Fonts
     @ObservedObject var viewModel:AreaViewModel = AreaViewModel()
     @State var title: String? = nil
-    @State private var selection: String? = nil
-    
+    @State private var routeLink:(tag:String?,data:Table) = (tag:nil,data:Table())
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible()),
@@ -25,6 +24,11 @@ struct AreaView: View {
     var body: some View {
         
         VStack(spacing:0){
+            
+            NavigationLink(destination:lazyNavigate(OrderDetailView(order:Order(table: routeLink.data))), tag: "OrderDetailView", selection: $routeLink.tag) { EmptyView() }
+            
+            NavigationLink(destination:lazyNavigate(FoodView(order:OrderDetail(table: routeLink.data))), tag: "FoodView", selection: $routeLink.tag) { EmptyView() }
+            
             if let title = self.title{
                 Text(title)
                     .foregroundColor(.white)
@@ -48,19 +52,14 @@ struct AreaView: View {
                     LazyVGrid(columns: columns, spacing: 16) {
                         
                         ForEach($viewModel.table) { table in
-                            let data = table.wrappedValue
-                            
-                            if data.order_id ?? 0 > 0{
-                                NavigationLink(destination:OrderDetailView(order: Order(table: data))) {
-                                    TableView(table:table)
-                                }
-                            }else{
-                                NavigationLink(destination: FoodView(order:OrderDetail(table: data))) {
-                                    TableView(table:table)
-                                }
+                           
+                            TableView(table:table).onTapGesture {
+                                let data = table.wrappedValue
+                                routeLink = data.order?.id ?? 0 > 0
+                                ? (tag:"OrderDetailView",data:data)
+                                : (tag:"FoodView",data:data)
                             }
-                            
-
+                          
                         }
                     }
                     Spacer()

@@ -31,21 +31,21 @@ enum NetworkManager{
     
     
     case getOrderDetail(id:Int, branch_id:Int)
-    case foods(branch_id:Int, category_id:Int?, category_type:CATEGORY_TYPE?, out_of_stock:Bool = false, key_word:String = "",limit:Int,page:Int)
+    case foods(branch_id:Int, category_id:Int?, category_type:String? = nil, out_of_stock:Bool = false, key_word:String = "",limit:Int,page:Int)
     
-    case addFoods(branch_id:Int, order_id:Int,foods:[FoodRequest], is_use_point:Int)
+    case addFoods(branch_id:Int, order_id:Int,foods:[FoodRequest])
     case addGiftFoods(branch_id:Int, order_id:Int, foods:[FoodRequest], is_use_point:Int)
     case kitchenes(branch_id:Int, brand_id:Int, status:Int = 1)
     case vats
     case areas(branch_id:Int, active:Bool? = nil)
-    case tables(branchId:Int, area_id:Int, status:String, exclude_table_id:Int = 0, order_statuses:String = "",buffet_ticket_id:Int = 0)
+    case tables(branchId:Int, area_id:Int? = nil, active:Bool? = nil,buffet_ticket_id:Int = 0)
 //    case addFoods(branch_id:Int, order_id:Int, foods:[FoodRequest], is_use_point:Int)
 //    case addGiftFoods(branch_id:Int, order_id:Int, foods:[FoodRequest], is_use_point:Int)
 //    case kitchenes(branch_id:Int, brand_id:Int, status:Int = 1)
 //    case vats
 //    case addOtherFoods(branch_id:Int, order_id:Int, foods:OtherFoodRequest)
     case addNoteToOrder(branch_id:Int, order_detail_id:Int, note:String)
-    case reasonCancelFoods(branch_id:Int)
+    case reasonCancelItems(branch_id:Int)
     case cancelFood(branch_id:Int, order_id:Int, reason:String, order_detail_id:Int, quantity:Int)
 //    case updateFoods(branch_id:Int, order_id:Int, foods:[FoodUpdate])
 //    case ordersNeedMove(branch_id:Int, order_id:Int, food_status:String = "")
@@ -129,7 +129,7 @@ enum NetworkManager{
 //    case notes(branch_id:Int)
 //    case gift(qr_code_gift:String = "", branch_id:Int)
 //    case useGift(branch_id:Int, order_id:Int, customer_gift_id:Int, customer_id:Int)
-    case tablesManager(area_id:Int, branch_id:Int, status:Int, is_deleted:Int = 0)
+
 //    case notesByFood(food_id:Int, branch_id:Int = -1)
 //    case getVATDetail(order_id:Int, branch_id:Int)
 //    case cancelExtraCharge(branch_id:Int, order_id:Int, reason:String, order_extra_charge:Int, quantity:Int)
@@ -338,7 +338,7 @@ enum NetworkManager{
 ////==================================================================================================================================================================
 extension NetworkManager{
     
-    static func callAPI(netWorkManger:NetworkManager,completion: @escaping (Result<Data, Error>) -> Void) {
+    static func callAPI(logRequest:Bool = true,netWorkManger:NetworkManager,completion: @escaping (Result<Data, Error>) -> Void) {
 
         @Injected(\.utils) var util
     
@@ -349,7 +349,7 @@ extension NetworkManager{
         
 
         //============================================ Define parameter for method get=================================================
-     
+        
         print(String(format: "Method Description: %@", netWorkManger.method.description))
         
         if netWorkManger.method == .POST || netWorkManger.method == .PUT{
@@ -368,8 +368,6 @@ extension NetworkManager{
         guard let url = components?.url else {
             
             print(components)
-//            
-//            var errorTemp = Error(domain:"", code:httpResponse.statusCode, userInfo:nil)
             
             return
         }
@@ -404,7 +402,6 @@ extension NetworkManager{
                 // Step 4: Assign JSON data to the request's httpBody
                 if let jsonString = String(data: jsonData,encoding: .utf8) {
                     print("JSON String: \(jsonString)")
-                    
                 }
                 request.httpBody = jsonData
             

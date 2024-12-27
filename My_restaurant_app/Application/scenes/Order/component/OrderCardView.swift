@@ -23,175 +23,172 @@ struct OrderCardView: View {
 
     var body: some View {
         Button(action: {
-            dLog(order.order_status)
+         
             if order.order_status == .waiting_complete{
                 isActive = false
             }else{
                 isActive = true
             }
         }, label: {
-//            NavigationLink(destination: OrderDetailView(order:self.order), isActive: $isActive){
-                HStack(alignment:.top){
-                    
-                    VStack(alignment: .leading,spacing:5){
-                        
-                        VStack{
-                            
-                            Text(order.order_status.description.uppercased())
-                                .font(font.b_13)
 
-                            if let booking_id = order.booking_infor_id,booking_id > 0{
-                                Text("Booking")
-                                    .font(font.r_12)
-                            }
-                            
-                        }
-                        .frame(maxWidth: .infinity)
-                        .padding(8)
-                        .foregroundColor(order.order_status.fgColor)
-                        .background(order.order_status.bgColor)
-                        .cornerRadius(5)
+            HStack(alignment:.top){
+                
+                VStack(alignment: .leading,spacing:5){
+                    
+                    VStack{
                         
-                        Text(order.table_id == 0 ? String(format: "MV%@", order.table_name) : order.table_name)
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                            .frame(maxWidth: .infinity)
-                            .foregroundColor(order.order_status.fgColor)
-                            .padding()
-                            .background(order.order_status.bgColor)
-                            .cornerRadius(8)
-                        
-                        if order.order_status != .waiting_complete{
-                            // Bottom Icon Buttons
-                            HStack(spacing: 8) {
-                                
-                                Button(action: {
-                                    
-                                }) {
-                                    
-                                    Image("icon-three-dot", bundle: .main)
-                                        .padding(8)
-                                        .frame(maxWidth: .infinity)
-                                }
-                                .foregroundColor(order.order_status.fgColor)
-                                .background(order.order_status.bgColor)
-                                .cornerRadius(5)
-                                .disabled(order.booking_status == .status_booking_setup)
-                                
-                                
-                                
-                                Button(action: {
-                                    // Action for second button
-                                }) {
-                                    
-                                    Image("icon-gift", bundle: .main)
-                                        .padding(8)
-                                        .frame(maxWidth: .infinity)
-                                }
-                                .foregroundColor(order.order_status.fgColor)
-                                .background(order.order_status.bgColor)
-                                .cornerRadius(5)
-                                .disabled(order.booking_status == .status_booking_setup)
-                                
-                                
-                                Button(action: {
-                                    // Action for third button
-                                }) {
-                                    Image("icon-document-with-stick", bundle: .main)
-                                        .padding(8)
-                                        .frame(maxWidth: .infinity)
-                                    
-                                }
-                                .foregroundColor(order.order_status.fgColor)
-                                .background(order.order_status.bgColor)
-                                .cornerRadius(5)
-                                
-                                
-                                if PermissionUtils.GPBH_2 || PermissionUtils.GPBH_3{
-                                    
-                                    Button(action: {
-                                        // Action for third button
-                                    }) {
-                                        Image("icon-scanner", bundle: .main)
-                                            .padding(8)
-                                            .frame(maxWidth: .infinity)
-                                        
-                                    }
-                                    .foregroundColor(order.order_status.fgColor)
-                                    .background(order.order_status.bgColor)
-                                    .cornerRadius(5)
-                                    .disabled(order.booking_status == .status_booking_setup)
-                                }
-                                
-                                
-                                if  (PermissionUtils.GPBH_2 || PermissionUtils.GPBH_3) && Constants.brand.setting?.payment_type == .pay_os{
-                                    Button(action: {
-                                        // Action for third button
-                                    }) {
-                                        Image("icon-qr-code", bundle: .main)
-                                            .padding(8)
-                                            .frame(maxWidth: .infinity)
-                                        
-                                    }
-                                    .foregroundColor(order.order_status.fgColor)
-                                    .background(order.order_status.bgColor)
-                                    .cornerRadius(5)
-                                }
-                                
-                            }
-                            .frame(height:35)
-                            .frame(maxWidth:.infinity,alignment:.leading)
+                        Text(order.order_status.description.uppercased())
+                            .font(font.b_13)
+
+                        if let booking_id = order.booking_infor_id,booking_id > 0{
+                            Text("Booking")
+                                .font(font.r_12)
                         }
                         
                     }
                     .frame(maxWidth: .infinity)
+                    .padding(8)
+                    .foregroundColor(order.order_status.fgColor)
+                    .background(order.order_status.bgColor)
+                    .cornerRadius(5)
                     
-                    VStack (alignment:.leading,spacing: 10){
-                        
-                        Text(String(order.net_amount.toString))
-                            .font(.title3)
-                            .fontWeight(.bold)
+                    Text(order.table_id == 0 ? String(format: "MV%@", order.table_name) : order.table_name)
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .frame(maxWidth: .infinity)
+                        .foregroundColor(order.order_status.fgColor)
+                        .padding()
+                        .background(order.order_status.bgColor)
+                        .cornerRadius(8)
+                    
+                    if order.order_status != .waiting_complete{
+                        // Bottom Icon Buttons
+                        HStack(spacing: 8) {
+                            
+                            Button(action: {
+                                
+                            }) {
+                                
+                                Image("icon-three-dot", bundle: .main)
+                                    .padding(8)
+                                    .frame(maxWidth: .infinity)
+                            }
                             .foregroundColor(order.order_status.fgColor)
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                      
-                        HStack(spacing: 4) {
-                            Image(systemName: "doc.text")
-                                .foregroundColor(.gray)
-                            Text(String(format: "#%d", order.id))
-                                .font(.caption)
-                        }
-                        
-                        HStack(spacing: 4) {
-                            Image(systemName: "clock")
-                                .foregroundColor(.gray)
-                            Text(order.using_time_minutes_string)
-                                .font(.caption)
-                        }
-                        
-                        HStack(spacing: 4) {
-                            Image(systemName: "person.2").foregroundColor(.gray)
-                            TextField("", value: $order.using_slot, formatter: formatter)
-                                .keyboardType(.numberPad)
-                                .font(font.r_12)
-                                .multilineTextAlignment(.center)
-                                .frame(width: 40, height: 25)
+                            .background(order.order_status.bgColor)
+                            .cornerRadius(5)
+                            .disabled(order.booking_status == .status_booking_setup)
+                            
+                            
+                            
+                            Button(action: {
+                                // Action for second button
+                            }) {
+                                
+                                Image("icon-gift", bundle: .main)
+                                    .padding(8)
+                                    .frame(maxWidth: .infinity)
+                            }
+                            .foregroundColor(order.order_status.fgColor)
+                            .background(order.order_status.bgColor)
+                            .cornerRadius(5)
+                            .disabled(order.booking_status == .status_booking_setup)
+                            
+                            
+                            Button(action: {
+                                // Action for third button
+                            }) {
+                                Image("icon-document-with-stick", bundle: .main)
+                                    .padding(8)
+                                    .frame(maxWidth: .infinity)
+                                
+                            }
+                            .foregroundColor(order.order_status.fgColor)
+                            .background(order.order_status.bgColor)
+                            .cornerRadius(5)
+                            
+                            
+                            if PermissionUtils.GPBH_2 || PermissionUtils.GPBH_3{
+                                
+                                Button(action: {
+                                    // Action for third button
+                                }) {
+                                    Image("icon-scanner", bundle: .main)
+                                        .padding(8)
+                                        .frame(maxWidth: .infinity)
+                                    
+                                }
+                                .foregroundColor(order.order_status.fgColor)
                                 .background(order.order_status.bgColor)
-                                .overlay(
-                                  RoundedRectangle(cornerRadius: 5)
-                                    .stroke(lineWidth: 0.5)
-                                    .foregroundColor(order.order_status.fgColor)
-                                )
-                                .shadow(color: Color.gray.opacity(0.1),radius: 3, x: 1, y: 2)
-                               
+                                .cornerRadius(5)
+                                .disabled(order.booking_status == .status_booking_setup)
+                            }
+                            
+                            
+                            if  (PermissionUtils.GPBH_2 || PermissionUtils.GPBH_3) && Constants.brand.setting?.payment_type == .pay_os{
+                                Button(action: {
+                                    // Action for third button
+                                }) {
+                                    Image("icon-qr-code", bundle: .main)
+                                        .padding(8)
+                                        .frame(maxWidth: .infinity)
+                                    
+                                }
+                                .foregroundColor(order.order_status.fgColor)
+                                .background(order.order_status.bgColor)
+                                .cornerRadius(5)
+                            }
+                            
                         }
-                        
-                    }.frame(maxWidth: 120)
-
+                        .frame(height:35)
+                        .frame(maxWidth:.infinity,alignment:.leading)
+                    }
+                    
                 }
-//            }
+                .frame(maxWidth: .infinity)
+                
+                VStack (alignment:.leading,spacing: 10){
+                    
+                    Text(String(order.net_amount.toString))
+                        .font(.title3)
+                        .fontWeight(.bold)
+                        .foregroundColor(order.order_status.fgColor)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                  
+                    HStack(spacing: 4) {
+                        Image(systemName: "doc.text")
+                            .foregroundColor(.gray)
+                        Text(String(format: "#%d", order.id))
+                            .font(.caption)
+                    }
+                    
+                    HStack(spacing: 4) {
+                        Image(systemName: "clock")
+                            .foregroundColor(.gray)
+                        Text(order.using_time_minutes_string)
+                            .font(.caption)
+                    }
+                    
+                    HStack(spacing: 4) {
+                        Image(systemName: "person.2").foregroundColor(.gray)
+                        TextField("", value: $order.using_slot, formatter: formatter)
+                            .keyboardType(.numberPad)
+                            .font(font.r_12)
+                            .multilineTextAlignment(.center)
+                            .frame(width: 40, height: 25)
+                            .background(order.order_status.bgColor)
+                            .overlay(
+                              RoundedRectangle(cornerRadius: 5)
+                                .stroke(lineWidth: 0.5)
+                                .foregroundColor(order.order_status.fgColor)
+                            )
+                            .shadow(color: Color.gray.opacity(0.1),radius: 3, x: 1, y: 2)
+                           
+                    }
+                    
+                }
+                .frame(maxWidth: 120)
+            }
         })
-        
-      
         .padding()
         .background(Color.white)
         .cornerRadius(15)

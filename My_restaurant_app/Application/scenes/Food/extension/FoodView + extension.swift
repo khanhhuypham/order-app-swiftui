@@ -6,7 +6,7 @@ extension FoodView{
         let enumOfOutStock = 10
         
         var array = [
-            (id:CATEGORY_TYPE.buffet_ticket.rawValue,title:"Vé buffet",isSelected:false),
+//            (id:CATEGORY_TYPE.buffet_ticket.rawValue,title:"Vé buffet",isSelected:false),
             (id:CATEGORY_TYPE.food.rawValue,title:"Món ăn",isSelected:false),
             (id:CATEGORY_TYPE.drink.rawValue,title:"Nước uống",isSelected:false),
             (id:CATEGORY_TYPE.other.rawValue,title:"Khác",isSelected:false),
@@ -15,7 +15,6 @@ extension FoodView{
             (id:CATEGORY_TYPE.buffet_ticket.rawValue,title:"Buffet",isSelected:false)
         ]
         
-
         /*
             tab dịch vụ chỉ hiển thị đối với GPBH2 trở lên
             tab buffet chỉ hiển thị đối với GPBH2 trở lên
@@ -37,9 +36,8 @@ extension FoodView{
             
                    
             if let buffet = order.buffet{
-           
                 array = [
-                    (id:buffet.id,title:buffet.buffet_ticket_name ?? "",isSelected:false),
+//                    (id:buffet.id,title:buffet.buffet_ticket_name ?? "",isSelected:false),
                     (id:CATEGORY_TYPE.food.rawValue,title:"Món ăn",isSelected:false),
                     (id:CATEGORY_TYPE.drink.rawValue,title:"Nước uống",isSelected:false),
                     (id:CATEGORY_TYPE.other.rawValue,title:"Khác",isSelected:false),
@@ -120,13 +118,13 @@ extension FoodView{
             case CATEGORY_TYPE.buffet_ticket.rawValue:
                 p.category_type = .buffet_ticket
             
-            case viewModel.order.buffet?.id:
-                if let buffet = viewModel.order.buffet {
-                    p.category_type = .food
-                    p.buffet_ticket_id = buffet.buffet_ticket_id
-                }
-            
-                break
+//            case viewModel.order.buffet?.id:
+//                if let buffet = viewModel.order.buffet {
+//                    p.category_type = .food
+//                    p.buffet_ticket_id = buffet.buffet_ticket_id
+//                }
+//            
+//                break
             
             default:
                 p.category_type = nil

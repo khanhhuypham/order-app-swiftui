@@ -50,8 +50,8 @@ extension NetworkManager{
                 return .GET
             case .foods(_,_,_,_,_,_,_):
                 return .GET
-            case .addFoods(_, _, _, _):
-                return .POST
+            case .addFoods(_, _, _):
+                return .PUT
             case .addGiftFoods(_, _, _, _):
                 return .POST
             case .kitchenes(_, _, _):
@@ -62,7 +62,7 @@ extension NetworkManager{
 //                return .POST
 //            case .addNoteToOrderDetail(_, _, _):
 //                return .POST
-            case .reasonCancelFoods(_):
+            case .reasonCancelItems(_):
                 return .GET
             case .cancelFood(_, _, _, _, _):
                 return .POST
@@ -120,7 +120,7 @@ extension NetworkManager{
             case .areas(_, _):
                 return .GET
             
-            case .tables(_, _, _, _, _,_):
+            case .tables(_, _, _, _):
                 return .GET
 //            case .brands(_, _):
 //                return .get
@@ -302,8 +302,7 @@ extension NetworkManager{
 //                return .get
 //            case .useGift(_, _, _, _):
 //                return .post
-            case .tablesManager(_, _, _,_):
-                return .GET
+
 //            case .notesByFood(_, _):
 //                return .get
 //            case .getVATDetail(_, _):
@@ -529,3 +528,4 @@ extension NetworkManager{
         }
     }
 }
+	

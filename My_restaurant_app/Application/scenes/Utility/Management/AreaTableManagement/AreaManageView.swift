@@ -81,7 +81,8 @@ struct AreaManageView: View {
                      .foregroundColor(color.orange_brand_900)
              }
           }
-          .fullScreenCover(isPresented: $viewModel.isPresent, content: {
+       
+          .presentDialog(isPresented:  $viewModel.isPresent,content: {
               
               if let popup = viewModel.popup{
                   dialog(isPresented: $viewModel.isPresent){
@@ -90,6 +91,7 @@ struct AreaManageView: View {
               }
               
           })
+          
           .onAppear(perform: {
               viewModel.getAreaList()
           })

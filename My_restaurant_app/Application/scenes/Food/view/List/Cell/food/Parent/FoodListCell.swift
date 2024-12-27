@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 struct FoodListCell: View {
     @Injected(\.fonts) private var fonts
-    @Injected(\.colors) private var colors
+    @Injected(\.colors) private var color
     @Binding var item:Food
 
     var body: some View {
@@ -22,11 +22,17 @@ struct FoodListCell: View {
                     : item.select()
                     
                 }) {
-                    Image(item.isSelect ? "icon-check-square" : "icon-uncheck-square", bundle: .main)
+                    if item.out_of_stock{
+                        Image("icon-uncheck-disable", bundle: .main)
+                    }else{
+                        Image(item.isSelect ? "icon-check-square" : "icon-uncheck-square", bundle: .main)
+                    }
+                    
                 }
                 .frame(width:45)
                 .frame(maxHeight:.infinity)
-                
+               
+
                 HStack(spacing:5){
                     
                     LogoImageView(imagePath: item.avatar,mold:.square)
@@ -37,30 +43,43 @@ struct FoodListCell: View {
                         if item.temporary_price < 0 {
                             Group{
                                 Text(String(format:"%@/%@",item.price.toString,item.unit_type )){$0.strokeColor = ColorUtils.red_600()} +
-                                Text(item.temporary_price.toString){ $0.foregroundColor = ColorUtils.green_600()} +
+                                Text(item.temporary_price.toString){ $0.foregroundColor = color.green_600} +
                                 Text(item.unit_type){ $0.foregroundColor = ColorUtils.gray_600()}
                             }
                             
                         }else{
                             
                             Group{
-                                Text(item.price.toString){ $0.foregroundColor = ColorUtils.orange_brand_900()} +
-                                Text(String(format:"/%@",item.unit_type )){ $0.foregroundColor = ColorUtils.gray_600()}
+                                Text(item.price.toString){ $0.foregroundColor = color.orange_brand_900} +
+                                Text(String(format:"/%@",item.unit_type )){ $0.foregroundColor = color.gray_600}
                             }
                           
                         }
                     }
                     .font(fonts.m_14)
                     
-                    Spacer()
-                    
-                }.onTapGesture(perform: {
+                }
+                .frame(maxWidth: .infinity,alignment:.leading)
+                .onTapGesture(perform: {
                     item.setQuantity(quantity: item.quantity + (item.sell_by_weight ? 0.01 : 1))
                 })
                 
-                if item.isSelect{
-                    actionView.padding(.trailing,8)
+                if item.sell_by_weight{
+                    Image("icon-scale", bundle: .main)
+                        .resizable()
+                        .frame(width: 18,height: 18)
+                        .padding(.trailing,12)
                 }
+       
+                if item.isSelect {
+                    actionView.padding(.trailing,8)
+                }else if item.out_of_stock{
+                    Text("Hết món")
+                        .font(fonts.m_14)
+                        .foregroundColor(color.red_600)
+                        .padding(.trailing,16)
+                }
+              
           
             }
             
@@ -98,9 +117,9 @@ struct FoodListCell: View {
             
           
             
-            if !item.addition_foods.isEmpty && item.isSelect{
-                ForEach($item.addition_foods) { child in
-                    ChildrenOfFoodListCell(child: child)
+            if !item.children.isEmpty && item.isSelect{
+                ForEach($item.children) { child in
+                    ChildrenOfFoodListCell(child: child,category_type:item.category_type)
                     .listRowSeparator(.hidden)
                     .buttonStyle(PlainButtonStyle())
                 }
@@ -109,7 +128,7 @@ struct FoodListCell: View {
         .padding(.vertical,8)
         .overlay(
             Rectangle()
-                .frame(width: 4) // The height of the underline
+                .frame(width: item.out_of_stock ? 0 : 4) // The height of the underline
                 .foregroundColor(Color(ColorUtils.gray_600()))
                 .cornerRadius(4, corners: [.bottomLeft,.topLeft])
             , // Color of the underline
@@ -151,9 +170,7 @@ struct FoodListCell: View {
             
             if item.category_type != .service{
                 Button(action: {
-                    
                     item.setQuantity(quantity: item.quantity + (item.sell_by_weight ? 0.01 : 1))
-                    
                 }, label: {
                     Image(systemName: "plus")
                         .frame(width: 30,height: 30)

@@ -64,10 +64,7 @@ extension FoodViewModel {
                     return
                 }
               
-            
-              
                 self.APIParameter.total_record = res.data.total_record
-                
                 
                 for (i,element) in res.data.list.enumerated(){
                     if let selectedItem = self.selectedFoods.first(where: {$0.id == element.id}){

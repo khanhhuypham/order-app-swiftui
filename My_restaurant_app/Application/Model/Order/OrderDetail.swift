@@ -53,7 +53,7 @@ struct OrderDetail: Codable {
     }
     
     init(table:Table) {
-        self.id = table.order_id ?? 0
+        self.id = table.order?.id ?? 0
         self.table_name = table.name ?? ""
         self.table_id = table.id ?? 0
         self.area_id = table.area_id ?? 0

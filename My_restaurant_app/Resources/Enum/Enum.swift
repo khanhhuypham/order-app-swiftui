@@ -90,7 +90,6 @@ enum BookingStatus:Int,Codable {
 
 enum TableStatus:Int,Codable {
     
-
     case closed = 0
     case booking = 1
     case using = 2
@@ -131,33 +130,19 @@ enum Bill_TYPE:Int{
 }
 
 
-//enum CATEGORY_TYPE:Int,Codable,CaseIterable{
-//    case processed = 1
-//    case nonProcessed = 2
-//    case nonProcessedOther = 3
-//    
-//    var name: String {
-//        switch self {
-//            case .processed:
-//                return "Có chế biến/Pha chế"
-//            case .nonProcessed:
-//                return "Không chế biến"
-//            case .nonProcessedOther:
-//                return "Khác (Không chế biến)"
-//
-//        }
-//    }
-//}
+
 
 enum CATEGORY_TYPE:Int,Codable,CaseIterable{
+    case extra_charge = 0
     case food = 1
     case drink = 2
     case other = 3
-    case extra_charge = 0
     case seafood = 4
     case service = 5
     case buffet_ticket = 6
-//    case all = -1
+    case combo = 7
+    case add_ons = 8
+
     
     var description: String {
         switch self {
@@ -173,12 +158,16 @@ enum CATEGORY_TYPE:Int,Codable,CaseIterable{
                 return "Khác"
             case .seafood:
                 return "SeaFood"
+            
             case .service:
                 return "Dịch vụ"
+            
             case .buffet_ticket:
                 return "Buffet"
-//            case .all:
-//                return "Tất cả"
+                
+            default:
+                return ""
+
         }
     }
     

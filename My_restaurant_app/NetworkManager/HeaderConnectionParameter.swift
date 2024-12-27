@@ -80,8 +80,8 @@ extension NetworkManager{
             case .foods(_,_,_,_,_,_,_):
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .GET)
             
-            case .addFoods(_, _, _, _):
-                return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)
+            case .addFoods(_, _, _):
+                return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .PUT)
 
             case .addGiftFoods(_, _, _, _):
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)
@@ -160,7 +160,7 @@ extension NetworkManager{
 //                return headerJava(ProjectId: .PROJECT_OAUTH, Method: .GET)
             case .areas(_, _):
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .GET)
-            case .tables(_, _, _, _, _,_):
+            case .tables(_, _, _, _):
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .GET)
 //            case .brands(_, _):
 //                return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .GET)
@@ -189,7 +189,7 @@ extension NetworkManager{
             case .addNoteToOrder(_, _, _):
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)
 //                
-            case .reasonCancelFoods(_):
+            case .reasonCancelItems(_):
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .GET)
             case .cancelFood(_, _, _, _, _):
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)
@@ -348,8 +348,7 @@ extension NetworkManager{
 //                return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .GET)
 //            case .useGift(_, _, _, _):
 //                return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)
-            case .tablesManager(_, _, _, _):
-                return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .GET)
+
 //                
 //            case .notesByFood(_, _):
 //                return headerJava(ProjectId: .PROJECT_ID_DASHBOARD, Method: .GET)

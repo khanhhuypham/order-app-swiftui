@@ -16,7 +16,7 @@ class AreaManagementViewModel: ObservableObject {
     @Published var isPresent = false
     @Published var popup:(any View)? = nil
     
-    @Published var btnArray:[(id:Int,title:String,isSelect:Bool)] = []
+    @Published var btnArray:[(id:Int?,title:String,isSelect:Bool)] = []
 
     func showPopup(area:Area? = nil,table:Table? = nil,confirm:(()->Void)? = nil){
         let binding = Binding(
@@ -61,7 +61,8 @@ class AreaManagementViewModel: ObservableObject {
                     
                     if tab == 2{
                         var list = res.data
-                        list.insert(Area(id: -1, name: "Tất cả khu vực", isSelect: true), at: 0)
+                        list.insert(Area(name: "Tất cả khu vực", isSelect: true), at: 0)
+                        
                         btnArray = list.map{area in
                             return (id:area.id,title:area.name,isSelect:area.isSelect)
                         }
@@ -80,8 +81,8 @@ class AreaManagementViewModel: ObservableObject {
     }
     
     
-    func getTables(areaId:Int){
-        NetworkManager.callAPI(netWorkManger: .tables(branchId: Constants.branch.id ?? 0, area_id: areaId, status: "", exclude_table_id: 0)){[weak self] result in
+    func getTables(areaId:Int?){
+        NetworkManager.callAPI(netWorkManger: .tables(branchId: Constants.branch.id ?? 0, area_id: areaId)){[weak self] result in
             guard let self = self else { return }
             
             switch result {

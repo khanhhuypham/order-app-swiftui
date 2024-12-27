@@ -13,7 +13,7 @@ struct OrderListView<Model>: View where Model: OrderListViewModel{
     @Injected(\.colors) var color: ColorPalette
   
     @ObservedObject var viewModel: OrderListViewModel
-    @State private var selection: String? = nil
+//    @State private var selection: String? = nil
     @State private var routeLink:(tag:String?,order:Order) = (tag:nil,order:Order())
     
     var body: some View {
@@ -49,7 +49,7 @@ struct OrderListView<Model>: View where Model: OrderListViewModel{
                             .alignmentGuide(.listRowSeparatorLeading) { d in d[.leading] }
                             .listRowSeparator(.hidden)
                             .listRowInsets(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
-                            .listRowBackground(Color(ColorUtils.white()))
+                            .listRowBackground(color.white)
                         }
                     }
                     .listStyle(.plain)

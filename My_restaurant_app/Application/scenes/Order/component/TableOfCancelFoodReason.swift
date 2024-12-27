@@ -24,7 +24,6 @@ private struct TableOfCancelReasoncontent: View {
     @Binding var isPresent:Bool
     var delegate:ReasonCancelItemDelegate?
     @State var item:OrderItem? = nil
-//    @Environment(\.popupDismiss) var dismiss
     @Injected(\.fonts) private var fonts
     @State var list:[CancelReason] = []
     
@@ -109,7 +108,7 @@ private struct TableOfCancelReasoncontent: View {
     
     private func getReasonOfCancel(){
         
-        NetworkManager.callAPI(netWorkManger: .reasonCancelFoods(branch_id: Constants.branch.id ?? 0)){result in
+        NetworkManager.callAPI(netWorkManger: .reasonCancelItems(branch_id: Constants.branch.id ?? 0)){result in
           
             switch result {
                   case .success(let data):
