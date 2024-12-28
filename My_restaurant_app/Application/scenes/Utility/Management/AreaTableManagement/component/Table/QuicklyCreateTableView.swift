@@ -14,9 +14,7 @@ struct QuicklyCreateTableView: View {
     @Injected(\.fonts) private var font
     @Injected(\.colors) private var color
     @Binding var isPresent:Bool
-    
     @State private var tables:[CreateTableQuickly] = []
-    
     @State var areaArray:[Area] = []
     
     
@@ -66,12 +64,15 @@ struct QuicklyCreateTableView: View {
             mainContent
             Spacer()
         }.onAppear(perform: {
-            if !areaArray.isEmpty{
+         
+            if let selectedArea = areaArray.first(where: {$0.isSelect}){
+
+                parameter.area_id = selectedArea.id ?? 0
+            }else{
                 areaArray[0].isSelect = true
                 parameter.area_id = areaArray[0].id ?? 0
-                
             }
-            
+
         })
         
     }
@@ -119,7 +120,6 @@ struct QuicklyCreateTableView: View {
                 Menu {
                     ForEach(areaArray, id: \.id) { area in
                         
-    
                         Button(action: {
                             
                             for (index,element) in areaArray.enumerated(){
@@ -130,8 +130,6 @@ struct QuicklyCreateTableView: View {
                                     areaArray[index].isSelect = false
                                 }
                                 
-//                                areaArray[index].isSelect = element.id == area.id ? true : false
-                            
                             }
                             
                         }) {

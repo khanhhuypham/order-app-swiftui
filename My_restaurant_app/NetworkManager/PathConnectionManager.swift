@@ -33,7 +33,7 @@ extension NetworkManager{
             case .getBrandSetting(let brand_id):
                 return String(format: "/api/%@/restaurant-brands/%d/setting", NetworkManager.version,brand_id)
             
-            case .getPrinters(_,_):
+            case .getPrinters(_):
                 return String(format: "/api/%@/printer",NetworkManager.version )
             
             case .postApplyOnlyCashAmount(let branchId):

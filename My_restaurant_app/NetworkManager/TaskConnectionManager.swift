@@ -56,10 +56,9 @@ extension NetworkManager{
             case .getBrandSetting(_):
                 return [:]
                 
-            case .getPrinters(let branch_id, let status):
+            case .getPrinters(let branch_id):
                 return  [
                     "branch_id":String(branch_id),
-                    "status":String(status)
                 ]
             
                 

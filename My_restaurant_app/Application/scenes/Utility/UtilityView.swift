@@ -12,7 +12,9 @@ import UIKit
 
 struct Utility: View {
     @EnvironmentObject var tabbarRouter:TabBarViewModel
-    @Injected(\.fonts) private var fonts
+   
+    @Injected(\.colors) var color: ColorPalette
+    @Injected(\.fonts) var fonts: Fonts
 
     @State var showSheet: Bool = false
     
@@ -51,7 +53,7 @@ struct Utility: View {
                         
                         Text(Constants.user.username ?? "ss")
                             .font(fonts.r_16)
-                            .foregroundColor(Color(ColorUtils.gray_600()))
+                            .foregroundColor(color.gray_600)
                             
                         
                         Text(Constants.user.name ?? "ss")
@@ -109,7 +111,7 @@ struct Utility: View {
                             .frame(width:18, height:18)
                             .padding(8)
                             .foregroundColor(.white)
-                            .background(Circle().fill(Color(ColorUtils.orange_brand_900())))
+                            .background(Circle().fill(color.orange_brand_900))
 
                     }.buttonStyle(.plain)
                     
@@ -142,7 +144,7 @@ struct Utility: View {
                             Image(systemName: "chevron.right")
                                 .padding(8)
                                 .foregroundColor(.white)
-                                .background(Circle().fill(Color(ColorUtils.orange_brand_900())))
+                                .background(Circle().fill(color.orange_brand_900))
     
                         }
                         .frame(width:18, height:18)
@@ -167,7 +169,7 @@ struct Utility: View {
                     Section(header: Text("Thiết lập"), content: {
 
                         NavigationLink{
-                            lazyNavigate(AreaManageView())
+                            lazyNavigate(PrinterSetting())
                         } label: {
                             HStack{
                                 Image("icon-printer", bundle: .main)

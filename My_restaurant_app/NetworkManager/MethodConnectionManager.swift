@@ -31,7 +31,7 @@ extension NetworkManager{
             case .getBrandSetting(_):
                 return .GET
             
-            case .getPrinters(_,_):
+            case .getPrinters(_):
                 return .GET
             
             case .postApplyOnlyCashAmount(_):

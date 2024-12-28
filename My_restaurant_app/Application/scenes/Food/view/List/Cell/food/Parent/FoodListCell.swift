@@ -84,7 +84,7 @@ struct FoodListCell: View {
             }
             
             
-            if item.discount_percent > 0{
+            if item.discount_percent ?? 0 > 0{
                 
                 HStack{
                     
@@ -93,7 +93,7 @@ struct FoodListCell: View {
                         .frame(width: 16,height: 16)
                         .padding(.leading,15)
                     
-                    Text(item.discount_percent.toString + "%")
+                    Text((item.discount_percent?.toString ?? "") + "%")
                         .font(fonts.m_14)
                         .foregroundColor(Color(ColorUtils.blue_brand_700()))
                 }.padding(.vertical,5)
@@ -120,6 +120,7 @@ struct FoodListCell: View {
             if !item.children.isEmpty && item.isSelect{
                 ForEach($item.children) { child in
                     ChildrenOfFoodListCell(child: child,category_type:item.category_type)
+
                     .listRowSeparator(.hidden)
                     .buttonStyle(PlainButtonStyle())
                 }

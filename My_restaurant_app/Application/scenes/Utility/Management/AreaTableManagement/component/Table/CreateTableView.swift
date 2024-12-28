@@ -44,22 +44,26 @@ struct CreateTableView: View {
             mainContent
             Spacer()
         }.onAppear(perform: {
-            for (index,element) in areaArray.enumerated(){
-
-                if element.id == table.id{
-                    areaArray[index].isSelect = true
-                    table.area_id = table.id
-                }else{
-                    areaArray[index].isSelect = false
-                }
-                
-                if table.id == nil && !areaArray.isEmpty{
-                    table.area_id = areaArray.first?.id
-                    areaArray[0].isSelect = true
-                }
-                
-            }
             
+            
+            if table.id == 0{
+                if let selectedArea = areaArray.first(where: {$0.isSelect}){
+                    table.area_id = selectedArea.id
+                }else if !areaArray.isEmpty{
+                    table.area_id = areaArray[0].id
+                }
+                
+            }else{
+                for (index,element) in areaArray.enumerated(){
+                    areaArray[index].isSelect = element.id == table.area_id ? true : false
+           
+                    if element.id == table.area_id{
+                        table.area_id = table.id
+                    }
+                    
+                }
+            }
+                        
         })
         
     }
@@ -68,7 +72,7 @@ struct CreateTableView: View {
     private var mainContent:some View{
         VStack(spacing:0) {
             
-            Text(String(format: "%@", table.id == nil ? "thêm bàn" : "cập nhật bàn").uppercased())
+            Text(String(format: "%@", table.id == 0 ? "thêm bàn" : "cập nhật bàn").uppercased())
                 .font(font.b_18)
                 .foregroundColor(color.orange_brand_900)
                 .padding(.top,20)
@@ -81,21 +85,15 @@ struct CreateTableView: View {
                 
                 Menu {
                     ForEach(areaArray, id: \.id) { area in
-                        
-    
                         Button(action: {
-                            
                             for (index,element) in areaArray.enumerated(){
-                                
                                 if element.id == area.id{
                                     areaArray[index].isSelect = true
                                     table.area_id = area.id
                                 }else{
                                     areaArray[index].isSelect = false
                                 }
-                                
                             }
-                            
                         }) {
                             Label(area.name, systemImage: area.isSelect ? "checkmark" : "")
                         }
@@ -103,7 +101,7 @@ struct CreateTableView: View {
                      }
                 } label: {
                     HStack{
-                        Text(areaArray.first{$0.id == table.area_id}?.name ?? (areaArray.first?.name ?? "")).font(font.r_13)
+                        Text(areaArray.first{$0.isSelect}?.name ?? (areaArray.first?.name ?? "")).font(font.r_13)
                         Spacer()
                         Image(systemName: "chevron.down")
                     }
@@ -116,9 +114,9 @@ struct CreateTableView: View {
                     
                     TextField("", value: $table.slot_number, format: .number)
                         .keyboardType(.numberPad)
-                        .  foregroundColor(color.orange_brand_900)
+                        .foregroundColor(color.orange_brand_900)
                     
-              
+    
                 }
                 .font(font.r_13)
                 .commonTextFieldDecor(height: 38)

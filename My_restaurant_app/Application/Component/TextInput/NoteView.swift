@@ -14,41 +14,41 @@ struct NoteView: View {
     @Binding var isPresent:Bool
     var id = 0
     @State var inputText = ""
-   
+    var completion:((Int,String) -> Void)? = nil
+    
+
     var body: some View {
         PopupWrapper(isPresented: $isPresent){
-            NoteContent(isPresent: $isPresent,id:id,inputText: inputText)
-        }.background(.clear)
+            NoteContent(isPresent: $isPresent,id:id,inputText:inputText,completion:completion)
+        }
     }
 }
 
 
 
 private struct NoteContent: View {
-    @Binding var isPresent:Bool
-    var delegate:NotFoodDelegate?
-    var id = 0
-
-
+    @Injected(\.fonts) var fonts: Fonts
+    @Injected(\.colors) var color: ColorPalette
     @State private var valid:Bool = false
+    @Binding var isPresent:Bool
+    var id = 0
     @State var inputText = ""
+    var completion:((Int,String) -> Void)? = nil
     
     var body: some View {
         
         VStack(spacing:0) {
             
             Text("THÊM GHI CHÚ")
-                .font(.system(size: 18, weight: .bold))
-                .foregroundColor(Color(ColorUtils.orange_brand_900()))
+                .font(fonts.b_18)
+                .foregroundColor(color.orange_brand_900)
                 .padding(.top,20)
             
-            
-            
+        
             ZStack(alignment: .topLeading) {
                 // Placeholder text
                 TextEditor(text: $inputText).onChange(of: inputText, perform: { text in
                     inputText = String(text.prefix(50))
-                    
                     valid = text.count > 2
                 })
                 
@@ -61,14 +61,14 @@ private struct NoteContent: View {
                 } 
                 
             }
-            .font(.system(size: 16, weight: .regular))
+            .font(fonts.r_16)
             .padding(.horizontal)
             .frame(height: 100)
             .padding(.vertical,20).padding(.horizontal,8)
             
             
             Text(String(format: "%d/50", inputText.count))
-                .font(.system(size: 14, weight: .medium))
+                .font(fonts.m_14)
                 .padding(.trailing,20)
                 .padding(.bottom,5)
                 .frame(maxWidth:.infinity,alignment: .trailing)
@@ -79,23 +79,24 @@ private struct NoteContent: View {
                     isPresent = false
                 } label: {
                     Text("HUỶ")
-                        .font(.system(size: 18, weight: .bold))
+                        .font(fonts.b_18)
                         .frame(maxWidth: .infinity,maxHeight:.infinity)
-                        .foregroundColor(Color(ColorUtils.red_600()))
-                        .background(Color(ColorUtils.gray_200()))
+                        .foregroundColor(color.red_600)
+                        .background(color.gray_200)
                 }.buttonStyle(.plain)
                 
                 Button {
                     isPresent = false
-                    delegate?.callBackNoteFood(id:self.id, note:inputText)
+                    completion?(id, inputText)
+                    
                 } label: {
                     Text("CẬP NHẬT")
-                        .font(.system(size: 18, weight: .bold))
+                        .font(fonts.b_18)
                         .frame(maxWidth: .infinity,maxHeight:.infinity)
                     
                 }
                 .foregroundColor(.white)
-                .background( valid ? Color(ColorUtils.orange_brand_900()) : .gray)
+                .background( valid ? color.orange_brand_900 : .gray)
                 .allowsHitTesting(valid)
                 .buttonStyle(.plain)
             }.frame(height: 50)

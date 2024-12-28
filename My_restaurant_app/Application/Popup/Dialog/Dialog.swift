@@ -16,7 +16,6 @@ struct dialog<Content: View>: View {
     var dismissOnTapOutside: Bool = true
     let viewBuilder: () -> Content
 
-
     var body: some View {
         
         GeometryReader { geometry in

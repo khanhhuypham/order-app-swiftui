@@ -35,22 +35,15 @@ struct Food:Identifiable {
     var sell_by_weight:Bool = false
     var category_type:CATEGORY_TYPE = .food
     var printer_id:Int = 0
-//    var food_in_combo:[FoodAddition] = []
-//    var addition_foods:[FoodAddition] = []
-//    var order_detail_additions = [OrderDetailAddition]() //Biến này chỉ dùng để map các món con khi gọi api lấy danh sách các món cần in
-//    var food_list_in_promotion_buy_one_get_one:[FoodAddition] = []
     var children:[ChildrenItem] = []
     var is_allow_print_stamp:Int = 0
     var out_of_stock:Bool = false
     var isSelect:Bool = false
     var buffet_ticket_ids:[Int]? = nil
-    var discount_percent:Int = 0
+    var discount_percent:Int? = nil
     var description:String = ""
     var is_gift:Bool = false
-    
-
-
-    
+        
     init(id:Int,name:String){
         self.id = id
         self.name = name
@@ -72,9 +65,6 @@ struct Food:Identifiable {
         case sell_by_weight
         case category_type
         case printer_id
-//        case food_in_combo
-//        case addition_foods
-//        case food_list_in_promotion_buy_one_get_one
         case is_allow_print_stamp
         case out_of_stock
         case buffet_ticket_ids = "buffet_ticket_ids"
@@ -229,7 +219,7 @@ extension Food{
     }
 
     
-    mutating func getChildren(id:Int) -> FoodAddition? {
+//    mutating func getChildren(id:Int) -> FoodAddition? {
 //        if addition_foods.count > 0{
 //            if let i = addition_foods.firstIndex(where: {$0.id == id}){
 //                return addition_foods[i]
@@ -240,8 +230,8 @@ extension Food{
 //               return food_list_in_promotion_buy_one_get_one[i]
 //            }
 //        }
-        return nil
-    }
+//        return nil
+//    }
     
     
     mutating func selectChildren(id:Int) -> Void {

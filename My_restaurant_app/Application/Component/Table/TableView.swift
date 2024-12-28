@@ -17,11 +17,11 @@ struct TableView: View {
             ZStack{
                 Image("icon-table")
                 Text(table.name ?? "")
-                    .foregroundColor(.white)
-                    .font(font.sb_16)
+                    .foregroundColor((table.order != nil) ? .white : .black)
+                    .font(font.sb_14)
             }
         }
-        .foregroundColor(table.status?.fgColor)
+        .foregroundColor(table.order?.status?.fgColorForTable ?? color.gray_400)
     }
 }
 

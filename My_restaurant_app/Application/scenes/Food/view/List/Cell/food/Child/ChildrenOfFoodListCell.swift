@@ -49,21 +49,23 @@ struct ChildrenOfFoodListCell: View {
             }
             .font(fonts.r_14)
             .onTapGesture(perform: {
-                child.setQuantity(quantity: child.quantity + 1)
+                if category_type != .combo{
+                    child.setQuantity(quantity: child.quantity + 1)
+                }
+
             })
             
             
             if category_type == .combo{
                 Text(child.quantity.description)
-                    .font(fonts.m_12)
-                    .padding(.trailing,8)
+                    .font(fonts.r_13)
+                    .padding(.trailing,20)
                    
             }else{
                 actionView
                 .padding(.trailing,8)
             }
         
-           
         
         }
     }

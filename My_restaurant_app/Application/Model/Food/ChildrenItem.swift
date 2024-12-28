@@ -15,7 +15,7 @@ struct ChildrenItem:Codable,Identifiable {
     var is_out_stock:Int = 0
     var avatar:String = ""
     var unit_type:String = ""
-    var quantity = 0
+    var quantity:Float = 0
     var isSelect:Bool = false
     var category_id = 0
     var status:Int = 0
@@ -28,6 +28,7 @@ struct ChildrenItem:Codable,Identifiable {
         case price
         case avatar
         case is_out_stock
+        case quantity
         case unit_type
         case category_id
         case status
@@ -52,7 +53,7 @@ struct ChildrenItem:Codable,Identifiable {
     }
     
     
-    mutating func setQuantity(quantity:Int) -> Void {
+    mutating func setQuantity(quantity:Float) -> Void {
         self.quantity = quantity
         self.quantity = quantity > 0 ? quantity : 0
         isSelect = quantity > 0 ? true : false
@@ -65,6 +66,7 @@ extension ChildrenItem {
         id = try container.decodeIfPresent(Int.self, forKey: .id) ?? 0
         name = try container.decodeIfPresent(String.self, forKey: .name) ?? ""
         price = try container.decodeIfPresent(Float.self, forKey: .price) ?? 0
+        quantity = try container.decodeIfPresent(Float.self, forKey: .quantity) ?? 0
         avatar = try container.decodeIfPresent(String.self, forKey: .avatar) ?? ""
         is_out_stock = try container.decodeIfPresent(Int.self, forKey: .is_out_stock) ?? 0
         unit_type = try container.decodeIfPresent(String.self, forKey: .unit_type) ?? ""

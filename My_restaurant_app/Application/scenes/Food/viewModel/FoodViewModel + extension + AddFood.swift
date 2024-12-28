@@ -26,7 +26,7 @@ extension FoodViewModel {
                 return obj
             }
             
-            dLog(items.toJSON())
+
             APIParameter.is_allow_employee_gift == ADD_GIFT ? addGiftFoods(items:items) : addFoods(items:items)
         }
         

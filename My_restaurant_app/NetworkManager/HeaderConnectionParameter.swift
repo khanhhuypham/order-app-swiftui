@@ -62,7 +62,7 @@ extension NetworkManager{
             case .getBrandSetting(_):
                 return headerJava(ProjectId: .PROJECT_ID_DASHBOARD, Method: .GET)
             
-            case .getPrinters(_,_):
+            case .getPrinters(_):
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .GET)
             
             case .postApplyOnlyCashAmount(_):

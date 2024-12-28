@@ -29,7 +29,7 @@ struct AreaManageView: View {
               TabHeader
               Divider()
 
-              if viewModel.tab == 1{
+              if viewModel.APIParameter.tab == 1{
                   ScrollView {
                       LazyVGrid(columns: [GridItem(.flexible()),GridItem(.flexible())], spacing: 20) {
                           ForEach($viewModel.areaList, id: \.id) { item in
@@ -42,6 +42,12 @@ struct AreaManageView: View {
               }else{
        
                   HorizontalBtnGroup(btnArray:$viewModel.btnArray){id in
+                      var areaList = viewModel.areaList
+                      for (i,area) in areaList.enumerated(){
+                          areaList[i].isSelect = area.id == id
+                      }
+                      viewModel.areaList = areaList
+                      
                       viewModel.getTables(areaId: id)
                   }.padding(.horizontal,12)
                   
@@ -67,7 +73,7 @@ struct AreaManageView: View {
               }
  
               Divider()
-              if viewModel.tab == 1{
+              if viewModel.APIParameter.tab == 1{
                   ButtonGroupOfArea
               }else{
                   ButtonGroupOfTable
@@ -81,11 +87,9 @@ struct AreaManageView: View {
                      .foregroundColor(color.orange_brand_900)
              }
           }
-       
-          .presentDialog(isPresented:  $viewModel.isPresent,content: {
-              
-              if let popup = viewModel.popup{
-                  dialog(isPresented: $viewModel.isPresent){
+          .presentDialog(isPresented:  $viewModel.APIParameter.isPresent,content: {
+              if let popup = viewModel.APIParameter.popup{
+                  dialog(isPresented: $viewModel.APIParameter.isPresent){
                       AnyView(popup)
                   }
               }
@@ -102,7 +106,7 @@ struct AreaManageView: View {
     private var TabHeader:some View{
         HStack{
             Button(action: {
-                viewModel.tab = 1
+                viewModel.APIParameter.tab = 1
                 viewModel.getAreaList()
             }) {
                 VStack(alignment:.center,spacing:0){
@@ -111,11 +115,11 @@ struct AreaManageView: View {
                     
                     Text("QUẢN LÝ KHU VỰC")
                         .font(font.sb_16)
-                        .foregroundColor(viewModel.tab == 1 ? color.green_600 : color.green_200)
+                        .foregroundColor(viewModel.APIParameter.tab == 1 ? color.green_600 : color.green_200)
                     Spacer()
                     
                     Rectangle()
-                        .frame(height:viewModel.tab == 1 ? 5 : 0) // Height of the underline
+                        .frame(height:viewModel.APIParameter.tab == 1 ? 5 : 0) // Height of the underline
                         .foregroundColor(color.green_600) // Color of the underline
                         .opacity(0.7) // Adjust opacity if needed
                 }
@@ -124,19 +128,19 @@ struct AreaManageView: View {
         
           
             Button(action: {
-                viewModel.tab = 2
+                viewModel.APIParameter.tab = 2
                 viewModel.getAreaList()
             }) {
                 VStack(alignment:.center,spacing:0){
                     Spacer()
                     Text("QUẢN LÝ BÀN")
                         .font(font.sb_16)
-                        .foregroundColor(viewModel.tab == 2 ? color.green_600 : color.green_200)
+                        .foregroundColor(viewModel.APIParameter.tab == 2 ? color.green_600 : color.green_200)
                     
                     Spacer()
                     
                     Rectangle()
-                        .frame(height: viewModel.tab == 2 ? 5 : 0) // Height of the underline
+                        .frame(height: viewModel.APIParameter.tab == 2 ? 5 : 0) // Height of the underline
                         .foregroundColor(color.green_600) // Color of the underline
                         .opacity(0.7) // Adjust opacity if needed
                 }
@@ -147,6 +151,8 @@ struct AreaManageView: View {
     private var ButtonGroupOfTable:some View{
         HStack{
             Button(action: {
+//                var table = Table()
+//                table.area_id = viewModel.APIParameter.selectedArea
                 viewModel.showPopup(table: Table())
             }) {
                 Text("+ THÊM MỚI")
@@ -160,7 +166,6 @@ struct AreaManageView: View {
             
             Button(action: {
                 viewModel.showPopup()
-                
             }) {
                 
                 Text("+ THÊM NHANH")

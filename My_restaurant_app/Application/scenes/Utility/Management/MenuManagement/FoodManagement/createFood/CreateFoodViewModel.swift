@@ -120,7 +120,7 @@ extension CreateFoodViewModel{
     
     func getPrinters(){
 
-        NetworkManager.callAPI(netWorkManger:.getPrinters(branch_id: branchId, status: ALL)){[weak self] result in
+        NetworkManager.callAPI(netWorkManger:.getPrinters(branch_id: branchId)){[weak self] result in
 
             guard let self = self else { return }
 

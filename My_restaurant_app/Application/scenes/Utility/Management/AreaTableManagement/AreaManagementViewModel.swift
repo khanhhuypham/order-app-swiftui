@@ -9,37 +9,37 @@ import SwiftUI
 
 class AreaManagementViewModel: ObservableObject {
     let branchId = Constants.branch.id ?? 0
-    @Published var areaList:[Area] = []
-    @Published var table:[Table] = []
-    @Published var tab = 1
-    
-    @Published var isPresent = false
-    @Published var popup:(any View)? = nil
     
     @Published var btnArray:[(id:Int?,title:String,isSelect:Bool)] = []
+    @Published var areaList:[Area] = []
+    @Published var table:[Table] = []
+    @Published var APIParameter:(tab:Int,isPresent:Bool,popup:(any View)?) = (
+        tab: 1,
+        isPresent:false,
+        popup:nil
+    )
+  
 
     func showPopup(area:Area? = nil,table:Table? = nil,confirm:(()->Void)? = nil){
         let binding = Binding(
-           get: { self.isPresent },
-           set: { self.isPresent = $0 }
+            get: { self.APIParameter.isPresent },
+            set: { self.APIParameter.isPresent = $0 }
         )
-        isPresent = true
+        APIParameter.isPresent = true
         if let area = area{
-            popup = CreateAreaView(isPresent:binding,area:area,onConfirmPress: {[weak self](area) in
+            APIParameter.popup = CreateAreaView(isPresent:binding,area:area,onConfirmPress: {[weak self](area) in
                 guard let self = self else { return }
                 self.createArea(area: area)
             })
         }else if let table = table{
-            popup = CreateTableView(isPresent: binding,table: table,areaArray: areaList,onConfirmPress: {[weak self](table) in
+            APIParameter.popup = CreateTableView(isPresent: binding,table: table,areaArray: areaList,onConfirmPress: {[weak self](table) in
                 guard let self = self else { return }
                 self.createTable(table: table)
             })
         }else{
-            popup = QuicklyCreateTableView(isPresent: binding,areaArray: areaList,onConfirmPress: {[weak self](tableList,areaId) in
+            APIParameter.popup = QuicklyCreateTableView(isPresent: binding,areaArray: areaList,onConfirmPress: {[weak self](tableList,areaId) in
                 guard let self = self else { return }
                 self.createTableQuickly(areaId: areaId, tables: tableList)
-                
- 
             })
         }
     
@@ -59,7 +59,7 @@ class AreaManagementViewModel: ObservableObject {
                         return
                     }
                     
-                    if tab == 2{
+                    if APIParameter.tab == 2{
                         var list = res.data
                         list.insert(Area(name: "Tất cả khu vực", isSelect: true), at: 0)
                         
@@ -67,7 +67,7 @@ class AreaManagementViewModel: ObservableObject {
                             return (id:area.id,title:area.name,isSelect:area.isSelect)
                         }
                             
-                        self.getTables(areaId: -1)
+                        self.getTables(areaId: nil)
                     }else{
                         self.areaList = res.data
                     }
@@ -94,7 +94,7 @@ class AreaManagementViewModel: ObservableObject {
                     }
                     
                     for (i,table) in res.data.enumerated(){
-                        res.data[i].status = table.active ?? false ? .using : .closed
+                        res.data[i].order = OrderOfTable(status: .open)
                     }
                 
                     self.table = res.data

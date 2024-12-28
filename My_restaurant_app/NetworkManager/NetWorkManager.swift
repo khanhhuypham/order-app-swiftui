@@ -23,7 +23,7 @@ enum NetworkManager{
     case getBrandSetting(brand_id:Int)
 
 
-    case getPrinters(branch_id:Int, status:Int = 1)
+    case getPrinters(branch_id:Int)
     
     case postApplyOnlyCashAmount(branchId:Int)
     case getApplyOnlyCashAmount(branchId:Int)
@@ -97,7 +97,7 @@ enum NetworkManager{
 //    case updateReadyPrinted(order_id:Int, order_detail_ids:[Int])
 //    
 //    case employees(branch_id:Int, is_for_share_point:Int)
-//    case kitchens(branch_id:Int, status:Int = 1)
+ 
 ////    case updateKitchen(branch_id:Int, kitchen:Kitchen)
 ////    case updatePrinter(printer:Kitchen)
     case createNote(note:Note)
@@ -285,8 +285,8 @@ enum NetworkManager{
 //    
 //    case postUpdateService(order_id:Int, branch_id:Int,order_detail_id:Int,start_time:String,end_time:String,note:String)
 //     
-//    case getActivityLog(object_id:Int,type:Int,key_search:String,object_type:String,from:String,to:String,page:Int,limit:Int)
-//    
+//    case getActivityLog(object_id:Int,type:Int,key_search:String,object_type:String,from:String,to:String,page:Intƒ,limit:Int)
+//
 //    case postApplyOnlyCashAmount(branchId:Int)
 //    case getApplyOnlyCashAmount(branchId:Int)
 //    case getVersionApp(os_name: String, key_search: String, is_require_update: Int, limit: Int, page: Int)

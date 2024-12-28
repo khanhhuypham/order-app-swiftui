@@ -30,8 +30,9 @@ struct FoodView: View {
                 handleChooseCategory(id: id)
             }
             
-            if (viewModel.APIParameter.category_type != .buffet_ticket ||
-                viewModel.APIParameter.category_type != nil) &&
+            if (viewModel.APIParameter.category_type == .food ||
+                viewModel.APIParameter.category_type == .drink ||
+                viewModel.APIParameter.category_type == nil) &&
                 !viewModel.APIParameter.out_of_stock &&
                 !viewModel.categories.isEmpty
             {
@@ -63,9 +64,9 @@ struct FoodView: View {
                 viewModel.order = order
                 viewModel.APIParameter.is_allow_employee_gift = 0
             }
-          
+            
             self.firstSetup(order: viewModel.order)
-            viewModel.reloadContent()
+            viewModel.getCategories()
         })
         .onReceive(viewModel.$navigateTag) { tag in
 
@@ -81,17 +82,26 @@ struct FoodView: View {
           
             switch viewModel.showPopup.popupType{
                 case .note:
-                    NoteView(isPresent:$viewModel.showPopup.show, id: item?.id ?? 0,inputText: item?.note ?? "")
+                    NoteView(isPresent:$viewModel.showPopup.show, id: item?.id ?? 0,inputText: item?.note ?? "",completion:{ id, text in
+                        if let index = viewModel.foods.firstIndex(where: {$0.id == id}){
+                            viewModel.foods[index].note = text
+                        }
+                    })
                 
                 case .discount:
-                    EnterPercentView(isPresent:$viewModel.showPopup.show)
-//                    EnterPercentView(
-//                        delegate: self,
-//                        id:item?.id ?? 0,
-//                        percent:item?.discount_percent ?? 0,
-//                        title: "GIẢM GIÁ",
-//                        placeholder: "Vui lòng nhập % bạn muốn giảm giá"
-//                    )
+                    
+                    EnterPercentView(
+                        isPresent: $viewModel.showPopup.show,
+                        id:item?.id ?? 0,
+                        percent:item?.discount_percent ?? nil,
+                        title: "GIẢM GIÁ",
+                        placeholder: "Vui lòng nhập % bạn muốn giảm giá",
+                        completion:{ id, percent in
+                            if let index = viewModel.foods.firstIndex(where: {$0.id == id}){
+                                viewModel.foods[index].discount_percent = percent
+                            }
+                        }
+                    )
    
                 default:
                     EmptyView()

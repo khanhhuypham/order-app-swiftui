@@ -56,6 +56,16 @@ enum OrderStatus:Int,Codable {
         }
     }
     
+    var fgColorForTable:Color {
+        switch self {
+            case .cancel:
+                return Color(ColorUtils.red_600())
+         
+            default:
+                return Color(ColorUtils.blue_brand_700())
+        }
+    }
+    
     var bgColor:Color {
         switch self {
             case .payment_request:
