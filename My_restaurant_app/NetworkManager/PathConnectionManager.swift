@@ -162,6 +162,8 @@ extension NetworkManager{
 //
             case .tables(_, _, _, _):
                 return String(format: "/api/%@/table",NetworkManager.version)
+            case .tablesForManagement(_):
+                return String(format: "/api/%@/table/management", NetworkManager.version)
 //
 //            case .brands(_, _):
 //                return APIEndPoint.Name.urlBrands

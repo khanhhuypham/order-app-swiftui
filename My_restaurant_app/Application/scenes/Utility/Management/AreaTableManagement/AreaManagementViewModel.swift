@@ -82,7 +82,7 @@ class AreaManagementViewModel: ObservableObject {
     
     
     func getTables(areaId:Int?){
-        NetworkManager.callAPI(netWorkManger: .tables(branchId: Constants.branch.id ?? 0, area_id: areaId)){[weak self] result in
+        NetworkManager.callAPI(netWorkManger: .tablesForManagement(area_id: areaId)){[weak self] result in
             guard let self = self else { return }
             
             switch result {

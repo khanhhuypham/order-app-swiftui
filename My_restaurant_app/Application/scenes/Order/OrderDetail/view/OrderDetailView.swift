@@ -215,6 +215,9 @@ struct OrderDetailView:View{
     
     private var bottomBtnGroup: some View {
         let cornerRadius:CGFloat = 8
+        let width:CGFloat = 23
+        let height:CGFloat = 23
+        let font = self.font.b_18
         
         return HStack(alignment: .center){
             
@@ -223,15 +226,15 @@ struct OrderDetailView:View{
                   
                     Spacer()
                     
-                    Image(systemName: "gift")
+                    Image("icon-fire",bundle: .main)
                         .resizable()
-                        .frame(width: 20,height: 20)
+                        .frame(width: width,height: height)
                         .padding(.bottom,1)
                     
                     Text("thêm khác")
-                        .font(font.b_12)
+                        .font(font)
                         .minimumScaleFactor(0.5)
-                    
+            
                     Spacer()
 
                 }
@@ -249,11 +252,11 @@ struct OrderDetailView:View{
     
                     Image("icon-turkey-chicken", bundle: .main)
                         .resizable()
-                        .frame(width: 20,height: 20)
+                        .frame(width: width,height: height)
                         .padding(.bottom,1)
 
                     Text("Thêm món")
-                        .font(font.b_12)
+                        .font(font)
                         .minimumScaleFactor(0.5)
                     
                     Spacer()
@@ -274,13 +277,11 @@ struct OrderDetailView:View{
 
                     Image("icon-split", bundle: .main)
                         .resizable()
-                        .frame(width: 20,height: 20)
+                        .frame(width: width,height: height)
                         .padding(.bottom,1)
 
-
-
                     Text("Tách món")
-                        .font(font.b_12)
+                        .font(font)
                         .minimumScaleFactor(0.5)
 
                     Spacer()
@@ -298,13 +299,13 @@ struct OrderDetailView:View{
                 VStack{
                     Spacer()
                     
-                    Image(systemName: "gift")
+                    Image("icon-gift", bundle: .main)
                         .resizable()
-                        .frame(width: 20,height: 20)
+                        .frame(width: width,height: height)
                         .padding(.bottom,1)
                     
                     Text("Quà tặng")
-                        .font(font.b_12)
+                        .font(font)
                         .minimumScaleFactor(0.5)
                     
                     Spacer()
@@ -323,11 +324,11 @@ struct OrderDetailView:View{
                     
                     Image("icon-document-with-stick", bundle: .main)
                         .resizable()
-                        .frame(width: 20,height: 20)
+                        .frame(width: width,height: height)
                         .padding(.bottom,1)
                     
                     Text("Thanh toán")
-                        .font(font.b_12)
+                        .font(font)
                         .minimumScaleFactor(0.5)
                     
                     Spacer()

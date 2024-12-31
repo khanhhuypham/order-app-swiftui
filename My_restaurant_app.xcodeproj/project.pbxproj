@@ -168,6 +168,8 @@
 		9473BA9C2CFAAB7E009F3C67 /* CreateFoodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9473BA9B2CFAAB7E009F3C67 /* CreateFoodViewModel.swift */; };
 		94852AB82CFD65D2003D2E2F /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94852AB72CFD65D2003D2E2F /* Unit.swift */; };
 		94852ABB2CFD6619003D2E2F /* Printer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94852ABA2CFD6619003D2E2F /* Printer.swift */; };
+		94A20FE72D23EBE600C34279 /* ReceiptManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A20FE62D23EBE600C34279 /* ReceiptManagement.swift */; };
+		94A20FE92D23EC0300C34279 /* ReceiptManagementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A20FE82D23EC0300C34279 /* ReceiptManagementViewModel.swift */; };
 		94C6A6A42CFDA813001A8E30 /* SimpleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C6A6A32CFDA812001A8E30 /* SimpleView.swift */; };
 		94E046E72CF6FAB5003734B8 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 94E046E62CF6FAB5003734B8 /* PopupView */; };
 		94E9C4762D1523D7000B2663 /* PopupWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E9C4752D1523D7000B2663 /* PopupWrapper.swift */; };
@@ -337,6 +339,8 @@
 		9473BA9B2CFAAB7E009F3C67 /* CreateFoodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFoodViewModel.swift; sourceTree = "<group>"; };
 		94852AB72CFD65D2003D2E2F /* Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
 		94852ABA2CFD6619003D2E2F /* Printer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Printer.swift; sourceTree = "<group>"; };
+		94A20FE62D23EBE600C34279 /* ReceiptManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptManagement.swift; sourceTree = "<group>"; };
+		94A20FE82D23EC0300C34279 /* ReceiptManagementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptManagementViewModel.swift; sourceTree = "<group>"; };
 		94C6A6A32CFDA812001A8E30 /* SimpleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleView.swift; sourceTree = "<group>"; };
 		94E9C4752D1523D7000B2663 /* PopupWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupWrapper.swift; sourceTree = "<group>"; };
 		F1798CE75DFD657B1C723125 /* Pods_My_restaurant_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_My_restaurant_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1161,6 +1165,8 @@
 		944034BE2CFACD2D00ECC957 /* ReceiptManagement */ = {
 			isa = PBXGroup;
 			children = (
+				94A20FE62D23EBE600C34279 /* ReceiptManagement.swift */,
+				94A20FE82D23EC0300C34279 /* ReceiptManagementViewModel.swift */,
 			);
 			path = ReceiptManagement;
 			sourceTree = "<group>";
@@ -1498,6 +1504,7 @@
 				94277AB22CF01E7B00B2F2E6 /* HeaderView.swift in Sources */,
 				94277A922CF01E7B00B2F2E6 /* MenuManagement.swift in Sources */,
 				94277AAD2CF01E7B00B2F2E6 /* TableView.swift in Sources */,
+				94A20FE72D23EBE600C34279 /* ReceiptManagement.swift in Sources */,
 				94277A792CF01E7B00B2F2E6 /* ItemListOfOrderDetailView.swift in Sources */,
 				94277ABD2CF01E7B00B2F2E6 /* Setting.swift in Sources */,
 				940235DC2D103C7E00B44C26 /* PrinterSettingViewModel.swift in Sources */,
@@ -1527,6 +1534,7 @@
 				94277AD32CF01E7B00B2F2E6 /* CreateFood.swift in Sources */,
 				94277ABE2CF01E7B00B2F2E6 /* Table.swift in Sources */,
 				94277A642CF01E7B00B2F2E6 /* UIColor + extension.swift in Sources */,
+				94A20FE92D23EC0300C34279 /* ReceiptManagementViewModel.swift in Sources */,
 				94277AD62CF01E7B00B2F2E6 /* Branch.swift in Sources */,
 				94277A682CF01E7B00B2F2E6 /* Text + extension.swift in Sources */,
 				94277A612CF01E7B00B2F2E6 /* Configs.swift in Sources */,

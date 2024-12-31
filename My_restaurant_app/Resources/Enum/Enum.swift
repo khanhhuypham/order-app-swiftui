@@ -26,18 +26,23 @@ enum OrderStatus:Int,Codable {
     case complete = 2 // HOAN TAT
     case waiting_merged = 3
     case waiting_complete = 4 // CHỜ THU TIỀN
-    case debt_complete = 5// HOAN TAT & NO BILL
-    case cancel = 8 // ĐÃ HUỶ
+    case cancel = 5 // ĐÃ HUỶ
     
     
     var description:String {
         switch self {
             case .payment_request:
                 return "Yêu cầu thanh toán"
-         
+            
             case .waiting_complete:
                 return "Chờ thanh toán"
                 
+            case .cancel:
+                return "Yêu cầu Huỷ"
+            
+            case .complete:
+                return "Hoàn thành"
+                    
             default:
                 return "đang phục vụ"
         }
@@ -50,6 +55,12 @@ enum OrderStatus:Int,Codable {
          
             case .waiting_complete:
                 return Color(ColorUtils.red_600())
+            
+            case .cancel:
+                return Color(ColorUtils.red_600())
+            
+            case .complete:
+                return Color(ColorUtils.green_600())
                 
             default:
                 return Color(ColorUtils.blue_brand_700())
@@ -73,6 +84,12 @@ enum OrderStatus:Int,Codable {
          
             case .waiting_complete:
                 return Color(ColorUtils.red_000())
+            
+            case .cancel:
+                return Color(ColorUtils.red_000())
+            
+            case .complete:
+                return Color(ColorUtils.green_000())
                 
             default:
                 return Color(ColorUtils.blue_brand_200())

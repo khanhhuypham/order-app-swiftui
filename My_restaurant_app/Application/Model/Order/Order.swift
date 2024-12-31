@@ -21,7 +21,7 @@ struct Order:Codable,Identifiable {
     var table_id:Int = 0
     var table_merged_names:[String] = []
     var using_slot:Int?
-    var order_status:OrderStatus = .open
+    var status:OrderStatus = .open
     var using_time_minutes_string:String = ""
     var total_amount:Double = 0
     var booking_infor_id:Int? = nil
@@ -38,7 +38,7 @@ struct Order:Codable,Identifiable {
         case table_id
         case table_merged_names
         case using_slot
-        case order_status
+        case status
         case using_time_minutes_string
         case total_amount
         case net_amount
@@ -77,7 +77,7 @@ extension Order {
         table_id = try container.decodeIfPresent(Int.self, forKey: .table_id) ?? 0
         table_merged_names = try container.decodeIfPresent([String].self, forKey: .table_merged_names) ?? []
         using_slot = try container.decodeIfPresent(Int.self, forKey: .using_slot) ?? 0
-        order_status = try container.decodeIfPresent(OrderStatus.self, forKey: .order_status) ?? .open
+        status = try container.decodeIfPresent(OrderStatus.self, forKey: .status) ?? .open
         using_time_minutes_string = try container.decodeIfPresent(String.self, forKey: .using_time_minutes_string) ?? ""
         total_amount = try container.decodeIfPresent(Double.self, forKey: .total_amount) ?? 0
         net_amount = try container.decodeIfPresent(Double.self, forKey: .net_amount) ?? 0

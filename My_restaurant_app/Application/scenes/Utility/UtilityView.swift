@@ -167,7 +167,6 @@ struct Utility: View {
                 Group{
                     
                     Section(header: Text("Thiết lập"), content: {
-
                         NavigationLink{
                             lazyNavigate(PrinterSetting())
                         } label: {
@@ -192,7 +191,6 @@ struct Utility: View {
                     Section(header: Text("Quản lý"), content: {
                         
                         NavigationLink{
-                         
                             lazyNavigate(AreaManageView())
                         } label: {
                             
@@ -206,13 +204,15 @@ struct Utility: View {
                             lazyNavigate(MenuManagement())
                         } label: {
                             HStack{
-                                Image("icon-turkey-chicken", bundle: .main)
+                                Image("icon-turkey-chicken.fill", bundle: .main)
                                 Text("Quản lý THỰC ĐƠN")
                             }
                         }
                         
                         NavigationLink{
-                            EmptyView()
+
+                            lazyNavigate(ReceiptManagement())
+//                            EmptyView()
                         } label: {
                           
                             HStack{

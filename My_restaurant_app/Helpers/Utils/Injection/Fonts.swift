@@ -84,6 +84,8 @@ struct Fonts{
     let m_18 = Font.system(size: 18, weight: .medium)
     let sb_18 = Font.system(size: 18, weight: .semibold)
     let b_18 = Font.system(size: 18, weight: .bold)
+    let b_19 = Font.system(size: 19, weight: .bold)
+    let b_20 = Font.system(size: 20, weight: .bold)
     
     
 }

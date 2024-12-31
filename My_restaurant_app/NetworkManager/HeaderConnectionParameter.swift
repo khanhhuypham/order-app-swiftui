@@ -162,6 +162,8 @@ extension NetworkManager{
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .GET)
             case .tables(_, _, _, _):
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .GET)
+            case .tablesForManagement(_):
+                return headerJava(ProjectId: .PROJECT_ID_ORDER,Method: .GET)
 //            case .brands(_, _):
 //                return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .GET)
 //            case .branches(_, _):

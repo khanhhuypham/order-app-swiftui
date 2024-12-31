@@ -1,20 +1,17 @@
 //
-//  OrderListViewModel.swift
-//  DAIHY-ORDER
+//  ReceiptManagementViewModel.swift
+//  My_restaurant_app
 //
-//  Created by Pham Khanh Huy on 03/09/2024.
+//  Created by Pham Khanh Huy on 31/12/2024.
 //
 
-import UIKit
+import SwiftUI
 import AlertToast
 import Combine
-class OrderListViewModel: ObservableObject {
-
+class ReceiptManagementViewModel: ObservableObject {
     @Injected(\.utils) private var utils
     @Published var orderList:[Order] = []
-    
     @Published var fullList:[Order] = []
-    
     @Published var APIParameter:(
         branch_id:Int,
         userId: Int?,
@@ -25,9 +22,9 @@ class OrderListViewModel: ObservableObject {
     ) = (
         branch_id:0,
         userId: nil,
-        status: "0,1,4,5",
+        status: "2,5",
         key_word:"",
-        limit:100,
+        limit:50,
         page:1
     )
     private var cancellables = Set<AnyCancellable>()

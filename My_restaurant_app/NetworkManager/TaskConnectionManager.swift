@@ -70,16 +70,21 @@ extension NetworkManager{
                 return [:]
             
             
-            case .orders(let userId,let status, let search_key, let branch_id, let limit, let page):
-                return  [
-                    "user_id": String(userId),
+            case .orders(let user_id,let status, let search_key, let branch_id, let limit, let page):
+                var parameter =  [
                     "status": status,
                     "search_key": search_key,
-//                    "branch_id":String(branch_id),
+                    //                    "branch_id":String(branch_id),
                     "page":page.description,
                     "limit":limit.description
-                ]
+                ] as [String : Any]
+
+                if let id = user_id {
+                    parameter["user_id"] = id.description
+                }
             
+                return parameter
+   
             
             case .getOrderDetail(let order_id, let branch_id):
                  return  [
@@ -236,6 +241,15 @@ extension NetworkManager{
                 }
                     
                 return parameter
+            
+            case .tablesForManagement(let area_id):
+                var parameter:[String:Any] = [:]
+                if area_id != nil {
+                    parameter.updateValue(area_id?.description, forKey: "area_id")
+                }
+                    
+                return parameter
+            
 //
 //            
 //            case .brands(let key_search, let status):
@@ -564,13 +578,16 @@ extension NetworkManager{
 
        
             case .foodsManagement(let category_id, let search_key, let limit, let page):
-                return  [
-                    "category_id":category_id.description,
+                var parameter:[String:Any] = [
                     "search_key": search_key,
                     "limit": limit.description,
                     "page": page.description,
-                    
                 ]
+            
+                if let id = category_id{
+                    parameter.updateValue(id.description, forKey: "category_id")
+                }
+                return  parameter
             
             case .childrenItem:
                 return [:]

@@ -42,6 +42,7 @@ struct PrinterSetting: View {
                
             }
             .listStyle(.plain)
+            .navigationTitle("Thiết lập máy in")
             .onAppear(perform: {
                 viewModel.getPrinters()
             })
@@ -89,7 +90,6 @@ struct PrinterSetting: View {
                 
             }
            
-            
         }
         .padding(8)
         .background(.white)

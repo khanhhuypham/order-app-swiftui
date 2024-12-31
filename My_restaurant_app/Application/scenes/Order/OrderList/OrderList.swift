@@ -13,7 +13,6 @@ struct OrderListView<Model>: View where Model: OrderListViewModel{
     @Injected(\.colors) var color: ColorPalette
   
     @ObservedObject var viewModel: OrderListViewModel
-//    @State private var selection: String? = nil
     @State private var routeLink:(tag:String?,order:Order) = (tag:nil,order:Order())
     
     var body: some View {
@@ -55,7 +54,6 @@ struct OrderListView<Model>: View where Model: OrderListViewModel{
                     .listStyle(.plain)
                     .navigationTitle("Đơn hàng")
                     .refreshable {}
-
                 }
             }
         }

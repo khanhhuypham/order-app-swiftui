@@ -24,7 +24,7 @@ struct OrderCardView: View {
     var body: some View {
         Button(action: {
          
-            if order.order_status == .waiting_complete{
+            if order.status == .waiting_complete{
                 isActive = false
             }else{
                 isActive = true
@@ -37,7 +37,7 @@ struct OrderCardView: View {
                     
                     VStack{
                         
-                        Text(order.order_status.description.uppercased())
+                        Text(order.status.description.uppercased())
                             .font(font.b_13)
 
                         if let booking_id = order.booking_infor_id,booking_id > 0{
@@ -48,20 +48,20 @@ struct OrderCardView: View {
                     }
                     .frame(maxWidth: .infinity)
                     .padding(8)
-                    .foregroundColor(order.order_status.fgColor)
-                    .background(order.order_status.bgColor)
+                    .foregroundColor(order.status.fgColor)
+                    .background(order.status.bgColor)
                     .cornerRadius(5)
                     
                     Text(order.table_id == 0 ? String(format: "MV%@", order.table_name) : order.table_name)
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .frame(maxWidth: .infinity)
-                        .foregroundColor(order.order_status.fgColor)
                         .padding()
-                        .background(order.order_status.bgColor)
+                        .foregroundColor(order.status.fgColor)
+                        .background(order.status.bgColor)
                         .cornerRadius(8)
                     
-                    if order.order_status != .waiting_complete{
+                    if order.status == .open || order.status == .payment_request {
                         // Bottom Icon Buttons
                         HStack(spacing: 8) {
                             
@@ -73,8 +73,8 @@ struct OrderCardView: View {
                                     .padding(8)
                                     .frame(maxWidth: .infinity)
                             }
-                            .foregroundColor(order.order_status.fgColor)
-                            .background(order.order_status.bgColor)
+                            .foregroundColor(order.status.fgColor)
+                            .background(order.status.bgColor)
                             .cornerRadius(5)
                             .disabled(order.booking_status == .status_booking_setup)
                             
@@ -88,8 +88,8 @@ struct OrderCardView: View {
                                     .padding(8)
                                     .frame(maxWidth: .infinity)
                             }
-                            .foregroundColor(order.order_status.fgColor)
-                            .background(order.order_status.bgColor)
+                            .foregroundColor(order.status.fgColor)
+                            .background(order.status.bgColor)
                             .cornerRadius(5)
                             .disabled(order.booking_status == .status_booking_setup)
                             
@@ -102,8 +102,8 @@ struct OrderCardView: View {
                                     .frame(maxWidth: .infinity)
                                 
                             }
-                            .foregroundColor(order.order_status.fgColor)
-                            .background(order.order_status.bgColor)
+                            .foregroundColor(order.status.fgColor)
+                            .background(order.status.bgColor)
                             .cornerRadius(5)
                             
                             
@@ -117,8 +117,8 @@ struct OrderCardView: View {
                                         .frame(maxWidth: .infinity)
                                     
                                 }
-                                .foregroundColor(order.order_status.fgColor)
-                                .background(order.order_status.bgColor)
+                                .foregroundColor(order.status.fgColor)
+                                .background(order.status.bgColor)
                                 .cornerRadius(5)
                                 .disabled(order.booking_status == .status_booking_setup)
                             }
@@ -133,8 +133,8 @@ struct OrderCardView: View {
                                         .frame(maxWidth: .infinity)
                                     
                                 }
-                                .foregroundColor(order.order_status.fgColor)
-                                .background(order.order_status.bgColor)
+                                .foregroundColor(order.status.fgColor)
+                                .background(order.status.bgColor)
                                 .cornerRadius(5)
                             }
                             
@@ -151,7 +151,7 @@ struct OrderCardView: View {
                     Text(String(order.net_amount.toString))
                         .font(.title3)
                         .fontWeight(.bold)
-                        .foregroundColor(order.order_status.fgColor)
+                        .foregroundColor(order.status.fgColor)
                         .frame(maxWidth: .infinity, alignment: .trailing)
                   
                     HStack(spacing: 4) {
@@ -169,20 +169,24 @@ struct OrderCardView: View {
                     }
                     
                     HStack(spacing: 4) {
+                        
                         Image(systemName: "person.2").foregroundColor(.gray)
-                        TextField("", value: $order.using_slot, formatter: formatter)
-                            .keyboardType(.numberPad)
-                            .font(font.r_12)
-                            .multilineTextAlignment(.center)
-                            .frame(width: 40, height: 25)
-                            .background(order.order_status.bgColor)
-                            .overlay(
-                              RoundedRectangle(cornerRadius: 5)
-                                .stroke(lineWidth: 0.5)
-                                .foregroundColor(order.order_status.fgColor)
-                            )
-                            .shadow(color: Color.gray.opacity(0.1),radius: 3, x: 1, y: 2)
-                           
+                        
+                        if order.status == .open || order.status == .payment_request {
+                            
+                            TextField("", value: $order.using_slot, formatter: formatter)
+                                .keyboardType(.numberPad)
+                                .font(font.r_12)
+                                .multilineTextAlignment(.center)
+                                .frame(width: 40, height: 25)
+                                .background(order.status.bgColor)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .stroke(lineWidth: 0.5)
+                                        .foregroundColor(order.status.fgColor)
+                                )
+                                .shadow(color: Color.gray.opacity(0.1),radius: 3, x: 1, y: 2)
+                        }
                     }
                     
                 }

@@ -122,6 +122,8 @@ extension NetworkManager{
             
             case .tables(_, _, _, _):
                 return .GET
+            case .tablesForManagement(_):
+                return .GET
 //            case .brands(_, _):
 //                return .get
 //            case .branches(_, _):

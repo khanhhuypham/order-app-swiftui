@@ -23,13 +23,13 @@ class FoodManagementViewModel: ObservableObject {
     
     
     @Published var APIParameter : (
-        category_id:Int,
+        category_id:Int?,
         search_key:String,
         limit:Int,
         page:Int,
         total_record:Int
     ) =  (
-        category_id:-1,
+        category_id:nil,
         search_key:"",
         limit:20,
         page:1,
