@@ -41,7 +41,7 @@ struct AreaManageView: View {
                   }
               }else{
        
-                  HorizontalBtnGroup(btnArray:$viewModel.btnArray){id in
+                  HorizontalBtnGroup(btnArray:$viewModel.btnArray,btnClosure:{id in
                       var areaList = viewModel.areaList
                       for (i,area) in areaList.enumerated(){
                           areaList[i].isSelect = area.id == id
@@ -49,7 +49,7 @@ struct AreaManageView: View {
                       viewModel.areaList = areaList
                       
                       viewModel.getTables(areaId: id)
-                  }.padding(.horizontal,12)
+                  }).padding(.horizontal,12)
                   
                   Divider()
                   

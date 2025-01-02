@@ -35,7 +35,6 @@ class TimeUtils: NSObject {
         let year = calendar.component(.year, from: date)
         
 
-
         // Lấy số tuần hiện tại
         let currentWeek = calendar.component(.weekOfYear, from: date)
         let thisWeek = String(format: "%02d/%d", currentWeek, year)
@@ -43,64 +42,46 @@ class TimeUtils: NSObject {
         
         // Tháng này
         let tm = Calendar.current.date(byAdding: .month, value: 0, to: Date())
-        let tmFormatter : DateFormatter = DateFormatter()
-        tmFormatter.dateFormat = "MM/yyyy"
-        let thisMonth = tmFormatter.string(from: tm!)
+        let thisMonth = dateFormatter.mm_yyyy.value.string(from: tm!)
         
         // Tháng trước
         let lm = Calendar.current.date(byAdding: .month, value: -1, to: Date())
-        let monthFormatter : DateFormatter = DateFormatter()
-        monthFormatter.dateFormat = "MM/yyyy"
-        let lastMonth = monthFormatter.string(from: lm!)
+        let lastMonth = dateFormatter.mm_yyyy.value.string(from: lm!)
         
         // 3 Tháng trước
         let tlm = Calendar.current.date(byAdding: .month, value: -3, to: Date())
-        let threeLastMonthFormatter : DateFormatter = DateFormatter()
-        threeLastMonthFormatter.dateFormat = "MM/yyyy"
-        let threeLastMonth = threeLastMonthFormatter.string(from: tlm!)
+        let threeLastMonth = dateFormatter.mm_yyyy.value.string(from: tlm!)
         
         // Năm nay
         let yearCurrent = String(year)
         
         // Năm trước
         let ly = Calendar.current.date(byAdding: .year, value: -1, to: Date())
-        let yearFormatter : DateFormatter = DateFormatter()
-        yearFormatter.dateFormat = "yyyy"
-        let lastYear = yearFormatter.string(from: ly!)
+        let lastYear = dateFormatter.yyy.value.string(from: ly!)
         
         // 3 năm trước
         let tly = Calendar.current.date(byAdding: .year, value: -3, to: Date())
-        let threeLastYearFormatter : DateFormatter = DateFormatter()
-        threeLastYearFormatter.dateFormat = "yyyy"
-        let threeLastYear = threeLastYearFormatter.string(from: tly!)
+        let threeLastYear = dateFormatter.yyy.value.string(from: tly!)
         
         // Ngày hôm nay
-        let format = DateFormatter()
-        format.dateFormat = "dd/MM/YYYY"
-        let formattedDate = format.string(from: date)
-        var dateTimeNow = formattedDate
+        var dateTimeNow = dateFormatter.dd_mm_yyyy.value.string(from: date)
         
         // Giờ hôm nay
-        let formatTime = DateFormatter()
-        formatTime.dateFormat = "HH:mm:ss"
-        let today = formatTime.string(from: date)
+        let today = dateFormatter.hh_mm_ss.value.string(from: date)
     
         // Hôm qua
         let y = Calendar.current.date(byAdding: .day, value: -1, to: Date())
-        let dateFormatter : DateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
-        var yesterday = dateFormatter.string(from: y!)
+        var yesterday = dateFormatter.dd_mm_yyyy.value.string(from: y!)
         
-        
-        
-        
+                
         let currentHour = calendar.component(.hour, from: date)
-
-            if currentHour < Constants.setting.hour_to_take_report ?? 0 {
+            
+       
+        if currentHour < Constants.setting.hour_to_take_report {
             let yesterdayToday = Calendar.current.date(byAdding: .day, value: -1, to: date)
-            let formattedYesterdayToday = format.string(from: yesterdayToday!)
+            let formattedYesterdayToday = dateFormatter.dd_mm_yyyy.value.string(from: yesterdayToday!)
             let yesterdayDate = Calendar.current.date(byAdding: .day, value: -1, to: y ?? Date())
-            let formattedYesterday = format.string(from: yesterdayDate!)
+            let formattedYesterday = dateFormatter.dd_mm_yyyy.value.string(from: yesterdayDate!)
             dateTimeNow = formattedYesterdayToday
             yesterday = formattedYesterday
         }
@@ -118,8 +99,6 @@ class TimeUtils: NSObject {
         let year = calendar.component(.year, from: date)
         return dateFormatter.hh_mm_ss.value.string(from: date)
     }
-    
-//    static func getToday() -> String{}
     
     static func getYesterday() -> String{
         return dateFormatter.dd_mm_yyyy.value.string(from: calendar.date(byAdding: .day, value: -1, to: Date()) ?? Date())
@@ -171,27 +150,27 @@ class TimeUtils: NSObject {
         return String(format: "00:%02.f", timeMeasure.value)
     }
     
-    static func getFullCurrentDate()->String{
-
-        let date = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy"
-        let yearString = dateFormatter.string(from: date)
-
-
-        dateFormatter.dateFormat = "MM"
-        let monthString = dateFormatter.string(from: date)
-
-
-        dateFormatter.dateFormat = "dd"
-        let dayOfTheWeekString = dateFormatter.string(from: date)
-
-
-        dateFormatter.dateFormat = "HH:mm"
-        let hour_string = dateFormatter.string(from: date)
-
-        return String(format: "%@/%@/%@ %@", dayOfTheWeekString, monthString, yearString, hour_string)
-    }
+//    static func getFullCurrentDate()->String{
+//
+//        let date = Date()
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyy"
+//        let yearString = dateFormatter.string(from: date)
+//
+//
+//        dateFormatter.dateFormat = "MM"
+//        let monthString = dateFormatter.string(from: date)
+//
+//
+//        dateFormatter.dateFormat = "dd"
+//        let dayOfTheWeekString = dateFormatter.string(from: date)
+//
+//
+//        dateFormatter.dateFormat = "HH:mm"
+//        let hour_string = dateFormatter.string(from: date)
+//
+//        return String(format: "%@/%@/%@ %@", dayOfTheWeekString, monthString, yearString, hour_string)
+//    }
     
     static func getCurrentDatePass() -> String{
         let currentDate = Date()

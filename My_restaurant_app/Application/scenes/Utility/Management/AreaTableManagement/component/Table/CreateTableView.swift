@@ -79,7 +79,8 @@ struct CreateTableView: View {
             
             VStack(alignment:.leading,spacing: 15){
                 
-                TextField("Nhập tên bàn cần tạo mới", text: $table.name.toUnwrapped(defaultValue: ""))
+                TextField("Nhập tên bàn cần tạo mới", text: $table.name.toUnwrapped(defaultValue: "")
+                )
                     .font(font.r_13)
                     .commonTextFieldDecor(height: 38)
                 

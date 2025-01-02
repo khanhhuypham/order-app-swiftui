@@ -171,7 +171,7 @@ struct Utility: View {
                             lazyNavigate(PrinterSetting())
                         } label: {
                             HStack{
-                                Image("icon-printer", bundle: .main)
+                                Image("icon-printer-gray", bundle: .main)
                                 Text("Thiết lập máy in")
                             }
                         }

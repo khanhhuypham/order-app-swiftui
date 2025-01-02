@@ -13,11 +13,9 @@ import PopupView
 struct FoodView: View {
     var order:OrderDetail? = nil
     var is_gift = -1 // 0 = gọi món bình thường | 1 = Tặng món vào hoá đơn| -1 Cả hai
-    
     @Injected(\.fonts) private var fonts
     @ObservedObject var viewModel = FoodViewModel()
     @EnvironmentObject var appRouter: TabBarViewModel
-    
     @Environment(\.presentationMode) var presentationMode
     @State var btnArray:[(id:Int,title:String,isSelected:Bool)] = []
     

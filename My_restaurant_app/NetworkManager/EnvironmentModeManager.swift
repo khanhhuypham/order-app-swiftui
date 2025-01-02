@@ -11,7 +11,9 @@ var environmentMode = EnvironmentMode.develop
 enum EnvironmentMode {
     
     case develop
+    
     case staging
+    
     case production
     
     var value: Int {
@@ -20,7 +22,7 @@ enum EnvironmentMode {
                 return 0
             case .staging:
                 return 1
-            case .production:
+            case .production:	
                 return 2
         }
     }
@@ -30,8 +32,7 @@ enum EnvironmentMode {
             
             case .develop:
                 return "http://172.16.2.176:8080"
-//                return AppState.shared.userState == .notLoggedIn ? "beta.api.gateway.overate-vntech.com" : "http://172.16.2.176:8080"
-            
+
             case .staging:
                 return "staging.api.gateway.overate-vntech.com"
             

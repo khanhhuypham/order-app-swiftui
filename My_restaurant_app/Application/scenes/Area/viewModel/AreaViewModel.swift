@@ -10,12 +10,8 @@ import SwiftUI
 
 class AreaViewModel: ObservableObject {
     
-    @Published var table:[Table] = []
-    
-    @Published var area:[Area] = []
-    
-   
-    
+    @Published var table:[Table] = []   
+    @Published var area:[(id:Int?,title:String,isSelect:Bool)] = []
    
 }
 extension AreaViewModel{
@@ -36,8 +32,20 @@ extension AreaViewModel{
                     
                     DispatchQueue.main.async {
                         var list = res.data
-                        list.insert(Area(name: "Tất cả khu vực", isSelect: true), at: 0)
-                        self.area = list
+//                        list.insert(Area(name: "Tất cả khu vực", isSelect: true), at: 0)
+//                        self.area = list
+                        
+                        self.area = res.data.enumerated().map{ i,area in
+                            if i == 0{
+                                return (id:nil,title:"Tất cả khu vực",isSelect:true)
+                            }else{
+                                return (id:area.id,title:area.name.description,isSelect:false)
+                            }
+                            
+                       
+                        }
+                        
+                        
                         self.getTables()
                     }
                 

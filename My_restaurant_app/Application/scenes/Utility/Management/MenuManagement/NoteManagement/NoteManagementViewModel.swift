@@ -8,9 +8,7 @@
 import SwiftUI
 
 
-class NoteManagementViewModel: ObservableObject, NotFoodDelegate {
-   
-    
+class NoteManagementViewModel: ObservableObject {
     let branchId = Constants.branch.id ?? 0
     let brandId = Constants.brand.id ?? 0
     
@@ -25,20 +23,18 @@ class NoteManagementViewModel: ObservableObject, NotFoodDelegate {
            set: { self.isPresent = $0 }
         )
         isPresent = true
-//        popup = NoteView(delegate: self,id: note.id ,inputText:note.content)
+        popup = NoteView(isPresent: binding, id: note.id ,inputText:note.content,completion:{id,content in
+            if var first = self.NoteList.first{$0.id == id}{
+                first.content = content
+                self.createNote(note: first)
+            }else{
+                var newNote = Note()
+                newNote.content = content
+                self.createNote(note: newNote)
+            }
+        })
     }
-    func callBackNoteFood(id: Int, note: String) {
-        if var first = self.NoteList.first{$0.id == id}{
-            first.content = note
-            createNote(note: first)
-        }else{
-            var newNote = Note()
-            newNote.content = note
-            newNote.branch_id = branchId
-            createNote(note: newNote)
-        }
-        
-    }
+   
     
 }
 
@@ -46,7 +42,7 @@ class NoteManagementViewModel: ObservableObject, NotFoodDelegate {
 extension NoteManagementViewModel{
     func getNotes(){
         
-        NetworkManager.callAPI(netWorkManger:.notesManagement(branch_id:branchId,status: ACTIVE)){[weak self] result in
+        NetworkManager.callAPI(netWorkManger:.note(branch_id:branchId,status: ACTIVE)){[weak self] result in
             
             guard let self = self else { return }
             

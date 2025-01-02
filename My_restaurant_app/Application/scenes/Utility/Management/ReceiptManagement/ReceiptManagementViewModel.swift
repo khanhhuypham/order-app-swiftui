@@ -12,6 +12,7 @@ class ReceiptManagementViewModel: ObservableObject {
     @Injected(\.utils) private var utils
     @Published var orderList:[Order] = []
     @Published var fullList:[Order] = []
+    @Published var btnArray:[(id:Int?,title:String,isSelect:Bool)] = []
     @Published var APIParameter:(
         branch_id:Int,
         userId: Int?,
@@ -73,11 +74,11 @@ class ReceiptManagementViewModel: ObservableObject {
                         return
                     }
                 
-                
+                    
                     DispatchQueue.main.async {
                         self.orderList = res.data.list
                         self.fullList = res.data.list
-//                        self.utils.toastUtils.alertToast = AlertToast(displayMode: .banner(.pop), type: .complete(.green), title:"Success", subTitle: "Load dữ liệu thành công")
+
                     }
                 
                     

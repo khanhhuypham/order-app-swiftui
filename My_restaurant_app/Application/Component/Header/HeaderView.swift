@@ -5,10 +5,7 @@ struct HeaderView: View {
     @Injected(\.colors) var color: ColorPalette
     @Binding var searchText:String
     @Binding var btnArray:[(id:Int,title:String,isSelected:Bool)]
-  
-    
     var clickClosure:((Int) -> Void)? = nil
-    
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false){

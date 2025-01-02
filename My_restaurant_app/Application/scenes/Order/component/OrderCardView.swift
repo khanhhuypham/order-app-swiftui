@@ -12,13 +12,12 @@ struct OrderCardView: View {
     @Injected(\.fonts) private var font
     @Binding var order:Order
     @State private var isActive = false
-    
+    var btnClosure:((Int?) -> Void)? = nil
     let formatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         return formatter
     }()
-    
     
 
     var body: some View {
@@ -52,7 +51,7 @@ struct OrderCardView: View {
                     .background(order.status.bgColor)
                     .cornerRadius(5)
                     
-                    Text(order.table_id == 0 ? String(format: "MV%@", order.table_name) : order.table_name)
+                    Text(String(format: "%@%@",order.type.prefix, order.table_name))
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .frame(maxWidth: .infinity)
@@ -66,7 +65,7 @@ struct OrderCardView: View {
                         HStack(spacing: 8) {
                             
                             Button(action: {
-                                
+                                btnClosure?(1)
                             }) {
                                 
                                 Image("icon-three-dot", bundle: .main)
@@ -81,7 +80,7 @@ struct OrderCardView: View {
                             
                             
                             Button(action: {
-                                // Action for second button
+                                btnClosure?(2)
                             }) {
                                 
                                 Image("icon-gift", bundle: .main)
@@ -95,7 +94,7 @@ struct OrderCardView: View {
                             
                             
                             Button(action: {
-                                // Action for third button
+                                btnClosure?(3)
                             }) {
                                 Image("icon-document-with-stick", bundle: .main)
                                     .padding(8)
@@ -110,7 +109,7 @@ struct OrderCardView: View {
                             if PermissionUtils.GPBH_2 || PermissionUtils.GPBH_3{
                                 
                                 Button(action: {
-                                    // Action for third button
+                                    btnClosure?(4)
                                 }) {
                                     Image("icon-scanner", bundle: .main)
                                         .padding(8)
@@ -126,7 +125,7 @@ struct OrderCardView: View {
                             
                             if  (PermissionUtils.GPBH_2 || PermissionUtils.GPBH_3) && Constants.brand.setting?.payment_type == .pay_os{
                                 Button(action: {
-                                    // Action for third button
+                                    btnClosure?(5)
                                 }) {
                                     Image("icon-qr-code", bundle: .main)
                                         .padding(8)

@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct BottomSheet: View {
-
+    @Injected(\.fonts) var font: Fonts
+    @Injected(\.colors) var color: ColorPalette
     @Binding var isShowing: Bool
-    
-   
+    var btnClosure:((OrderAction?) -> Void)? = nil
     var body: some View {
         
         ZStack(alignment: .bottom) {
@@ -26,13 +26,13 @@ struct BottomSheet: View {
                 content
                     .padding(.bottom, 20)
                     .transition(.move(edge: .bottom))
-                    .cornerRadius(16)
                     .padding(.horizontal, 30)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         .ignoresSafeArea()
         .animation(.easeInOut, value: isShowing)
+        .background(BackgroundClearView())
     }
     
 
@@ -43,52 +43,59 @@ struct BottomSheet: View {
                 
                 ActionSheetCardItem(
                     image:Image("icon-clock", bundle: .main),
-                    text:Text("Lịch sử đơn háng").font(.headline)
+                    text:Text("Lịch sử đơn háng")
+                        .font(font.r_14)
                 ){
-                    
+                    btnClosure?(OrderAction.orderHistory)
                 }
-                
+                Divider()
                 ActionSheetCardItem(
                     image:Image("icon-move", bundle: .main),
-                    text:Text("Chuyển bàn").font(.headline)) {
-                    //
+                    text:Text("Chuyển bàn").font(font.r_14)
+                ){
+                    btnClosure?(OrderAction.moveTable)
                 }
                 
                 Divider()
                 
                 ActionSheetCardItem(
                     image:Image("icon-merge", bundle: .main),
-                    text:Text("Gộp bàn").font(.headline)) {
-                    //
+                    text:Text("Gộp bàn").font(font.r_14)
+                ){
+                    btnClosure?(OrderAction.mergeTable)
                 }
                 
                 Divider()
                 
                 ActionSheetCardItem(
                     image:Image("icon-split", bundle: .main),
-                    text:Text("Tách món").font(.headline)){
-                    
+                    text:Text("Tách món").font(font.r_14)
+                ){
+                    btnClosure?(OrderAction.splitFood)
                 }
                 
                 Divider()
                 
                 ActionSheetCardItem(
                     image:Image("icon-share", bundle: .main),
-                    text:Text("Chia điểm").font(.headline)){
-                    
+                    text:Text("Chia điểm").font(font.r_14)
+                ){
+                    btnClosure?(OrderAction.sharePoint)
                 }
                 
                 Divider()
            
                 ActionSheetCardItem(
                     image:Image(systemName: "xmark"),
-                    text:Text("Huỷ món").font(.headline)){
-                    
+                    text:Text("Huỷ Bàn").font(font.r_14)
+                ){
+                    btnClosure?(OrderAction.cancelOrder)
                 }
             
             }
+            .foregroundColor(.black)
             .background(Color.white)
-            .cornerRadius(10)
+            .cornerRadius(8)
             
             Button {
                 isShowing = false
@@ -98,16 +105,14 @@ struct BottomSheet: View {
                     .font(.system(size: 16, weight: .bold))
                     .frame(maxWidth: .infinity)
                     .frame(height: 50)
-                    .background(.orange)
-                    .cornerRadius(10)
+                    .background(color.orange_brand_900)
+                    .cornerRadius(8)
 //                    .padding(.top,30)
             }
             
            
         }
-        .background(Color.clear) // Transparent background
       
-
     }
         
     

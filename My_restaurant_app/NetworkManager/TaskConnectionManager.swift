@@ -607,7 +607,7 @@ extension NetworkManager{
                             
                 return parameter
 
-            case .notesManagement(let branch_id, let status):
+            case .note(let branch_id, let status):
                 return [
                     "branch_id":branch_id.description,
                     "status": status.description
@@ -810,29 +810,26 @@ extension NetworkManager{
 ////                    encoding: self.encoding(.post)
 ////                )
 ////                
-////            case .updatePrinter(let printer):
-////                 return .requestParameters(
-////                    parameters: [
-////                        "id": printer.id,
-////                        "restaurant_kitchen_place_id": printer.restaurant_id,
-////                        "printer_name": printer.printer_name,
-////                        "printer_ip_address": printer.printer_ip_address,
-////                        "printer_port": printer.printer_port,
-////                        "printer_paper_size": printer.printer_paper_size,
-////                        "is_have_printer": 1,
-////                        "is_print_bill": 1,
-////                        "status": ACTIVE,
-////                        "printer_type": PRINT_TYPE_ADD_FOOD
-////                    ],
-////                    encoding: self.encoding(.post)
-////                )
-////                
+        case .updatePrinter(let printer):
+             return [
+                "name":printer.name,
+                "printer_name": printer.printer_name,
+                "ip_address": printer.ip_address,
+                "port": printer.port.description,
+                "connection_type": printer.connection_type.rawValue,
+                "number_of_copies": printer.number_of_copies.description,
+                "is_print_each_paper": printer.is_print_each_paper.description,
+                "active": printer.active.description,
+                "type": printer.type.rawValue,
+            ]
+            
+           
             case .createNote(let note):
                  return [
                     "id": note.id.description,
-                    "content": note.content,
-                    "delete": note.delete?.description,
-                    "branch_id": note.branch_id?.description
+                    "content": note.content
+//                    "delete": note.delete?.description,
+//                    "branch_id": note.branch_id?.description
                 ]
                 
             case .createCategory(let id,let name,let description, let type, let active):

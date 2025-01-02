@@ -38,12 +38,20 @@ struct AreaView: View {
                 
             }
             Divider()
-            
-            AreaHeader(areaArray: $viewModel.area,closure: {
-                if let area = viewModel.area.filter{$0.isSelect}.first{
-                    viewModel.getTables(areaId: area.id)
+            HorizontalBtnGroup(
+                btnArray:$viewModel.area,
+                btnClosure:{id in
+                    if let area = viewModel.area.filter{$0.isSelect}.first{
+                       viewModel.getTables(areaId: area.id)
+                    }
                 }
-            })
+            )
+            
+//            AreaHeader(areaArray: $viewModel.area,closure: {
+//                if let area = viewModel.area.filter{$0.isSelect}.first{
+//                    viewModel.getTables(areaId: area.id)
+//                }
+//            })
             
             hintView
             

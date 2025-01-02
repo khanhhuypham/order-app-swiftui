@@ -243,7 +243,7 @@ extension NetworkManager{
                 
             case .categories(_,_,_):
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .GET)
-            case .notesManagement(_, _):
+            case .note(_, _):
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .GET)
 //            
             case .createTable(_, _, _, _, _, _):
@@ -286,8 +286,9 @@ extension NetworkManager{
 //                return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .GET)
 ////            case .updateKitchen(_,_):
 ////                return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)
-////            case .updatePrinter(_):
-//                return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)
+            case .updatePrinter(_):
+                return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)
+            
             case .createNote(_):
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)
             case .createCategory( _, _, _, _,_):

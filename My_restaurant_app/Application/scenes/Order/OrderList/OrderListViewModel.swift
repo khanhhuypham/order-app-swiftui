@@ -9,11 +9,14 @@ import UIKit
 import AlertToast
 import Combine
 class OrderListViewModel: ObservableObject {
-
     @Injected(\.utils) private var utils
     @Published var orderList:[Order] = []
     
     @Published var fullList:[Order] = []
+    
+    @Published var selectedOrder:Order? = nil
+    @Published var presentFullScreen:Bool = false
+    @Published var presentSheet:Bool = false
     
     @Published var APIParameter:(
         branch_id:Int,

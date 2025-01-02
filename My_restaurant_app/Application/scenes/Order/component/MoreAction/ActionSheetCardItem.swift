@@ -39,7 +39,7 @@ public struct ActionSheetCardItem: View {
             icon
             text
             Spacer()
-        }.foregroundColor(.gray)
+        }
     }
     
     public var body: some View {

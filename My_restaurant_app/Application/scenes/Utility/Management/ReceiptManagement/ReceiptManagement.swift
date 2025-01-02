@@ -16,7 +16,16 @@ struct ReceiptManagement: View {
     var body: some View {
         
         VStack {
-
+            HorizontalBtnGroup(
+                btnArray:$viewModel.btnArray,
+                btnClosure:{id in
+                    dLog(REPORT_TYPE(rawValue: id ?? 1))
+                },
+                searchClosure:{text in
+                    dLog(text)
+                }
+            ).padding(.horizontal,12)
+            
             Group {
                 if viewModel.orderList.isEmpty {
                     EmptyData()
@@ -59,12 +68,25 @@ struct ReceiptManagement: View {
             .overlay(alignment: .top) { // The overlay for the border
                 Rectangle().frame(height: 1).foregroundColor(.blue)
             }
-       
 
-            
-            
         }
         .onAppear {
+            
+           
+            
+            viewModel.btnArray = REPORT_TYPE.allCases.map{ type in
+                switch type{
+                    case .today:
+                        return (id:type.rawValue,title:type.description,isSelect:true)
+                    default:
+                        return (id:type.rawValue,title:type.description,isSelect:false)
+
+                }
+                
+            }
+            
+            
+            
             viewModel.getOrders()
         }
     }

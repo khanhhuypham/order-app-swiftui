@@ -70,7 +70,7 @@ enum NetworkManager{
     case foodsManagement(category_id:Int? = nil, search_key:String, limit:Int,page:Int)
     case childrenItem
     case categories(brand_id:Int, active:Bool? = nil,type:CATEGORY_TYPE? = nil)
-    case notesManagement(branch_id:Int, status:Int = -1)
+    case note(branch_id:Int, status:Int = -1)
 //    
     case createTable(branch_id:Int, table_id:Int, table_name:String, area_id:Int, total_slot:Int,active:Bool)
 //
@@ -100,7 +100,7 @@ enum NetworkManager{
 //    case employees(branch_id:Int, is_for_share_point:Int)
  
 ////    case updateKitchen(branch_id:Int, kitchen:Kitchen)
-////    case updatePrinter(printer:Kitchen)
+    case updatePrinter(printer:Printer)
     case createNote(note:Note)
     case createCategory(id:Int ,name:String, description:String?, type:Int, active:Bool)
 //    case ordersHistory(brand_id:Int, branch_id:Int,id:Int, report_type:Int, time : String, limit : Int, page : Int, key_search:String,is_take_away_table:Int,is_take_away:Int)
@@ -354,7 +354,8 @@ extension NetworkManager{
         print(String(format: "Method Description: %@", netWorkManger.method.description))
         
         if netWorkManger.method == .POST || netWorkManger.method == .PUT{
-            print(String(format: "%@://%@%@", components?.scheme ?? "http", components?.host ?? "", components?.path ?? ""))
+//            print(String(format: "%@://%@%@", components?.scheme ?? "http", components?.host ?? "", components?.path ?? ""))
+            print(components)
         }else{
             var queryItems:[URLQueryItem] = []
             

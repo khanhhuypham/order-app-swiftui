@@ -45,7 +45,6 @@ struct OrderDetail: Codable {
    
     init(order:Order) {
         self.id = order.id
-//        self.area_id = order.area_id
         self.table_id = order.table_id
         self.table_name = order.table_name
         self.status = order.status

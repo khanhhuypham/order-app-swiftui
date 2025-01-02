@@ -69,7 +69,6 @@ struct OrderDetailView:View{
         .presentDialog(isPresented: $viewModel.showPopup.show,content: {
             let item = viewModel.showPopup.item
     
-       
             switch viewModel.showPopup.type{
                 case .note:
                     NoteView(isPresent:$viewModel.showPopup.show, id: item?.id ?? 0,inputText: item?.note ?? "")

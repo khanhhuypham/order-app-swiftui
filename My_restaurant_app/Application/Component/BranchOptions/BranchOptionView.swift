@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BranchOptionView: View {
-    
+
     @Environment(\.dismiss) var dismiss
     @Injected(\.fonts) private var fonts
        

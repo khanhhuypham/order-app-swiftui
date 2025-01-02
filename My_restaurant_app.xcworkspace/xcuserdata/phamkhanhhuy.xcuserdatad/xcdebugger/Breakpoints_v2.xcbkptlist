@@ -452,8 +452,8 @@
             filePath = "My_restaurant_app/Application/scenes/Food/view/FoodView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -803,6 +803,162 @@
             endingLineNumber = "58"
             landmarkName = "body"
             landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "23027D5B-0532-453D-B6C5-79C844569AC7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "My_restaurant_app/Application/scenes/Utility/Setting/PrinterSetting/PrinterList/PrinterSetting.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "23027D5B-0532-453D-B6C5-79C844569AC7 - 3adf46c43f2b37e5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;, SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;, SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;)&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onAppear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0 in My_restaurant_app.PrinterSetting.body.getter : some"
+                  moduleName = "My_restaurant_app"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Utility/Setting/PrinterSetting/PrinterList/PrinterSetting.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "944">
+               </Location>
+               <Location
+                  uuid = "23027D5B-0532-453D-B6C5-79C844569AC7 - caf6454840e494d6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Int, My_restaurant_app.Printer) -&gt; &lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderCell(printer: SwiftUI.Binding&lt;My_restaurant_app.Printer&gt;) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;, SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;, SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;)&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onAppear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0 in My_restaurant_app.PrinterSetting.body.getter : some"
+                  moduleName = "My_restaurant_app"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Utility/Setting/PrinterSetting/PrinterList/PrinterSetting.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "140">
+               </Location>
+               <Location
+                  uuid = "23027D5B-0532-453D-B6C5-79C844569AC7 - 25333f40038a9c1c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Int, My_restaurant_app.Printer) -&gt; SwiftUI.NavigationLink&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderCell(printer: SwiftUI.Binding&lt;My_restaurant_app.Printer&gt;) -&gt; some&gt;&gt;.0, My_restaurant_app.lazyNavigate&lt;My_restaurant_app.PrinterDetail&gt;&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;, SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;, SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;)&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onAppear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0 in My_restaurant_app.PrinterSetting.body.getter : some"
+                  moduleName = "My_restaurant_app"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Utility/Setting/PrinterSetting/PrinterList/PrinterSetting.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "232">
+               </Location>
+               <Location
+                  uuid = "23027D5B-0532-453D-B6C5-79C844569AC7 - 162abb067670a5b9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; &lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderCell(printer: SwiftUI.Binding&lt;My_restaurant_app.Printer&gt;) -&gt; some&gt;&gt;.0 in closure #2 (Swift.Int, My_restaurant_app.Printer) -&gt; SwiftUI.NavigationLink&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderCell(printer: SwiftUI.Binding&lt;My_restaurant_app.Printer&gt;) -&gt; some&gt;&gt;.0, My_restaurant_app.lazyNavigate&lt;My_restaurant_app.PrinterDetail&gt;&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;, SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;, SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;)&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onAppear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0 in My_restaurant_app.PrinterSetting.body.getter : some"
+                  moduleName = "My_restaurant_app"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Utility/Setting/PrinterSetting/PrinterList/PrinterSetting.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "104">
+               </Location>
+               <Location
+                  uuid = "23027D5B-0532-453D-B6C5-79C844569AC7 - e24b093dbb2bdca5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Int, My_restaurant_app.Printer) -&gt; &lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0 in closure #2 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;, SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;, SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.NavigationLink&lt;SwiftUI.EmptyView, My_restaurant_app.lazyNavigate&lt;My_restaurant_app.PrinterDetail&gt;&gt;, &lt;&lt;opaque return type of SwiftUI.View.onAppear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0)&gt; in My_restaurant_app.PrinterSetting.body.getter : some"
+                  moduleName = "My_restaurant_app"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Utility/Setting/PrinterSetting/PrinterList/PrinterSetting.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "188">
+               </Location>
+               <Location
+                  uuid = "23027D5B-0532-453D-B6C5-79C844569AC7 - 733690e7245fd834"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #2 (Swift.Int, My_restaurant_app.Printer) -&gt; &lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0 in closure #2 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;, SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;, SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.NavigationLink&lt;SwiftUI.EmptyView, My_restaurant_app.lazyNavigate&lt;My_restaurant_app.PrinterDetail&gt;&gt;, &lt;&lt;opaque return type of SwiftUI.View.onAppear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0)&gt; in My_restaurant_app.PrinterSetting.body.getter : some"
+                  moduleName = "My_restaurant_app"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Utility/Setting/PrinterSetting/PrinterList/PrinterSetting.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "232">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CE4BF303-7254-4C7E-8BCC-27816E206408"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "My_restaurant_app/NetworkManager/NetWorkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "351"
+            endingLineNumber = "351"
+            landmarkName = "callAPI(logRequest:netWorkManger:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "CE4BF303-7254-4C7E-8BCC-27816E206408 - a79fc2ae41aa5ef0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static My_restaurant_app.NetworkManager.callAPI(logRequest: Swift.Bool, netWorkManger: My_restaurant_app.NetworkManager, completion: (Swift.Result&lt;Foundation.Data, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "My_restaurant_app"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/NetworkManager/NetWorkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "354"
+                  endingLineNumber = "354"
+                  offsetFromSymbolStart = "1316">
+               </Location>
+               <Location
+                  uuid = "CE4BF303-7254-4C7E-8BCC-27816E206408 - a79fc2ae41aa5ef0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static My_restaurant_app.NetworkManager.callAPI(logRequest: Swift.Bool, netWorkManger: My_restaurant_app.NetworkManager, completion: (Swift.Result&lt;Foundation.Data, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "My_restaurant_app"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/NetworkManager/NetWorkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "354"
+                  endingLineNumber = "354"
+                  offsetFromSymbolStart = "1308">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

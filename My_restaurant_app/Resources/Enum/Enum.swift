@@ -97,6 +97,36 @@ enum OrderStatus:Int,Codable {
     }
 }
 
+
+enum OrderType:Int,Codable {
+    case dine_in = 0
+    case take_away = 1
+    case delivery = 2
+    case buffet = 3
+    case catering = 4
+    case food_court = 5
+    case BE_FOOD = 6
+    
+    var prefix:String{
+        switch self {
+          
+            case .take_away:
+                return "MV"
+            
+            default:
+                return ""
+        }
+    }
+    
+
+}
+
+
+
+
+
+
+
 enum BookingStatus:Int,Codable {    
     case none = 0// ko có booking
     case status_booking_expired = 8// Hết hạn
@@ -109,6 +139,8 @@ enum BookingStatus:Int,Codable {
     case status_booking_confirmed = 7 // Đã xác nhận
     
 }
+
+
 
 
 
@@ -140,6 +172,9 @@ enum TableStatus:Int,Codable {
     
  
 }
+
+
+
 
 
 
@@ -335,6 +370,19 @@ enum CONNECTION_TYPE:Int,Codable{
     case usb = 3
     case blueTooth = 4
     
+    var description: String {
+        switch self {
+            case .Imin:
+                return "Imin"
+            case .sunmi:
+                return "sunmi"
+            case .usb:
+                return "usb"
+            default:
+                return ""
+        }
+    }
+    
 }
 
 //@objc(PRINTER_METHOD)
@@ -359,3 +407,67 @@ enum QRCODE_TYPE:Int,Codable{
     case pay_os = 2
 }
 
+
+enum REPORT_TYPE:Int,CaseIterable{
+    case today = 1
+    case yesterday = 9
+    case this_week = 2
+    case last_month = 10
+    case this_month = 3
+    case last_three_month = 4
+    case this_year = 5
+    case last_year = 11
+    case last_three_year = 6
+    case all_year = 8
+    
+    var value: String {
+        switch self {
+            case .today:
+                return TimeUtils.getCurrentDateTime().dateTimeNow
+            case .yesterday:
+                return TimeUtils.getCurrentDateTime().yesterday
+            case .this_week:
+                return TimeUtils.getCurrentDateTime().thisWeek
+            case .last_month:
+                return TimeUtils.getCurrentDateTime().lastMonth
+            case .this_month:
+                return TimeUtils.getCurrentDateTime().thisMonth
+            case .last_three_month:
+                return TimeUtils.getCurrentDateTime().threeLastMonth
+            case .this_year:
+                return TimeUtils.getCurrentDateTime().yearCurrent
+            case .last_year:
+                return TimeUtils.getCurrentDateTime().lastYear
+            case .last_three_year:
+                return TimeUtils.getCurrentDateTime().threeLastYear
+            case .all_year:
+                return ""
+        }
+    }
+    
+    var description: String {
+        switch self {
+            case .today:
+                return "Hôm nay"
+            case .yesterday:
+                return "Hôm qua"
+            case .this_week:
+                return "Tuần này"
+            case .last_month:
+                return "Tháng trước"
+            case .this_month:
+                return "Tháng này"
+            case .last_three_month:
+                return "3 Tháng gần nhất"
+            case .this_year:
+                return "Năm nay"
+            case .last_year:
+                return "Năm trước"
+            case .last_three_year:
+                return "3 năm gần nhất"
+            case .all_year:
+                return "Tất cả các năm"
+        }
+    }
+    
+}

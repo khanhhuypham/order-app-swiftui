@@ -270,17 +270,17 @@ extension NetworkManager{
             
             case .foodsManagement(_, _, _, _):
                 return String(format: "/api/%@/item",NetworkManager.version)
+            
             case .childrenItem:
                 return String(format: "/api/%@/children-item",NetworkManager.version)
             
             case .categories(_,_,_):
                 return String(format: "/api/%@/category", NetworkManager.version)
             
-                
-
-            case .notesManagement(_, _):
-                return String(format: "/api/%@/order-detail-notes", NetworkManager.version)
-//
+        
+            case .note(_, _):
+                return String(format: "/api/%@/note", NetworkManager.version)
+            
             case .createTable(_, let table_id, _, _, _, _):
                 return table_id == 0
                 ? String(format:"/api/%@/table",NetworkManager.version)
@@ -339,15 +339,16 @@ extension NetworkManager{
 //            case .kitchens(_, _):
 //                return APIEndPoint.Name.urlKitchens
 //                
-////            case .updateKitchen(_,  let kitchen):
-////                return String(format: APIEndPoint.Name.urlUpdateKitchen, kitchen.id)
-////                
-////            case .updatePrinter(let printer):
-////                return String(format: APIEndPoint.Name.urlUpdatePrinter,printer.id)
-//                
-            case .createNote(_):
-                return String(format:"/api/%@/order-detail-notes/manage",NetworkManager.version )
-//
+  
+            case .updatePrinter(let printer):
+                return String(format: "/api/%@/printer/%d",NetworkManager.version,printer.id)
+                
+            case .createNote(let note):
+            
+                return note.id == 0
+                ? String(format:"/api/%@/note",NetworkManager.version)
+                : String(format:"/api/%@/note/%d",NetworkManager.version,note.id)
+    
             case .createCategory(let id, _, _, _,_):
                 return id == 0
                 ? String(format:"/api/%@/category",NetworkManager.version)
@@ -364,7 +365,7 @@ extension NetworkManager{
                 
                 return item.id == 0
                     ? String(format:"/api/%@/item",NetworkManager.version)
-                    : String(format:"/api/%@/item/%d",item.id)
+                    : String(format:"/api/%@/item/%d",NetworkManager.version,item.id)
 //
 //                
 //            case .generateFileNameResource(_):

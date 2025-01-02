@@ -201,7 +201,7 @@ extension NetworkManager{
             case .categories(_,_,_):
                 return .GET
             
-            case .notesManagement(_, _):
+            case .note(_, _):
                 return .GET
             
             case .createTable(_, let table_id, _, _, _, _):
@@ -241,10 +241,12 @@ extension NetworkManager{
 //                return .get
 ////            case .updateKitchen(_, _):
 ////                return .post
-////            case .updatePrinter(_):
-//                return .post
-            case .createNote(_):
-                return .POST
+            case .updatePrinter(_):
+                return .PUT
+            
+            case .createNote(let note):
+                return  note.id > 0 ?  .PUT : .POST
+            
             case .createCategory(let id, _, _, _,_):
                 return  id > 0 ?  .PUT : .POST
 //            case .ordersHistory(_, _, _, _, _, _,_,_,_,_):

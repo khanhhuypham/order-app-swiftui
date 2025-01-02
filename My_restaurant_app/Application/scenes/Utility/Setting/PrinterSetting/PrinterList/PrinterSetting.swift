@@ -11,31 +11,38 @@ struct PrinterSetting: View {
     @Injected(\.colors) var color: ColorPalette
     @Injected(\.fonts) var font: Fonts
     @ObservedObject var viewModel = PrinterSettingViewModel()
-    
+    @State private var routeLink:(tag:String?,data:Printer) = (tag:nil,data:Printer())
     var body: some View {
         
-        
         VStack(spacing:0){
-            // Tabs
+            NavigationLink(destination:lazyNavigate(PrinterDetail(printer: routeLink.data)), tag: "PrinterDetail", selection: $routeLink.tag) { EmptyView() }
             List {
                 
                 Section(header: renderHeader(title: "PRINT RECEIPT")) {
                     ForEach(Array(viewModel.printers.enumerated().filter{$0.element.type == .cashier}), id: \.element.id) { index, printer in
-                        renderCell(printer: $viewModel.printers[index]) // Pass the binding
+                        renderCell(printer: $viewModel.printers[index]).onTapGesture(perform:{
+                            routeLink = (tag:"PrinterDetail",data:printer)
+                        })
                     }
                     .defaultListRowStyle()
                 }
                 
                 Section(header: renderHeader(title: "PRINT STAMP")) {
-                    ForEach(Array(viewModel.printers.enumerated().filter{$0.element.type == .stamp}), id: \.element.id) { index, _ in
-                        renderCell(printer: $viewModel.printers[index]) // Pass the binding of the specific printer
+                    ForEach(Array(viewModel.printers.enumerated().filter{$0.element.type == .stamp}), id: \.element.id) { index,printer in
+                        renderCell(printer: $viewModel.printers[index]).onTapGesture(perform:{
+                        
+                            routeLink = (tag:"PrinterDetail",data:printer)
+                        })
                     }
                     .defaultListRowStyle()
                 }
 
                 Section(header: renderHeader(title: "PRINT CHEF/BAR")) {
-                    ForEach(Array(viewModel.printers.enumerated().filter{$0.element.type == .chef || $0.element.type == .bar}), id: \.element.id) { index, _ in
-                        renderCell(printer: $viewModel.printers[index]) // Pass the binding of the specific printer
+                    ForEach(Array(viewModel.printers.enumerated().filter{$0.element.type == .chef || $0.element.type == .bar}), id: \.element.id) { index, printer in
+                        renderCell(printer: $viewModel.printers[index]).onTapGesture(perform:{
+                            
+                            routeLink = (tag:"PrinterDetail",data:printer)
+                        })	// Pass the binding of the specific printer
                     }
                     .defaultListRowStyle()
                 }
@@ -74,9 +81,13 @@ struct PrinterSetting: View {
                 Text(printer.wrappedValue.name)
                     .font(font.m_14)
                 
-                Text(String(format: "%@:%@",printer.wrappedValue.ip_address ,printer.wrappedValue.port.description))
-                    .font(font.r_12)
-                    .foregroundColor(color.gray_600)
+                Text(
+                    (printer.wrappedValue.connection_type == .wifi || printer.wrappedValue.connection_type == .blueTooth)
+                    ? String(format: "%@:%@",printer.wrappedValue.ip_address ,printer.wrappedValue.port.description)
+                    : printer.wrappedValue.connection_type.description
+                )
+                .font(font.r_12)
+                .foregroundColor(color.gray_600)
             }
             Spacer()
             HStack(alignment:.center,spacing: 5){
@@ -91,7 +102,8 @@ struct PrinterSetting: View {
             }
            
         }
-        .padding(8)
+        .padding(10)
+        .padding(.leading,10)
         .background(.white)
    
     }

@@ -118,7 +118,6 @@
 		94277AAE2CF01E7B00B2F2E6 /* CreateTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94277A0B2CF01E7B00B2F2E6 /* CreateTableView.swift */; };
 		94277AAF2CF01E7B00B2F2E6 /* EmptyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94277A0D2CF01E7B00B2F2E6 /* EmptyData.swift */; };
 		94277AB02CF01E7B00B2F2E6 /* TabHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94277A0F2CF01E7B00B2F2E6 /* TabHeader.swift */; };
-		94277AB12CF01E7B00B2F2E6 /* AreaHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94277A102CF01E7B00B2F2E6 /* AreaHeaderView.swift */; };
 		94277AB22CF01E7B00B2F2E6 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94277A112CF01E7B00B2F2E6 /* HeaderView.swift */; };
 		94277AB32CF01E7B00B2F2E6 /* OrderDetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94277A142CF01E7B00B2F2E6 /* OrderDetailItem.swift */; };
 		94277AB42CF01E7B00B2F2E6 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94277A152CF01E7B00B2F2E6 /* Order.swift */; };
@@ -162,6 +161,10 @@
 		94277ADA2CF01E7B00B2F2E6 /* VersionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94277A422CF01E7B00B2F2E6 /* VersionModel.swift */; };
 		944034BA2CFAC42200ECC957 /* embededDropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944034B92CFAC42200ECC957 /* embededDropdown.swift */; };
 		944034BD2CFAC77900ECC957 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944034BC2CFAC77900ECC957 /* TagView.swift */; };
+		94576BAE2D24ED0200782659 /* PrinterDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94576BAD2D24ED0200782659 /* PrinterDetail.swift */; };
+		94576BB02D24ED1500782659 /* PrinterDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94576BAF2D24ED1500782659 /* PrinterDetailViewModel.swift */; };
+		94576BB22D25094400782659 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94576BB12D25094400782659 /* RadioButton.swift */; };
+		94576BB42D250DAF00782659 /* Confirm_Cancel_Btn_Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94576BB32D250DAF00782659 /* Confirm_Cancel_Btn_Group.swift */; };
 		946CB7EB2CFD8EDF009C0A5B /* DropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946CB7EA2CFD8EDF009C0A5B /* DropDown.swift */; };
 		9473BA972CF9CBAB009F3C67 /* ChildrenItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9473BA962CF9CBAB009F3C67 /* ChildrenItem.swift */; };
 		9473BA9A2CFAAB70009F3C67 /* CreateFoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9473BA992CFAAB70009F3C67 /* CreateFoodView.swift */; };
@@ -289,7 +292,6 @@
 		94277A0B2CF01E7B00B2F2E6 /* CreateTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTableView.swift; sourceTree = "<group>"; };
 		94277A0D2CF01E7B00B2F2E6 /* EmptyData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyData.swift; sourceTree = "<group>"; };
 		94277A0F2CF01E7B00B2F2E6 /* TabHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabHeader.swift; sourceTree = "<group>"; };
-		94277A102CF01E7B00B2F2E6 /* AreaHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaHeaderView.swift; sourceTree = "<group>"; };
 		94277A112CF01E7B00B2F2E6 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		94277A142CF01E7B00B2F2E6 /* OrderDetailItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailItem.swift; sourceTree = "<group>"; };
 		94277A152CF01E7B00B2F2E6 /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
@@ -333,6 +335,10 @@
 		94277A422CF01E7B00B2F2E6 /* VersionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionModel.swift; sourceTree = "<group>"; };
 		944034B92CFAC42200ECC957 /* embededDropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = embededDropdown.swift; sourceTree = "<group>"; };
 		944034BC2CFAC77900ECC957 /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
+		94576BAD2D24ED0200782659 /* PrinterDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterDetail.swift; sourceTree = "<group>"; };
+		94576BAF2D24ED1500782659 /* PrinterDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterDetailViewModel.swift; sourceTree = "<group>"; };
+		94576BB12D25094400782659 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
+		94576BB32D250DAF00782659 /* Confirm_Cancel_Btn_Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Confirm_Cancel_Btn_Group.swift; sourceTree = "<group>"; };
 		946CB7EA2CFD8EDF009C0A5B /* DropDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDown.swift; sourceTree = "<group>"; };
 		9473BA962CF9CBAB009F3C67 /* ChildrenItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenItem.swift; sourceTree = "<group>"; };
 		9473BA992CFAAB70009F3C67 /* CreateFoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFoodView.swift; sourceTree = "<group>"; };
@@ -370,8 +376,8 @@
 		940235D82D103C5300B44C26 /* PrinterSetting */ = {
 			isa = PBXGroup;
 			children = (
-				940235D92D103C7200B44C26 /* PrinterSetting.swift */,
-				940235DB2D103C7E00B44C26 /* PrinterSettingViewModel.swift */,
+				94576BAC2D24ECE700782659 /* PrinterDetail */,
+				94576BAB2D24ECDE00782659 /* PrinterList */,
 			);
 			path = PrinterSetting;
 			sourceTree = "<group>";
@@ -397,12 +403,12 @@
 		942779522CF01D0900B2F2E6 /* My_restaurant_app */ = {
 			isa = PBXGroup;
 			children = (
+				942779692CF01E7B00B2F2E6 /* Resources */,
 				942779612CF01E7B00B2F2E6 /* NetworkManager */,
 				942779882CF01E7B00B2F2E6 /* Extension */,
 				942779712CF01E7B00B2F2E6 /* Helpers */,
 				942779932CF01E7B00B2F2E6 /* Main */,
 				942779962CF01E7B00B2F2E6 /* Application */,
-				942779692CF01E7B00B2F2E6 /* Resources */,
 				942779572CF01D0B00B2F2E6 /* Assets.xcassets */,
 				942779592CF01D0B00B2F2E6 /* Preview Content */,
 			);
@@ -539,7 +545,6 @@
 			isa = PBXGroup;
 			children = (
 				94E9C4742D1523C5000B2663 /* PopupWrapper */,
-				942779982CF01E7B00B2F2E6 /* MoreAction */,
 				9427799B2CF01E7B00B2F2E6 /* Dialog */,
 				9427799D2CF01E7B00B2F2E6 /* PopupExpiredSession */,
 			);
@@ -1002,6 +1007,8 @@
 			isa = PBXGroup;
 			children = (
 				94277A072CF01E7B00B2F2E6 /* HorizontalBtnGroup.swift */,
+				94576BB12D25094400782659 /* RadioButton.swift */,
+				94576BB32D250DAF00782659 /* Confirm_Cancel_Btn_Group.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -1026,7 +1033,6 @@
 			isa = PBXGroup;
 			children = (
 				94277A0F2CF01E7B00B2F2E6 /* TabHeader.swift */,
-				94277A102CF01E7B00B2F2E6 /* AreaHeaderView.swift */,
 				94277A112CF01E7B00B2F2E6 /* HeaderView.swift */,
 			);
 			path = Header;
@@ -1192,6 +1198,24 @@
 			path = FoodApp;
 			sourceTree = "<group>";
 		};
+		94576BAB2D24ECDE00782659 /* PrinterList */ = {
+			isa = PBXGroup;
+			children = (
+				940235D92D103C7200B44C26 /* PrinterSetting.swift */,
+				940235DB2D103C7E00B44C26 /* PrinterSettingViewModel.swift */,
+			);
+			path = PrinterList;
+			sourceTree = "<group>";
+		};
+		94576BAC2D24ECE700782659 /* PrinterDetail */ = {
+			isa = PBXGroup;
+			children = (
+				94576BAD2D24ED0200782659 /* PrinterDetail.swift */,
+				94576BAF2D24ED1500782659 /* PrinterDetailViewModel.swift */,
+			);
+			path = PrinterDetail;
+			sourceTree = "<group>";
+		};
 		946CB7E92CFD8ED1009C0A5B /* dropDown */ = {
 			isa = PBXGroup;
 			children = (
@@ -1228,6 +1252,7 @@
 		94E9C4772D152EF1000B2663 /* component */ = {
 			isa = PBXGroup;
 			children = (
+				942779982CF01E7B00B2F2E6 /* MoreAction */,
 				942779EE2CF01E7B00B2F2E6 /* TableOfCancelFoodReason.swift */,
 				942779EF2CF01E7B00B2F2E6 /* OrderCardView.swift */,
 			);
@@ -1398,7 +1423,6 @@
 				94277A972CF01E7B00B2F2E6 /* SettingVIew.swift in Sources */,
 				94277ACB2CF01E7B00B2F2E6 /* MediaRequest.swift in Sources */,
 				94277AC32CF01E7B00B2F2E6 /* Buffet.swift in Sources */,
-				94277AB12CF01E7B00B2F2E6 /* AreaHeaderView.swift in Sources */,
 				94852AB82CFD65D2003D2E2F /* Unit.swift in Sources */,
 				94277A8C2CF01E7B00B2F2E6 /* UtilityView.swift in Sources */,
 				94277A632CF01E7B00B2F2E6 /* UIView + extension.swift in Sources */,
@@ -1465,6 +1489,8 @@
 				94277A6B2CF01E7B00B2F2E6 /* Encodable + extension.swift in Sources */,
 				944034BD2CFAC77900ECC957 /* TagView.swift in Sources */,
 				94277AA52CF01E7B00B2F2E6 /* EnterTextView.swift in Sources */,
+				94576BB22D25094400782659 /* RadioButton.swift in Sources */,
+				94576BB02D24ED1500782659 /* PrinterDetailViewModel.swift in Sources */,
 				94277A662CF01E7B00B2F2E6 /* DateFormatter.swift in Sources */,
 				94277A742CF01E7B00B2F2E6 /* OrderDetail + extension.swift in Sources */,
 				94277A582CF01E7B00B2F2E6 /* DependencyInjection.swift in Sources */,
@@ -1484,6 +1510,7 @@
 				94277A802CF01E7B00B2F2E6 /* FoodViewModel.swift in Sources */,
 				946CB7EB2CFD8EDF009C0A5B /* DropDown.swift in Sources */,
 				94277ABB2CF01E7B00B2F2E6 /* Review.swift in Sources */,
+				94576BB42D250DAF00782659 /* Confirm_Cancel_Btn_Group.swift in Sources */,
 				94277AA92CF01E7B00B2F2E6 /* LogoImageView.swift in Sources */,
 				94277A4F2CF01E7B00B2F2E6 /* ManageCacheObject.swift in Sources */,
 				94277AC42CF01E7B00B2F2E6 /* Category.swift in Sources */,
@@ -1491,6 +1518,7 @@
 				94277A8B2CF01E7B00B2F2E6 /* LoginView.swift in Sources */,
 				94277AAB2CF01E7B00B2F2E6 /* HorizontalBtnGroup.swift in Sources */,
 				94277A532CF01E7B00B2F2E6 /* SocketIOManager.swift in Sources */,
+				94576BAE2D24ED0200782659 /* PrinterDetail.swift in Sources */,
 				94852ABB2CFD6619003D2E2F /* Printer.swift in Sources */,
 				94277A912CF01E7B00B2F2E6 /* CategoryManagementViewModel.swift in Sources */,
 				94277AA32CF01E7B00B2F2E6 /* BranchOptionView.swift in Sources */,
@@ -1601,7 +1629,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -1658,7 +1686,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
