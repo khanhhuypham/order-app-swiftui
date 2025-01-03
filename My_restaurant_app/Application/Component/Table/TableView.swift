@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct TableView: View {
-    @Binding var table:Table
+    @State var table:Table
     @Injected(\.colors) var color: ColorPalette
     @Injected(\.fonts) var font: Fonts
     var body: some View {
@@ -19,6 +19,15 @@ struct TableView: View {
                 Text(table.name ?? "")
                     .foregroundColor((table.order != nil) ? .white : .black)
                     .font(font.sb_14)
+                
+                if table.is_selected{
+    
+                    Image(systemName: "checkmark.diamond.fill")
+                        .resizable()
+                        .foregroundColor(color.green_600)
+                        .frame(width: 30, height: 30)
+                        .position(x: 70, y: -90)
+                }
             }
         }
         .foregroundColor(table.order?.status?.fgColorForTable ?? color.gray_400)
@@ -26,5 +35,5 @@ struct TableView: View {
 }
 
 #Preview {
-    TableView(table: .constant(Table(name: "A1")))
+    TableView(table: Table(name: "A1"))
 }

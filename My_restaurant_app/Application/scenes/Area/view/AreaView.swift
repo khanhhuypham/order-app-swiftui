@@ -12,8 +12,14 @@ struct AreaView: View {
     @Injected(\.colors) var color: ColorPalette
     @Injected(\.fonts) var font: Fonts
     @ObservedObject var viewModel:AreaViewModel = AreaViewModel()
-    @State var title: String? = nil
     @State private var routeLink:(tag:String?,data:Table) = (tag:nil,data:Table())
+    var title: String? = nil
+    var orderAction: OrderAction? = nil
+    var selectedId:Int? = nil
+    var fromId:Int? = nil
+
+    
+    
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible()),
@@ -24,9 +30,7 @@ struct AreaView: View {
     var body: some View {
         
         VStack(spacing:0){
-            
             NavigationLink(destination:lazyNavigate(OrderDetailView(order:Order(table: routeLink.data))), tag: "OrderDetailView", selection: $routeLink.tag) { EmptyView() }
-            
             NavigationLink(destination:lazyNavigate(FoodView(order:OrderDetail(table: routeLink.data))), tag: "FoodView", selection: $routeLink.tag) { EmptyView() }
             
             if let title = self.title{
@@ -47,36 +51,73 @@ struct AreaView: View {
                 }
             )
             
-//            AreaHeader(areaArray: $viewModel.area,closure: {
-//                if let area = viewModel.area.filter{$0.isSelect}.first{
-//                    viewModel.getTables(areaId: area.id)
-//                }
-//            })
-            
             hintView
             
             ScrollView(.vertical){
                 VStack {
                     LazyVGrid(columns: columns, spacing: 16) {
                         
-                        ForEach($viewModel.table) { table in
-                           
+                        ForEach(Array(viewModel.table.enumerated()), id: \.element.id) { i,table in
+                          
                             TableView(table:table).onTapGesture {
-                                let data = table.wrappedValue
-                                routeLink = data.order?.id ?? 0 > 0
-                                ? (tag:"OrderDetailView",data:data)
-                                : (tag:"FoodView",data:data)
+                                
+                                if let action = viewModel.orderAction{
+                                    switch action {
+                                        case .moveTable:
+                                            viewModel.presentDialog = true
+                                            viewModel.to = table
+                                        
+                                        case .mergeTable:
+                                            self.viewModel.table[i].is_selected.toggle()
+                                            break
+                                        
+                                        case .splitFood:
+                                            viewModel.presentSheet = true
+                                            break
+                                            
+                                        default:
+                                            break
+                                    
+                                    }
+                                    
+                                    
+                                }else{
+                                    routeLink = table.order?.id ?? 0 > 0
+                                    ? (tag:"OrderDetailView",data:table)
+                                    : (tag:"FoodView",data:table)
+                                }
+
                             }
                           
                         }
                     }
                     Spacer()
                 }
-            
             }
         }
         .navigationTitle("Khu vực")
+        .fullScreenCover(isPresented: $viewModel.presentDialog, content: {
+    
+            if viewModel.orderAction == .moveTable,
+               let from = viewModel.from,
+               let to = viewModel.to{
+                ConfirmToMoveTable(
+                    isPresent: $viewModel.presentDialog,
+                    from: from,
+                    to: to,
+                    completion:{
+                        viewModel.moveTable(from: from.id, to: to.id)
+                    }
+                )
+            }
+            
+        })
+        .sheet(isPresented:$viewModel.presentSheet , content: {
+            SplitFood()
+        })
         .onAppear(perform: {
+            viewModel.bind(view: self)
+            viewModel.orderAction = orderAction
             viewModel.getAreas()
         })
     }

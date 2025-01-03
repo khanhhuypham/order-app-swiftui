@@ -17,6 +17,9 @@ class OrderListViewModel: ObservableObject {
     @Published var selectedOrder:Order? = nil
     @Published var presentFullScreen:Bool = false
     @Published var presentSheet:Bool = false
+   
+    
+    @Published public var showSheet:(show:Bool,action:OrderAction?) = (false,nil)
     
     @Published var APIParameter:(
         branch_id:Int,
@@ -85,6 +88,31 @@ class OrderListViewModel: ObservableObject {
                         self.fullList = res.data.list
 //                        self.utils.toastUtils.alertToast = AlertToast(displayMode: .banner(.pop), type: .complete(.green), title:"Success", subTitle: "Load dữ liệu thành công")
                     }
+                
+                    
+
+                case .failure(let error):
+                    break
+//                    self.utils.toastUtils.alertToast = AlertToast(type: .error(.red), title:"Error", subTitle:error.localizedDescription)
+              
+            }
+        }
+    }
+    
+    
+    
+    func cancelOrder(id:Int){
+       
+        NetworkManager.callAPI(netWorkManger: .cancelOrder(id: id)){result in
+            
+            switch result {
+                case .success(let data):
+                    
+                    guard let res = try? JSONDecoder().decode(APIResponse<Order>.self, from: data) else{
+                        return
+                    }
+                
+                    self.getOrders()
                 
                     
 

@@ -159,12 +159,19 @@
 		94277AD82CF01E7B00B2F2E6 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94277A402CF01E7B00B2F2E6 /* Brand.swift */; };
 		94277AD92CF01E7B00B2F2E6 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94277A412CF01E7B00B2F2E6 /* Account.swift */; };
 		94277ADA2CF01E7B00B2F2E6 /* VersionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94277A422CF01E7B00B2F2E6 /* VersionModel.swift */; };
+		942C72022D27A47200AD6800 /* ConfirmToMoveTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942C72012D27A47200AD6800 /* ConfirmToMoveTable.swift */; };
 		944034BA2CFAC42200ECC957 /* embededDropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944034B92CFAC42200ECC957 /* embededDropdown.swift */; };
 		944034BD2CFAC77900ECC957 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944034BC2CFAC77900ECC957 /* TagView.swift */; };
 		94576BAE2D24ED0200782659 /* PrinterDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94576BAD2D24ED0200782659 /* PrinterDetail.swift */; };
 		94576BB02D24ED1500782659 /* PrinterDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94576BAF2D24ED1500782659 /* PrinterDetailViewModel.swift */; };
 		94576BB22D25094400782659 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94576BB12D25094400782659 /* RadioButton.swift */; };
 		94576BB42D250DAF00782659 /* Confirm_Cancel_Btn_Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94576BB32D250DAF00782659 /* Confirm_Cancel_Btn_Group.swift */; };
+		94651A752D27E4240084FDF8 /* SplitFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94651A742D27E4240084FDF8 /* SplitFood.swift */; };
+		94651A772D27E4310084FDF8 /* SplitFoodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94651A762D27E4310084FDF8 /* SplitFoodViewModel.swift */; };
+		94651A7A2D27E5C90084FDF8 /* OrderHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94651A792D27E5C90084FDF8 /* OrderHistory.swift */; };
+		94651A7C2D27E5D70084FDF8 /* OrderHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94651A7B2D27E5D70084FDF8 /* OrderHistoryViewModel.swift */; };
+		94651A7F2D27E6650084FDF8 /* SharePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94651A7E2D27E6650084FDF8 /* SharePoint.swift */; };
+		94651A812D27E6720084FDF8 /* SharePointViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94651A802D27E6720084FDF8 /* SharePointViewModel.swift */; };
 		946CB7EB2CFD8EDF009C0A5B /* DropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946CB7EA2CFD8EDF009C0A5B /* DropDown.swift */; };
 		9473BA972CF9CBAB009F3C67 /* ChildrenItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9473BA962CF9CBAB009F3C67 /* ChildrenItem.swift */; };
 		9473BA9A2CFAAB70009F3C67 /* CreateFoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9473BA992CFAAB70009F3C67 /* CreateFoodView.swift */; };
@@ -333,12 +340,19 @@
 		94277A402CF01E7B00B2F2E6 /* Brand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
 		94277A412CF01E7B00B2F2E6 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		94277A422CF01E7B00B2F2E6 /* VersionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionModel.swift; sourceTree = "<group>"; };
+		942C72012D27A47200AD6800 /* ConfirmToMoveTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmToMoveTable.swift; sourceTree = "<group>"; };
 		944034B92CFAC42200ECC957 /* embededDropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = embededDropdown.swift; sourceTree = "<group>"; };
 		944034BC2CFAC77900ECC957 /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		94576BAD2D24ED0200782659 /* PrinterDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterDetail.swift; sourceTree = "<group>"; };
 		94576BAF2D24ED1500782659 /* PrinterDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterDetailViewModel.swift; sourceTree = "<group>"; };
 		94576BB12D25094400782659 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		94576BB32D250DAF00782659 /* Confirm_Cancel_Btn_Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Confirm_Cancel_Btn_Group.swift; sourceTree = "<group>"; };
+		94651A742D27E4240084FDF8 /* SplitFood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitFood.swift; sourceTree = "<group>"; };
+		94651A762D27E4310084FDF8 /* SplitFoodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitFoodViewModel.swift; sourceTree = "<group>"; };
+		94651A792D27E5C90084FDF8 /* OrderHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistory.swift; sourceTree = "<group>"; };
+		94651A7B2D27E5D70084FDF8 /* OrderHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryViewModel.swift; sourceTree = "<group>"; };
+		94651A7E2D27E6650084FDF8 /* SharePoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePoint.swift; sourceTree = "<group>"; };
+		94651A802D27E6720084FDF8 /* SharePointViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePointViewModel.swift; sourceTree = "<group>"; };
 		946CB7EA2CFD8EDF009C0A5B /* DropDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDown.swift; sourceTree = "<group>"; };
 		9473BA962CF9CBAB009F3C67 /* ChildrenItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenItem.swift; sourceTree = "<group>"; };
 		9473BA992CFAAB70009F3C67 /* CreateFoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFoodView.swift; sourceTree = "<group>"; };
@@ -666,6 +680,7 @@
 		942779B22CF01E7B00B2F2E6 /* Area */ = {
 			isa = PBXGroup;
 			children = (
+				942C72032D27BA8F00AD6800 /* component */,
 				942779B32CF01E7B00B2F2E6 /* viewModel */,
 				942779B52CF01E7B00B2F2E6 /* view */,
 			);
@@ -1152,6 +1167,15 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
+		942C72032D27BA8F00AD6800 /* component */ = {
+			isa = PBXGroup;
+			children = (
+				94651A732D27E40C0084FDF8 /* SplitFood */,
+				942C72012D27A47200AD6800 /* ConfirmToMoveTable.swift */,
+			);
+			path = component;
+			sourceTree = "<group>";
+		};
 		944034B82CFAC3F900ECC957 /* embededDropdown */ = {
 			isa = PBXGroup;
 			children = (
@@ -1216,6 +1240,33 @@
 			path = PrinterDetail;
 			sourceTree = "<group>";
 		};
+		94651A732D27E40C0084FDF8 /* SplitFood */ = {
+			isa = PBXGroup;
+			children = (
+				94651A742D27E4240084FDF8 /* SplitFood.swift */,
+				94651A762D27E4310084FDF8 /* SplitFoodViewModel.swift */,
+			);
+			path = SplitFood;
+			sourceTree = "<group>";
+		};
+		94651A782D27E5AD0084FDF8 /* OrderHistory */ = {
+			isa = PBXGroup;
+			children = (
+				94651A792D27E5C90084FDF8 /* OrderHistory.swift */,
+				94651A7B2D27E5D70084FDF8 /* OrderHistoryViewModel.swift */,
+			);
+			path = OrderHistory;
+			sourceTree = "<group>";
+		};
+		94651A7D2D27E6560084FDF8 /* SharePoint */ = {
+			isa = PBXGroup;
+			children = (
+				94651A7E2D27E6650084FDF8 /* SharePoint.swift */,
+				94651A802D27E6720084FDF8 /* SharePointViewModel.swift */,
+			);
+			path = SharePoint;
+			sourceTree = "<group>";
+		};
 		946CB7E92CFD8ED1009C0A5B /* dropDown */ = {
 			isa = PBXGroup;
 			children = (
@@ -1252,6 +1303,8 @@
 		94E9C4772D152EF1000B2663 /* component */ = {
 			isa = PBXGroup;
 			children = (
+				94651A7D2D27E6560084FDF8 /* SharePoint */,
+				94651A782D27E5AD0084FDF8 /* OrderHistory */,
 				942779982CF01E7B00B2F2E6 /* MoreAction */,
 				942779EE2CF01E7B00B2F2E6 /* TableOfCancelFoodReason.swift */,
 				942779EF2CF01E7B00B2F2E6 /* OrderCardView.swift */,
@@ -1457,6 +1510,7 @@
 				94277A552CF01E7B00B2F2E6 /* TimeUtils.swift in Sources */,
 				94277ACA2CF01E7B00B2F2E6 /* OtherFoodRequest.swift in Sources */,
 				94277A5E2CF01E7B00B2F2E6 /* PermissionUtils.swift in Sources */,
+				94651A772D27E4310084FDF8 /* SplitFoodViewModel.swift in Sources */,
 				94277A762CF01E7B00B2F2E6 /* OrderDetailView.swift in Sources */,
 				94277A6E2CF01E7B00B2F2E6 /* ActionSheetCardItem.swift in Sources */,
 				94277A5F2CF01E7B00B2F2E6 /* GeneralUtils.swift in Sources */,
@@ -1486,9 +1540,11 @@
 				94277A7D2CF01E7B00B2F2E6 /* AreaView.swift in Sources */,
 				94277A9C2CF01E7B00B2F2E6 /* OrderCardView.swift in Sources */,
 				94277AD02CF01E7B00B2F2E6 /* FoodRequest.swift in Sources */,
+				94651A7F2D27E6650084FDF8 /* SharePoint.swift in Sources */,
 				94277A6B2CF01E7B00B2F2E6 /* Encodable + extension.swift in Sources */,
 				944034BD2CFAC77900ECC957 /* TagView.swift in Sources */,
 				94277AA52CF01E7B00B2F2E6 /* EnterTextView.swift in Sources */,
+				94651A7A2D27E5C90084FDF8 /* OrderHistory.swift in Sources */,
 				94576BB22D25094400782659 /* RadioButton.swift in Sources */,
 				94576BB02D24ED1500782659 /* PrinterDetailViewModel.swift in Sources */,
 				94277A662CF01E7B00B2F2E6 /* DateFormatter.swift in Sources */,
@@ -1503,6 +1559,7 @@
 				94277A6A2CF01E7B00B2F2E6 /* Bundle + extension.swift in Sources */,
 				94277AC52CF01E7B00B2F2E6 /* Food.swift in Sources */,
 				940235DA2D103C7200B44C26 /* PrinterSetting.swift in Sources */,
+				94651A812D27E6720084FDF8 /* SharePointViewModel.swift in Sources */,
 				94277A9D2CF01E7B00B2F2E6 /* CreateCategoryView.swift in Sources */,
 				94277A9B2CF01E7B00B2F2E6 /* TableOfCancelFoodReason.swift in Sources */,
 				94277AD92CF01E7B00B2F2E6 /* Account.swift in Sources */,
@@ -1519,6 +1576,7 @@
 				94277AAB2CF01E7B00B2F2E6 /* HorizontalBtnGroup.swift in Sources */,
 				94277A532CF01E7B00B2F2E6 /* SocketIOManager.swift in Sources */,
 				94576BAE2D24ED0200782659 /* PrinterDetail.swift in Sources */,
+				94651A7C2D27E5D70084FDF8 /* OrderHistoryViewModel.swift in Sources */,
 				94852ABB2CFD6619003D2E2F /* Printer.swift in Sources */,
 				94277A912CF01E7B00B2F2E6 /* CategoryManagementViewModel.swift in Sources */,
 				94277AA32CF01E7B00B2F2E6 /* BranchOptionView.swift in Sources */,
@@ -1552,6 +1610,7 @@
 				94277A7C2CF01E7B00B2F2E6 /* AreaViewModel.swift in Sources */,
 				94277A932CF01E7B00B2F2E6 /* FoodManagement.swift in Sources */,
 				94277A872CF01E7B00B2F2E6 /* BuffetListCell.swift in Sources */,
+				942C72022D27A47200AD6800 /* ConfirmToMoveTable.swift in Sources */,
 				94277AA02CF01E7B00B2F2E6 /* MailHomeViewModel.swift in Sources */,
 				94277A572CF01E7B00B2F2E6 /* ColorUtils.swift in Sources */,
 				9473BA9A2CFAAB70009F3C67 /* CreateFoodView.swift in Sources */,
@@ -1570,6 +1629,7 @@
 				94277AB42CF01E7B00B2F2E6 /* Order.swift in Sources */,
 				94C6A6A42CFDA813001A8E30 /* SimpleView.swift in Sources */,
 				94277AC02CF01E7B00B2F2E6 /* Config.swift in Sources */,
+				94651A752D27E4240084FDF8 /* SplitFood.swift in Sources */,
 				94277A7B2CF01E7B00B2F2E6 /* OrderListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

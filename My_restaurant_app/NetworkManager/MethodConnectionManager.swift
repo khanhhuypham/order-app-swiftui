@@ -79,8 +79,8 @@ extension NetworkManager{
                 return .POST
 //            case .discount(_,_,_,_,_,_):
 //                return .POST
-//            case .moveTable(_, _, _):
-//                return .POST
+            case .moveTable(_, _):
+                return .GET
 //            case .mergeTable(_, _, _):
 //                return .POST
 //            case .profile(_, _):
@@ -278,10 +278,10 @@ extension NetworkManager{
 //                return .post
 //            case .changePassword(_, _, _, _):
 //                return .post
-//                
-//            case .closeTable(_):
-//                return .post
-//                
+                
+            case .cancelOrder(_):
+                return .GET
+//
 //            case .feedbackDeveloper(_, _, _, _, _):
 //                return .post
 //            case .sentError(_, _, _, _, _):

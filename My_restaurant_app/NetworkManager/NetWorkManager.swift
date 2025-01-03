@@ -54,7 +54,7 @@ enum NetworkManager{
 //    case getOrderDetail(order_id:Int, branch_id:Int, is_print_bill:Int,food_status:String)
     case openTable(table_id:Int)
 //    case discount(order_id:Int, branch_id:Int,food_discount_percent:Int, drink_discount_percent:Int, total_amount_discount_percent:Int, note:String)
-//    case moveTable(branch_id:Int, destination_table_id:Int,target_table_id:Int)
+    case moveTable(from:Int,to:Int)
 //    case mergeTable(branch_id:Int, destination_table_id:Int,target_table_ids:[Int])
 //    case profile(branch_id:Int, employee_id:Int)
 //    case extra_charges(restaurant_brand_id:Int, branch_id:Int, status:Int)
@@ -117,8 +117,8 @@ enum NetworkManager{
 //    case updateProfileInfo(infoRequest:UserInfoRequest)
 //    
 //    case changePassword(employee_id:Int, old_password:String, new_password:String, node_access_token:String)
-//    case closeTable(table_id:Int)
-//   
+    case cancelOrder(id:Int)
+//
 //    case feedbackDeveloper(email:String, name:String, phone:String, type:Int, describe:String)
 //    case sentError(email:String, name:String, phone:String, type:Int, describe:String)
 //    case workingSessionValue

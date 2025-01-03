@@ -207,8 +207,8 @@ extension NetworkManager{
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)
 //            case .discount(_,_,_,_,_,_):
 //                return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)
-//            case .moveTable(_, _, _):
-//                return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)
+            case .moveTable(_, _):
+                return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)
 //            case .mergeTable(_, _, _):
 //                return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)
 //            case .profile(_, _):
@@ -323,8 +323,8 @@ extension NetworkManager{
 //            case .changePassword(_, _, _, _):
 //            return headerJava(ProjectId:PermissionUtils.GPBH_1 ? .PROJECT_ID_ORDER_SMALL :.PROJECT_ID_ORDER, Method: .POST)
 //                
-//            case .closeTable(_):
-//                return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)
+            case .cancelOrder(_):
+                return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)
 //                
 //            case .feedbackDeveloper(_, _, _, _, _):
 //                return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)

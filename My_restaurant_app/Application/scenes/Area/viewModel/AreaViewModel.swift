@@ -9,10 +9,23 @@ import SwiftUI
 
 
 class AreaViewModel: ObservableObject {
-    
-    @Published var table:[Table] = []   
+    private(set)var view: AreaView?
+
+    @Published var table:[Table] = []
     @Published var area:[(id:Int?,title:String,isSelect:Bool)] = []
-   
+
+    @Published var orderAction:OrderAction? = nil
+    @Published var presentDialog:Bool = false
+    @Published var presentSheet:Bool = false
+    @Published var selected:Table? = nil
+    @Published var from:Table? = nil
+    @Published var to:Table? = nil
+    
+    
+    func bind(view: AreaView){
+        self.view = view
+    }
+    
 }
 extension AreaViewModel{
 
@@ -32,19 +45,13 @@ extension AreaViewModel{
                     
                     DispatchQueue.main.async {
                         var list = res.data
-//                        list.insert(Area(name: "Tất cả khu vực", isSelect: true), at: 0)
-//                        self.area = list
+
                         
                         self.area = res.data.enumerated().map{ i,area in
-                            if i == 0{
-                                return (id:nil,title:"Tất cả khu vực",isSelect:true)
-                            }else{
-                                return (id:area.id,title:area.name.description,isSelect:false)
-                            }
-                            
-                       
+                            return i == 0 
+                            ? (id:nil,title:"Tất cả khu vực",isSelect:true)
+                            : (id:area.id,title:area.name.description,isSelect:false)
                         }
-                        
                         
                         self.getTables()
                     }
@@ -68,10 +75,57 @@ extension AreaViewModel{
                         dLog("parse model sai rồi")
                         return
                     }
-       
-                    DispatchQueue.main.async {
+                    
+
+                    if let action = self.orderAction{
+                        
+                        switch action {
+                      
+                            case .moveTable:
+                                self.table = res.data.filter{$0.order == nil}
+                            
+                                if let fromId = view?.fromId, let firstItem = res.data.first{$0.id == fromId}{
+                                    self.from = firstItem
+                                }
+                            
+                            case .mergeTable:
+                                if let selectedId = view?.selectedId{
+                                    self.table = res.data.filter{$0.id != selectedId}
+                                }
+                            
+                            case .splitFood:
+                                self.table = res.data
+                               
+                            default:
+                                break
+                            
+                        }
+                        
+                        
+                     
+                        
+                    }else{
                         self.table = res.data
                     }
+                  case .failure(let error):
+                    dLog(error)
+            }
+        }
+    }
+ 
+    func moveTable(from:Int,to:Int){
+        
+        NetworkManager.callAPI(netWorkManger: .moveTable(from: from, to: to)){[weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+                  case .success(let data):
+                        
+                    guard let res = try? JSONDecoder().decode(APIResponse<[Table]>.self, from: data) else{
+                        dLog("parse model sai rồi")
+                        return
+                    }
+       
                   case .failure(let error):
                     dLog(error)
             }

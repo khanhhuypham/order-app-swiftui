@@ -86,26 +86,19 @@ struct OrderListView<Model>: View where Model: OrderListViewModel{
                 }
             }
         }
-        .fullScreenCover(isPresented: $viewModel.presentFullScreen,onDismiss: {
+        .fullScreenCover(isPresented: $viewModel.presentFullScreen,onDismiss:{
             viewModel.presentSheet = true
         },content: {
             BottomSheet(isShowing: $viewModel.presentFullScreen){action in
                 viewModel.presentFullScreen = false
                 switch action{
-                    case .orderHistory:
-                        break
-            
-                    case .moveTable,.mergeTable,.splitFood:
-                        
-                        break
-                    
                    
-                    case .sharePoint:
-                       
+                    case .moveTable,.mergeTable,.splitFood,.orderHistory,.sharePoint:
+                        viewModel.showSheet = (show:true,action:action)
                         break
                     
                     case .cancelOrder:
-//                        closeTable(order: order)
+                        viewModel.cancelOrder(id: viewModel.selectedOrder?.id ?? 0)
                         break
                     
                     default:
@@ -114,9 +107,42 @@ struct OrderListView<Model>: View where Model: OrderListViewModel{
                 }
             }
         })
-        .sheet(isPresented: $viewModel.presentSheet, content: {
-            if let order = viewModel.selectedOrder{
-                AreaView(title:String(format: "TÁCH MÓN TỪ BÀN %@",order.table_name))
+        .sheet(isPresented: $viewModel.presentSheet,onDismiss: {
+            
+        },content: {
+            if let order = viewModel.selectedOrder,let orderAction = viewModel.showSheet.action{
+                switch orderAction {
+                    case .orderHistory:
+                        OrderHistory()
+                    
+                    case .moveTable:
+                        AreaView(
+                            title:String(format: "CHUYỂN TỪ BÀN TỪ BÀN %@ SANG",order.table_name),
+                            orderAction: orderAction,
+                            fromId:viewModel.selectedOrder?.id ?? 0
+                        )
+                    
+                    case .mergeTable:
+                        AreaView(
+                            title:String(format: "GỘP BÀN %@",order.table_name),
+                            orderAction: orderAction,
+                            selectedId:viewModel.selectedOrder?.id ?? 0
+                        )
+                     
+                    case .splitFood:
+                        AreaView(
+                            title:String(format: "TÁCH MÓN TỪ BÀN %@ SANG",order.table_name),
+                            orderAction: orderAction
+                        )
+                    
+                    case .cancelOrder:
+                        EmptyView()
+                    
+                    case .sharePoint:
+                        SharePoint()
+                }
+                
+                
             }
         })
         .onAppear {

@@ -27,8 +27,6 @@ private struct EnterTextContent: View {
 
     var id = 0
     @State var text:String = ""
- 
-    
     var title:String = "Thêm khu vực"
     var placeholder:String = "Tên khu vực"
     var titleOfBtnConfirm:String = "THÊM MỚI"
@@ -80,13 +78,6 @@ private struct EnterTextContent: View {
                 
                 Button {
                     isPresent = false
-               
-//                    if let percent = self.percent{
-//                        delegate?.callbackToGetPercent(id: self.id, percent: percent)
-//                    }
-//
-                   
-                    
                 } label: {
                     Text(titleOfBtnConfirm)
                         .font(font.b_18)

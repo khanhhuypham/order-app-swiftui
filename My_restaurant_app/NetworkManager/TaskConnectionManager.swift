@@ -443,16 +443,12 @@ extension NetworkManager{
 //                    encoding: self.encoding(.post)
 //                )
 //                
-//            case .moveTable(let branch_id,  let destination_table_id, let target_table_id):
-//                return .requestParameters(
-//                    parameters: [
-//                        "branch_id": branch_id,
-//                        "id": destination_table_id,
-//                        "table_id": target_table_id
-//                    ],
-//                    encoding: self.encoding(.post)
-//                )
-//                
+            case .moveTable(let from, let to):
+                return[
+                    "from": from.description,
+                    "to": to.description
+                ]
+//
 //            case .mergeTable(let branch_id,  let destination_table_id, let target_table_ids):
 //                return .requestParameters(
 //                    parameters: [
@@ -865,7 +861,7 @@ extension NetworkManager{
 //                )
 //                
             case .units:
-            return [:]
+                return [:]
 //
             case .createFood(_, let food):
                 var children:[[String:Any]] = []
@@ -1026,15 +1022,9 @@ extension NetworkManager{
 //                    encoding: self.encoding(.post)
 //                )
 //                
-//            case .closeTable(let table_id):
-//                 return .requestParameters(
-//                    parameters: [
-//                        "id": table_id,
-//                        "branch_id":ManageCacheObject.getCurrentBranch().id
-//                    ],
-//                    encoding: self.encoding(.post)
-//                )
-//                
+            case .cancelOrder(_):
+                return [:]
+                
 //                
 //            case .feedbackDeveloper(let email, let name, let phone, let type, let describe):
 //                 return .requestParameters(

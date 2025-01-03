@@ -19,6 +19,15 @@ enum OrderAction {
 }
 
 
+enum presentationType {
+    case sheet
+    case fullscreen
+    case popup
+    case confirmationDialog
+    case popover
+}
+
+
 
 enum OrderStatus:Int,Codable {
     case open = 0 //ĐANG PHỤC VỤ

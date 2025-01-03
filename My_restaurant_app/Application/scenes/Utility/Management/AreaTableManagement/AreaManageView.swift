@@ -58,9 +58,10 @@ struct AreaManageView: View {
                           LazyVGrid(columns: columns, spacing: 16) {
                               
                               ForEach($viewModel.table) { table in
-                                
-                                  TableView(table:table).onTapGesture(perform: {
-                                      viewModel.showPopup(table: table.wrappedValue)
+                                  let data = table.wrappedValue
+                                  
+                                  TableView(table:data).onTapGesture(perform: {
+                                      viewModel.showPopup(table: data)
                                   })
 
                               }

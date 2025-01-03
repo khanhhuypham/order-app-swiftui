@@ -97,8 +97,8 @@ extension NetworkManager{
 //
 //               return String(format: APIEndPoint.Name.urlDiscount, order_id)
 //
-//            case .moveTable(_,let destination_table_id,_):
-//               return String(format: APIEndPoint.Name.urlMoveTable, destination_table_id)
+            case .moveTable(_,_):
+               return String(format: "/api/%@/table", NetworkManager.version)
 //
 //            case .mergeTable(_, let destination_table_id,_):
 //               return String(format: APIEndPoint.Name.urlMergeTable, destination_table_id)
@@ -397,9 +397,9 @@ extension NetworkManager{
 //            case .changePassword(let employee_id, _, _, _):
 //                return String(format: APIEndPoint.Name.urlChangePassword, employee_id)
 //                
-//            case .closeTable(let table_id):
-//                return String(format: APIEndPoint.Name.urlCloseTable, table_id)
-//                
+            case .cancelOrder(let id):
+                return String(format: "/api/%@/order/%d/cancel", NetworkManager.version,id)
+//
 //                
 //            case .feedbackDeveloper(_, _, _, _, _):
 //                return  APIEndPoint.Name.urlFeedbackAndSentError
