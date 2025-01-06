@@ -98,9 +98,7 @@ class OrderDetailViewModel: ObservableObject {
         }
     }
     
-    func popupContent(content:any View) -> any View {
-        return content
-    }
+
     
     
    
@@ -161,12 +159,10 @@ extension OrderDetailViewModel{
     //MARK: API Huỷ món
     func cancelItem(item:OrderItem){
         NetworkManager.callAPI(netWorkManger: .cancelFood(
-            branch_id: Constants.branch.id ?? 0,
             order_id: order.id,
-            reason: item.cancel_reason,
-            order_detail_id: item.order_id,
-            quantity: Int(item.quantity)))
-        {[weak self] result in
+            item_id: item.id,
+            cancel_reason: item.cancel_reason
+        )){[weak self] result in
             guard let self = self else { return }
             
             switch result {

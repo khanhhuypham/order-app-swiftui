@@ -16,9 +16,8 @@ struct NoteView: View {
     @State var inputText = ""
     var completion:((Int,String) -> Void)? = nil
     
-
     var body: some View {
-        PopupWrapper(isPresented: $isPresent){
+        PopupWrapper(){
             NoteContent(isPresent: $isPresent,id:id,inputText:inputText,completion:completion)
         }
     }

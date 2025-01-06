@@ -12,7 +12,7 @@ import Combine
 struct EnterTextView: View {
     @Binding var isPresent:Bool
     var body: some View {
-        PopupWrapper(isPresented: $isPresent){
+        PopupWrapper(){
             EnterTextContent(isPresent: $isPresent)
         }
     }

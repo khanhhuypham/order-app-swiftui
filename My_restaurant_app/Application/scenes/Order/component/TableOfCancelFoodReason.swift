@@ -9,23 +9,23 @@ import SwiftUI
 import PopupView
 
 struct TableOfCancelReasonView: View {
-    @Binding var isPresent:Bool
-    var id = 0
-    @State var inputText = ""
-   
+
+    var completion:(() -> Void)? = nil
+
     var body: some View {
-        PopupWrapper(isPresented: $isPresent){
-            TableOfCancelReasoncontent(isPresent: $isPresent)
+        PopupWrapper(){
+            TableOfCancelReasoncontent(completion: completion)
         }
     }
 }
 
 private struct TableOfCancelReasoncontent: View {
-    @Binding var isPresent:Bool
-    var delegate:ReasonCancelItemDelegate?
+    @Environment(\.dismiss) var dismiss
+    @State var shouldPerformCompletion = false
     @State var item:OrderItem? = nil
     @Injected(\.fonts) private var fonts
     @State var list:[CancelReason] = []
+    var completion:(() -> Void)? = nil
     
     var body: some View {
         VStack(spacing:0) {
@@ -69,8 +69,8 @@ private struct TableOfCancelReasoncontent: View {
         
             HStack(spacing:0){
                 Button {
-//                    dismiss?()
-                    isPresent = false
+                    dismiss()
+//                    isPresent = false
                 } label: {
                     Text("HUỶ")
                         .font(.system(size: 18, weight: .bold))
@@ -80,9 +80,11 @@ private struct TableOfCancelReasoncontent: View {
                 }.buttonStyle(.plain)
                 
                 Button {
-                    guard let item = self.item else {return }
-                    delegate?.cancel(item: item)
-                    isPresent = false
+//                    guard let item = self.item else {return }
+//                    delegate?.cancel(item: item)
+//                    isPresent = false
+                    shouldPerformCompletion = true
+                    dismiss()
                 } label: {
                     Text("ĐỒNG Ý")
                         .font(.system(size: 18, weight: .bold))
@@ -101,6 +103,11 @@ private struct TableOfCancelReasoncontent: View {
         .padding(.horizontal, 40)
         .onAppear(perform: {
             self.getReasonOfCancel()
+        })
+        .onDisappear(perform: {
+            if shouldPerformCompletion{
+                completion?()
+            }
         })
   
     }

@@ -35,7 +35,7 @@ enum NetworkManager{
     
     case addFoods(branch_id:Int, order_id:Int,foods:[FoodRequest])
     case addGiftFoods(branch_id:Int, order_id:Int, foods:[FoodRequest], is_use_point:Int)
-    case kitchenes(branch_id:Int, brand_id:Int, status:Int = 1)
+
     case vats
     case areas(branch_id:Int, active:Bool? = nil)
     case tables(branchId:Int, area_id:Int? = nil, active:Bool? = nil,buffet_ticket_id:Int = 0)
@@ -47,7 +47,7 @@ enum NetworkManager{
 //    case addOtherFoods(branch_id:Int, order_id:Int, foods:OtherFoodRequest)
     case addNoteToOrder(branch_id:Int, order_detail_id:Int, note:String)
     case reasonCancelItems(branch_id:Int)
-    case cancelFood(branch_id:Int, order_id:Int, reason:String, order_detail_id:Int, quantity:Int)
+    case cancelFood(order_id:Int, item_id:Int,cancel_reason:String)
 //    case updateFoods(branch_id:Int, order_id:Int, foods:[FoodUpdate])
 //    case ordersNeedMove(branch_id:Int, order_id:Int, food_status:String = "")
 //    case moveFoods(branch_id:Int, order_id:Int, destination_table_id:Int,target_table_id:Int, foods:[FoodSplitRequest])
@@ -357,13 +357,17 @@ extension NetworkManager{
 //            print(String(format: "%@://%@%@", components?.scheme ?? "http", components?.host ?? "", components?.path ?? ""))
             print(components)
         }else{
-            var queryItems:[URLQueryItem] = []
             
-            for (key, value) in netWorkManger.task {
-                queryItems.append(URLQueryItem(name: key, value: value as? String ?? ""))
+            
+            if let query = netWorkManger.task.query {
+                var queryItems:[URLQueryItem] = []
+                
+                for (key, value) in query {
+                    queryItems.append(URLQueryItem(name: key, value: value as? String ?? ""))
+                }
+                
+                components?.queryItems = queryItems
             }
-            
-            components?.queryItems = queryItems
         }
         
         
@@ -398,18 +402,18 @@ extension NetworkManager{
         
         //============================================ Define body for method post  =================================================
         if netWorkManger.method == .POST || netWorkManger.method == .PUT{
-           
             do {
-                let jsonData = try JSONSerialization.data(withJSONObject: netWorkManger.task, options: [.prettyPrinted])
+                let jsonData = try JSONSerialization.data(withJSONObject: netWorkManger.task.body, options: [.prettyPrinted])
                 // Step 4: Assign JSON data to the request's httpBody
                 if let jsonString = String(data: jsonData,encoding: .utf8) {
                     print("JSON String: \(jsonString)")
                 }
                 request.httpBody = jsonData
-            
+
             }catch let error{
                 completion(.failure(error))
             }
+           
                     // Step 5: Set the content type he
             
         }

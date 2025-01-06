@@ -10,29 +10,38 @@ import SwiftUI
 struct BottomSheet: View {
     @Injected(\.fonts) var font: Fonts
     @Injected(\.colors) var color: ColorPalette
-    @Binding var isShowing: Bool
+    @Environment(\.dismiss) var dismiss
+    @State private var performCompletion = true
+    @State private var action:OrderAction = .orderHistory
+    
     var btnClosure:((OrderAction?) -> Void)? = nil
+    
     var body: some View {
         
         ZStack(alignment: .bottom) {
-            if (isShowing) {
-                Color.black
-                    .opacity(0.3)
-                    .ignoresSafeArea()
-                    .onTapGesture {
-                        isShowing.toggle()
-                    }
-                
-                content
-                    .padding(.bottom, 20)
-                    .transition(.move(edge: .bottom))
-                    .padding(.horizontal, 30)
-            }
+            Color.black
+                .opacity(0.3)
+                .ignoresSafeArea()
+                .onTapGesture {
+                    dismiss()
+                    performCompletion = false
+                }
+            
+            content
+                .padding(.bottom, 20)
+                .transition(.move(edge: .bottom))
+                .padding(.horizontal, 30)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         .ignoresSafeArea()
-        .animation(.easeInOut, value: isShowing)
+        .animation(.easeInOut, value: true)
         .background(BackgroundClearView())
+        .onDisappear(perform: {
+            if performCompletion{
+                btnClosure?(action)
+            }
+        })
+
     }
     
 
@@ -46,14 +55,16 @@ struct BottomSheet: View {
                     text:Text("Lịch sử đơn háng")
                         .font(font.r_14)
                 ){
-                    btnClosure?(OrderAction.orderHistory)
+                    action = OrderAction.orderHistory
+                    dismiss()
                 }
                 Divider()
                 ActionSheetCardItem(
                     image:Image("icon-move", bundle: .main),
                     text:Text("Chuyển bàn").font(font.r_14)
                 ){
-                    btnClosure?(OrderAction.moveTable)
+                    action = OrderAction.moveTable
+                    dismiss()
                 }
                 
                 Divider()
@@ -62,7 +73,9 @@ struct BottomSheet: View {
                     image:Image("icon-merge", bundle: .main),
                     text:Text("Gộp bàn").font(font.r_14)
                 ){
-                    btnClosure?(OrderAction.mergeTable)
+
+                    action = OrderAction.mergeTable
+                    dismiss()
                 }
                 
                 Divider()
@@ -71,7 +84,9 @@ struct BottomSheet: View {
                     image:Image("icon-split", bundle: .main),
                     text:Text("Tách món").font(font.r_14)
                 ){
-                    btnClosure?(OrderAction.splitFood)
+                   
+                    action = OrderAction.splitFood
+                    dismiss()
                 }
                 
                 Divider()
@@ -80,7 +95,8 @@ struct BottomSheet: View {
                     image:Image("icon-share", bundle: .main),
                     text:Text("Chia điểm").font(font.r_14)
                 ){
-                    btnClosure?(OrderAction.sharePoint)
+                    action = OrderAction.sharePoint
+                    dismiss()
                 }
                 
                 Divider()
@@ -89,7 +105,9 @@ struct BottomSheet: View {
                     image:Image(systemName: "xmark"),
                     text:Text("Huỷ Bàn").font(font.r_14)
                 ){
-                    btnClosure?(OrderAction.cancelOrder)
+                    
+                    action = OrderAction.cancelOrder
+                    dismiss()
                 }
             
             }
@@ -98,7 +116,8 @@ struct BottomSheet: View {
             .cornerRadius(8)
             
             Button {
-                isShowing = false
+                dismiss()
+                performCompletion = false
             } label: {
                 Text("Huỷ")
                     .foregroundColor(.white)
@@ -122,25 +141,25 @@ struct BottomSheet: View {
 
 
 
-struct ActionSheetView: View {
-    
-    @State var isShowingBottomSheet = false
-    
-    var body: some View {
-        ZStack{
-            Button{
-                withAnimation{
-                    isShowingBottomSheet.toggle()
-                }
-            } label: {
-                Text("more action")
-            }
-            BottomSheet(isShowing: $isShowingBottomSheet)
-        }
-    }
-    
-}
-
-#Preview(body: {
-    ActionSheetView()
-})
+//struct ActionSheetView: View {
+//    
+//    @State var isShowingBottomSheet = false
+//    
+//    var body: some View {
+//        ZStack{
+//            Button{
+//                withAnimation{
+//                    isShowingBottomSheet.toggle()
+//                }
+//            } label: {
+//                Text("more action")
+//            }
+//            BottomSheet(isShowing: $isShowingBottomSheet)
+//        }
+//    }
+//    
+//}
+//
+//#Preview(body: {
+//    ActionSheetView()
+//})

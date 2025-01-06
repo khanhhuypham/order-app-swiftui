@@ -143,7 +143,6 @@ struct PrinterDetail: View {
                     .frame(maxWidth: .infinity,maxHeight:.infinity)
                     .foregroundColor(.white)
                     .background(color.orange_brand_900)
-//                        .disabled(validForm)
                 }
                 .cornerRadius(8)
                 .buttonStyle(.plain)

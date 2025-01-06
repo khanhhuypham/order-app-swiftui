@@ -11,8 +11,8 @@ import SwiftUI
 struct PopupWrapper<Content: View>: View {
     @Injected(\.fonts) private var font
     @Injected(\.colors) private var color
-
-    @Binding var isPresented: Bool
+    @Environment(\.dismiss) var dismiss
+//    @Binding var isPresented: Bool
     @State private var showing = false
     var dismissOnTapOutside: Bool = true
     let viewBuilder: () -> Content
@@ -28,7 +28,8 @@ struct PopupWrapper<Content: View>: View {
                     .layoutPriority(-1)
                     .onTapGesture {
                         if dismissOnTapOutside {
-                            isPresented = false
+//                            isPresented = false
+                            dismiss()
                         }
                     }
                 VStack{

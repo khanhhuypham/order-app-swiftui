@@ -57,9 +57,7 @@ extension NetworkManager{
             case .addGiftFoods(_, let order_id, _, _):
                return String(format:"/api/%@/orders/%d/gift-food", NetworkManager.version,order_id)
 
-            case .kitchenes(_, _, _):
-                return String(format: "/api/%@/restaurant-kitchen-places",NetworkManager.version )
-
+           
             case .vats:
                 return String(format: "/api/%@/restaurant-vat-configs",NetworkManager.version )
 
@@ -73,8 +71,8 @@ extension NetworkManager{
 //            case .reasonCancelFoods(_):
 //               return APIEndPoint.Name.urlReasonCancelFoods
 //
-            case .cancelFood(_, let order_id, _, _, _):
-               return String(format: "/api/%@/orders/%d/cancel-order-detail",NetworkManager.version,order_id)
+            case .cancelFood(let order_id, _, _):
+               return String(format: "/api/%@/order/%d/cancel-items",NetworkManager.version,order_id)
 //
 //            case .updateFoods(_, let order_id, _):
 //               return String(format: APIEndPoint.Name.urlUpdateFood, order_id)
@@ -98,7 +96,7 @@ extension NetworkManager{
 //               return String(format: APIEndPoint.Name.urlDiscount, order_id)
 //
             case .moveTable(_,_):
-               return String(format: "/api/%@/table", NetworkManager.version)
+               return String(format: "/api/%@/table/move-table", NetworkManager.version)
 //
 //            case .mergeTable(_, let destination_table_id,_):
 //               return String(format: APIEndPoint.Name.urlMergeTable, destination_table_id)
@@ -323,7 +321,7 @@ extension NetworkManager{
 //                return APIEndPoint.Name.urlCreateFee
 //                
             case .foodsNeedPrint(_):
-                return String(format: "/api/%@/orders/is-print",NetworkManager.version )
+                return String(format: "/api/%@/orders/is-printss",NetworkManager.version )
             
                 
 //

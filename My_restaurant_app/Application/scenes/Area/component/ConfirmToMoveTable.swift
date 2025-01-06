@@ -13,11 +13,11 @@ import SwiftUI
 struct ConfirmToMoveTable: View {
     @Injected(\.fonts) var font: Fonts
     @Injected(\.colors) var color: ColorPalette
-    @State private var valid:Bool = false
-    @Binding var isPresent:Bool
+    @State var title = ""
+    @Environment(\.dismiss) var dismiss
     @State var from:Table
     @State var to:Table
-    
+    @State private var peformConpletion = false
     var completion:(() -> Void)? = nil
     
     
@@ -25,24 +25,24 @@ struct ConfirmToMoveTable: View {
         
         VStack(spacing:0) {
             
-            Text("XÁC NHẬN CHUYỂN BÀN")
+            Text(title)
                 .font(font.b_18)
                 .foregroundColor(color.orange_brand_900)
                 .padding(.top,20)
             
         
             HStack(spacing:20){
-                TableView(table:from)
+                TableView(table:$from)
                 Image(systemName: "arrowshape.right.fill")
                     .frame(width: 25,height: 25)
                     .foregroundColor(.red)
-                TableView(table:to)
+                TableView(table:$to)
             }.padding(.vertical,20)
 
-   
+
             HStack(spacing:0){
                 Button {
-                    isPresent = false
+                    dismiss()
                 } label: {
                     Text("HUỶ")
                         .font(font.b_18)
@@ -52,10 +52,9 @@ struct ConfirmToMoveTable: View {
                 }.buttonStyle(.plain)
                 
                 Button {
-                    isPresent = false
-                    completion?()
-                    
-                } label: {	
+                    dismiss()
+                    peformConpletion = true
+                } label: {
                     Text("XÁC NHẬN")
                         .font(font.b_18)
                         .frame(maxWidth: .infinity,maxHeight:.infinity)
@@ -72,18 +71,12 @@ struct ConfirmToMoveTable: View {
         .cornerRadius(10)
         .padding(.horizontal, 40)
         .background(BackgroundClearView())
-        .onAppear(perform: {
-            
-        })
+        .onDisappear {
+            if peformConpletion {
+                completion?()
+            }
+        }
         
     }
 }
 
-//#Preview {
-//    ZStack {
-//        ConfirmToMoveTableView(
-//            isPresent: .constant(true),
-//            from:Table(name: "A"),
-//            to:Table(name: "B"))
-//    }
-//}

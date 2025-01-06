@@ -58,11 +58,11 @@ struct OrderListView<Model>: View where Model: OrderListViewModel{
                                         break
                                     
                                     case 4:
-                                        viewModel.presentSheet = true
+                                        viewModel.presentSheet.show = true
                                         break
                                     
                                     case 5:
-                                        viewModel.presentSheet = true
+                                        viewModel.presentSheet.show = true
                                         break
                                     
                                     default:
@@ -86,15 +86,11 @@ struct OrderListView<Model>: View where Model: OrderListViewModel{
                 }
             }
         }
-        .fullScreenCover(isPresented: $viewModel.presentFullScreen,onDismiss:{
-            viewModel.presentSheet = true
-        },content: {
-            BottomSheet(isShowing: $viewModel.presentFullScreen){action in
-                viewModel.presentFullScreen = false
+        .fullScreenCover(isPresented: $viewModel.presentFullScreen,content: {
+            BottomSheet{action in
                 switch action{
-                   
                     case .moveTable,.mergeTable,.splitFood,.orderHistory,.sharePoint:
-                        viewModel.showSheet = (show:true,action:action)
+                        viewModel.presentSheet = (show:true,action:action)
                         break
                     
                     case .cancelOrder:
@@ -105,34 +101,38 @@ struct OrderListView<Model>: View where Model: OrderListViewModel{
                         break
                     
                 }
-            }
+            }.transition(.opacity)
         })
-        .sheet(isPresented: $viewModel.presentSheet,onDismiss: {
+        .sheet(isPresented: $viewModel.presentSheet.show,content: {
             
-        },content: {
-            if let order = viewModel.selectedOrder,let orderAction = viewModel.showSheet.action{
+            if let order = viewModel.selectedOrder,let orderAction = viewModel.presentSheet.action{
+                
+                
                 switch orderAction {
                     case .orderHistory:
                         OrderHistory()
-                    
+                        .transition(.opacity)
+                        
                     case .moveTable:
                         AreaView(
                             title:String(format: "CHUYỂN TỪ BÀN TỪ BÀN %@ SANG",order.table_name),
                             orderAction: orderAction,
-                            fromId:viewModel.selectedOrder?.id ?? 0
+                            selectedId:order.table_id,
+                            completion: viewModel.getOrders
                         )
                     
                     case .mergeTable:
                         AreaView(
                             title:String(format: "GỘP BÀN %@",order.table_name),
                             orderAction: orderAction,
-                            selectedId:viewModel.selectedOrder?.id ?? 0
+                            selectedId:order.table_id
                         )
                      
                     case .splitFood:
                         AreaView(
                             title:String(format: "TÁCH MÓN TỪ BÀN %@ SANG",order.table_name),
-                            orderAction: orderAction
+                            orderAction: orderAction,
+                            selectedId:order.table_id
                         )
                     
                     case .cancelOrder:

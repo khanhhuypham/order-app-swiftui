@@ -80,7 +80,11 @@ struct OrderDetailView:View{
                     EmptyView()
 
                 case .cancel:
-                    TableOfCancelReasonView(isPresent:$viewModel.showPopup.show)
+                    TableOfCancelReasonView(completion: {
+                        if let item = item{
+                            self.viewModel.cancelItem(item: item)
+                        }
+                    })
             
             
             }

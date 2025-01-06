@@ -8,13 +8,7 @@
 import UIKit
 
 
-extension OrderDetailView: ReasonCancelItemDelegate {
-    
-    func cancel(item: OrderItem) {
-        viewModel.cancelItem(item: item)
-    }
-    
-}
+
 
 
 extension OrderDetailView: EnterPercentDelegate {

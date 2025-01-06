@@ -16,10 +16,7 @@ class OrderListViewModel: ObservableObject {
     
     @Published var selectedOrder:Order? = nil
     @Published var presentFullScreen:Bool = false
-    @Published var presentSheet:Bool = false
-   
-    
-    @Published public var showSheet:(show:Bool,action:OrderAction?) = (false,nil)
+    @Published public var presentSheet:(show:Bool,action:OrderAction?) = (false,nil)
     
     @Published var APIParameter:(
         branch_id:Int,
@@ -83,11 +80,11 @@ class OrderListViewModel: ObservableObject {
                     }
                 
                 
-                    DispatchQueue.main.async {
+//                    DispatchQueue.main.async {
                         self.orderList = res.data.list
                         self.fullList = res.data.list
 //                        self.utils.toastUtils.alertToast = AlertToast(displayMode: .banner(.pop), type: .complete(.green), title:"Success", subTitle: "Load dữ liệu thành công")
-                    }
+//                    }
                 
                     
 
@@ -108,7 +105,7 @@ class OrderListViewModel: ObservableObject {
             switch result {
                 case .success(let data):
                     
-                    guard let res = try? JSONDecoder().decode(APIResponse<Order>.self, from: data) else{
+                    guard let res = try? JSONDecoder().decode(APIResponse<String>.self, from: data) else{
                         return
                     }
                 

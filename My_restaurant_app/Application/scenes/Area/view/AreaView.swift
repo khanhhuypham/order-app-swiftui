@@ -11,15 +11,18 @@ import SwiftUI
 struct AreaView: View {
     @Injected(\.colors) var color: ColorPalette
     @Injected(\.fonts) var font: Fonts
+    @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel:AreaViewModel = AreaViewModel()
     @State private var routeLink:(tag:String?,data:Table) = (tag:nil,data:Table())
+    
+    
+    
     var title: String? = nil
     var orderAction: OrderAction? = nil
     var selectedId:Int? = nil
-    var fromId:Int? = nil
+    var completion:(() -> Void)? = nil
+  
 
-    
-    
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible()),
@@ -57,22 +60,24 @@ struct AreaView: View {
                 VStack {
                     LazyVGrid(columns: columns, spacing: 16) {
                         
-                        ForEach(Array(viewModel.table.enumerated()), id: \.element.id) { i,table in
+                        ForEach($viewModel.table) {$table in
                           
-                            TableView(table:table).onTapGesture {
+                            TableView(table:$table).onTapGesture {
                                 
                                 if let action = viewModel.orderAction{
                                     switch action {
                                         case .moveTable:
                                             viewModel.presentDialog = true
                                             viewModel.to = table
+                                            break
                                         
                                         case .mergeTable:
-                                            self.viewModel.table[i].is_selected.toggle()
+                                            table.is_selected.toggle()
                                             break
                                         
                                         case .splitFood:
-                                            viewModel.presentSheet = true
+                                            viewModel.to = table
+                                            viewModel.presentDialog = true
                                             break
                                             
                                         default:
@@ -91,22 +96,37 @@ struct AreaView: View {
                           
                         }
                     }
-                    Spacer()
+                 
                 }
+            }
+            
+            Spacer()
+            
+            if let action = viewModel.orderAction,action == .mergeTable{
+                btnGroup
             }
         }
         .navigationTitle("Khu vực")
         .fullScreenCover(isPresented: $viewModel.presentDialog, content: {
-    
-            if viewModel.orderAction == .moveTable,
-               let from = viewModel.from,
+            
+            if let action = viewModel.orderAction,
+               let from = viewModel.selected,
                let to = viewModel.to{
+                
                 ConfirmToMoveTable(
-                    isPresent: $viewModel.presentDialog,
+                    title:action == .moveTable ? "XÁC NHẬN CHUYỂN BÀN" : "XÁC NHẬN TÁCH MÓN",
                     from: from,
                     to: to,
                     completion:{
-                        viewModel.moveTable(from: from.id, to: to.id)
+                        if action == .moveTable{
+                            viewModel.moveTable(from: from.id, to: to.id)
+                            self.presentationMode.wrappedValue.dismiss()
+                            completion?()
+                            
+                        }else{
+                            viewModel.presentSheet = true
+                        }
+                        
                     }
                 )
             }
@@ -120,6 +140,12 @@ struct AreaView: View {
             viewModel.orderAction = orderAction
             viewModel.getAreas()
         })
+        .onChange(of: viewModel.presentDialog) { newValue in
+            if !newValue {
+                print("Sheet dismissed (using binding and dismiss)")
+                 //Completion logic
+            }
+        }
     }
     
     
@@ -171,6 +197,47 @@ struct AreaView: View {
         .background(Color(UIColor.systemGray6)) // Light gray background
     }
     
+    private var btnGroup:some View {
+        
+        HStack(spacing:20){
+            Button {
+                presentationMode.wrappedValue.dismiss()
+            } label: {
+                
+                Label(title: {
+                    Text("HUỶ").font(font.b_18)
+                }, icon: {
+                    Image("icon-cancel", bundle: .main)
+                }).frame(maxWidth: .infinity,maxHeight:.infinity)
+                    .foregroundColor(.red)
+                    .background(color.gray_200)
+                
+            }
+            .cornerRadius(8)
+            .buttonStyle(.plain)
+            
+            Button {
+                viewModel.mergeTable()
+            } label: {
+                Label(title: {
+                    Text("ĐỒNG Ý").font(font.b_18)
+                }, icon: {
+                    Image("icon-checkmark",bundle: .main)
+                })
+                .frame(maxWidth: .infinity,maxHeight:.infinity)
+                .foregroundColor(.white)
+                .background(color.orange_brand_900)
+  
+            }
+            .cornerRadius(8)
+            .buttonStyle(.plain)
+            
+        }
+        .frame(height: 45)
+        .padding()
+        
+        
+    }
 }
 
 #Preview {

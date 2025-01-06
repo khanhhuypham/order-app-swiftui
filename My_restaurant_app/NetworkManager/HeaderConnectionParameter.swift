@@ -86,8 +86,6 @@ extension NetworkManager{
             case .addGiftFoods(_, _, _, _):
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)
 
-            case .kitchenes(_, _, _):
-                return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .GET)
             
             case .vats:
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .GET)
@@ -193,7 +191,7 @@ extension NetworkManager{
 //                
             case .reasonCancelItems(_):
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .GET)
-            case .cancelFood(_, _, _, _, _):
+            case .cancelFood(_, _, _):
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)
 //            case .updateFoods(_, _, _):
 //                return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)

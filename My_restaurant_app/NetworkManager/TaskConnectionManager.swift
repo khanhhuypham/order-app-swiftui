@@ -6,68 +6,84 @@
 //
 
 import UIKit
+
+
+struct APIParam{
+    var query:[String:Any]? = nil
+    var body:Any? = nil
+    
+    init(query: [String : Any]? = nil, body: Any? = nil) {
+        self.query = query
+        self.body = body
+    }
+}
+
+
 extension NetworkManager{
     
-
-    var task: [String:Any] {
+    var task: APIParam {
         switch self{
             
             case .sessions:
-                return  ["device_uid":UIDevice.current.identifierForVendor!.uuidString.lowercased()]
+                return  APIParam(query:["device_uid":UIDevice.current.identifierForVendor!.uuidString.lowercased()])
                 
             case .config(let restaurant_name):
-                return [
-                    "project_id": Constants.apiKey,
-                    "device_uid": UIDevice.current.identifierForVendor!.uuidString.lowercased(),
-                    "restaurant_name": restaurant_name
-                ]
+                return APIParam(query:[
+                        "project_id": Constants.apiKey,
+                        "device_uid": UIDevice.current.identifierForVendor!.uuidString.lowercased(),
+                        "restaurant_name": restaurant_name
+                ])
                 
 
             case .login(let username, let password):
                 
-                return [
-                    "username": username,
-                    "password": GeneralUtils.encoded(str: password),
-                    "device_uid":GeneralUtils.getUDID(),
-                    "app_type":String(GeneralUtils.getAppType()),
-                    "push_token": ""
-                ]
+                return APIParam(body:[
+                        "username": username,
+                        "password": GeneralUtils.encoded(str: password),
+                        "device_uid":GeneralUtils.getUDID(),
+                        "app_type":String(GeneralUtils.getAppType()),
+                        "push_token": ""
+                    ]
+                )
             
                 case .setting(let branch_id):
-                    return [
-                        "branch_id":String(branch_id),
-                        "udid":UIDevice.current.identifierForVendor!.uuidString.lowercased(),
-                        "app_type":String(11)
-                    ]
+                    return APIParam(query:[
+                            "branch_id":String(branch_id),
+                            "udid":UIDevice.current.identifierForVendor!.uuidString.lowercased(),
+                            "app_type":String(11)
+                        ]
+                    )
                     
             case .brands(let key_search, let status):
-                return [
-                        "key_search": key_search,
-                        "status":String(status)
-                    ]
-            
+              
+                return APIParam(query:[
+                    "key_search": key_search,
+                    "status":String(status)
+                ])
+                
             
             case .branches(let brand_id, let status):
-                return [
-                        "restaurant_brand_id": String(brand_id),
-                        "status": String(status)
-                    ]
+                return APIParam(query:[
+                    "restaurant_brand_id": String(brand_id),
+                    "status": String(status)
+                ])
+              
             
             case .getBrandSetting(_):
-                return [:]
+                return APIParam()
                 
             case .getPrinters(let branch_id):
-                return  [
+                return APIParam(query:[
                     "branch_id":String(branch_id),
-                ]
+                ])
+               
             
                 
             case .postApplyOnlyCashAmount(_):
-                return [:]
-            
+                return APIParam()
                 
             case .getApplyOnlyCashAmount(_):
-                return [:]
+                return APIParam()
             
             
             case .orders(let user_id,let status, let search_key, let branch_id, let limit, let page):
@@ -83,15 +99,16 @@ extension NetworkManager{
                     parameter["user_id"] = id.description
                 }
             
-                return parameter
+                return APIParam(query: parameter)
    
             
             case .getOrderDetail(let order_id, let branch_id):
-                 return  [
+              
+                  return APIParam(query:  [
                     "id": String(order_id),
                     "branch_id": String(branch_id)
-                ]
-         
+                  ])
+             
                  case .foods(let branch_id, let category_id, let category_type, let out_of_stock, let keyword, let limit, let page):
                    
                     var parameter =  [
@@ -109,41 +126,31 @@ extension NetworkManager{
                         parameter["category_id"] = category_id?.description
                     }
             
-                
-
                     if category_type != nil{
-                      
                         parameter["category_type"] = category_type
                     }
     
-        
-                     return parameter
+
+                    return APIParam(query: parameter)
      
                  case .addFoods(let branch_id, let order_id, let foods):
-                     return [
-//                        "branch_id": branch_id.description,
-                        "items": foods.toDictionary(),
-                    ]
+               
+                    return APIParam(body: ["items": foods.toDictionary(),])
+            
+            
      
                  case .addGiftFoods(let branch_id, let order_id, let foods, let is_use_point):
-     
-                     return [
+
+                    return APIParam(body: [
                         "branch_id": String(branch_id),
                         "order_id": String(order_id),
-//                        "foods": foods.toJSON(),
+    //                        "foods": foods.toJSON(),
                         "is_use_point": String(is_use_point)
-                    ]
-     
-                 case .kitchenes(let branch_id, let brand_id, let status):
-     
-                     return [
-                        "branch_id": String(branch_id),
-                        "brand_id": String(brand_id),
-                        "status": String(status)
-                    ]
+                    ])
+
      
                  case .vats:
-                     return [:]
+                     return APIParam()
 
         
 //        }
@@ -224,7 +231,8 @@ extension NetworkManager{
                     parameter.updateValue(active?.description, forKey: "active")
                 }
         
-                return parameter
+                return APIParam(query:parameter)
+            
 //
 //            
             case .tables(let branch_dd, let area_id, let active,let buffet_ticket_id):
@@ -240,7 +248,7 @@ extension NetworkManager{
                     parameter.updateValue(area_id?.description, forKey: "area_id")
                 }
                     
-                return parameter
+                return APIParam(query:parameter)
             
             case .tablesForManagement(let area_id):
                 var parameter:[String:Any] = [:]
@@ -248,7 +256,8 @@ extension NetworkManager{
                     parameter.updateValue(area_id?.description, forKey: "area_id")
                 }
                     
-                return parameter
+                return APIParam(query:parameter)
+        
             
 //
 //            
@@ -368,23 +377,25 @@ extension NetworkManager{
 //                
 //                
             case .addNoteToOrder(let branch_id, let order_detail_id, let note):
-                return [
+      
+                return APIParam(query:[
                     "branch_id": branch_id.description,
                     "id": order_detail_id.description,
                     "note": note
-                ]
+                ])
+        
             
             case .reasonCancelItems(let branch_id):
-                return [:]
+                return APIParam()
 
-            case .cancelFood(let branch_id, let order_id, let reason, let order_detail_id, let quantity):
-                return [
-                    "branch_id": String(branch_id),
-                    "id": String(order_id),
-                    "reason":reason,
-                    "order_detail_id": String(order_detail_id),
-                    "quantity":String(quantity)
+            case .cancelFood(_,let item_id,let cancel_reason):
+                
+                var parameter:[String:Any] = [
+                    "id":item_id,
+                    "cancel_reason":""
                 ]
+        
+                return APIParam(body: [parameter])
 //            case .updateFoods(let branch_id, let order_id, let foods):
 //                return .requestParameters(
 //                    parameters: [
@@ -429,7 +440,8 @@ extension NetworkManager{
 //                
 //                
             case .openTable(let table_id):
-                return ["table_id": table_id.description]
+
+                return APIParam(query: ["table_id": table_id.description])
 //
 //            case .discount(_,let branch_id, let food_discount_percent, let drink_discount_percent, let total_amount_discount_percent, let note):
 //                return .requestParameters(
@@ -444,10 +456,11 @@ extension NetworkManager{
 //                )
 //                
             case .moveTable(let from, let to):
-                return[
+              
+                return APIParam(query:[
                     "from": from.description,
                     "to": to.description
-                ]
+                ])
 //
 //            case .mergeTable(let branch_id,  let destination_table_id, let target_table_ids):
 //                return .requestParameters(
@@ -570,7 +583,7 @@ extension NetworkManager{
                     parameter.updateValue(is_confirmed, forKey: "is_confirmed")
                 }
                 
-                return parameter
+                return APIParam(body:parameter)
 
        
             case .foodsManagement(let category_id, let search_key, let limit, let page):
@@ -583,10 +596,11 @@ extension NetworkManager{
                 if let id = category_id{
                     parameter.updateValue(id.description, forKey: "category_id")
                 }
-                return  parameter
+                return APIParam(query: parameter)
+              
             
             case .childrenItem:
-                return [:]
+                return APIParam()
 
             case .categories(let brand_id, let active, let type):
                
@@ -601,23 +615,26 @@ extension NetworkManager{
             
                 
                             
-                return parameter
+                return APIParam(query: parameter)
 
             case .note(let branch_id, let status):
-                return [
+         
+                return APIParam(query: [
                     "branch_id":branch_id.description,
                     "status": status.description
-                ]
+                ])
 
             case .createTable(let branch_id, let table_id, let table_name, let area_id, let total_slot, let active):
-                 return [
+                 
+                return APIParam(body:  [
                     "branch_id":branch_id.description,
                     "table_id":table_id,
                     "name":table_name,
                     "area_id":area_id,
                     "total_slot":total_slot,
                     "active":active
-                ]
+                ])
+
 //
 //            case .prints(let branch_id, let is_have_printer, let is_print_bill, let status):
 //                return .requestParameters(
@@ -743,9 +760,10 @@ extension NetworkManager{
 //                )
 //                
             case .foodsNeedPrint(let order_id):
-                return [
-                    "order_id":String(order_id)
-                ]
+            
+                return APIParam(query:[ "order_id":String(order_id)])
+
+            
 //
 //            case .requestPrintChefBar(let order_id, let branch_id, let print_type):
 //                 return .requestParameters(
@@ -807,7 +825,8 @@ extension NetworkManager{
 ////                )
 ////                
         case .updatePrinter(let printer):
-             return [
+           
+            return APIParam(body: [
                 "name":printer.name,
                 "printer_name": printer.printer_name,
                 "ip_address": printer.ip_address,
@@ -817,17 +836,14 @@ extension NetworkManager{
                 "is_print_each_paper": printer.is_print_each_paper.description,
                 "active": printer.active.description,
                 "type": printer.type.rawValue,
-            ]
-            
+            ])
            
             case .createNote(let note):
-                 return [
+                return APIParam(body: [
                     "id": note.id.description,
                     "content": note.content
-//                    "delete": note.delete?.description,
-//                    "branch_id": note.branch_id?.description
-                ]
-                
+                ])
+
             case .createCategory(let id,let name,let description, let type, let active):
 
                 var body =  [
@@ -840,8 +856,9 @@ extension NetworkManager{
                 if let desc = description {
                     body["description"] = desc
                 }
-                
-                 return body
+            
+                return APIParam(body:body)
+               
 //            case .ordersHistory(let brand_id,let branch_id,let id, let report_type,let time, let limit, let page, let key_search,let is_take_away_table, let is_take_away):
 //                return .requestParameters(
 //                    parameters: [
@@ -861,7 +878,7 @@ extension NetworkManager{
 //                )
 //                
             case .units:
-                return [:]
+                return  APIParam()
 //
             case .createFood(_, let food):
                 var children:[[String:Any]] = []
@@ -888,7 +905,7 @@ extension NetworkManager{
                     body["printer_id"] = food.printer_id
                 }
                 
-                 return body
+                 return APIParam(body: body)
 //
 //                
 //            case .generateFileNameResource(let medias):
@@ -1023,7 +1040,7 @@ extension NetworkManager{
 //                )
 //                
             case .cancelOrder(_):
-                return [:]
+                return APIParam()
                 
 //                
 //            case .feedbackDeveloper(let email, let name, let phone, let type, let describe):
@@ -1507,7 +1524,8 @@ extension NetworkManager{
 //                )
 //                
             case .getFoodsBookingStatus(order_id: let order_id):
-                return  ["order_id": order_id.description]
+              
+                return APIParam(body: ["order_id": order_id.description])
 //
 //            case .updateBranch(let branch):
 //                 return .requestParameters(
@@ -1819,11 +1837,12 @@ extension NetworkManager{
 //                
                 
             case .postCreateOrder(let branch_id,let table_id,let note):
-                 return  [
+                  
+                return APIParam(body:  [
                     "branch_id": branch_id.description,
                     "table_id": table_id.description,
                     "note": note
-                ]
+                ])
                 
 //                
 //            case .getBranchRights(let restaurant_brand_id,let employee_id):
@@ -1927,11 +1946,8 @@ extension NetworkManager{
 //                    encoding: self.encoding(.post)
 //                )
 //                
-            case .postCreateTableList(let branch_id, let tables):
-                return  [
-                    "branch_id": branch_id,
-                    "tables": tables.toDictionary()
-                ]
+  
+        
 //
 //                
 //            case .getPrintItem(let type_print, let restaurant_id, let branch_id):
@@ -2027,35 +2043,37 @@ extension NetworkManager{
 //            
 //            
         case .getBuffetTickets(let brand_id, let status, let key_search, let limit, let page):
-            return  [
+            return APIParam(body: [
                 "restaurant_brand_id": brand_id.description,
                 "status": status.description,
                 "key_search":key_search,
                 "limit": limit.description,
                 "page": page.description
-            ]
+            ])
+           
 //
             
       
             
         case .getDetailOfBuffetTicket(let branch_id, let category_id, let buffet_ticket_id, let key_search, let limit, let page):
-            return [
+            return APIParam(query: [
                 "branch_id": branch_id.description,
                 "category_id": category_id.description,
                 "buffet_ticket_id": buffet_ticket_id.description,
                 "key_search": key_search,
                 "limit": limit.description,
                 "page": page.description
-            ]
+            ])
 //
         case .getFoodsOfBuffetTicket(let brand_id, let buffet_ticket_id):
-            return [
+            return APIParam(query: [
                 "restaurant_brand_id": brand_id.description,
                 "buffet_ticket_id": buffet_ticket_id.description
-            ]
+            ])
+         
 //
             case .postCreateBuffetTicket(let branch_id,let order_id,let buffet_id,let  adult_quantity,let adult_discount_percent,let child_quantity, let chilren_discount_percent):
-                return [
+                return APIParam(body:[
                     "branch_id": branch_id.description,
                     "buffet_ticket_id": buffet_id.description,
                     "order_id": order_id.description,
@@ -2067,37 +2085,34 @@ extension NetworkManager{
                     "adult_discount_percent": adult_discount_percent.description,
                     "child_quantity": child_quantity.description,
                     "child_discount_percent": chilren_discount_percent.description
-                ]
+                ])
 //
 //            
             case .postUpdateBuffetTicket(let branch_id,let order_id,let buffet):
-                return [
+                return APIParam(body:[
                     "branch_id": branch_id.description,
-//                    "buffet_ticket_id": buffet.buffet_ticket_id.description,
+    //                    "buffet_ticket_id": buffet.buffet_ticket_id.description,
                     "order_id": order_id.description,
                     "cash_amount": 0,
                     "bank_amount": 0,
                     "transfer_amount": 0,
                     "e_wallet_amount": 0,
-//                    "adult_quantity": buffet.adult_quantity.description,
-//                    "adult_discount_percent":buffet.adult_discount_percent,
-//                    "child_quantity": buffet.child_quantity,
-//                    "child_discount_percent":buffet.child_discount_percent,
-                    
-                    
-                ]
+                ])
+
 //
 //            
             case .postCancelBuffetTicket(_):
-                return [:]
+                return APIParam()
 //
 //                
             case .postDiscountOrderItem(let branchId,_,let orderItem):
-                return [
+                return APIParam(body:[
                     "branch_id": branchId.description,
                     "discount_percent": orderItem.discount_percent.description,
                     "order_detail_id": orderItem.id.description,
-                ]
+                ])
+
+               
             
 //            // MARK: API for chat
 //            
@@ -2135,6 +2150,9 @@ extension NetworkManager{
 //
 //            
 //        
+       
+        case .postCreateTableList(branch_id: let branch_id, tables: let tables):
+            return APIParam(body: tables)
         }
     }
 }

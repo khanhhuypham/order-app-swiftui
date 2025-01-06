@@ -18,7 +18,6 @@ class AreaViewModel: ObservableObject {
     @Published var presentDialog:Bool = false
     @Published var presentSheet:Bool = false
     @Published var selected:Table? = nil
-    @Published var from:Table? = nil
     @Published var to:Table? = nil
     
     
@@ -26,6 +25,7 @@ class AreaViewModel: ObservableObject {
         self.view = view
     }
     
+  
 }
 extension AreaViewModel{
 
@@ -84,8 +84,8 @@ extension AreaViewModel{
                             case .moveTable:
                                 self.table = res.data.filter{$0.order == nil}
                             
-                                if let fromId = view?.fromId, let firstItem = res.data.first{$0.id == fromId}{
-                                    self.from = firstItem
+                                if let selectedId = view?.selectedId, let firstItem = res.data.first{$0.id == selectedId}{
+                                    self.selected = firstItem
                                 }
                             
                             case .mergeTable:
@@ -94,7 +94,11 @@ extension AreaViewModel{
                                 }
                             
                             case .splitFood:
-                                self.table = res.data
+                                if let selectedId = view?.selectedId,let firstItem = res.data.first{$0.id == selectedId}{
+                                    self.table = res.data
+                                    self.selected = firstItem
+                                }
+                           
                                
                             default:
                                 break
@@ -121,15 +125,22 @@ extension AreaViewModel{
             switch result {
                   case .success(let data):
                         
-                    guard let res = try? JSONDecoder().decode(APIResponse<[Table]>.self, from: data) else{
+                    guard let res = try? JSONDecoder().decode(APIResponse<String>.self, from: data) else{
                         dLog("parse model sai rồi")
                         return
                     }
-       
+                    
+                 
+                
                   case .failure(let error):
                     dLog(error)
             }
         }
+    }
+    
+    func mergeTable(){
+        
+
     }
     
 }

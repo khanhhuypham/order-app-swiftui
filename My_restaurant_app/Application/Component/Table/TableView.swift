@@ -9,10 +9,12 @@ import SwiftUI
 
 
 struct TableView: View {
-    @State var table:Table
+    @Binding var table:Table
     @Injected(\.colors) var color: ColorPalette
     @Injected(\.fonts) var font: Fonts
     var body: some View {
+
+        
         VStack(alignment: .leading){
             ZStack{
                 Image("icon-table")
@@ -26,7 +28,7 @@ struct TableView: View {
                         .resizable()
                         .foregroundColor(color.green_600)
                         .frame(width: 30, height: 30)
-                        .position(x: 70, y: -90)
+                        .position(x: 80, y: 0)
                 }
             }
         }
@@ -34,6 +36,6 @@ struct TableView: View {
     }
 }
 
-#Preview {
-    TableView(table: Table(name: "A1"))
-}
+//#Preview {
+//    TableView(table: Table(name: "A1"))
+//}

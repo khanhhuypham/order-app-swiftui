@@ -54,8 +54,7 @@ extension NetworkManager{
                 return .PUT
             case .addGiftFoods(_, _, _, _):
                 return .POST
-            case .kitchenes(_, _, _):
-                return .GET
+     
             case .vats:
                 return .GET
 //            case .addOtherFoods(_, _, _):
@@ -64,8 +63,8 @@ extension NetworkManager{
 //                return .POST
             case .reasonCancelItems(_):
                 return .GET
-            case .cancelFood(_, _, _, _, _):
-                return .POST
+            case .cancelFood(_, _, _):
+                return .PUT
 //            case .ordersNeedMove(_, _, _):
 //                return .GET
 //            case .updateFoods(_, _, _):

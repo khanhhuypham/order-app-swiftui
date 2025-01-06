@@ -12,6 +12,7 @@ struct OrderCardView: View {
     @Injected(\.fonts) private var font
     @Binding var order:Order
     @State private var isActive = false
+  
     var btnClosure:((Int?) -> Void)? = nil
     let formatter: NumberFormatter = {
         let formatter = NumberFormatter()
