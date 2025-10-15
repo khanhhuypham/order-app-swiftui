@@ -8,18 +8,18 @@
 import Foundation
 import SwiftUI
 import AlertToast
+
+
 @main
-struct DAIHY_ORDER: App {
+struct TechresOrder: App {
 
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     @Environment(\.scenePhase) private var scenePhase
     
-    
     @ObservedObject var appState = AppState.shared
     
     var body: some Scene {
-
         
         WindowGroup {
             
@@ -29,8 +29,7 @@ struct DAIHY_ORDER: App {
                     EmptyView()
                 
                 case .notLoggedIn:
-//                    LoginView()
-                    TabBar()
+                    LoginView()
                 
                 case .loggedIn:
                     TabBar()
@@ -42,7 +41,6 @@ struct DAIHY_ORDER: App {
     }
     
     
-
 }
 
 

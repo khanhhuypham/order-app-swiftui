@@ -6,88 +6,103 @@
 //
 
 
-var environmentMode = EnvironmentMode.develop
+var environmentMode = ManageCacheObject.getEnvironment()
+
+//MARK: =========================== beta =============================
+let onlineBaseUrl = "https://beta.api.gateway.overate-vntech.com"
+let onlineRealTimeUrl = "https://beta.realtime.order.techres.vn"
+let onlineRealTimeChatUrl = "https://beta.realtime.chat.techres.vn"
+//MARK: =========================== staging =============================
+//let onlineBaseUrl = "https://staging.api.gateway.overate-vntech.com"
+//let onlineRealTimeUrl = "http://172.16.10.144:1483"
+//let onlineRealTimeChatUrl = "https://staging.realtime.chat.techres.vn"
+//MARK: =========================== production =============================
+//let onlineBaseUrl = "https://api.gateway.overate-vntech.com"
+//let onlineRealTimeUrl = "https://realtime.order.techres.vn"
+//let onlineRealTimeChatUrl = "https://realtime.chat.techres.vn"
+
 
 enum EnvironmentMode {
+        
+    case online
     
-    case develop
+    case offline
     
-    case staging
-    
-    case production
+    init(value: Int) {
+        
+        switch value {
+            
+            case ONLINE:
+                self = .online
+            
+            case OFFLINE:
+                self = .offline
+            
+            default:
+                self = .online
+        }
+    }
     
     var value: Int {
+        
         switch self {
-            case .develop:
-                return 0
-            case .staging:
-                return 1
-            case .production:	
-                return 2
-        }
+     
+            case .online:
+                return ONLINE
+            
+            case .offline:
+                return OFFLINE
+            
+            }
+        
     }
     
     var baseUrl: String {
+        
         switch self {
             
-            case .develop:
-                return "http://172.16.2.176:8080"
-
-            case .staging:
-                return "staging.api.gateway.overate-vntech.com"
+            case .online:
+                return onlineBaseUrl
             
-            case .production:
-                return "api.gateway.overate-vntech.com"
+            case .offline:
+                return String(format: "http://%@:8005", Constants.savedLoginInfor.ip_address)
         }
+        
     }
     
+    
     var realTimeUrl: String {
+        
         switch self {
-            case .develop:
-                return "https://beta.realtime.order.techres.vn"
-            case .staging:
-                return "http://172.16.10.144:1483"
-            case .production:
-                return "https://realtime.order.techres.vn"
-        }
+   
+            case .online:
+                return onlineRealTimeUrl
+            
+            case .offline:
+                return String(format: "http://%@:9092", Constants.savedLoginInfor.ip_address)
+            }
+            
     }
     
     
     var realTimeChatUrl: String {
+        
         switch self {
-            case .develop:
-                return "https://beta.realtime.chat.techres.vn"
-            case .staging:
-                return "https://staging.realtime.chat.techres.vn"
-            case .production:
-                return "https://realtime.chat.techres.vn"
-        }
+         
+            case .online:
+                return onlineRealTimeChatUrl
+            
+            case .offline:
+                return String(format: "http://%@:8005", Constants.savedLoginInfor.ip_address)
+            }
+        
     }
     
-    
-    
-    
-    var PROJECT_OAUTH: Int {
-        switch self {
-            case .develop:
-                return 8003
-            case .staging:
-                return 8003
-            case .production:
-                return 8003
-        }
-    }
+
+    var PROJECT_OAUTH: Int {8003}
     
     var PROJECT_ID_ORDER_SMALL: Int {
-        switch self {
-            case .develop:
-                return 8004
-            case .staging:
-                return 8004
-            case .production:
-                return 8004
-          
-        }
+        return 8004
     }
     
     var PROJECT_ID_ORDER: Int {
@@ -105,7 +120,6 @@ enum EnvironmentMode {
     var PROJECT_ID_FINANCE_REPORT: Int {
         return 1454
     }
-    
     
     var PROJECT_UPLOAD_SERVICE: Int {
         return 9007
@@ -132,7 +146,9 @@ enum EnvironmentMode {
     var PROJECT_ID_FOR_CONVERSATION_SERVICE: Int { 9024}
     
     
-
+    var PROJECT_ID_FOR_APP_FOOD: Int { 1432}
+    
+    var PROJECT_ID_FOR_E_INVOICE: Int { 1401}
 }
 
 
@@ -162,10 +178,11 @@ enum ProjectID:Int {
     
     case PROJECT_ID_FOR_MEESSAGE_SERVICE
     
-    
     case PROJECT_ID_FOR_CONVERSATION_SERVICE
     
-
+    case PROJECT_ID_FOR_APP_FOOD
+    
+    case PROJECT_ID_FOR_E_INVOICE
     
     var value:Int{
         switch self {
@@ -177,7 +194,6 @@ enum ProjectID:Int {
           
             case .PROJECT_ID_ORDER:
                 return environmentMode.PROJECT_ID_ORDER
-            
             
             case .PROJECT_ID_DASHBOARD:
                 return environmentMode.PROJECT_ID_DASHBOARD
@@ -208,7 +224,12 @@ enum ProjectID:Int {
             
             case .PROJECT_ID_FOR_CONVERSATION_SERVICE:
                 return environmentMode.PROJECT_ID_FOR_CONVERSATION_SERVICE
-         
+            
+            case  .PROJECT_ID_FOR_APP_FOOD:
+                return environmentMode.PROJECT_ID_FOR_APP_FOOD
+            
+            case  .PROJECT_ID_FOR_E_INVOICE:
+                return environmentMode.PROJECT_ID_FOR_E_INVOICE
         
         }
     }
@@ -233,7 +254,7 @@ enum Method:Int {
             
             case .PATCH:
                 return 1
-              
+          
         }
     }
     
@@ -249,12 +270,15 @@ enum Method:Int {
                 return "put"
             
             case .PATCH:
-                return "PATCH"
+                return "patch"
         }
     }
-    
-    
+
 }
+
+
+
+
 
 
 

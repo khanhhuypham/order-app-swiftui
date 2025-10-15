@@ -5,7 +5,10 @@ struct HeaderView: View {
     @Injected(\.colors) var color: ColorPalette
     @Binding var searchText:String
     @Binding var btnArray:[(id:Int,title:String,isSelected:Bool)]
+  
+    
     var clickClosure:((Int) -> Void)? = nil
+    
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false){
@@ -17,19 +20,23 @@ struct HeaderView: View {
                         .foregroundColor(color.orange_brand_900)
                         .padding(.leading,10)
 
-                    TextField("Tìm kiếm", text: $searchText)
-                        .padding(.trailing,20)
+
+                    TextField("",text: $searchText,
+                        prompt: Text("Tìm kiếm").foregroundColor(color.orange_brand_900).font(font.sb_14)
+                    )
+                    .font(font.sb_14)
+                    .foregroundColor(color.orange_brand_900)
+                    .padding(.trailing, 20)
                         
                 }
-                .frame(width:200,height: 34)
+                .frame(width:210,height: 30)
                 .overlay(RoundedRectangle(cornerRadius: 20).stroke(color.orange_brand_900, lineWidth: 2))
-                .padding(.horizontal,15)
                 
                 ForEach(Array(btnArray.enumerated()), id: \.offset){i,element in
                     // "Món ăn" Button
                     Button(action: {
                         // Action for Món ăn
-                        for (j,btn) in btnArray.enumerated(){
+                        for (j,_) in btnArray.enumerated(){
                             btnArray[j].isSelected = i == j ? true : false
                         }
                         if let clickClosure = self.clickClosure{
@@ -46,8 +53,8 @@ struct HeaderView: View {
                     .overlay(
                         Rectangle()
                             .frame(height: element.isSelected ? 5 : 0) // Height of the underline
-                            .foregroundColor(.orange) // Color of the underline
-                            .offset(y: 15) // Adjust position of the underline
+                            .foregroundColor(color.orange_brand_900) // Color of the underline
+                            .offset(y: 20) // Adjust position of the underline
                             .opacity(0.7) // Adjust opacity if needed
                         ,alignment: .bottom
                     )
@@ -56,7 +63,7 @@ struct HeaderView: View {
                 
             }
             .frame(maxHeight:.infinity)
-            .padding(.horizontal)
+            .padding(.horizontal,10)
             .padding(.vertical,0)
         }
         .frame(height: 60)

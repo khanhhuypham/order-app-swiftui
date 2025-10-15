@@ -7,13 +7,11 @@
 
 import SwiftUI
 
-import PopupView
 
 struct OrderList: View, ReasonCancelItemDelegate {
-    func cancel(item: OrderItem) {
-        
-    }
     
+    
+    func cancel(item: OrderItem) {}
     
     @ObservedObject var viewModel:OrderDetailViewModel
     
@@ -23,13 +21,11 @@ struct OrderList: View, ReasonCancelItemDelegate {
         return formatter
     }()
     
-
     
     var body: some View {
        
         List{
             
-
             if let buffet = viewModel.order.buffet {
                 // Create a non-optional Binding<Buffet>
                 let buffetBinding = Binding<Buffet>(
@@ -50,45 +46,33 @@ struct OrderList: View, ReasonCancelItemDelegate {
                         })
                         
                         SwipeActionView(actions: [cancel,edit])
-                    }
-                    .defaultListRowStyle()
+                    }.defaultListRowStyle()
             
             }
             
             ForEach($viewModel.order.orderItems) { data in
-                
+         
                 OrderListItem(
                     item: data,
                     onIncrease: {
-    
                         let item = data.wrappedValue
-                        
-                        if !item.is_gift{
-                            viewModel.setQuantity(for: item, quantity:item.quantity + (item.sell_by_weight ? 0.01 : 1))
-                        }
-                        
+                        item.is_gift == DEACTIVE
+                        ? viewModel.setQuantity(for: item, quantity:item.quantity + (item.is_sell_by_weight == ACTIVE ? 0.01 : 1))
+                        : {}()
                     },
                     onDecrease: {
                         let item = data.wrappedValue
-                        if !item.is_gift{
-                            viewModel.setQuantity(for: item, quantity:item.quantity - (item.sell_by_weight ? 0.01 : 1))
-                        }
-                       
+                        item.is_gift == DEACTIVE
+                        ? viewModel.setQuantity(for: item, quantity:item.quantity - (item.is_sell_by_weight == ACTIVE ? 0.01 : 1))
+                        : {}()
                     }
-                )
-//                .task {}
-//                .refreshable {
-//                    viewModel.getOrder()
-//                }
-                .swipeActions(edge: .trailing,allowsFullSwipe: false) {
+                ).swipeActions(edge: .trailing) {
                     let item = data.wrappedValue
                     SwipeActionView(actions: setupSwipeAction(data: item))
-                }
-                .defaultListRowStyle()
+                }.defaultListRowStyle()
                 
             }
-        }
-        .listStyle(.plain)
+        }.listStyle(.plain)
     
     }
     
@@ -98,19 +82,15 @@ struct OrderList: View, ReasonCancelItemDelegate {
         let note = SwipeAction.note(action: {
             viewModel.showPopup = (true,.note,data)
         })
-        
         let discount = SwipeAction.discount(action: {
             viewModel.showPopup = (true,.discount,data)
         })
         let edit = SwipeAction.edit(action: {
-            viewModel.showPopup = (true,.edit,data)
+            dLog("action edit")
         })
-        
         let split = SwipeAction.split(action: {
-            viewModel.showPopup.show = false
-            viewModel.showSheet = true
+            dLog("action split")
         })
-        
         let cancel = SwipeAction.cancel(action: {
             viewModel.showPopup = (true,.cancel,data)
         })
@@ -121,7 +101,7 @@ struct OrderList: View, ReasonCancelItemDelegate {
                 if data.buffet_ticket_id ?? 0 > 0{
                     actions = [cancel,note]
                 }else{
-                    if data.is_gift {
+                    if data.is_gift == ACTIVE{
                         actions = data.order_detail_additions.count > 0
                         ? [cancel,split,edit,note]
                         : [cancel,split,note]
@@ -143,7 +123,7 @@ struct OrderList: View, ReasonCancelItemDelegate {
                         if data.quantity == 0 && data.buffet_ticket_id == 0{
                             actions = []
                         }else{
-                            actions = data.is_gift || data.is_extra_charge
+                            actions = data.is_gift == ACTIVE || data.is_extra_charge == ACTIVE
                             ? [cancel,split]
                             : [cancel,discount,split]
                         }
@@ -152,7 +132,7 @@ struct OrderList: View, ReasonCancelItemDelegate {
                         if data.buffet_ticket_id ?? 0 > 0{
                             actions = [cancel]
                         }else{
-                            actions = data.is_gift || data.is_extra_charge
+                            actions = data.is_gift == ACTIVE || data.is_extra_charge == ACTIVE
                             ? [cancel,split]
                             : [cancel,discount,split]
                         }
@@ -172,11 +152,6 @@ struct OrderList: View, ReasonCancelItemDelegate {
     }
     
     
-    
-  
-    
-
- 
 }
 
 

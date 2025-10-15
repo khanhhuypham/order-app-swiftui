@@ -9,10 +9,10 @@ import UIKit
 
 
 struct Brand: Codable,Identifiable {
-    var id:Int?
-    var restaurant_id:Int?
-    var name:String?
-    var is_office:Int?
+    var id:Int = 0
+    var restaurant_id:Int = 0
+    var name:String = ""
+    var is_office:Int = DEACTIVE
     var setting:BrandSetting?
     var isSelect:Bool = false
     

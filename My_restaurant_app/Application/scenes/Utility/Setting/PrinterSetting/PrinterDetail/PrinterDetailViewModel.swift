@@ -13,24 +13,24 @@ class PrinterDetailViewModel:ObservableObject {
     
     func updatePrinter(){
         
-        NetworkManager.callAPI(netWorkManger:.updatePrinter(printer: printer)){[weak self] result in
+        NetworkManager.callAPI(netWorkManger:.updatePrinter(branch_id: Constants.branch.id, printer: printer)){[weak self] (result: Result<PlainAPIResponse, Error>) in
 
             guard let self = self else { return }
 
             switch result {
-                case .success(let data):
-
-                    guard var res = try? JSONDecoder().decode(APIResponse<Printer>.self, from: data) else{
-                        dLog("Parse model sai")
-                        return
-                    }
-                    navigateTag = 1
+                case .success(let res):
                     
+                    if (res.status == .ok) {
+                        
+                        navigateTag = 1
+                    
+                    }
+                  
+                
             
                 case .failure(let error):
                     print(error)
             }
         }
-       
     }
 }

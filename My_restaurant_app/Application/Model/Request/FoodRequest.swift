@@ -8,27 +8,15 @@
 import UIKit
 
 
-struct FoodRequest:Codable,Identifiable {
+struct FoodRequest {
     var id = 0
     var quantity:Float = 0
+    var price: Int = 0
     var note = ""
-    var discount_percent:Int?
-    var children:[FoodRequestChild] = []
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case quantity
-        case note
-        case discount_percent
-        case children
-    }
-}
-// Define a separate structure for children if needed
-struct FoodRequestChild: Codable {
-    let id: Int
-    let quantity: Float
-    init(id: Int, quantity: Float) {
-        self.id = id
-        self.quantity = quantity
-    }
+    var is_use_point = 0
+    var discount_percent = 0
+    var customer_order_detail_id = 0
+    var addition_foods:[FoodAddition] = []
+    var buy_one_get_one_foods:[FoodAddition] = []
+    var food_option_foods: [[String: Any]] = []
 }

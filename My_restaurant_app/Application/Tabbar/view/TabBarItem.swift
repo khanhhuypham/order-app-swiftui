@@ -12,6 +12,7 @@ import SwiftUI
 struct TabItem: View {
     @ObservedObject var tabbarRouter: TabBarViewModel
     @Injected(\.fonts) private var fonts
+    @Injected(\.colors) var color: ColorPalette
     let width,height:CGFloat
     let image:Image
     let tabName:String
@@ -26,12 +27,12 @@ struct TabItem: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: width,height:height)
 
-            Text(tabName)
-                .font(fonts.m_12)
+            Text(tabName).font(fonts.m_12)
+            
             Spacer()
         }
         .padding(.horizontal,-4)
-        .foregroundColor(tabbarRouter.currentPage == assignedPage ? .white : .blue)
+        .foregroundColor(tabbarRouter.currentPage == assignedPage ? .white : color.gray_400)
         .onTapGesture{
             tabbarRouter.currentPage = assignedPage
         }

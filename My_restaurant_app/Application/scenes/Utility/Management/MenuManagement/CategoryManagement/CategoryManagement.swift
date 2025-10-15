@@ -20,7 +20,6 @@ struct CategoryManagement: View {
             // Tabs
             List {
                 ForEach(Array($viewModel.categories.enumerated()),id:\.1.id) {index, item in
-                   
                     renderCell(category: item).onTapGesture(perform: {
                         viewModel.showPopup(category: item.wrappedValue)
                     })
@@ -45,13 +44,17 @@ struct CategoryManagement: View {
             }.padding()
            
         }
-        .presentDialog(isPresented:$viewModel.isPresent,content: {
+        .fullScreenCover(isPresented: $viewModel.isPresent, content: {
+            
             if let popup = viewModel.popup{
-                AnyView(popup)
-           }
+                dialog(isPresented: $viewModel.isPresent){
+                    AnyView(popup)
+                }
+            }
+            
         })
-
         
+       
     }
     
     private func renderCell(category:Binding<Category>) -> (some View){
@@ -62,9 +65,9 @@ struct CategoryManagement: View {
             VStack(alignment:.leading){
                 Text(category.wrappedValue.name)
                     .font(font.r_16)
-                Text(category.wrappedValue.active ? "ĐANG KINH DOANH" : "NGỪNG KINH DOANH")
+                Text(category.wrappedValue.status == ACTIVE ? "ĐANG KINH DOANH" : "NGỪNG KINH DOANH")
                     .font(font.m_12)
-                    .foregroundColor(category.wrappedValue.active ? color.green_600 : color.red_600)
+                    .foregroundColor(category.wrappedValue.status == ACTIVE ? color.green_600 : color.red_600)
             }
             Spacer()
             Image(systemName: "chevron.right")

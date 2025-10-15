@@ -10,48 +10,20 @@ import SwiftUI
 struct HorizontalBtnGroup: View {
     @Injected(\.fonts) var font: Fonts
     @Injected(\.colors) var color: ColorPalette
-    @Binding var btnArray:[(id:Int?,title:String,isSelect:Bool)]
-    @State private var searchText: String? = nil
-    var btnClosure:((Int?) -> Void)? = nil
-    var searchClosure:((String?) -> Void)? = nil
-    
-   
-    
+    @Binding var btnArray:[(id:Int,title:String,isSelect:Bool)]
+    var clickClosure:((Int) -> Void)? = nil
+
     var body: some View {
         ScrollView(.horizontal,showsIndicators: false){
             HStack{
-                
-                if let searchClosure = self.searchClosure {
-                    HStack {
-                        Image(systemName: "magnifyingglass")
-                            .foregroundColor(color.orange_brand_900)
-                            .padding(.leading,10)
-
-                        TextField("Tìm kiếm", text: Binding(
-                            get: { searchText ?? "" },
-                            set: { newValue in
-                               searchText = newValue.isEmpty ? nil : newValue
-                            }
-                        ))
-                        .onChange(of: searchText) { newValue in
-                            searchClosure(newValue)
-                        }
-                        .padding(.trailing,20)
-                    }
-                    .frame(width:200,height: 34)
-                    .overlay(RoundedRectangle(cornerRadius: 20).stroke(color.orange_brand_900, lineWidth: 2))
-                    .padding(.horizontal,15)
-                }
-            
-                
                 ForEach(Array(btnArray.enumerated()), id: \.offset){i,element in
                     Button(action: {
                         // Action for Món ăn
                         for (j,btn) in btnArray.enumerated(){
                             btnArray[j].isSelect = i == j ? true : false
                         }
-                        if let btnClosure = self.btnClosure{
-                            btnClosure(element.id)
+                        if let clickClosure = self.clickClosure{
+                            clickClosure(element.id)
                         }
                         
                     }) {

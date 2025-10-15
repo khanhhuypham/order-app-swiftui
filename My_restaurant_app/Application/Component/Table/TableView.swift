@@ -10,32 +10,47 @@ import SwiftUI
 
 struct TableView: View {
     @Binding var table:Table
+    var action:OrderAction?
     @Injected(\.colors) var color: ColorPalette
     @Injected(\.fonts) var font: Fonts
-    var body: some View {
-
-        
-        VStack(alignment: .leading){
-            ZStack{
-                Image("icon-table")
-                Text(table.name ?? "")
-                    .foregroundColor((table.order != nil) ? .white : .black)
-                    .font(font.sb_14)
-                
-                if table.is_selected{
     
-                    Image(systemName: "checkmark.diamond.fill")
-                        .resizable()
-                        .foregroundColor(color.green_600)
-                        .frame(width: 30, height: 30)
-                        .position(x: 80, y: 0)
-                }
+    var body: some View {
+            VStack(alignment: .leading) {
+                
+                GeometryReader { geo in
+                    ZStack {
+                        Image("icon-table")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+
+                        Text(table.name ?? "")
+                            .foregroundColor(.white)
+                            .font(font.sb_16)
+                        
+                        if action == .mergeTable && table.is_selected{
+
+                            Image(systemName: "checkmark.circle.fill")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .foregroundColor(.green)
+                                .offset(
+                                    x: geo.size.width / 2 - 5,
+                                    y: -geo.size.height / 2 + 5
+                                ) // ✅ top-right offset
+                            
+                            
+                        }
+                        
+                    }.frame(width: geo.size.width, height: geo.size.height)
+                    
+                }.frame(width: 80, height: 80) // You can adjust this
             }
+            .foregroundColor(table.status?.fgColor)
         }
-        .foregroundColor(table.order?.status?.fgColorForTable ?? color.gray_400)
-    }
 }
 
-//#Preview {
-//    TableView(table: Table(name: "A1"))
-//}
+
+
+#Preview {
+    TableView(table: .constant(Table(name: "A1")))
+}

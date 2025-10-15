@@ -14,6 +14,7 @@ class TabBarViewModel:ObservableObject{
 
 
 enum Page{
+    case generalReport
     case order
     case area
     case Utility
@@ -21,8 +22,12 @@ enum Page{
     
     var title:String{
         switch self {
+            case .generalReport:
+                return "Báo cáo"
+            
             case .order:
-                return "Dơn hàng"
+                return "Đơn hàng"
+            
             case .area:
                 return "Khu vực"
         
@@ -35,8 +40,12 @@ enum Page{
     
     var iconName:String{
         switch self{
+            case .generalReport:
+                return "doc.text.below.ecg"
+            
             case .order:
                 return "house.fill"
+            
             case .area:
                 return "newspaper.fill"
           

@@ -13,7 +13,6 @@ class FoodManagementViewModel: ObservableObject {
     let brandId = Constants.brand.id ?? 0
     
     @Published var foods:[Food] = []
-    @Published var childrenItem:[ChildrenItem] = []
 
     @Published var tab = 1
     @Published var tabArray:[(id:Int,title:String,isSelect:Bool)] = [
@@ -22,35 +21,8 @@ class FoodManagementViewModel: ObservableObject {
     ]
     
     
-    @Published var APIParameter : (
-        category_id:Int?,
-        search_key:String,
-        limit:Int,
-        page:Int,
-        total_record:Int
-    ) =  (
-        category_id:nil,
-        search_key:"",
-        limit:20,
-        page:1,
-        total_record:0
-    )
+
     
-    //MARK: - PAGINATION
-    func loadMoreContent(){
-        if self.foods.endIndex < APIParameter.total_record {
-            APIParameter.page += 1
-            getFood(isAddition: DEACTIVE)
-        }
-    }
-    
-    
-    //MARK: - PAGINATION
-    func reloadContent(){
-        foods.removeAll()
-        APIParameter.page = 1
-        getFood(isAddition: DEACTIVE)
-    }
     
     
 }
@@ -58,58 +30,54 @@ class FoodManagementViewModel: ObservableObject {
 //MARK: categories
 extension FoodManagementViewModel{
     func getFood(isAddition:Int){
-        NetworkManager.callAPI(netWorkManger:.foodsManagement(
-            category_id: APIParameter.category_id,
-            search_key: APIParameter.search_key,
-            limit: APIParameter.limit,
-            page: APIParameter.page
-        )){[weak self] result in
-            
+        
+        NetworkManager.callAPI(netWorkManger: .foodsManagement(branch_id:branchId, is_addition: isAddition,status: ALL)){[weak self] (result: Result<APIResponse<[Food]>, Error>) in
             guard let self = self else { return }
             
             switch result {
-                case .success(let data):
 
-                    guard var res = try? JSONDecoder().decode(APIResponse<FoodResponse>.self, from: data) else{
-                        dLog("Parse model sai")
-                        return
+                case .success(let res):
+                    if res.status == .ok{
+                        foods = res.data
                     }
-            
-                
-                    self.APIParameter.total_record = res.data.total_record
+                 
                     
-                    self.foods.append(contentsOf: res.data.list)
-
                 case .failure(let error):
-                print(error)
+                   dLog("Error: \(error)")
             }
         }
     }
     
-    
-    func getChildrenItems(){
-        NetworkManager.callAPI(netWorkManger:.childrenItem){[weak self] result in
-            
-            guard let self = self else { return }
-            
-            switch result {
-                case .success(let data):
-             
-                    guard var res = try? JSONDecoder().decode(APIResponse<[ChildrenItem]>.self, from: data) else{
-                        dLog("Parse model sai")
-                        return
-                    }
-                    childrenItem = res.data
-                    
-                
-                case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    
-    
-  
+//    func createCategory(category:Category){
+//        
+//        NetworkManager.callAPI(netWorkManger:.createCategory(
+//            id: category.id,
+//            name: category.name,
+//            code: category.code,
+//            description: category.description,
+//            categoryType: category.category_type.value,
+//            status:category.status
+//                                                    
+//        )){[weak self] result in
+//            
+//            guard let self = self else { return }
+//            
+//            switch result {
+//                case .success(let data):
+//
+//                    guard var res = try? JSONDecoder().decode(PlainAPIResponse.self, from: data) else{
+//                        dLog("Parse model sai")
+//                        return
+//                    }
+//                    
+//                    getCategories()
+//
+//                case .failure(let error):
+//                
+//                    print(error)
+//            }
+//        }
+//    }
     
     
 

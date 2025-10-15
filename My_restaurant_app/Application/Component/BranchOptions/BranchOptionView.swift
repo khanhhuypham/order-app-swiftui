@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct BranchOptionView: View {
-
+    
     @Environment(\.dismiss) var dismiss
     @Injected(\.fonts) private var fonts
-       
+    @Injected(\.colors) var color: ColorPalette
     @ObservedObject var viewModel: BranchOptionViewModel = BranchOptionViewModel()
     
     var body: some View {
@@ -20,7 +20,7 @@ struct BranchOptionView: View {
                .font(.headline)
                .frame(maxWidth:.infinity,alignment:.center)
                .frame(height: 60)
-               .background(Color(ColorUtils.orange_brand_900()))
+               .background(color.orange_brand_900)
                .foregroundColor(.white)
 
                        
@@ -68,7 +68,7 @@ struct BranchOptionView: View {
         .frame(height: 35)
         .overlay(RoundedRectangle(cornerRadius: 17).stroke(Color.orange, lineWidth: 2))
         .padding(.horizontal,18)
-        .foregroundColor(Color(ColorUtils.orange_brand_900()))
+        .foregroundColor(color.orange_brand_900)
     }
     
     private func brandItem(brand:Binding<Brand>) -> some View{
@@ -88,7 +88,7 @@ struct BranchOptionView: View {
                     .frame(width: 20, height: 20)
                     .foregroundColor(.gray) // or a custom image
                
-                Text(brand.wrappedValue.name ?? "")
+               Text(brand.wrappedValue.name)
                    .font(fonts.r_14)
                
                 Spacer()
@@ -99,8 +99,8 @@ struct BranchOptionView: View {
                 }
            }
            .padding()
-           .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color(ColorUtils.orange_brand_900()), lineWidth:1))
-           .background(Color(ColorUtils.orange_brand_200()))
+           .overlay(RoundedRectangle(cornerRadius: 12).stroke(color.orange_brand_900, lineWidth:1))
+           .background(color.orange_brand_200)
        } .buttonStyle(.plain)
         
     }
@@ -109,18 +109,12 @@ struct BranchOptionView: View {
         
         
        return Button(action: {
-        
-           SettingUtils.getBranchSetting(branchId: branch.wrappedValue.id ?? 0,completion: {dismiss()})
-           
-           
+           Task{
+               await SettingUtils.getBranchSetting(branchId: branch.wrappedValue.id,completion: {dismiss()})
+           }
        }){
            HStack {
-//               let link_image = Utils.getFullMediaLink(string: data?.image_logo ?? "")
-//               avatar_branch.kf.setImage(with: URL(string: link_image), placeholder: UIImage(named: "image_defauft_medium"))
-//               lbl_address.text = data?.address
-//               
-//               icon_check.image = UIImage(named: ManageCacheObject.getCurrentBranch().id == data?.id ? "icon-check-green" : "")
-               
+
                 Image(systemName: "photo")
                     .resizable()
                     .frame(width: 20, height: 20)
@@ -128,13 +122,13 @@ struct BranchOptionView: View {
                
                 VStack(alignment:.leading){
                     
-                   Text(branch.wrappedValue.name ?? "")
+                    Text(branch.wrappedValue.name)
                       .font(fonts.r_14)
                      
                   
-                   Text(branch.wrappedValue.address ?? "")
+                    Text(branch.wrappedValue.address)
                       .font(fonts.r_12)
-                      .foregroundColor(Color(ColorUtils.gray_600()))
+                      .foregroundColor(color.gray_600)
                     
                     
                 }

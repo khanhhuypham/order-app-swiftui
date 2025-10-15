@@ -1,9 +1,10 @@
 //
 //  ChildrenItem.swift
-//  My_restaurant_app
+//  TechresOrder
 //
-//  Created by Pham Khanh Huy on 29/11/2024.
+//  Created by Pham Khanh Huy on 2/10/25.
 //
+
 
 import UIKit
 
@@ -120,8 +121,4 @@ extension ChildrenItem {
     }
     
 }
-
-
-
-
 

@@ -655,29 +655,29 @@ class GeneralUtils {
 
 }
 extension UITextView {
-    /// Change Color Placeholder UILabel To This UITextView
-    public func setPlaceholderColor(_ placeholderText: String , _ isCallApi: Bool) {
-        let placeholderLabel = UILabel()
-        placeholderLabel.text = placeholderText
-        placeholderLabel.textColor = ColorUtils.gray_400()
-        placeholderLabel.font = self.font
-        placeholderLabel.numberOfLines = 0
-        placeholderLabel.sizeToFit()
-        if isCallApi {
-            if (self.text.isEmpty){
-                placeholderLabel.isHidden = false
-            } else {
-                placeholderLabel.isHidden = true
-            }
-        } else {
-            placeholderLabel.isHidden = false
-        }
-        self.addSubview(placeholderLabel)
-        self.setValue(placeholderLabel, forKey: "_placeholderLabel")
-        NotificationCenter.default.addObserver(forName: UITextView.textDidChangeNotification, object: self, queue: nil) { [weak self] _ in
-            self?.updatePlaceholderVisibility(placeholderLabel)
-        }
-    }
+//    /// Change Color Placeholder UILabel To This UITextView
+//    public func setPlaceholderColor(_ placeholderText: String , _ isCallApi: Bool) {
+//        let placeholderLabel = UILabel()
+//        placeholderLabel.text = placeholderText
+//        placeholderLabel.textColor = ColorUtils.gray_400()
+//        placeholderLabel.font = self.font
+//        placeholderLabel.numberOfLines = 0
+//        placeholderLabel.sizeToFit()
+//        if isCallApi {
+//            if (self.text.isEmpty){
+//                placeholderLabel.isHidden = false
+//            } else {
+//                placeholderLabel.isHidden = true
+//            }
+//        } else {
+//            placeholderLabel.isHidden = false
+//        }
+//        self.addSubview(placeholderLabel)
+//        self.setValue(placeholderLabel, forKey: "_placeholderLabel")
+//        NotificationCenter.default.addObserver(forName: UITextView.textDidChangeNotification, object: self, queue: nil) { [weak self] _ in
+//            self?.updatePlaceholderVisibility(placeholderLabel)
+//        }
+//    }
     /// Remove Placeholder UILabel When Text In UiTextView Empty
     private func updatePlaceholderVisibility(_ placeholderLabel: UILabel) {
         placeholderLabel.isHidden = !self.text.isEmpty

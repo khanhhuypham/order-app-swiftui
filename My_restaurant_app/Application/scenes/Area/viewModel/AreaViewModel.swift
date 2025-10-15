@@ -9,138 +9,163 @@ import SwiftUI
 
 
 class AreaViewModel: ObservableObject {
-    private(set)var view: AreaView?
-
+    @Published var shouldNavigateBack: Bool = false // 👈 Add this
     @Published var table:[Table] = []
-    @Published var area:[(id:Int?,title:String,isSelect:Bool)] = []
-
-    @Published var orderAction:OrderAction? = nil
+    @Published var area:[Area] = []
+    
+    
     @Published var presentDialog:Bool = false
-    @Published var presentSheet:Bool = false
-    @Published var selected:Table? = nil
-    @Published var to:Table? = nil
+
     
-    
-    func bind(view: AreaView){
-        self.view = view
-    }
-    
-  
+    var order: Order? = nil
+    var orderAction: OrderAction? = nil
+    var selectedTable: Table? = nil
+
 }
+
 extension AreaViewModel{
 
     func getAreas(){
         
-        NetworkManager.callAPI(netWorkManger: .areas(branch_id: Constants.branch.id ?? 0, active:true)){[weak self] result in
-            guard let self = self else { return }
-            switch result {
-                  case .success(let data):
-                    
         
-                    guard let res = try? JSONDecoder().decode(APIResponse<[Area]>.self, from: data) else{
-                        dLog("parse model sai rồi")
-                        return
-                    }
-      
-                    
-                    DispatchQueue.main.async {
-                        var list = res.data
-
-                        
-                        self.area = res.data.enumerated().map{ i,area in
-                            return i == 0 
-                            ? (id:nil,title:"Tất cả khu vực",isSelect:true)
-                            : (id:area.id,title:area.name.description,isSelect:false)
-                        }
-                        
-                        self.getTables()
-                    }
-                
-                  case .failure(let error):
-                    dLog(error)
-            }
-        }
-    }
-    
-    
-    func getTables(areaId:Int? = nil){
-        
-        NetworkManager.callAPI(netWorkManger: .tables(branchId: Constants.branch.id ?? 0, area_id: areaId,active: true)){[weak self] result in
+        NetworkManager.callAPI(netWorkManger: .areas(branch_id: Constants.branch.id ?? 0, status: ACTIVE)){[weak self] (result: Result<APIResponse<[Area]>, Error>) in
             guard let self = self else { return }
             
             switch result {
-                  case .success(let data):
-                        
-                    guard let res = try? JSONDecoder().decode(APIResponse<[Table]>.self, from: data) else{
-                        dLog("parse model sai rồi")
-                        return
-                    }
-                    
 
-                    if let action = self.orderAction{
-                        
-                        switch action {
-                      
-                            case .moveTable:
-                                self.table = res.data.filter{$0.order == nil}
-                            
-                                if let selectedId = view?.selectedId, let firstItem = res.data.first{$0.id == selectedId}{
-                                    self.selected = firstItem
-                                }
-                            
-                            case .mergeTable:
-                                if let selectedId = view?.selectedId{
-                                    self.table = res.data.filter{$0.id != selectedId}
-                                }
-                            
-                            case .splitFood:
-                                if let selectedId = view?.selectedId,let firstItem = res.data.first{$0.id == selectedId}{
-                                    self.table = res.data
-                                    self.selected = firstItem
-                                }
-                           
-                               
-                            default:
-                                break
-                            
-                        }
-                        
-                        
-                     
-                        
-                    }else{
-                        self.table = res.data
-                    }
-                  case .failure(let error):
-                    dLog(error)
+                case .success(let res):
+                    var list = res.data
+                    list.insert(Area(id: -1, name: "Tất cả khu vực", isSelect: true), at: 0)
+                    self.area = list
+                 
+                    getTables(areaId: -1)
+                
+                case .failure(let error):
+                   dLog("Error: \(error)")
             }
         }
     }
- 
+    
+    
+    func getTables(areaId:Int){
+        
+        
+            if let action = orderAction{
+           
+                switch action {
+                    
+                    case .moveTable:
+                        callAPI(areaId: areaId,status: [.closed],exclude_table_id: order?.table_id ?? 0)
+                    
+                    case .mergeTable:
+                        callAPI(areaId: areaId,status: [.closed,.using,.booking],exclude_table_id: order?.table_id ?? 0)
+                    
+                    case .splitFood:
+                        callAPI(areaId: areaId,status: [.closed,.using,.booking],exclude_table_id: order?.table_id ?? 0)
+                    
+                    default:break
+                }
+                
+            }else{
+                callAPI(areaId: areaId)
+            }
+        
+        
+        
+        
+        func callAPI(areaId:Int,status:[TableStatus] = [],exclude_table_id:Int = 0){
+            
+            var tableStatus = ""
+            
+            for (index,s) in status.enumerated(){
+                if index < status.count - 1 {
+                    tableStatus.append(String(format: "%d,", s.rawValue))
+                }else{
+                    tableStatus.append(s.rawValue.description)
+                }
+                
+            }
+            
+            NetworkManager.callAPI(netWorkManger: .tables(branchId: Constants.branch.id ?? 0, area_id: areaId, status:tableStatus, exclude_table_id: exclude_table_id)){[weak self] (result: Result<APIResponse<[Table]>, Error>) in
+                guard let self = self else { return }
+                
+                switch result {
+
+                    case .success(let res):
+                    
+        
+                        if orderAction == nil{
+                            
+                            self.table = res.data
+                       
+                        }else{
+                     
+                            self.table = res.data.filter({$0.status != .booking && $0.status != .mergered && $0.order_status != 1 && $0.order_status != 4})
+                            
+                        }
+                    
+
+                        
+                    case .failure(let error):
+                       dLog("Error: \(error)")
+                }
+            }
+        }
+        
+        
+    }
+    
+    
+  
+    
+    
     func moveTable(from:Int,to:Int){
         
-        NetworkManager.callAPI(netWorkManger: .moveTable(from: from, to: to)){[weak self] result in
+        NetworkManager.callAPI(netWorkManger: .moveTable(branch_id:Constants.branch.id ?? 0,from: from, to: to)){[weak self] (result: Result<PlainAPIResponse, Error>)  in
             guard let self = self else { return }
             
             switch result {
-                  case .success(let data):
+                case .success(let res):
                         
-                    guard let res = try? JSONDecoder().decode(APIResponse<String>.self, from: data) else{
-                        dLog("parse model sai rồi")
-                        return
+                    if res.status == .ok{
+                        presentDialog = false
+                        shouldNavigateBack = true
+                    }else{
+                        dLog(res.message)
                     }
-                    
-                 
                 
-                  case .failure(let error):
+                    
+
+                case .failure(let error):
                     dLog(error)
             }
         }
     }
     
-    func mergeTable(){
+    func mergeTable(destination_table_id:Int,target_table_ids:[Int]){
         
+        NetworkManager.callAPI(netWorkManger: .mergeTable(branch_id: Constants.branch.id ?? 0, destination_table_id: destination_table_id, target_table_ids: target_table_ids)){[weak self] (result: Result<PlainAPIResponse, Error>)  in
+            guard let self = self else { return }
+            
+            switch result {
+                case .success(let res):
+                        
+                    if res.status == .ok{
+                        presentDialog = false
+                        shouldNavigateBack = true
+                    }else{
+                        dLog(res.message)
+                    }
+                
+                    
+                case .failure(let error):
+                    dLog(error)
+            }
+        }
 
     }
+    
+  
+    
     
 }

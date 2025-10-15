@@ -44,13 +44,15 @@ struct NoteManagement: View {
             }.padding()
            
         }
-        
-        .presentDialog(isPresented:$viewModel.isPresent,content: {
+        .fullScreenCover(isPresented: $viewModel.isPresent, content: {
+            
             if let popup = viewModel.popup{
-                AnyView(popup)
-           }
+                dialog(isPresented: $viewModel.isPresent){
+                    AnyView(popup)
+                }
+            }
+            
         })
-
     }
     
     

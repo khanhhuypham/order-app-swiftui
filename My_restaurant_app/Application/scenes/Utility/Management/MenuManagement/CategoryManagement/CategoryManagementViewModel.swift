@@ -28,6 +28,7 @@ class CategoryManagementViewModel: ObservableObject {
     }
     
     
+    
 }
 
 
@@ -35,52 +36,42 @@ class CategoryManagementViewModel: ObservableObject {
 extension CategoryManagementViewModel{
     func getCategories(){
         
-        NetworkManager.callAPI(netWorkManger:.categories(brand_id:brandId)){[weak self] result in
-            
+        NetworkManager.callAPI(netWorkManger: .categories(brand_id:brandId,status:-1)){[weak self] (result: Result<APIResponse<[Category]>, Error>) in
             guard let self = self else { return }
             
             switch result {
-                case .success(let data):
 
-                    guard var res = try? JSONDecoder().decode(APIResponse<[Category]>.self, from: data) else{
-                        dLog("Parse model sai")
-                        return
+                case .success(let res):
+                    if res.status == .ok{
+                        categories = res.data
                     }
                     
-                    categories = res.data
-
                 case .failure(let error):
-                print(error)
+                   dLog("Error: \(error)")
             }
         }
     }
     
     func createCategory(category:Category){
-        
-        NetworkManager.callAPI(netWorkManger:.createCategory(
+                
+        NetworkManager.callAPI(netWorkManger: .createCategory(
             id: category.id,
             name: category.name,
+            code: category.code,
             description: category.description,
-            type: category.type.rawValue,
-            active: category.active
+            categoryType: category.category_type.value,
+            status:category.status
                                                     
-        )){[weak self] result in
-            
+        )){[weak self] (result: Result<PlainAPIResponse, Error>) in
             guard let self = self else { return }
             
             switch result {
+
                 case .success(let data):
-
-                    guard var res = try? JSONDecoder().decode(PlainAPIResponse.self, from: data) else{
-                        dLog("Parse model sai")
-                        return
-                    }
-                    
                     getCategories()
-
+                    
                 case .failure(let error):
-                
-                    print(error)
+                   dLog("Error: \(error)")
             }
         }
     }

@@ -10,7 +10,6 @@ target 'My_restaurant_app' do
   pod 'Socket.IO-Client-Swift'
   pod "SwiftSignatureView"
   pod 'OTPFieldView'
-  pod 'Charts'
   pod 'AlertToast'
   
 #    pod 'lottie-ios'

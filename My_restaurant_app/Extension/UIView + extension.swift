@@ -35,14 +35,14 @@ extension View {
     
     
     func defaultListRowStyle() -> some View {
-        self.buttonStyle(PlainButtonStyle())
-        .listRowInsets(EdgeInsets(.zero)) // Remove insets
-        .listRowBackground(
-            Color(UIColor.systemGray6)
-                .overlay(alignment: .bottom) {
-                    Divider()
-                }
-        )
+
+        self.listRowInsets(EdgeInsets(.zero)) // Remove insets
+//        .listRowBackground(
+//            Color(UIColor.systemGray6)
+//                .overlay(alignment: .bottom) {
+//                    Divider()
+//                }
+//        )
         .alignmentGuide(.listRowSeparatorLeading) { _ in
             return 0
         }
@@ -114,6 +114,7 @@ public struct LazyNavigate<Destination: View,Label: View>: View {
         }
     }
 }
+
 
 
 

@@ -15,13 +15,6 @@ struct AreaView: View {
     @ObservedObject var viewModel:AreaViewModel = AreaViewModel()
     @State private var routeLink:(tag:String?,data:Table) = (tag:nil,data:Table())
     
-    
-    
-    var title: String? = nil
-    var orderAction: OrderAction? = nil
-    var selectedId:Int? = nil
-    var completion:(() -> Void)? = nil
-  
 
     let columns = [
         GridItem(.flexible()),
@@ -29,12 +22,20 @@ struct AreaView: View {
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
+    
+    var title: String? = nil
+    //=============
+    var order: Order? = nil
+    var orderAction: OrderAction? = nil
+    var completion:(() -> Void)? = nil
+    //=============
 
     var body: some View {
         
-        VStack(spacing:0){
-            NavigationLink(destination:lazyNavigate(OrderDetailView(order:Order(table: routeLink.data))), tag: "OrderDetailView", selection: $routeLink.tag) { EmptyView() }
-            NavigationLink(destination:lazyNavigate(FoodView(order:OrderDetail(table: routeLink.data))), tag: "FoodView", selection: $routeLink.tag) { EmptyView() }
+        VStack{
+            
+            NavigationLink(destination:OrderDetailView(order:Order(table: routeLink.data)), tag: "OrderDetailView", selection: $routeLink.tag) { EmptyView() }
+            NavigationLink(destination:FoodView(order:OrderDetail(table: routeLink.data)), tag: "FoodView", selection: $routeLink.tag) { EmptyView() }
             
             if let title = self.title{
                 Text(title)
@@ -44,109 +45,50 @@ struct AreaView: View {
                     .background(color.orange_brand_900)
                 
             }
+            
             Divider()
-            HorizontalBtnGroup(
-                btnArray:$viewModel.area,
-                btnClosure:{id in
-                    if let area = viewModel.area.filter{$0.isSelect}.first{
-                       viewModel.getTables(areaId: area.id)
-                    }
+            
+            AreaHeader(areaArray: $viewModel.area,closure: {
+                if let area = viewModel.area.filter{$0.isSelect}.first{
+                    viewModel.getTables(areaId: area.id)
                 }
-            )
+            })
             
-            hintView
+            if orderAction == nil{
+                hintView
+            }
             
-            ScrollView(.vertical){
-                VStack {
-                    LazyVGrid(columns: columns, spacing: 16) {
-                        
-                        ForEach($viewModel.table) {$table in
-                          
-                            TableView(table:$table).onTapGesture {
-                                
-                                if let action = viewModel.orderAction{
-                                    switch action {
-                                        case .moveTable:
-                                            viewModel.presentDialog = true
-                                            viewModel.to = table
-                                            break
-                                        
-                                        case .mergeTable:
-                                            table.is_selected.toggle()
-                                            break
-                                        
-                                        case .splitFood:
-                                            viewModel.to = table
-                                            viewModel.presentDialog = true
-                                            break
-                                            
-                                        default:
-                                            break
-                                    
-                                    }
-                                    
-                                    
-                                }else{
-                                    routeLink = table.order?.id ?? 0 > 0
-                                    ? (tag:"OrderDetailView",data:table)
-                                    : (tag:"FoodView",data:table)
-                                }
-
-                            }
-                          
-                        }
-                    }
-                 
+            if (viewModel.table.count > 0){
+                TableList
+            }else{
+                EmptyData{
+                    viewModel.getAreas()
                 }
             }
             
-            Spacer()
-            
-            if let action = viewModel.orderAction,action == .mergeTable{
-                btnGroup
+            if viewModel.orderAction == .mergeTable{
+                Divider()
+                bottomBtn
             }
+            
         }
         .navigationTitle("Khu vực")
-        .fullScreenCover(isPresented: $viewModel.presentDialog, content: {
-            
-            if let action = viewModel.orderAction,
-               let from = viewModel.selected,
-               let to = viewModel.to{
-                
-                ConfirmToMoveTable(
-                    title:action == .moveTable ? "XÁC NHẬN CHUYỂN BÀN" : "XÁC NHẬN TÁCH MÓN",
-                    from: from,
-                    to: to,
-                    completion:{
-                        if action == .moveTable{
-                            viewModel.moveTable(from: from.id, to: to.id)
-                            self.presentationMode.wrappedValue.dismiss()
-                            completion?()
-                            
-                        }else{
-                            viewModel.presentSheet = true
-                        }
-                        
-                    }
-                )
+        .fullScreenCover(isPresented: $viewModel.presentDialog) {
+            dialogContent()
+        }
+        .onChange(of: viewModel.shouldNavigateBack) { shouldGoBack in
+            if shouldGoBack {
+                self.presentationMode.wrappedValue.dismiss()
+                self.completion?()
             }
-            
-        })
-        .sheet(isPresented:$viewModel.presentSheet , content: {
-            SplitFood()
-        })
+        }
         .onAppear(perform: {
-            viewModel.bind(view: self)
+            viewModel.order = order
             viewModel.orderAction = orderAction
             viewModel.getAreas()
         })
-        .onChange(of: viewModel.presentDialog) { newValue in
-            if !newValue {
-                print("Sheet dismissed (using binding and dismiss)")
-                 //Completion logic
-            }
-        }
     }
+    
     
     
     private var hintView:some View {
@@ -161,7 +103,8 @@ struct AreaView: View {
                     .foregroundColor(.primary)
             }
 
-                        
+            
+            
             HStack{
                 Circle()
                     .fill(.blue)
@@ -197,47 +140,115 @@ struct AreaView: View {
         .background(Color(UIColor.systemGray6)) // Light gray background
     }
     
-    private var btnGroup:some View {
-        
-        HStack(spacing:20){
-            Button {
-                presentationMode.wrappedValue.dismiss()
-            } label: {
-                
-                Label(title: {
-                    Text("HUỶ").font(font.b_18)
-                }, icon: {
-                    Image("icon-cancel", bundle: .main)
-                }).frame(maxWidth: .infinity,maxHeight:.infinity)
-                    .foregroundColor(.red)
-                    .background(color.gray_200)
-                
+    private var TableList:some View {
+        ScrollView(.vertical){
+            VStack {
+                LazyVGrid(columns: columns, spacing: 16) {
+                    
+                    ForEach($viewModel.table) { $table in
+                        
+                        TableView(table:$table,action: orderAction).onTapGesture {
+                            
+                            if let action = viewModel.orderAction{
+                                
+                                switch action {
+                                    case .moveTable:
+                                        viewModel.presentDialog = true
+                                        viewModel.selectedTable = table
+                                        break
+                                    
+                                    case .mergeTable:
+                                        table.is_selected.toggle()
+                                        break
+                                    
+                                    case .splitFood:
+//                                            viewModel.to = table
+//                                            viewModel.presentDialog = true
+                                        break
+                                        
+                                    default:
+                                        break
+                                
+                                }
+                                
+                                
+                            }else{
+                                routeLink = table.order_id ?? 0 > 0
+                                ? (tag:"OrderDetailView",data:table)
+                                : (tag:"FoodView",data:table)
+                            }
+
+                        }
+                        
+
+                    }
+                }
+                Spacer()
             }
-            .cornerRadius(8)
-            .buttonStyle(.plain)
-            
-            Button {
-                viewModel.mergeTable()
-            } label: {
-                Label(title: {
-                    Text("ĐỒNG Ý").font(font.b_18)
-                }, icon: {
-                    Image("icon-checkmark",bundle: .main)
-                })
-                .frame(maxWidth: .infinity,maxHeight:.infinity)
-                .foregroundColor(.white)
-                .background(color.orange_brand_900)
-  
-            }
-            .cornerRadius(8)
-            .buttonStyle(.plain)
-            
         }
-        .frame(height: 45)
-        .padding()
-        
-        
     }
+    
+    
+    @ViewBuilder
+    func dialogContent(completion: (() -> Void)? = nil) -> some View {
+        if let action = viewModel.orderAction,
+           let order = viewModel.order,
+           let to = viewModel.selectedTable {
+ 
+            ConfirmToMoveTable(
+                title: action == .moveTable ? "XÁC NHẬN CHUYỂN BÀN" : "XÁC NHẬN TÁCH MÓN",
+                from: Table(id: order.table_id, name: order.table_name,status: .using),
+                to: to,
+                completion: {
+                    viewModel.moveTable(from: order.table_id, to: to.id ?? 0)
+                }
+            )
+        } else {
+            EmptyView()
+        }
+    }
+
+    private var bottomBtn:some View{
+        HStack {
+            Button(action: {
+                presentationMode.wrappedValue.dismiss()
+            }) {
+                
+                Label("HUỶ", systemImage: "xmark")
+                    .font(font.b_16)
+                    .foregroundColor(.red)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 45)
+                    .background(color.gray_200)
+                    .cornerRadius(8)
+                
+            }
+            
+            Button(action: {
+               
+                if let order = viewModel.order{
+                    viewModel.mergeTable(destination_table_id: order.table_id, target_table_ids: viewModel.table.filter{$0.is_selected}.map{$0.id ?? 0})
+                }
+                
+    
+            }) {
+                
+                Label("ĐỒNG Ý", systemImage: "checkmark")
+                    .font(font.b_16)
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 45)
+                    .background(Color.orange)
+                    .cornerRadius(8)
+
+            }
+        }
+        .padding()
+    }
+
+
 }
 
 #Preview {

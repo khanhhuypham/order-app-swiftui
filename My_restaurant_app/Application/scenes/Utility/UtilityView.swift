@@ -12,31 +12,10 @@ import UIKit
 
 struct Utility: View {
     @EnvironmentObject var tabbarRouter:TabBarViewModel
-   
+    @Injected(\.fonts) private var fonts
     @Injected(\.colors) var color: ColorPalette
-    @Injected(\.fonts) var fonts: Fonts
-
     @State var showSheet: Bool = false
-    
-//    @State var ArraySection:[(section:String,item:[(icon:String,title:String,navigate:any View)])] = [
-//        (
-//            section:"Thiết lập",
-//            item:[
-//                (icon:"icon-printer",title:"Thiết lập máy in",navigate:EmptyView()),
-//                (icon:"icon-gear",title:"Thiết lập",navigate:EmptyView())
-//            ]
-//        ),
-//        
-//        (
-//            section:"Quản lý",
-//            item:[
-//                (icon:"icon-area.fill",title:"Quản lý KHU VỰC/BÀN",navigate:EmptyView()),
-//                (icon:"icon-turkey-chicken",title:"Quản lý THỰC ĐƠN",navigate:EmptyView()),
-//                (icon:"icon-doc-text.fill",title:"Quản lý HOÁ ĐƠN",navigate:EmptyView())
-//            ]
-//        ),
-//        
-//    ]
+
 
     
     var body: some View {
@@ -128,11 +107,9 @@ struct Utility: View {
                   
                     VStack(alignment:.leading){
                         
-                        Text(Constants.branch.name ?? "")
-                            .font(fonts.r_16)
+                        Text(Constants.branch.name).font(fonts.b_16)
                 
-                        Text(Constants.branch.address ?? "")
-                            .font(fonts.footnote)
+                        Text(Constants.branch.address).font(fonts.footnote)
                     }
                     
                     Spacer()
@@ -144,7 +121,7 @@ struct Utility: View {
                             Image(systemName: "chevron.right")
                                 .padding(8)
                                 .foregroundColor(.white)
-                                .background(Circle().fill(color.orange_brand_900))
+                                .background(Circle().fill(Color(ColorUtils.orange_brand_900())))
     
                         }
                         .frame(width:18, height:18)
@@ -167,52 +144,62 @@ struct Utility: View {
                 Group{
                     
                     Section(header: Text("Thiết lập"), content: {
+
                         NavigationLink{
-                            lazyNavigate(PrinterSetting())
+                            PrinterList(foodAppPrinter: false)
                         } label: {
                             HStack{
-                                Image("icon-printer-gray", bundle: .main)
+                                Image("icon-printer.fill", bundle: .main)
                                 Text("Thiết lập máy in")
                             }
                         }
                         
-                        NavigationLink{
-                            EmptyView()
-                        } label: {
-                            
-                            HStack{
-                                Image("icon-gear", bundle: .main)
-                                Text("Thiết lập")
+                        if PermissionUtils.GPBH_1 || (PermissionUtils.GPBH_2_o_1 && PermissionUtils.OwnerOrCashier) {
+                            NavigationLink{
+                                InternalSetting()
+                            } label: {
+                                
+                                HStack{
+                                    Image("icon-gear", bundle: .main)
+                                    Text("Thiết lập")
+                                }
                             }
+                    
                         }
-                
+                        
+                       
                     })
                     
                     Section(header: Text("Quản lý"), content: {
                         
-                        NavigationLink{
-                            lazyNavigate(AreaManageView())
-                        } label: {
+                        if PermissionUtils.GPBH_1  {
                             
-                            HStack{
-                                Image("icon-area.fill", bundle: .main)
-                                Text("Quản lý KHU VỰC/BÀN")
+                            NavigationLink{
+                                AreaManageView()
+                            } label: {
+                                
+                                HStack{
+                                    Image("icon-area.fill", bundle: .main)
+                                    Text("Quản lý KHU VỰC/BÀN")
+                                }
                             }
+                            
+                            NavigationLink{
+                                lazyNavigate(MenuManagement())
+                            } label: {
+                                HStack{
+                                    Image("icon-turkey-chicken", bundle: .main)
+                                    Text("Quản lý THỰC ĐƠN")
+                                }
+                            }
+                            
                         }
+                    
+                        
+                       
                         
                         NavigationLink{
-                            lazyNavigate(MenuManagement())
-                        } label: {
-                            HStack{
-                                Image("icon-turkey-chicken.fill", bundle: .main)
-                                Text("Quản lý THỰC ĐƠN")
-                            }
-                        }
-                        
-                        NavigationLink{
-
-                            lazyNavigate(ReceiptManagement())
-//                            EmptyView()
+                            OrderHistoryView()
                         } label: {
                           
                             HStack{
@@ -221,6 +208,18 @@ struct Utility: View {
                             }
                         }
             
+                        if PermissionUtils.GPBH_2 || PermissionUtils.GPBH_3  {
+                            NavigationLink{
+                                Text("Developing this module")
+                            } label: {
+                              
+                                HStack{
+                                    Image("icon-doc-text.fill", bundle: .main)
+                                    Text("LỊCH SỬ CHỐT CA")
+                                }
+                            }
+                        }
+                        
                     })
                     
                     Section(header: Text("Báo cáo"), content: {
@@ -294,7 +293,7 @@ struct Utility: View {
                         
                         
                         NavigationLink{
-                            EmptyView()
+                            PrinterList(foodAppPrinter: true)
                         } label: {
                 
                             HStack{
@@ -333,8 +332,9 @@ struct Utility: View {
         }
         .navigationBarTitle("Tiện ích")
         .sheet(isPresented: $showSheet) {
-            BranchOptionView()
-                .presentationDetents([.medium, .large])
+            
+            BranchOptionView().presentationDetents([.medium, .large])
+            
         }
     }
 }

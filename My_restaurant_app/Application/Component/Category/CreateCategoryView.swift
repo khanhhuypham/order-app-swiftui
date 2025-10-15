@@ -16,7 +16,8 @@ struct CreateCategory: View {
     
     @State var category:Category = Category()
    
-
+   
+    
     var validForm: Bool {
         return true
     }
@@ -63,23 +64,19 @@ struct CreateCategory: View {
                     Text("Loại danh mục: ")
                   
                     Menu {
-                        ForEach(CATEGORY_TYPE.allCases.filter{
-                            $0 == CATEGORY_TYPE.drink ||
-                            $0 == CATEGORY_TYPE.food ||
-                            $0 == CATEGORY_TYPE.other ||
-                            $0 == CATEGORY_TYPE.service
-                        },id: \.self){ cate in
+                        ForEach(CATEGORY_TYPE.allCases, id: \.self) { cate in
                             Button(action: {
-                                category.type = cate
+                                category.category_type = cate
                             }) {
-                                Label(cate.description, systemImage: cate == category.type ? "checkmark" : "")
+                                Label(cate.name, systemImage: cate == category.category_type ? "checkmark" : "")
                             }
                          }
                     } label: {
-                        Text(category.type.description)
+                        Text(category.category_type.name)
                         .frame(maxWidth:.infinity,alignment:.leading)
                         .commonTextFieldDecor(height: 38)
-                    }.disabled(category.id > 0)
+                        
+                    }
                     
                 }.font(font.r_13)
                 
@@ -89,10 +86,10 @@ struct CreateCategory: View {
                 if category.id > 0{
          
                     Button(action: {
-                        category.active = !category.active
+                        category.status = category.status == ACTIVE ? DEACTIVE : ACTIVE
                     }) {
                         HStack{
-                            Image(category.active ? "icon-check-square" : "icon-uncheck-square", bundle: .main)
+                            Image(category.status == ACTIVE ? "icon-check-square" : "icon-uncheck-square", bundle: .main)
                             Text("ĐANG KINH DOANH")
                                 .font(font.r_14)
                                 .foregroundColor(.black)

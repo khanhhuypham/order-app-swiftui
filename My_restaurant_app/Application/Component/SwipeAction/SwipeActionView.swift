@@ -21,6 +21,7 @@ enum SwipeAction {
             case .note(let action):
             
                 Button {
+//                    print("Action note")
                     (action ?? {})()
                 }label: {
                     label.foregroundColor(.white)
@@ -141,11 +142,6 @@ enum SwipeAction {
 
     }
     
-    
-    
-
-    
-   
 }
 
 

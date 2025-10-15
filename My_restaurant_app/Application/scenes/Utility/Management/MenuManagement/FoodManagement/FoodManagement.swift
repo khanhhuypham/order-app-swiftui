@@ -11,12 +11,8 @@ struct FoodManagement: View {
     @Injected(\.colors) var color: ColorPalette
     @Injected(\.fonts) var font: Fonts
     @ObservedObject var viewModel = FoodManagementViewModel()
-    @State private var isActive = false
-    @State var searchText = ""
-    
-    
-   
     @State private var routeLink:(tag:String?,item:Food) = (tag:nil,item:Food())
+    @State var searchText = ""
     
     var body: some View {
         
@@ -24,18 +20,12 @@ struct FoodManagement: View {
         VStack(spacing:0){
             NavigationLink(destination: CreateFoodView(item: routeLink.item), tag: "CreateFoodView", selection: $routeLink.tag) { EmptyView() }
             NavigationLink(destination: Text("View B"), tag: "B", selection: $routeLink.tag) { EmptyView() }
-            
             textField
             
             TabHeader(tabArray: $viewModel.tabArray){id in
                 viewModel.tab = id
-                
-                if id == 1{
-                    viewModel.reloadContent()
-                }else{
-                    viewModel.getChildrenItems()
-                }
-                
+                viewModel.getFood(isAddition: id == 1 ? DEACTIVE : ACTIVE)
+                    
             }.frame(height: 50)
             
             Rectangle()
@@ -44,30 +34,17 @@ struct FoodManagement: View {
             
             // Tabs
             List {
-                
-                Section {
-                    if viewModel.tab == 1{
-                        ForEach(Array($viewModel.foods.enumerated()),id:\.1.id) {index, item in
-                            renderCell(data: item.wrappedValue).onAppear(perform: {
-                                    viewModel.loadMoreContent()
-                            })
-                        }
-                        .defaultListRowStyle()
-                    }else{
+                ForEach(Array($viewModel.foods.enumerated()),id:\.1.id) {index, item in
+                    renderCell(data: item.wrappedValue).onTapGesture(perform: {
                         
-                        ForEach($viewModel.childrenItem) { item in
-                            renderChildrenItemCell(data: item.wrappedValue)
-                        }
-                        .defaultListRowStyle()
-                    }
-                }
+                    })
+                }.defaultListRowStyle()
             }
             .listStyle(.plain)
             .onAppear(perform: {
-                viewModel.reloadContent()
+                viewModel.getFood(isAddition: DEACTIVE)
             })
             Divider()
-            
             
             Button(action: {
                 routeLink = (tag:"CreateFoodView",item:Food())
@@ -108,9 +85,6 @@ struct FoodManagement: View {
         .background(color.gray_200)
     }
     
-   
-
-    
     private func renderCell(data:Food) -> some View{
         HStack(alignment:.center,spacing: 5){
             
@@ -120,48 +94,17 @@ struct FoodManagement: View {
                 Text(data.name)
                     .font(font.r_14)
                 
-
-                
                 Group{
-                    Text(data.price.toString){$0.foregroundColor = ColorUtils.orange_brand_900()} +
-                    Text(String(format:"/%@",data.unit_type )){ $0.foregroundColor = ColorUtils.gray_600()}
+                    Text(data.price_with_temporary.toString){$0.foregroundColor = color.orange_brand_900} +
+                    Text(String(format:"/%@",data.unit_type )){ $0.foregroundColor = color.gray_600}
                 }.font(font.sb_13)
                                 
+                
             }
+            
             Spacer()
+            
         
-            Text(data.status == ACTIVE ? "ĐANG BÁN" : "NGỪNG BÁN")
-                .foregroundColor(data.status == ACTIVE ? color.green_600 : color.gray_600)
-                .font(font.sb_14)
-            
-        }
-        .padding(8)
-        .background(.white)
-        .onTapGesture {
-            routeLink = (tag:"CreateFoodView",item:data)
-        }
-    }
-    
-    
-    private func renderChildrenItemCell(data:ChildrenItem) -> some View{
-        HStack(alignment:.center,spacing: 5){
-            
-            LogoImageView(imagePath: data.avatar,mold:.square)
-
-            VStack(alignment:.leading,spacing: 2){
-                Text(data.name)
-                    .font(font.r_14)
-                
-                Group{
-                    Text(data.price.toString){$0.foregroundColor = ColorUtils.orange_brand_900()} +
-                    Text(String(format:"/%@",data.unit_type )){ $0.foregroundColor = ColorUtils.gray_600()}
-                }.font(font.sb_13)
-                                
-            }
-            
-            Spacer()
-            
-    
             Text(data.status == ACTIVE ? "ĐANG BÁN" : "NGỪNG BÁN")
                 .foregroundColor(data.status == ACTIVE ? color.green_600 : color.gray_600)
                 .font(font.sb_14)
@@ -171,7 +114,6 @@ struct FoodManagement: View {
         .background(.white)
    
     }
-    
     
 }
 

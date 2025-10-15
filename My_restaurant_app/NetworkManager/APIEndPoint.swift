@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 
 public struct APIEndPoint {
-    private static let version = "v11"
+    private static let version = "v14"
     private static let report_api_version = "v2"
     private static let upload_api_version = "v2"
-    private static let version_oauth_service = "v9"
+    private static let version_oauth_service = "v10"
     private static let log_api_version = "v2"
     
     //VERSION SEEMT
@@ -34,12 +34,11 @@ public struct APIEndPoint {
     static let REALTIME_CHAT_SERVER = environmentMode.realTimeChatUrl
 
     struct Name {
-        static let urlSessions = String(format: "/api/%@/sessions", version_oauth_service)
-        static let urlConfig = String(format: "/api/%@/configs", version_oauth_service)
+     
         static let urlRegisterDevice =  String(format: "/api/%@/register-device", version_oauth_service)
         static let urlCheckVersion = String(format: "/api/%@/check-version", version_oauth_service)
        
-        static let urlLogin = String(format: "/api/%@/employees/login", version_oauth_service)
+       
         static let urlSetting = String(format: "/api/%@/employees/settings", version_oauth_service)
         static let urlGetLastLoginDevice = String(format: "/api/%@/employees/device/last-login", version_oauth_service)
         
@@ -220,7 +219,9 @@ public struct APIEndPoint {
         static let urlPostCreateBuffetTicket = "/api/\(version)/order-buffets/create"
         static let urlPostUpdateBuffetTicket = "/api/\(version)/order-buffets/%d/update"
         static let urlPostCancelBuffetTicket = "/api/\(version)/order-buffets/%d/cancel"
+        
         static let urlPostRemovePrintedItem = "/api/print/key/remove"
+        
     }
     
   

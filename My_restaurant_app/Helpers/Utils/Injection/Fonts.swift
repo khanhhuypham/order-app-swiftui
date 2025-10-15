@@ -7,6 +7,7 @@
 
 
 import SwiftUI
+
 struct Fonts{
     public init(){}
     
@@ -31,7 +32,10 @@ struct Fonts{
     var emoji = Font.system(size: 50)
     
     
-    
+    let r_8 = Font.system(size: 8, weight: .regular)
+    let m_8 = Font.system(size: 8, weight: .medium)
+    let sb_8 = Font.system(size: 8, weight: .semibold)
+    let b_8 = Font.system(size: 8, weight: .bold)
     
     let r_9 = Font.system(size: 9, weight: .regular)
     let m_9 = Font.system(size: 9, weight: .medium)
@@ -84,8 +88,6 @@ struct Fonts{
     let m_18 = Font.system(size: 18, weight: .medium)
     let sb_18 = Font.system(size: 18, weight: .semibold)
     let b_18 = Font.system(size: 18, weight: .bold)
-    let b_19 = Font.system(size: 19, weight: .bold)
-    let b_20 = Font.system(size: 20, weight: .bold)
     
     
 }

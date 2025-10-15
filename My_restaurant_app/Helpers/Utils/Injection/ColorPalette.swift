@@ -6,6 +6,8 @@
 //
 import SwiftUI
 import UIKit
+
+
 class ColorPalette {
     
     init(){}
@@ -95,17 +97,20 @@ class ColorPalette {
     public var red_600 = Color(UIColor.hexStringToUIColor(hex: "#E8002E"))
     
     // hệ xám
+    public var gray_100 = Color(UIColor.hexStringToUIColor(hex: "#F7F8FA"))
+    
     public var gray_200 = Color(UIColor.hexStringToUIColor(hex: "#F1F2F5"))
     
     public var gray_300 = Color(UIColor.hexStringToUIColor(hex: "#E7E8EB"))
     
     public var gray_400 = Color(UIColor.hexStringToUIColor(hex: "#C5C6C9"))
     
-    public var gray_500 = Color(UIColor.hexStringToUIColor(hex: "#E8002E"))
+    public var gray_500 = Color(UIColor.hexStringToUIColor(hex: "#9A9CA2"))
     
     public var gray_600 = Color(UIColor.hexStringToUIColor(hex: "#7D7E81"))
     
-    // MARK: - Composer
+    
+   
     
 }
 

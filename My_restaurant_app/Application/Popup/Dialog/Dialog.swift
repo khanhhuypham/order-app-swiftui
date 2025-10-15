@@ -36,19 +36,30 @@ struct dialog<Content: View>: View {
                     Spacer()
                 }
               
-            }
-
+            }.background(BackgroundClearView())
         }
         
     }
-
+    
+    // function for background clear
+    struct BackgroundClearView: UIViewRepresentable {
+        func makeUIView(context: Context) -> UIView {
+            let view = UIView()
+            DispatchQueue.main.async {
+                view.superview?.superview?.backgroundColor = .clear
+                view.superview?.superview?.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+            }
+            return view
+        }
+        func updateUIView(_ uiView: UIView, context: Context) {}
+    }
 
     
 }
 
 
 
-struct DialogTest: View {
+struct DialogPreivew: View {
     
     @State private var isPresented = false
 
@@ -60,17 +71,17 @@ struct DialogTest: View {
            } label: {
                Text("Present Pop-up Dialog")
            }
-//           .presentView(isPresented: $isPresented, content: {
-//               dialog(isPresented: $isPresented){
-//                   EnterTextView(isPresent: $isPresented)
-//               }
-//           })
-
+           
+           .fullScreenCover(isPresented: $isPresented, content: {
+               dialog(isPresented: $isPresented){
+                   EnterTextView(isPresent: $isPresented)
+               }
+           })
         
        }
 
 }
 
 #Preview(body: {
-    DialogTest()
+    DialogPreivew()
 })

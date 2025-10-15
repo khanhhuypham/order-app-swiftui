@@ -20,9 +20,8 @@ struct AccountSetting: Codable {
     var is_have_take_away:Int = 0
     var branch:Branch = Branch()
     
-   
-    
-  private enum CodingKeys: String, CodingKey {
+
+    private enum CodingKeys: String, CodingKey {
       case is_enable_checkin
       case service_restaurant_level_id = "service_restaurant_level_id"
       case service_restaurant_level_type = "service_restaurant_level_type"
@@ -33,6 +32,8 @@ struct AccountSetting: Codable {
       case is_hide_total_amount_before_complete_bill
       case is_have_take_away
       case branch = "branch_info"
-  }
+    }
+    
+    
 }
 

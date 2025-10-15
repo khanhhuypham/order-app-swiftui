@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct EmptyData: View {
+    
+    var clickClosure:(() -> Void)? = nil
+    @State private var isButtonDisabled = false
+    
     var body: some View {
         VStack {
             Image("img-no-data", bundle: .main)
@@ -16,14 +20,25 @@ struct EmptyData: View {
                 .frame(width: 100, height: 100)
                 .foregroundColor(.gray)
             
-            Text("No Data Available")
+            Text("Không có dữ liệu")
                 .font(.title)
                 .foregroundColor(.gray)
                 .padding(.top, 10)
             
             Button("Try again") {
+                guard !isButtonDisabled else { return }
+                               
+                isButtonDisabled = true
+                clickClosure?()
+
+                // Reset after 1 second
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                   isButtonDisabled = false
+                }
                 
-            }.buttonStyle(.borderedProminent)
+            }
+            .buttonStyle(.borderedProminent)
+            .disabled(isButtonDisabled)
         }
         .frame(maxWidth: .infinity,maxHeight: .infinity)
     }

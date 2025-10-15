@@ -15,8 +15,27 @@ public class ManageCacheObject {
         
         UserDefaults.standard.removeObject(forKey: key)
         
-      
     }
+    
+    
+    // MARK: - Username
+    static func setEnvironment(_ environment:EnvironmentMode){
+        UserDefaults.standard.set(environment.value, forKey: Constants.KEY_DEFAULT_STORAGE.KEY_ENVIRONMENT_MODE)
+    }
+
+    static func getEnvironment() -> EnvironmentMode{
+        if let environmentValue = UserDefaults.standard.object(forKey: Constants.KEY_DEFAULT_STORAGE.KEY_ENVIRONMENT_MODE){
+            
+
+            return EnvironmentMode(value: environmentValue as? Int ?? ONLINE)
+            
+        }else{
+            
+            return EnvironmentMode.online
+            
+        }
+    }
+    
     
     // MARK: - setConfig
     static func setConfig(_ config: Config){
@@ -40,28 +59,7 @@ public class ManageCacheObject {
         
     }
     
-   
-//    static func setSetting(_ setting : Setting) {
-//        
-//        if let json = try? JSONEncoder().encode(setting) {
-//         
-//            UserDefaults.standard.set(json, forKey:Constants.KEY_DEFAULT_STORAGE.KEY_SETTING)
-//        }
-//        UserDefaults.standard.synchronize()
-//    }
-//    
-//    static func getSetting() -> Setting{
-//        
-//        if let data = UserDefaults.standard.object(forKey: Constants.KEY_DEFAULT_STORAGE.KEY_SETTING) as? Data {
-//        
-//            if let setting = try? JSONDecoder().decode(Setting.self, from: data) {
-//                return setting
-//            }
-//        }
-//        return Setting()
-//        
-//    }
-    
+ 
     
     
     static func saveUser(_ user : Account) {
@@ -75,7 +73,7 @@ public class ManageCacheObject {
     
     static func getUser() -> Account?{
 
-        
+   
         if let data = UserDefaults.standard.object(forKey: Constants.KEY_DEFAULT_STORAGE.KEY_ACCOUNT) as? Data {
             if let user = try? JSONDecoder().decode(Account.self, from: data) {
                 return user
@@ -85,9 +83,7 @@ public class ManageCacheObject {
         
     }
     
-    
-    
-    
+
 
     static func saveAccountSetting(_ setting : AccountSetting) {
         
@@ -108,6 +104,30 @@ public class ManageCacheObject {
         }
         return nil
         
+    }
+    
+    
+    // MARK: - Username
+    static func setSavedLoginInfo(_ infor:SavedLoginInfor){
+        
+
+        if let json = try? JSONEncoder().encode(infor) {
+         
+            UserDefaults.standard.set(json, forKey:Constants.KEY_DEFAULT_STORAGE.KEY_SAVED_LOGIN_INFOR)
+        }
+        UserDefaults.standard.synchronize()
+        
+    }
+
+    static func getSavedLoginInfo() -> SavedLoginInfor?{
+        
+        if let data = UserDefaults.standard.object(forKey: Constants.KEY_DEFAULT_STORAGE.KEY_SAVED_LOGIN_INFOR) as? Data {
+            if let setting = try? JSONDecoder().decode(SavedLoginInfor.self, from: data) {
+                return setting
+            }
+        }
+        return nil
+
     }
 
 

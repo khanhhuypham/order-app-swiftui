@@ -25,3 +25,132 @@ class MenuManagementViewModel: ObservableObject {
     
 }
 
+//MARK: categories
+extension MenuManagementViewModel{
+    func getCategories(){
+        
+//        NetworkManager.callAPI(netWorkManger:.categories(brand_id:brandId,status:-1)){[weak self] result in
+//            
+//            guard let self = self else { return }
+//            
+//            switch result {
+//                case .success(let data):
+//
+//                    guard var res = try? JSONDecoder().decode(APIResponse<[Area]>.self, from: data) else{
+//                        dLog("Parse model sai")
+//                        return
+//                    }
+//
+//
+//                case .failure(let error):
+//                print(error)
+//            }
+//        }
+        
+        NetworkManager.callAPI(netWorkManger:.categories(brand_id:brandId,status:-1)){[weak self] (result: Result<String, Error>) in
+            guard let self = self else { return }
+            
+            switch result {
+
+                case .success(let data):
+                    break
+
+                    
+                case .failure(let error):
+                   dLog("Error: \(error)")
+            }
+        }
+        
+        
+        
+    }
+}
+
+
+//MARK: food
+extension MenuManagementViewModel{
+    func getFoods(){
+        
+//        NetworkManager.callAPI(netWorkManger:.foodsManagement(branch_id:branchId, is_addition: DEACTIVE,status: -1)){[weak self] result in
+//            
+//            guard let self = self else { return }
+//            
+//            switch result {
+//                  case .success(let data):
+//                        
+//                    guard var res = try? JSONDecoder().decode(APIResponse<[Area]>.self, from: data) else{
+//                        dLog("Parse model sai")
+//                        return
+//                    }
+//                    
+//                  
+//                  case .failure(let error):
+//                      print(error)
+//            }e
+//        }
+        
+        
+        NetworkManager.callAPI(netWorkManger:.foodsManagement(branch_id:branchId, is_addition: DEACTIVE,status: -1)){[weak self] (result: Result<[Area], Error>) in
+            guard let self = self else { return }
+            
+            switch result {
+
+                case .success(let data):
+                    break
+
+                    
+                case .failure(let error):
+                   dLog("Error: \(error)")
+            }
+        }
+        
+        
+    }
+}
+
+
+//MARK: note
+extension MenuManagementViewModel{
+    
+    func getNotes(){
+        
+//        NetworkManager.callAPI(netWorkManger:.notesManagement(branch_id:branchId,status: ACTIVE)){[weak self] result in
+//            
+//            guard let self = self else { return }
+//            
+//            switch result {
+//                  case .success(let data):
+//                        
+//                    guard var res = try? JSONDecoder().decode(APIResponse<[Area]>.self, from: data) else{
+//                        dLog("Parse model sai")
+//                        return
+//                    }
+//                    
+//                  
+//                  
+//              
+//                  case .failure(let error):
+//                      print(error)
+//            }
+//        }
+        
+        
+        
+        
+        NetworkManager.callAPI(netWorkManger:.notesManagement(branch_id:branchId,status: ACTIVE)){[weak self] (result: Result<[Area], Error>) in
+            guard let self = self else { return }
+            
+            switch result {
+
+                case .success(let data):
+                    break
+
+                    
+                case .failure(let error):
+                   dLog("Error: \(error)")
+            }
+        }
+    }
+   
+    
+}

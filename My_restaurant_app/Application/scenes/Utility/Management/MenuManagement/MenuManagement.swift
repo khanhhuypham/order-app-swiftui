@@ -16,6 +16,7 @@ struct MenuManagement: View {
             // Tabs
             Divider()
             TabHeader(tabArray: $viewModel.tabArray){id in
+                dLog(id)
                 viewModel.tab = id
             }.frame(height: 50)
             

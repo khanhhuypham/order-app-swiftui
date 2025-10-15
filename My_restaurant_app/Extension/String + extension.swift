@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 
 extension String {
@@ -35,12 +34,5 @@ extension String {
                 .replacingOccurrences(of: "đ", with: "d")
                 .replacingOccurrences(of: "Đ", with: "D")
     }
-    
-    func widthOfString(usingFont font: UIFont) -> CGFloat {
-        let fontAttributes = [NSAttributedString.Key.font: font]
-        let size = self.size(withAttributes: fontAttributes)
-        return size.width
-    }
-
     
 }

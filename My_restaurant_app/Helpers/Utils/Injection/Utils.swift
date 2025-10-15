@@ -18,6 +18,7 @@ class Utils: NSObject {
     var permissionUtils = PermissionUtils()
     var generalUtils = GeneralUtils()
     var toastUtils = ToastUtils()
+    var keyChainUtils = KeyChain()
     
     init(dateFormatter: DateFormatter = .makeDefault()) {
         self.dateFormatter = dateFormatter    

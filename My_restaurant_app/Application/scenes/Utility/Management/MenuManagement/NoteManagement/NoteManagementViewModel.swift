@@ -8,15 +8,18 @@
 import SwiftUI
 
 
-class NoteManagementViewModel: ObservableObject {
-    let branchId = Constants.branch.id ?? 0
-    let brandId = Constants.brand.id ?? 0
+class NoteManagementViewModel: ObservableObject, NotFoodDelegate {
+   
+    
+    let branchId = Constants.branch.id
+    let brandId = Constants.brand.id
     
     @Published var NoteList:[Note] = []
     @Published var isPresent = false
     @Published var popup:(any View)? = nil
     
 
+ 
     func showPopup(note:Note){
         let binding = Binding(
            get: { self.isPresent },
@@ -34,56 +37,62 @@ class NoteManagementViewModel: ObservableObject {
             }
         })
     }
-   
+    
+    
+    func callBackNoteFood(id: Int, note: String) {
+        if var first = self.NoteList.first{$0.id == id}{
+            first.content = note
+            createNote(note: first)
+        }else{
+            var newNote = Note()
+            newNote.content = note
+            newNote.branch_id = branchId
+            createNote(note: newNote)
+        }
+        
+    }
     
 }
 
 
 extension NoteManagementViewModel{
     func getNotes(){
+
         
-        NetworkManager.callAPI(netWorkManger:.note(branch_id:branchId,status: ACTIVE)){[weak self] result in
-            
+        NetworkManager.callAPI(netWorkManger: .notesManagement(branch_id:branchId,status: ACTIVE)){[weak self] (result: Result<APIResponse<[Note]>, Error>) in
             guard let self = self else { return }
             
             switch result {
-                case .success(let data):
 
-                    guard var res = try? JSONDecoder().decode(APIResponse<[Note]>.self, from: data) else{
-                        dLog("Parse model sai")
-                        return
-                    }
-                    
-                    for (i,note) in res.data.enumerated(){
+                case .success(var res):
+                if res.status == .ok{
+                    for (i,_) in res.data.enumerated(){
                         res.data[i].branch_id = branchId
                     }
-                
-                    NoteList = res.data
 
+                    NoteList = res.data
+                }
+             
+                    
                 case .failure(let error):
-                    print(error)
+                   dLog("Error: \(error)")
             }
         }
     }
     
     func createNote(note:Note){
         
-        NetworkManager.callAPI(netWorkManger:.createNote(note:note)){[weak self] result in
-            
+
+        NetworkManager.callAPI(netWorkManger: .createNote(note:note)){[weak self] (result: Result<PlainAPIResponse, Error>) in
             guard let self = self else { return }
             
             switch result {
+
                 case .success(let data):
-
-                    guard var res = try? JSONDecoder().decode(PlainAPIResponse.self, from: data) else{
-                        dLog("Parse model sai")
-                        return
-                    }
+                    getNotes()
                     
-                   getNotes()
-
                 case .failure(let error):
-                print(error)
+                   dLog("Error: \(error)")
             }
         }
     }

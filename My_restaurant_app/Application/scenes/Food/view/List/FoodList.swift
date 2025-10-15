@@ -8,71 +8,93 @@
 import SwiftUI
 
 struct FoodList: View {
-    @ObservedObject var viewModel: FoodViewModel
+
+    @ObservedObject var viewModel:FoodViewModel
     @State private var isPresented = false
     
-    
-    // MARK: - Computed Properties
-    private var shouldShowEmptyData: Bool {
-        (viewModel.APIParameter.category_type == .buffet_ticket && viewModel.buffets.isEmpty) ||
-        (viewModel.APIParameter.category_type != .buffet_ticket && viewModel.foods.isEmpty)
-    }
-
     var body: some View {
-        Group {
-            if shouldShowEmptyData {
-                EmptyData()
-            } else {
-                List {
-                    if viewModel.APIParameter.category_type == .buffet_ticket {
-                        buffetSection
-                    } else {
-                        foodSection
-                    }
-                }
-                .background(Color.white)
-                .listStyle(.plain)
+        
+        
+        
+        if (viewModel.APIParameter.category_type == .buffet_ticket && viewModel.buffets.isEmpty) ||  
+            (viewModel.APIParameter.category_type != .buffet_ticket && viewModel.foods.isEmpty)
+        {
+            EmptyData()
+        }else{
+            List {
+
+                viewModel.APIParameter.category_type == .buffet_ticket
+                ? AnyView(buffetSection)
+                : AnyView(foodSection)
+
+     
             }
+            .background(.white)
+            .listStyle(.plain)
         }
+        
     }
-
-
-    // MARK: - Food Section
+    
     private var foodSection: some View {
-      
-        Section(header: Text(viewModel.categories.first(where: { $0.isSelect })?.name ?? "Tất cả món ăn")) {
-            ForEach($viewModel.foods, id: \.id) { item in
-                FoodListCell(item: item)
-                    .onAppear {
-                        viewModel.loadMoreContent()
-                    }
+        Section {
+            ForEach($viewModel.foods) { item in
+                FoodListCell(viewModel: viewModel, item: item)
                     .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                        let note = SwipeAction.note {
-                            viewModel.showPopup = (true, .note, item.wrappedValue)
+                        let disable = (item.wrappedValue.category_type != .service && item.wrappedValue.restaurant_kitchen_place_id == 0) || (item.wrappedValue.is_out_stock == ACTIVE)
+                        
+
+                        let note = SwipeAction.note(action: {
+                            viewModel.presentFullScreen = (true, .note, item.wrappedValue)
+                        })
+                        
+                        let discount = SwipeAction.discount(action: {
+                            viewModel.presentFullScreen = (true, .discount, item.wrappedValue)
+                        })
+                        
+                        SwipeActionView(actions:disable ? [] : [discount, note])
+                    }
+                    .onAppear {
+                        if viewModel.foods.last?.id == item.id {
+                            viewModel.loadMoreContent(currentItem: item.wrappedValue)
                         }
-                        let discount = SwipeAction.discount {
-                            viewModel.showPopup = (true, .discount, item.wrappedValue)
-                        }
-                        SwipeActionView(actions: [discount, note])
-                    }.disabled(item.wrappedValue.out_of_stock)
-            }
-            .defaultListRowStyle()
+                    }
+                    .disabled(
+                        (item.wrappedValue.category_type != .service && item.wrappedValue.restaurant_kitchen_place_id == 0) ||
+                        (item.wrappedValue.is_out_stock == ACTIVE)
+                    )// Disable entire cell if item is disabled
+    
+            }.defaultListRowStyle()
         }
     }
+    
 
-    // MARK: - Buffet Section
-    private var buffetSection: some View {
-        Section(header: Text(viewModel.APIParameter.category_type?.description ?? "")) {
-            ForEach($viewModel.buffets, id: \.id) { item in
-                BuffetListCell(viewModel: viewModel, item: item)
-                    .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                        let discount = SwipeAction.discount {
-                            viewModel.showPopup = (true, .discount, nil)
-                        }
+    
+    private var buffetSection:some View{
+        
+        Section(header: Text(viewModel.APIParameter.category_type.description)) {
+            ForEach($viewModel.buffets) { item in
+             
+                BuffetListCell(viewModel:viewModel,item: item)
+                    .swipeActions(edge: .trailing,allowsFullSwipe: false) {
+                    
+                
+                        let discount = SwipeAction.discount(action: {
+                            viewModel.presentFullScreen = (true,.discount,nil)
+                        })
+                        
+    
                         SwipeActionView(actions: [discount])
                     }
+                
             }
             .defaultListRowStyle()
         }
     }
 }
+
+
+
+//#Preview {
+//    FoodList()
+//    
+//}

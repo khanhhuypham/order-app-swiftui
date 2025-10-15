@@ -7,6 +7,8 @@
 
 import UIKit
 
+let ONLINE = 0
+let OFFLINE = 1
 
 //======== Role Name ========
 var OWNER = "OWNER"
@@ -161,7 +163,7 @@ var REPORT_TYPE_LAST_YEAR = 11//Lấy theo năm trước
 var REPORT_TYPE_THREE_YEAR = 6// lấy theo 3 năm gần nhất
 var REPORT_TYPE_LAST_MONTH = 10 // lấy theo tháng trước
 var REPORT_TYPE_ALL_YEAR = 8 // lấy tất cả thời gian
-
+var REPORT_TYPE_OPTION_DAY = 13 // Tuỳ chọn theo ngày
 var APP_STORE_URL = "https://apps.apple.com/vn/app/techres-order-g%E1%BB%8Di-m%C3%B3n/id1468724786"
 
 // ============ WORKINGSESSION TYPE ==========

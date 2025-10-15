@@ -8,7 +8,7 @@
 import UIKit
 
 
-struct CancelReason:Codable,Hashable {
+struct CancelReason:Codable,Hashable,Identifiable {
     var id = 0
     var content =  ""
     var is_select:Bool = false
@@ -50,6 +50,14 @@ struct CancelReason:Codable,Hashable {
                },
                {
                    "id": 20452,
+                   "content": "Khách đợi lâu qúa"
+               },
+               {
+                   "id": 20453,
+                   "content": "Order sai"
+               },
+               {
+                   "id": 20454,
                    "content": "Khác"
                }
             ]

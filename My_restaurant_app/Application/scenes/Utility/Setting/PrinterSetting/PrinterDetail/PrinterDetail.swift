@@ -13,6 +13,7 @@ struct PrinterDetail: View {
     @Environment(\.presentationMode) var router
     
     @State private var selectedId = "option1"
+    
     var printer = Printer()
     @ObservedObject var viewModel = PrinterDetailViewModel()
     
@@ -51,7 +52,7 @@ struct PrinterDetail: View {
                     TextField("Port", text:  Binding(
                         get: { String(viewModel.printer.port) },
                         set: { newValue in
-                            viewModel.printer.port = Int(newValue) ?? 9100
+                            viewModel.printer.port = newValue
                         }
                     ))
                     .keyboardType(.numberPad)
@@ -75,7 +76,8 @@ struct PrinterDetail: View {
                     }
                 
                 }
-            }else{
+            }else if viewModel.printer.type == .chef || viewModel.printer.type == .bar{
+                
                 VStack(alignment:.leading,spacing: 15){
                     
                     Text("Phương thức in")
@@ -90,29 +92,29 @@ struct PrinterDetail: View {
                     }
                 
                 }
+                
+                Stepper( value: $viewModel.printer.number_of_copies, in: 1...5){
+                    HStack{
+                        Text("Số giấy in")
+                        
+                        TextField("", value: $viewModel.printer.number_of_copies, formatter: formatter)
+                            .multilineTextAlignment(.center)
+                            .keyboardType(.numberPad)
+                            .commonTextFieldDecor(height: 35)
+                            .frame(width: 35)
+                    }
+                 
+                }.frame(width: 220)
+               
             }
                     
-               
-
-            Stepper( value: $viewModel.printer.number_of_copies, in: 1...5){
-                HStack{
-                    Text("Số giấy in")
-                    
-                    TextField("", value: $viewModel.printer.number_of_copies, formatter: formatter)
-                        .multilineTextAlignment(.center)
-                        .keyboardType(.numberPad)
-                        .commonTextFieldDecor(height: 35)
-                        .frame(width: 35)
-                }
-             
-            }.frame(width: 220)
             
             Toggle(isOn: $viewModel.printer.active, label: {
                 Text("Bật/Tắt máy in:")
             })
             .toggleStyle(SwitchToggleStyle(tint: .orange))
             .frame(width: 180)
-            
+               
             Spacer()
             
             HStack(spacing:20){
@@ -123,7 +125,7 @@ struct PrinterDetail: View {
                     Label(title: {
                         Text("In thử").font(font.b_18)
                     }, icon: {
-                        Image("icon-printer-white", bundle: .main)
+                        Image("icon-printer", bundle: .main)
                     }).frame(maxWidth: .infinity,maxHeight:.infinity)
                         .foregroundColor(.white)
                         .background(color.green_600)
@@ -154,11 +156,18 @@ struct PrinterDetail: View {
             viewModel.printer = self.printer
         })
         .onReceive(viewModel.$navigateTag) { tag in
-            self.router.wrappedValue.dismiss()
+//            self.router.wrappedValue.dismiss()
         }
-        .navigationTitle("CẬP NHẬT THÔNG TIN MÁY IN")
         .padding()
-//        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+           ToolbarItem(placement: .principal) {
+               Text("CẬP NHẬT THÔNG TIN MÁY IN")
+                   .fontWeight(.semibold)
+                   .foregroundColor(color.orange_brand_900)
+           }
+        }
+
     }
 }
 

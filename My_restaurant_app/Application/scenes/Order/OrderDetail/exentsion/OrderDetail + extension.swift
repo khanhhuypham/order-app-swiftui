@@ -8,16 +8,23 @@
 import UIKit
 
 
-
+//extension OrderDetailView: ReasonCancelItemDelegate {
+    
+//    func cancel(item: OrderItem) {
+//        viewModel.cancelItem(item: item)
+//    }
+    
+//}
 
 
 extension OrderDetailView: EnterPercentDelegate {
     
     func callbackToGetPercent(id:Int,percent: Int){
         if let item = viewModel.order.orderItems.first(where: {$0.id == id}){
-            viewModel.discountOrderItem(item: item)
+            Task{
+               await viewModel.discountOrderItem(item: item)
+            }
         }
-        
     }
     
 }
@@ -26,9 +33,10 @@ extension OrderDetailView: EnterPercentDelegate {
 extension OrderDetailView: NotFoodDelegate {
     func callBackNoteFood(id: Int, note: String) {
         if let item = viewModel.order.orderItems.first(where: {$0.id == id}){
-            viewModel.addNote(orderDetailId: item.id, note: note)
+            Task{
+                await viewModel.addNote(orderDetailId: item.id, note: note)
+            }
         }
     }
     
-
 }

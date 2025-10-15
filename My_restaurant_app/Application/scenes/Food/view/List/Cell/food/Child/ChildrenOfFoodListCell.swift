@@ -9,21 +9,19 @@
 import SwiftUI
 import Combine
 struct ChildrenOfFoodListCell: View {
-    @Injected(\.fonts) private var fonts
+    @Injected(\.fonts) private var font
     @Injected(\.colors) private var color
-    @Binding var child:ChildrenItem
-    var category_type:CATEGORY_TYPE
+    var type:FOOD_ADDITION_TYPE
+    @Binding var child:FoodAddition
+    
     var body: some View {
 
         HStack(spacing:0) {
             
-            if category_type == .combo{
-                Rectangle()
-                    .frame(width: 50,height: 50)
-                    .foregroundColor(.clear)
-            }else{
+            if type == .addition{
                 
                 Button(action: {
+                   
                     child.isSelect
                     ? child.deSelect()
                     : child.select()
@@ -32,40 +30,50 @@ struct ChildrenOfFoodListCell: View {
                     Image(child.isSelect ? "icon-check-square" : "icon-uncheck-square", bundle: .main)
                         .padding(.leading, 20)
                     
-            
                 }.frame(width: 50,height: 50)
+                
+            }else{
+                Rectangle()
+                    .fill(.clear)
+                    .frame(width: 50, height: 50)
             }
-        
-
+            
+    
             VStack(alignment: .leading,spacing:-10) {
                 Text(child.name)
+                    .font(font.m_12)
                     .fullBox(alignment: .leading)
-                
-                Group{
-                    Text(child.price.toString){ $0.foregroundColor = color.orange_brand_900} +
-                    Text(String(format:"/%@",child.unit_type )){ $0.foregroundColor = color.gray_600}
-                }
+                   
+                Text(child.price.toString)
+                    .font(font.m_12)
+                    .foregroundColor(color.orange_brand_900)
+                    .fullBox(alignment: .leading)
                    
             }
-            .font(fonts.r_14)
             .onTapGesture(perform: {
-                if category_type != .combo{
-                    child.setQuantity(quantity: child.quantity + 1)
-                }
-
+                child.setQuantity(quantity: child.quantity + 1)
             })
             
-            
-            if category_type == .combo{
+            if type == .addition{
+                
+                actionView.padding(.trailing,8)
+                
+            }else if type == .combo{
+                
+                Text(child.combo_quantity.description)
+                    .font(font.m_12)
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: 80,maxHeight:40)
+                
+            }else if type == .option{
+                
                 Text(child.quantity.description)
-                    .font(fonts.r_13)
-                    .padding(.trailing,20)
-                   
-            }else{
-                actionView
-                .padding(.trailing,8)
+                    .font(font.m_12)
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: 80,maxHeight:40)
             }
         
+           
         
         }
     }
@@ -90,12 +98,11 @@ struct ChildrenOfFoodListCell: View {
             
             TextField("",value: $child.quantity,format: .number)
                 .keyboardType(.numberPad)
-                .font(fonts.m_12)
+                .font(font.m_12)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth:.infinity,maxHeight:.infinity)
                 .onReceive(Just(child.quantity)) { value in
 //                    print(value)
-                    
                 }
             
             Button(action: {
@@ -113,17 +120,20 @@ struct ChildrenOfFoodListCell: View {
     }
 }
 
-//#Preview {
-//    if let data = FoodAddition.getDummyData().first {
-//        return ZStack{
-//            
-//            Rectangle()
-//            
-//            ChildrenOfFoodListCell(child: .constant(data))
-//                .background(.white)
-//                .frame(maxHeight:80).background(.white)
-//        }
-//    }else{
-//        return Text("Error of parsing JSON data")
-//    }
-//}
+#Preview {
+    
+    if let data = FoodAddition.getDummyData().first {
+        return ZStack{
+            
+            Rectangle()
+            
+            ChildrenOfFoodListCell(type:.addition,child: .constant(data))
+                .background(.white)
+                .frame(maxHeight:80).background(.white)
+        }
+    }else{
+        return Text("Error of parsing JSON data")
+    }
+    
+    
+}

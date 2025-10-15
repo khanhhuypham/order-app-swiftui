@@ -9,35 +9,33 @@ import SwiftUI
 
 class AreaManagementViewModel: ObservableObject {
     let branchId = Constants.branch.id ?? 0
-    
-    @Published var btnArray:[(id:Int?,title:String,isSelect:Bool)] = []
     @Published var areaList:[Area] = []
     @Published var table:[Table] = []
-    @Published var APIParameter:(tab:Int,isPresent:Bool,popup:(any View)?) = (
-        tab: 1,
-        isPresent:false,
-        popup:nil
-    )
-  
+    @Published var tab = 1
+    
+    @Published var isPresent = false
+    @Published var popup:(any View)? = nil
+    
+    @Published var btnArray:[(id:Int,title:String,isSelect:Bool)] = []
 
     func showPopup(area:Area? = nil,table:Table? = nil,confirm:(()->Void)? = nil){
         let binding = Binding(
-            get: { self.APIParameter.isPresent },
-            set: { self.APIParameter.isPresent = $0 }
+           get: { self.isPresent },
+           set: { self.isPresent = $0 }
         )
-        APIParameter.isPresent = true
+        isPresent = true
         if let area = area{
-            APIParameter.popup = CreateAreaView(isPresent:binding,area:area,onConfirmPress: {[weak self](area) in
+            popup = CreateAreaView(isPresent:binding,area:area,onConfirmPress: {[weak self](area) in
                 guard let self = self else { return }
                 self.createArea(area: area)
             })
         }else if let table = table{
-            APIParameter.popup = CreateTableView(isPresent: binding,table: table,areaArray: areaList,onConfirmPress: {[weak self](table) in
+            popup = CreateTableView(isPresent: binding,table: table,areaArray: areaList,onConfirmPress: {[weak self](table) in
                 guard let self = self else { return }
                 self.createTable(table: table)
             })
         }else{
-            APIParameter.popup = QuicklyCreateTableView(isPresent: binding,areaArray: areaList,onConfirmPress: {[weak self](tableList,areaId) in
+            popup = QuicklyCreateTableView(isPresent: binding,areaArray: areaList,onConfirmPress: {[weak self](tableList,areaId) in
                 guard let self = self else { return }
                 self.createTableQuickly(areaId: areaId, tables: tableList)
             })
@@ -47,63 +45,113 @@ class AreaManagementViewModel: ObservableObject {
     
     func getAreaList(){
         
-        NetworkManager.callAPI(netWorkManger: .areas(branch_id: branchId)){[weak self] result in
-            
+//        NetworkManager.callAPI(netWorkManger: .areas(branch_id: branchId, status: ALL)){[weak self] result in
+//            
+//            guard let self = self else { return }
+//            
+//            switch result {
+//                  case .success(let data):
+//                        
+//                    guard var res = try? JSONDecoder().decode(APIResponse<[Area]>.self, from: data) else{
+//                        dLog("Parse model sai")
+//                        return
+//                    }
+//                    
+//                    if tab == 2{
+//                        var list = res.data
+//                        list.insert(Area(id: -1, name: "Tất cả khu vực", isSelect: true), at: 0)
+//                        btnArray = list.map{area in
+//                            return (id:area.id,title:area.name,isSelect:area.isSelect)
+//                        }
+//                            
+//                        self.getTables(areaId: -1)
+//                    }else{
+//                        self.areaList = res.data
+//                    }
+//                
+//                  
+//              
+//                  case .failure(let error):
+//                      print(error)
+//            }
+//        }
+        
+        NetworkManager.callAPI(netWorkManger: .areas(branch_id: branchId, status: ALL)){[weak self] (result: Result<APIResponse<[Area]>, Error>) in
             guard let self = self else { return }
             
             switch result {
-                  case .success(let data):
-                        
-                    guard var res = try? JSONDecoder().decode(APIResponse<[Area]>.self, from: data) else{
-                        dLog("Parse model sai")
+
+                case .success(var res):
+                    guard res.status == .ok else{
                         return
                     }
-                    
-                    if APIParameter.tab == 2{
+                
+                    if tab == 2{
                         var list = res.data
-                        list.insert(Area(name: "Tất cả khu vực", isSelect: true), at: 0)
-                        
+                        list.insert(Area(id: -1, name: "Tất cả khu vực", isSelect: true), at: 0)
                         btnArray = list.map{area in
                             return (id:area.id,title:area.name,isSelect:area.isSelect)
                         }
-                            
-                        self.getTables(areaId: nil)
+
+                        self.getTables(areaId: -1)
                     }else{
                         self.areaList = res.data
                     }
-                
-                  
-              
-                  case .failure(let error):
-                      print(error)
+                        
+                case .failure(let error):
+                   dLog("Error: \(error)")
             }
         }
     }
     
     
-    func getTables(areaId:Int?){
-        NetworkManager.callAPI(netWorkManger: .tablesForManagement(area_id: areaId)){[weak self] result in
+    func getTables(areaId:Int){
+//        NetworkManager.callAPI(netWorkManger: .tablesManager(area_id: areaId, branch_id: branchId, status: -1, is_deleted: 0)){[weak self] result in
+//            guard let self = self else { return }
+//            
+//            switch result {
+//                  case .success(let data):
+//                        
+//                    guard var res = try? JSONDecoder().decode(APIResponse<[Table]>.self, from: data) else{
+//                        dLog("parse model sai rồi")
+//                        return
+//                    }
+//                    
+//                    for (i,table) in res.data.enumerated(){
+//                        
+//                        res.data[i].status = table.is_active == ACTIVE ? .using : .closed
+//                    }
+//                
+//                    self.table = res.data
+//                    
+//                  case .failure(let error):
+//                    dLog(error)
+//            }
+//        }
+        
+        NetworkManager.callAPI(netWorkManger: .tablesManager(area_id: areaId, branch_id: branchId, status: -1, is_deleted: 0)){[weak self] (result: Result<APIResponse<[Table]>, Error>) in
             guard let self = self else { return }
             
             switch result {
-                  case .success(let data):
-                        
-                    guard var res = try? JSONDecoder().decode(APIResponse<[Table]>.self, from: data) else{
-                        dLog("parse model sai rồi")
+
+                case .success(var res):
+                    guard res.status == .ok else{
                         return
                     }
-                    
+                
                     for (i,table) in res.data.enumerated(){
-                        res.data[i].order = OrderOfTable(status: .open)
+                        res.data[i].status = table.is_active == ACTIVE ? .using : .closed
                     }
                 
                     self.table = res.data
                     
-                  case .failure(let error):
-                    dLog(error)
+                case .failure(let error):
+                   dLog("Error: \(error)")
             }
         }
     }
+    
+    
     
     
 }
@@ -112,109 +160,71 @@ extension AreaManagementViewModel {
     
     func createArea(area:Area,is_confirmed:Int? = nil){
         
-        NetworkManager.callAPI(netWorkManger: .createArea(branch_id: branchId, area: area, is_confirm: is_confirmed)){[weak self] result in
+
+        NetworkManager.callAPI(netWorkManger:.createArea(branch_id: branchId, area: area, is_confirm: is_confirmed)){[weak self] (result: Result<Table, Error>) in
             guard let self = self else { return }
             
             switch result {
-                  case .success(let data):
-                        
-                    guard var res = try? JSONDecoder().decode(APIResponse<Area>.self, from: data) else{
-                        dLog("parse model sai rồi")
-                        return
-                    }
-              
-                    if(res.status == .ok){
-                     
-//                        JonAlert.showSuccess(
-//                            message: self.viewModel.area.value.id > 0 ? "Cập nhật khu vực thành công" : "Tạo khu vực thành công",
-//                            duration: 2.0
-//                        )
-//        
-//                        (self.completeHandler ?? {})()
-//        
-//                        self.actionDismiss("")
-                    }else if res.status == .multipleChoices {
-        
-//                        self.presentConfirmPopup(
-//                            content: "Khu vực hiện có bàn đang hoạt động. Bạn muốn tắt toàn bộ bàn của khu vực này",
-//                            confirmClosure:{
-//                                self.createArea(is_confirmed: ACTIVE)
-//                            },
-//                            cancelClosure: {
-//                                self.actionDismiss("")
-//                            }
-//                        )
-        
-                    }else{
-        
-                       
-                        dLog(res.message)
-                    }
-                    getAreaList()
-//                    for (i,table) in res.data.enumerated(){
-//                        res.data[i].status = .using
-//                    }
-//                
-//                    self.table = res.data
+
+                case .success(let data):
+                    break
+//                      self.table = data
                     
-                  case .failure(let error):
-                    dLog(error)
+                case .failure(let error):
+                   dLog("Error: \(error)")
             }
         }
     }
     
     func createTable(table:Table){
-        
-        NetworkManager.callAPI(netWorkManger:.createTable(
+    
+        NetworkManager.callAPI(netWorkManger: .createTable(
             branch_id: branchId,
             table_id: table.id ?? 0,
             table_name:table.name ?? "",
             area_id:table.area_id ?? 0,
             total_slot:table.slot_number ?? 0,
-            active: table.active ?? true
-        )){[weak self] result in
+            status:table.is_active ?? 0
+        )){[weak self] (result: Result<PlainAPIResponse, Error>) in
             guard let self = self else { return }
             
             switch result {
-                case .success(let data):
-                    
-                    guard var res = try? JSONDecoder().decode(PlainAPIResponse.self, from: data) else{
-                        dLog("parse model sai rồi")
-                        return
+
+                case .success(let res):
+                    if res.status == .ok{
+                        getTables(areaId: areaList.first{$0.isSelect}?.id ?? -1)
                     }
-                    
-                    getTables(areaId: areaList.first{$0.isSelect}?.id ?? -1)
-
-
                 case .failure(let error):
-                dLog(error)
+                   dLog("Error: \(error)")
             }
         }
     }
     
     
     func createTableQuickly(areaId:Int,tables:[CreateTableQuickly]){
+
         
-        NetworkManager.callAPI(netWorkManger:.postCreateTableList(
+        
+        NetworkManager.callAPI(netWorkManger: .postCreateTableList(
             branch_id: branchId,
+            area_id: areaId,
             tables: tables
-        )){[weak self] result in
+        )){[weak self] (result: Result<PlainAPIResponse, Error>) in
             guard let self = self else { return }
             
             switch result {
-                case .success(let data):
-                    
-                    guard var res = try? JSONDecoder().decode(PlainAPIResponse.self, from: data) else{
-                        dLog("parse model sai rồi")
-                        return
+
+                case .success(let res):
+                    if res.status == .ok{
+                        getTables(areaId: areaId)
                     }
                     
-                    getTables(areaId: areaId)
-
+                  
                 case .failure(let error):
-                dLog(error)
+                   dLog("Error: \(error)")
             }
         }
+        
     }
     
 }

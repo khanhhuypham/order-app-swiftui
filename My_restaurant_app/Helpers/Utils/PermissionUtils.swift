@@ -134,6 +134,36 @@ struct PermissionUtils {
         }
     }
     
+    static var OrderManager:Bool{
+        get{
+            guard let user = ManageCacheObject.getUser() else {
+                return false
+            }
+            
+            let permissions = user.permissions
+    
+            return permissions.contains(ACTION_ON_FOOD_AND_TABLE) || permissions.contains(OWNER)
+        }
+    }
+    
+    static var OwnerOrCashier :Bool{
+        
+        get{
+            guard let user = ManageCacheObject.getUser() else {
+                return false
+            }
+            let permissions = user.permissions
+            var isAllow = false
+            for item in permissions {
+                if ((item.elementsEqual(OWNER)) == true || (item.elementsEqual(CASHIER_ACCESS)) == true){
+                      isAllow = true
+                    }
+            }
+            return isAllow
+        }
+        
+    }
+    
     
     
 }

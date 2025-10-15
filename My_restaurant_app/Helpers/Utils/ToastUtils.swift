@@ -22,14 +22,11 @@ class ToastUtils {
 //    @Published var showAlert:Bool = false
     var subject = PassthroughSubject<Bool, Never>()
     var cancellables = Set<AnyCancellable>()
-//    var showLoading = Binding(
-//        get: { [weak self] in
-//            (self?.subject ?? false)
-//        },
-//        set: { [weak self] in
-//            self?.subject = $0
-//        }
-//    )
     
+    
+    var alertSubject = PassthroughSubject<AlertToast, Never>()
+    var alertCancellables = Set<AnyCancellable>()
+    
+
 }
 

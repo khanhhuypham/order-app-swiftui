@@ -13,7 +13,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     var daihyOrder: DAIHYORDER?
 
     func application(_ application: UIApplication,didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
-    
+       
+
         daihyOrder = DAIHYORDER()
         
         return true

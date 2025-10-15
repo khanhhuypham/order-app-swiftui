@@ -8,42 +8,51 @@
 
 
 import SwiftUI
-import PopupView
 
 struct FoodView: View {
     var order:OrderDetail? = nil
-    var is_gift = -1 // 0 = gọi món bình thường | 1 = Tặng món vào hoá đơn| -1 Cả hai
-    @Injected(\.fonts) private var fonts
-    @ObservedObject var viewModel = FoodViewModel()
+    @State var is_gift = -1
+    
+    @Injected(\.fonts) private var font
+    @Injected(\.colors) private var color
+    @StateObject var viewModel = FoodViewModel()
     @EnvironmentObject var appRouter: TabBarViewModel
+    
     @Environment(\.presentationMode) var presentationMode
     @State var btnArray:[(id:Int,title:String,isSelected:Bool)] = []
     
-   
+
     var body: some View {
     
         VStack(spacing:0){
+            
+          
+            Spacer()
+            
+            Rectangle()
+                .fill(Color(.systemGray6))
+                .frame(maxHeight: 8)
             
             HeaderView(searchText:$viewModel.APIParameter.key_word,btnArray: $btnArray){id in
                 handleChooseCategory(id: id)
             }
             
-            if (viewModel.APIParameter.category_type == .food ||
-                viewModel.APIParameter.category_type == .drink ||
-                viewModel.APIParameter.category_type == nil) &&
-                !viewModel.APIParameter.out_of_stock &&
-                !viewModel.categories.isEmpty
-            {
+        
+            if viewModel.APIParameter.category_type != .buffet_ticket && viewModel.APIParameter.is_out_stock == ALL && !viewModel.categories.isEmpty{
                 Divider()
-                categoryCollection	
-                Divider()
+                categoryCollection
+               
             }
+            
+            Divider()
+            
             
             FoodList(viewModel: viewModel)
             
             if (viewModel.APIParameter.category_type == .buffet_ticket && !viewModel.buffets.filter{$0.isSelect}.isEmpty) ||
                 (viewModel.APIParameter.category_type != .buffet_ticket && !viewModel.foods.filter{$0.isSelect}.isEmpty)
             {
+                
                 bottomBtn
             }
            
@@ -52,19 +61,19 @@ struct FoodView: View {
         .toolbar {
             ToolbarItem(placement: .principal) {
                 Text(String(format: "GỌI MÓN - %@", viewModel.order.table_name))
-                    .font(fonts.b_16)
-                    .foregroundColor(Color(ColorUtils.orange_brand_900()))
+                    .font(font.b_16)
+                    .foregroundColor(color.orange_brand_900)
             }
         }
         .onAppear(perform: {
-        
+            
             if let order = self.order{
                 viewModel.order = order
-                viewModel.APIParameter.is_allow_employee_gift = 0
+//                viewModel.APIParameter.is_allow_employee_gift = is_gift
             }
-            
+//            dLog(is_gift)
             self.firstSetup(order: viewModel.order)
-            viewModel.getCategories()
+            viewModel.reloadContent()
         })
         .onReceive(viewModel.$navigateTag) { tag in
 
@@ -74,68 +83,67 @@ struct FoodView: View {
                 self.presentationMode.wrappedValue.dismiss()
                 appRouter.currentPage = .order
             }
+            
+                        
         }
-        .presentDialog(isPresented: $viewModel.showPopup.show,content: {
-            let item = viewModel.showPopup.item
-          
-            switch viewModel.showPopup.popupType{
-                case .note:
-                    NoteView(isPresent:$viewModel.showPopup.show, id: item?.id ?? 0,inputText: item?.note ?? "",completion:{ id, text in
-                        if let index = viewModel.foods.firstIndex(where: {$0.id == id}){
-                            viewModel.foods[index].note = text
-                        }
-                    })
-                
-                case .discount:
+        .sheet(isPresented: $viewModel.presentSheet.present,content: {
+            
+            if let item = viewModel.presentSheet.item{
+                ChooseOptionView(item:item){result in
+              
+                    if let pos = viewModel.foods.firstIndex(where: {$0.id == result.id}){
+                        viewModel.foods[pos] = result
+                    }
                     
-                    EnterPercentView(
-                        isPresent: $viewModel.showPopup.show,
-                        id:item?.id ?? 0,
-                        percent:item?.discount_percent ?? nil,
-                        title: "GIẢM GIÁ",
-                        placeholder: "Vui lòng nhập % bạn muốn giảm giá",
-                        completion:{ id, percent in
-                            if let index = viewModel.foods.firstIndex(where: {$0.id == id}){
-                                viewModel.foods[index].discount_percent = percent
-                            }
+                }
+            }
+          
+        })
+        .fullScreenCover(isPresented: $viewModel.presentFullScreen.show,content: {
+
+            let item = viewModel.presentFullScreen.item
+          
+            switch viewModel.presentFullScreen.popupType{
+                
+                case .note:
+                    NoteView(isPresent:$viewModel.presentFullScreen.show, id: item?.id ?? 0,inputText: item?.note ?? ""){_, note in
+                 
+                        if let position = viewModel.foods.firstIndex(where: {$0.id == item?.id ?? 0}){
+            
+                            viewModel.foods[position].note = note
                         }
-                    )
+                    }
+
+                case .discount:
+                    EnterPercentView(isPresent:$viewModel.presentFullScreen.show)
    
                 default:
                     EmptyView()
             }
             
         })
-  
-        
         
     }
     
     
     private var categoryCollection:some View{
         ScrollView(.horizontal,showsIndicators: false){
-            HStack{
+            HStack(spacing:10){
                 ForEach(viewModel.categories, id: \.id){cate in
                     Button(action: {
-
                         for (i,category) in viewModel.categories.enumerated() {
-                            viewModel.categories[i].isSelect = cate.id == category.id 
-                            ? true
-                            : false
+                            viewModel.categories[i].isSelect = cate.id == category.id ? true : false
                         }
-
-                        viewModel.APIParameter.category_id = cate.id == -1 
-                        ? nil
-                        : cate.id
-                        
+    
+                        viewModel.APIParameter.category_id = cate.id
                         viewModel.reloadContent()
                         
                     }) {
                         Text(cate.name)
-                            .font(fonts.sb_13)
+                            .font(font.sb_13)
                             .foregroundColor(cate.isSelect ? .white : .orange)
-                            .padding(EdgeInsets(top: 8, leading: 20, bottom: 8, trailing: 20))
-//
+                            .padding(EdgeInsets(top: 7, leading: 20, bottom: 7, trailing: 20))
+
                     }
                     .overlay(RoundedRectangle(cornerRadius: 20, style: .circular).stroke(Color.orange, lineWidth: 2))
                     .background(cate.isSelect ? .orange : .white)
@@ -143,8 +151,9 @@ struct FoodView: View {
                 }
             }
         }
-        .padding(.vertical,10)
-       
+        .padding(.horizontal,10)
+        .padding(.vertical,15)
+
     }
 
     
@@ -155,7 +164,7 @@ struct FoodView: View {
                 presentationMode.wrappedValue.dismiss()
             }) {
                 Text("Hủy")
-                    .font(fonts.b_16)
+                    .font(font.b_16)
                     .foregroundColor(.red)
                     .padding()
                     .frame(maxWidth: .infinity)
@@ -165,18 +174,13 @@ struct FoodView: View {
             }
             
             Button(action: {
-            
-            
+                
                 if viewModel.order.id > 0{
-                    
                     viewModel.processToAddFood()
-
                 }else{
                     
                     if viewModel.order.table_id == 0{
-                        
-//                        viewModel.createTakeOutOder()
-    
+                        viewModel.createTakeOutOder()
                     }else{
                         viewModel.createDineInOrder()
                     }
@@ -185,7 +189,7 @@ struct FoodView: View {
 
             }) {
                 Text("Đồng ý")
-                    .font(fonts.b_16)
+                    .font(font.b_16)
                     .foregroundColor(.white)
                     .padding()
                     .frame(maxWidth: .infinity)

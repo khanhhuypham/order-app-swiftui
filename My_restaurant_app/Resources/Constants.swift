@@ -76,6 +76,10 @@ struct Constants {
         static let KEY_DEV_MODE = "KEY_DEV_MODE"
         static let KEY_IDLE_TIMER = "KEY_IDLE_TIMER"
         static let KEY_BANK_ACCOUNT = "KEY_BANK_ACCOUNT"
+        
+        
+        static let KEY_ENVIRONMENT_MODE = "KEY_ENVIRONMENT_MODE"
+        static let KEY_SAVED_LOGIN_INFOR = "KEY_SAVED_LOGIN_INFOR"
     }
     
     struct LOGIN_FORM_REQUIRED{
@@ -153,6 +157,9 @@ struct Constants {
     }
     
     
+
+    
+    
    
     
     public enum areaType {
@@ -181,14 +188,24 @@ struct Constants {
     
     static var login:Bool{
         get{
+            
+            dLog(ManageCacheObject.getUser())
             if let account = ManageCacheObject.getUser(),account.id ?? 0 > 0{
                 return true
             }else{
                 return false
             }
+            
+            
         }
     }
     
+    
+    static var savedLoginInfor:SavedLoginInfor{
+         get{
+             ManageCacheObject.getSavedLoginInfo() ?? SavedLoginInfor()
+         }
+     }
     
     static var branch:Branch{
         get{
@@ -232,6 +249,7 @@ struct Constants {
     
 
     static var REPORT_TYPE_DICTIONARY:[Int:String]{
+        
         get{
             return [
                 REPORT_TYPE_TODAY:TimeUtils.getCurrentDateTime().dateTimeNow,
@@ -246,6 +264,8 @@ struct Constants {
                 REPORT_TYPE_ALL_YEAR:""]
         }
     }
+    
+    
     
 }
 

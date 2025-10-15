@@ -13,20 +13,35 @@ extension FoodViewModel {
         
         if !selectedFoods.isEmpty{
         
-            let items = selectedFoods.map{(food) in
-                var obj = FoodRequest.init()
-                obj.id = food.id
-                obj.quantity = food.quantity
-                obj.note = food.note
-                obj.discount_percent = food.discount_percent
-                obj.children = food.children
-                        .filter { $0.isSelect && $0.quantity > 0 }
-                        .map { FoodRequestChild(id: $0.id, quantity: $0.quantity) }
-
-                return obj
+            let items = selectedFoods.filter{$0.isSelect}.map{(food) in
+                var food_request = FoodRequest.init()
+                food_request.id = food.id
+                food_request.quantity = food.quantity
+                food_request.note = food.note
+                food_request.discount_percent = food.discount_percent
+                food_request.price = food.price_with_temporary
+                //CHECK ADDITION FOOD
+                food_request.addition_foods = food.addition_foods.filter{$0.isSelect && $0.quantity > 0}
+                // CHECK MUA 1 TANG 1
+                food_request.buy_one_get_one_foods = food.food_list_in_promotion_buy_one_get_one.filter{$0.isSelect && $0.quantity > 0}
+                
+                
+                // Compose food options
+                food_request.food_option_foods = food.food_options.flatMap { option in
+                 
+                    option.addition_foods.filter{ $0.isSelect}.map { addition in
+                        [
+                            "id": addition.id,
+                            "quantity": addition.quantity,
+                            "food_option_id": option.id
+                        ]
+                    }
+                 
+                }
+                
+                
+                return food_request
             }
-            
-
             APIParameter.is_allow_employee_gift == ADD_GIFT ? addGiftFoods(items:items) : addFoods(items:items)
         }
         
@@ -55,114 +70,97 @@ extension FoodViewModel {
     //    //MARK: API thêm món ăn vào order
     private func addFoods(items:[FoodRequest]){
                 
-        NetworkManager.callAPI(netWorkManger:.addFoods(
-            branch_id: Constants.branch.id ?? 0,
+
+        NetworkManager.callAPI(netWorkManger: .addFoods(
+            branch_id: Constants.branch.id,
             order_id: order.id,
-            foods: items
-        )){[weak self] result in
+            foods: items,
+            is_use_point: APIParameter.is_use_point
+        )){[weak self] (result: Result<APIResponse<NewOrder>, Error>) in
             guard let self = self else { return }
             
             switch result {
-                  case .success(let data):
-                    guard let res = try? JSONDecoder().decode(PlainAPIResponse.self, from: data) else{
-                        dLog("parse model sai rồi")
-                        return
-                    }
-             
-                    if (res.status == .ok) {
-            
+
+                case .success(let res):
+
+                    if res.status == .ok{
+                        order.id = res.data.order_id
                         self.navigateTag = 0
-                    } else if (res.status == .badRequest) {
-                        dLog(res.message ?? "")
-                    } else {
-                        dLog(res.message ?? "")
                     }
-                    
                 
-                  case .failure(let error):
-                    dLog(error)
+                    
+                    break
+                    
+                case .failure(let error):
+                   dLog("Error: \(error)")
             }
         }
     }
     //
     private func addGiftFoods(items:[FoodRequest]) {
+
         NetworkManager.callAPI(netWorkManger: .addGiftFoods(
-            branch_id: Constants.branch.id ?? 0,
+            branch_id: Constants.branch.id,
             order_id: order.id,
             foods: items,
             is_use_point: APIParameter.is_use_point
-        )){[weak self] result in
+        )){[weak self] (result: Result<PlainAPIResponse, Error>) in
             guard let self = self else { return }
             
             switch result {
-                case .success(let data):
 
-                    guard let res = try? JSONDecoder().decode(PlainAPIResponse.self, from: data) else{
-                        dLog("parse model sai rồi")
-                        return
-                    }
-
-                    if (res.status == .ok) {
+                case .success(let res):
+                    if res.status == .ok{
                         self.navigateTag = 0
-                    } else if (res.status == .badRequest) {
-                        dLog(res.message ?? "")
-                    } else {
-                        dLog(res.message ?? "")
                     }
-
+                    
                 case .failure(let error):
-                  print(error)
+                   dLog("Error: \(error)")
             }
         }
 
     }
     //    //MARK: API order tại bàn
-        func createDineInOrder(){
+    func createDineInOrder(){
+    
+        NetworkManager.callAPI(netWorkManger: .openTable(table_id: order.table_id)){[weak self] (result: Result<APIResponse<Table>, Error>) in
+            guard let self = self else { return }
             
-        
-            NetworkManager.callAPI(netWorkManger:.openTable(table_id: order.table_id)){[weak self] result in
-                guard let self = self else { return }
-                
-                switch result {
-                    case .success(let data):
-                        guard let res = try? JSONDecoder().decode(APIResponse<Table>.self, from: data) else{
-                            dLog("parse model sai rồi")
-                            return
-                        }
-                    
-                        if (res.status == .ok) {
-                            order = OrderDetail(table: res.data)
-                            processToAddFood()
-                            self.navigateTag = 1
-                        } else if (res.status == .badRequest) {
-                            dLog(res.message ?? "")
-                        } else {
-                            dLog(res.message ?? "")
-                        }
-                    
-                
-                      case .failure(let error):
-                        dLog(error)
-                }
-            }
-            
-            
-        }
-    //
-    //    //MARK: API tạo order mới, trong trường hợp mang về.
-        func createTakeOutOder() {
+            switch result {
 
-            NetworkManager.callAPI(netWorkManger: .postCreateOrder(branch_id: Constants.branch.id ?? 0,table_id: order.table_id, note: "")){[weak self] result in
-                guard let self = self else { return }
-                
-                switch result {
-                      case .success(let data):
-                        dLog(data)
-                        break
-                
-                      case .failure(let error):
-                        dLog(error)
-                }
+                case .success(let res):
+                    if (res.status == .ok) {
+                        order = OrderDetail(table: res.data)
+                        processToAddFood()
+                        self.navigateTag = 1
+                    } else if (res.status == .badRequest) {
+                        dLog(res.message ?? "")
+                    } else {
+                        dLog(res.message ?? "")
+                    }
+                    break
+                    
+                case .failure(let error):
+                   dLog("Error: \(error)")
             }
         }
+        
+        
+    }
+    
+    //    //MARK: API tạo order mới, trong trường hợp mang về.
+    func createTakeOutOder() {
+        NetworkManager.callAPI(netWorkManger: .postCreateOrder(branch_id: Constants.branch.id ?? 0,table_id: order.table_id, note: "")){[weak self] (result: Result<String, Error>) in
+            guard let self = self else { return }
+            
+            switch result {
+
+                case .success(var data):
+                    break
+                    
+                case .failure(let error):
+                   dLog("Error: \(error)")
+            }
+        }
+    }
 }
