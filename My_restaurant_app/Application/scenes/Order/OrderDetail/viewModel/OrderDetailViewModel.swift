@@ -21,12 +21,12 @@ class OrderDetailViewModel: ObservableObject {
     @Injected(\.utils.toastUtils) var toast
     let socketManager = SocketIOManager.shared
     @Published var order:OrderDetail = OrderDetail()
-    
-    @Published var selectedItem:OrderItem? = nil
-    
+        
     @Published var printItems:[PrintItem] = []
     
-    @Published var showSheet:Bool = false
+
+    @Published var showSheet:(show:Bool,type:OrderAction) = (false,.splitFood)
+    var splitFood:(from:Table,to:Table)? = nil
 
     @Published public var showPopup:(
         show:Bool,

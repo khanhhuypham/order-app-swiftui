@@ -15,13 +15,15 @@ struct MoveOrderItems:View{
     @StateObject var viewModel: MoveOrderItemsViewModel = MoveOrderItemsViewModel()
     @State private var name = ""
     var order:Order = .init()
-
+    var from:Table = Table()
+    var to:Table = Table()
+    var completion:(() -> Void)? = nil
     
     var body: some View {
         
         VStack(alignment:.leading,spacing:0){
             
-            Text(String(format:"tách món từ bàn %@ sang %@", viewModel.order.table_name, name).uppercased())
+            Text(String(format:"tách món từ bàn %@ sang %@", from.name ?? "", from.name ?? "").uppercased())
                 .multilineTextAlignment(.center)
                 .foregroundColor(.white)
                 .font(font.b_18)
@@ -124,16 +126,17 @@ struct MoveOrderItems:View{
             
             Button(action: {
                 
-                var list:[FoodSplitRequest] = viewModel.dataArray.filter{$0.isChange}.map{data in
+                let list:[FoodSplitRequest] = viewModel.dataArray.filter{$0.isChange}.map{data in
                     var item = FoodSplitRequest.init()
                     item.order_detail_id = data.id
                     item.quantity = data.quantity_change
-                   
                     return item
                 }
 
                 Task{
-                    await viewModel.moveFoods(selectedItems: list)
+                    await viewModel.moveFoods(from:from.id ?? 0,to:to.id ?? 0,selectedItems: list)
+                    presentationMode.wrappedValue.dismiss()
+                    completion?()
                 }
             }) {
                 Text("Đồng ý")

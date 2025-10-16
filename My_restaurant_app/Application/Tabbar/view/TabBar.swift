@@ -59,6 +59,7 @@ struct TabBar: View {
                 VStack{
                     Spacer()
                         contentView
+                    
                     Spacer()
                     
                     HStack{
@@ -128,6 +129,7 @@ struct TabBar: View {
             .toast(isPresenting: $isAlertPresented){
                 alertToast
             }
+            
             .environmentObject(viewModel)
         }
         .edgesIgnoringSafeArea(.all)

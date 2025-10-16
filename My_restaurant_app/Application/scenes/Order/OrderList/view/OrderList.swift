@@ -200,6 +200,7 @@ struct OrderListView<Model>: View where Model: OrderListViewModel{
         })
         .sheet(isPresented: $viewModel.presentSheet.show,content: {
             
+
             if let order = viewModel.selectedOrder,let orderAction = viewModel.presentSheet.action{
                 
                 switch orderAction {
@@ -211,7 +212,7 @@ struct OrderListView<Model>: View where Model: OrderListViewModel{
                         AreaView(
                             title:String(format: "CHUYỂN TỪ BÀN TỪ BÀN %@ SANG",order.table_name),
                             order: order,
-                            orderAction: orderAction,
+                            orderAction: .moveTable,
                             completion: {
                                 Task{
                                     await viewModel.getOrders()
@@ -223,7 +224,7 @@ struct OrderListView<Model>: View where Model: OrderListViewModel{
                         AreaView(
                             title:String(format: "GỘP BÀN %@",order.table_name),
                             order: order,
-                            orderAction: orderAction,
+                            orderAction: .mergeTable,	
                             completion: {
                                 Task{
                                     await viewModel.getOrders()
@@ -235,16 +236,27 @@ struct OrderListView<Model>: View where Model: OrderListViewModel{
                         AreaView(
                             title:String(format: "TÁCH MÓN TỪ BÀN %@ SANG",order.table_name),
                             order: order,
-                            orderAction: orderAction,
-                            completion: {
-        
-                                viewModel.presentSheet = (show:true,action:OrderAction.chooseFoodToSplit)
+                            orderAction: .splitFood,
+                            splitFoodCompletion:{(from,to) in
+                                viewModel.splitFood = (from,to)
+                                viewModel.presentSheet.action = .chooseFoodToSplit
                             }
+                            
                         )
                     
                     case .chooseFoodToSplit:
-                        MoveOrderItems(order: order)
-                    
+                        if let splitFood = viewModel.splitFood{
+                            MoveOrderItems(
+                                order: order,
+                                from:splitFood.from,
+                                to:splitFood.to,
+                                completion: {
+                                    viewModel.splitFood = nil
+                                }
+                            )
+                        }
+                      
+                
                     case .cancelOrder:
                         EmptyView()
                     
@@ -252,11 +264,13 @@ struct OrderListView<Model>: View where Model: OrderListViewModel{
 //                        SharePoint()
                         EmptyView()
                     
-                    
+                    default:
+                        EmptyView()
                 }
                 
                 
             }
+            
         })
         .onAppear {
             Task{

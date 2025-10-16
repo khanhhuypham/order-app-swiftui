@@ -20,6 +20,8 @@ class OrderListViewModel: ObservableObject {
     
     @Published var selectedOrder:Order? = nil
     
+    var splitFood:(from:Table,to:Table)? = nil
+    
     @Published var APIParameter:(
         branch_id:Int,
         userId: Int,

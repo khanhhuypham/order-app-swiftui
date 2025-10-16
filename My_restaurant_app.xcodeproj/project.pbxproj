@@ -1407,8 +1407,8 @@
 			children = (
 				94589A472E9F7ED7008868F9 /* component */,
 				94589A492E9F7ED7008868F9 /* exentsion */,
-				94589A502E9F7ED7008868F9 /* view */,
 				94589A532E9F7ED7008868F9 /* viewModel */,
+				94589A502E9F7ED7008868F9 /* view */,
 			);
 			path = OrderDetail;
 			sourceTree = "<group>";

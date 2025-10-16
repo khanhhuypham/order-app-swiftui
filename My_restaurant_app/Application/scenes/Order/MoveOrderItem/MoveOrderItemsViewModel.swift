@@ -5,7 +5,7 @@
 //  Created by Pham Khanh Huy on 16/10/25.
 //
 import SwiftUI
-
+import AlertToast
 class MoveOrderItemsViewModel: ObservableObject {
     @Injected(\.utils.toastUtils) var toast
 
@@ -28,6 +28,10 @@ class MoveOrderItemsViewModel: ObservableObject {
             
                 if res.status == .ok{
                     dataArray = res.data.orderItems
+                    
+                    await toast.alertSubject.send(
+                        AlertToast(type: .regular, title: "Warning", subTitle: "Huỷ bản thành công")
+                    )
                 }
                 
 
@@ -36,23 +40,26 @@ class MoveOrderItemsViewModel: ObservableObject {
         }
     }
     
-    func moveFoods(selectedItems:[FoodSplitRequest]) async{
+    func moveFoods(from:Int,to:Int,selectedItems:[FoodSplitRequest]) async{
         
-        let result: Result<APIResponse<OrderDetail>, Error> = await NetworkManager.callAPIResultAsync(netWorkManger:
-                .moveFoods(
-                    branch_id:Constants.branch.id,
-                    order_id:order.id,
-                    destination_table_id:0,
-                    target_table_id:0,
-                    foods: selectedItems
-                )
+        let result: Result<PlainAPIResponse, Error> = await NetworkManager.callAPIResultAsync(netWorkManger:
+            .moveFoods(
+                branch_id:Constants.branch.id,
+                order_id:order.id,
+                destination_table_id:from,
+                target_table_id:to,
+                foods: selectedItems
+            )
         )
         
         switch result {
             case .success(let res):
+                if res.status == .ok{
+                    dLog(res.message)
+//                    JonAlert.showSuccess(message: "Tách món thành công.", duration: 2.0)
+                }
                 break
                 
-
             case .failure(let error):
                dLog("Error: \(error)")
         }

@@ -36,8 +36,9 @@ struct TechresOrder: App {
             }
             
         }.onChange(of: appState.userState) { status in
-        
+            
         }
+        
     }
     
     

@@ -102,16 +102,38 @@ struct OrderDetailView:View{
             }
             
         })
-        .sheet(isPresented: $viewModel.showSheet, content: {
-   
-            AreaView(
-                title:String(format: "TÁCH MÓN TỪ BÀN %@ SANG",viewModel.order.table_name),
-                order: Order(orderDetail: viewModel.order),
-                orderAction: .splitFood,
-                completion: {
-                    dLog("Huy")
+        .sheet(isPresented: $viewModel.showSheet.show, content: {
+            
+            switch viewModel.showSheet.type {
+                case .splitFood:
+                    AreaView(
+                        title:String(format: "TÁCH MÓN TỪ BÀN %@ SANG",viewModel.order.table_name),
+                        order: Order(orderDetail: viewModel.order),
+                        orderAction: .splitFood,
+                        splitFoodCompletion:{(from,to) in
+                            viewModel.splitFood = (from,to)
+                            viewModel.showSheet = (true,.chooseFoodToSplit)
+                        }
+                    )
+                    
+                case .chooseFoodToSplit:
+                    if let splitFood = viewModel.splitFood{
+                        MoveOrderItems(
+                            order: Order(orderDetail: viewModel.order),
+                            from:splitFood.from,
+                            to:splitFood.to,
+                            completion: {
+                                viewModel.splitFood = nil
+                                viewModel.showSheet.show = false
+                            }
+                        )
+                    }
+                    
+                default:
+                    EmptyView()
                 }
-            )
+            
+           
         })
         
     }
@@ -293,7 +315,7 @@ struct OrderDetailView:View{
             }
             
             Button(action: {
-                viewModel.showSheet = true
+                viewModel.showSheet = (true,.splitFood)
             }, label: {
                 VStack(alignment:.center){
                     Spacer()

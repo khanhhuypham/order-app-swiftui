@@ -28,6 +28,7 @@ struct AreaView: View {
     var order: Order? = nil
     var orderAction: OrderAction? = nil
     var completion:(() -> Void)? = nil
+    var splitFoodCompletion:((_ from:Table,_ to:Table) -> Void)? = nil
     //=============
 
     var body: some View {
@@ -54,6 +55,8 @@ struct AreaView: View {
                 }
             })
             
+            Divider()
+            
             if orderAction == nil{
                 hintView
             }
@@ -77,18 +80,18 @@ struct AreaView: View {
             
             if let action = viewModel.orderAction,
                let order = viewModel.order,
-               let to = viewModel.selectedTable {
-     
+               let to = viewModel.selectedTable
+            {
+                let from = Table(id: order.table_id, name: order.table_name,status: .using)
                 ConfirmToMoveTable(
                     title: action == .moveTable ? "XÁC NHẬN CHUYỂN BÀN" : "XÁC NHẬN TÁCH MÓN",
-                    from: Table(id: order.table_id, name: order.table_name,status: .using),
+                    from: from,
                     to: to,
                     completion: {
                         if action == .moveTable{
                             viewModel.moveTable(from: order.table_id, to: to.id ?? 0)
                         }else if action == .splitFood{
-                            presentationMode.wrappedValue.dismiss()
-                            self.completion?()
+                            self.splitFoodCompletion?(from,to)
                         }
                        
                     }
@@ -184,7 +187,7 @@ struct AreaView: View {
                                     case .splitFood:
                                         viewModel.selectedTable = table
                                         viewModel.presentDialog = true
-                                        dLog("asd")
+
                                         break
                                         
                                     default:

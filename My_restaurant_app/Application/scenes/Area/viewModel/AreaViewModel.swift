@@ -86,7 +86,7 @@ extension AreaViewModel{
                 
             }
             
-            NetworkManager.callAPI(netWorkManger: .tables(branchId: Constants.branch.id ?? 0, area_id: areaId, status:tableStatus, exclude_table_id: exclude_table_id)){[weak self] (result: Result<APIResponse<[Table]>, Error>) in
+            NetworkManager.callAPI(netWorkManger: .tables(branchId: Constants.branch.id, area_id: areaId, status:tableStatus, exclude_table_id: exclude_table_id)){[weak self] (result: Result<APIResponse<[Table]>, Error>) in
                 guard let self = self else { return }
                 
                 switch result {
