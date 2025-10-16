@@ -89,7 +89,7 @@ struct OrderList: View, ReasonCancelItemDelegate {
             dLog("action edit")
         })
         let split = SwipeAction.split(action: {
-            dLog("action split")
+            viewModel.showSheet = true
         })
         let cancel = SwipeAction.cancel(action: {
             viewModel.showPopup = (true,.cancel,data)

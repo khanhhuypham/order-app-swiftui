@@ -27,6 +27,7 @@ struct OrderItem: Codable,Identifiable {
     var enable_return_beer:Int = 0
     var note:String = ""
     var is_extra_charge:Int = 0
+    var quantity_change:Float = 0
     var isChange:Bool = false
 
     var is_sell_by_weight:Int = 0
@@ -38,7 +39,7 @@ struct OrderItem: Codable,Identifiable {
 
     var buffet_ticket_id:Int?
     var total_price_include_addition_foods:Float = 0
-//
+
     var cancel_reason:String = ""
     var service_start_time:String?
     var service_end_time:String?

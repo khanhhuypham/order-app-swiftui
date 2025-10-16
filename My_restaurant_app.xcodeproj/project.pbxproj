@@ -237,6 +237,8 @@
 		9491DA2E2E9F79D800D0A0F1 /* ReportOfRevenueOfArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9491DA1B2E9F79D800D0A0F1 /* ReportOfRevenueOfArea.swift */; };
 		9491DA2F2E9F79D800D0A0F1 /* ReportOfEmployeeRevenue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9491DA152E9F79D800D0A0F1 /* ReportOfEmployeeRevenue.swift */; };
 		9491DA302E9F79D800D0A0F1 /* ReportOfSale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9491DA1F2E9F79D800D0A0F1 /* ReportOfSale.swift */; };
+		94DC1BA12EA089E700EE549C /* MoveOrderItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DC1BA02EA089E700EE549C /* MoveOrderItems.swift */; };
+		94DC1BA32EA08CBF00EE549C /* MoveOrderItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DC1BA22EA08CB600EE549C /* MoveOrderItemsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -472,6 +474,8 @@
 		9491DA1F2E9F79D800D0A0F1 /* ReportOfSale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportOfSale.swift; sourceTree = "<group>"; };
 		9491DA222E9F79D800D0A0F1 /* GeneralReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralReportView.swift; sourceTree = "<group>"; };
 		9491DA242E9F79D800D0A0F1 /* GeneralReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralReportViewModel.swift; sourceTree = "<group>"; };
+		94DC1BA02EA089E700EE549C /* MoveOrderItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveOrderItems.swift; sourceTree = "<group>"; };
+		94DC1BA22EA08CB600EE549C /* MoveOrderItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveOrderItemsViewModel.swift; sourceTree = "<group>"; };
 		F1798CE75DFD657B1C723125 /* Pods_My_restaurant_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_My_restaurant_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -517,12 +521,12 @@
 			isa = PBXGroup;
 			children = (
 				94589A2C2E9F7E55008868F9 /* Protocol */,
+				942779712CF01E7B00B2F2E6 /* Helpers */,
 				942779692CF01E7B00B2F2E6 /* Resources */,
 				942779612CF01E7B00B2F2E6 /* NetworkManager */,
 				942779882CF01E7B00B2F2E6 /* Extension */,
-				942779712CF01E7B00B2F2E6 /* Helpers */,
-				942779932CF01E7B00B2F2E6 /* Main */,
 				942779962CF01E7B00B2F2E6 /* Application */,
+				942779932CF01E7B00B2F2E6 /* Main */,
 				942779572CF01D0B00B2F2E6 /* Assets.xcassets */,
 				942779592CF01D0B00B2F2E6 /* Preview Content */,
 			);
@@ -540,14 +544,14 @@
 		942779612CF01E7B00B2F2E6 /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
+				942779642CF01E7B00B2F2E6 /* NetWorkManager.swift */,
+				942779682CF01E7B00B2F2E6 /* HeaderConnectionParameter.swift */,
 				9491DA0D2E9F79B300D0A0F1 /* BaseURLConnectionManager.swift */,
 				942779622CF01E7B00B2F2E6 /* MethodConnectionManager.swift */,
 				942779632CF01E7B00B2F2E6 /* PathConnectionManager.swift */,
-				942779642CF01E7B00B2F2E6 /* NetWorkManager.swift */,
 				942779652CF01E7B00B2F2E6 /* EnvironmentModeManager.swift */,
 				942779662CF01E7B00B2F2E6 /* TaskConnectionManager.swift */,
 				942779672CF01E7B00B2F2E6 /* APIEndPoint.swift */,
-				942779682CF01E7B00B2F2E6 /* HeaderConnectionParameter.swift */,
 			);
 			path = NetworkManager;
 			sourceTree = "<group>";
@@ -1483,6 +1487,7 @@
 		94589A662E9F7ED7008868F9 /* Order */ = {
 			isa = PBXGroup;
 			children = (
+				94DC1B9F2EA089C800EE549C /* MoveOrderItem */,
 				94589A542E9F7ED7008868F9 /* OrderDetail */,
 				94589A5D2E9F7ED7008868F9 /* OrderList */,
 				94589A652E9F7ED7008868F9 /* Payment */,
@@ -1626,8 +1631,8 @@
 			isa = PBXGroup;
 			children = (
 				94589A842E9F7F12008868F9 /* extension */,
-				94589A922E9F7F12008868F9 /* view */,
 				94589A962E9F7F12008868F9 /* viewModel */,
+				94589A922E9F7F12008868F9 /* view */,
 			);
 			path = Food;
 			sourceTree = "<group>";
@@ -1781,6 +1786,15 @@
 			path = viewModel;
 			sourceTree = "<group>";
 		};
+		94DC1B9F2EA089C800EE549C /* MoveOrderItem */ = {
+			isa = PBXGroup;
+			children = (
+				94DC1BA22EA08CB600EE549C /* MoveOrderItemsViewModel.swift */,
+				94DC1BA02EA089E700EE549C /* MoveOrderItems.swift */,
+			);
+			path = MoveOrderItem;
+			sourceTree = "<group>";
+		};
 		CD7902FC612E0D466CC0190F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1889,9 +1903,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-My_restaurant_app/Pods-My_restaurant_app-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-My_restaurant_app/Pods-My_restaurant_app-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2070,6 +2088,7 @@
 				94589A9A2E9F7F12008868F9 /* ChildrenOfBuffetListCell.swift in Sources */,
 				94589A9B2E9F7F12008868F9 /* AreaView.swift in Sources */,
 				94589A9C2E9F7F12008868F9 /* FoodList.swift in Sources */,
+				94DC1BA32EA08CBF00EE549C /* MoveOrderItemsViewModel.swift in Sources */,
 				94589A9D2E9F7F12008868F9 /* AreaViewModel.swift in Sources */,
 				94589A9E2E9F7F12008868F9 /* ChildrenOfFoodListCell.swift in Sources */,
 				94589A9F2E9F7F12008868F9 /* FoodView + extension.swift in Sources */,
@@ -2096,6 +2115,7 @@
 				94589A142E9F7DD6008868F9 /* OrderHistoryCell.swift in Sources */,
 				94589A152E9F7DD6008868F9 /* PrinterList.swift in Sources */,
 				94589A162E9F7DD6008868F9 /* AuthenticationCodeListViewModel.swift in Sources */,
+				94DC1BA12EA089E700EE549C /* MoveOrderItems.swift in Sources */,
 				94589A172E9F7DD6008868F9 /* InternalSettingViewModel.swift in Sources */,
 				94589A182E9F7DD6008868F9 /* MenuManagementViewModel.swift in Sources */,
 				94589A192E9F7DD6008868F9 /* InvoiceManagementViewModel.swift in Sources */,

@@ -74,7 +74,28 @@ struct AreaView: View {
         }
         .navigationTitle("Khu vực")
         .fullScreenCover(isPresented: $viewModel.presentDialog) {
-            dialogContent()
+            
+            if let action = viewModel.orderAction,
+               let order = viewModel.order,
+               let to = viewModel.selectedTable {
+     
+                ConfirmToMoveTable(
+                    title: action == .moveTable ? "XÁC NHẬN CHUYỂN BÀN" : "XÁC NHẬN TÁCH MÓN",
+                    from: Table(id: order.table_id, name: order.table_name,status: .using),
+                    to: to,
+                    completion: {
+                        if action == .moveTable{
+                            viewModel.moveTable(from: order.table_id, to: to.id ?? 0)
+                        }else if action == .splitFood{
+                            presentationMode.wrappedValue.dismiss()
+                            self.completion?()
+                        }
+                       
+                    }
+                )
+            } else {
+                EmptyView()
+            }
         }
         .onChange(of: viewModel.shouldNavigateBack) { shouldGoBack in
             if shouldGoBack {
@@ -103,8 +124,7 @@ struct AreaView: View {
                     .foregroundColor(.primary)
             }
 
-            
-            
+        
             HStack{
                 Circle()
                     .fill(.blue)
@@ -162,8 +182,9 @@ struct AreaView: View {
                                         break
                                     
                                     case .splitFood:
-//                                            viewModel.to = table
-//                                            viewModel.presentDialog = true
+                                        viewModel.selectedTable = table
+                                        viewModel.presentDialog = true
+                                        dLog("asd")
                                         break
                                         
                                     default:
@@ -188,25 +209,6 @@ struct AreaView: View {
         }
     }
     
-    
-    @ViewBuilder
-    func dialogContent(completion: (() -> Void)? = nil) -> some View {
-        if let action = viewModel.orderAction,
-           let order = viewModel.order,
-           let to = viewModel.selectedTable {
- 
-            ConfirmToMoveTable(
-                title: action == .moveTable ? "XÁC NHẬN CHUYỂN BÀN" : "XÁC NHẬN TÁCH MÓN",
-                from: Table(id: order.table_id, name: order.table_name,status: .using),
-                to: to,
-                completion: {
-                    viewModel.moveTable(from: order.table_id, to: to.id ?? 0)
-                }
-            )
-        } else {
-            EmptyView()
-        }
-    }
 
     private var bottomBtn:some View{
         HStack {

@@ -120,11 +120,17 @@ extension NetworkManager{
                 return environmentMode == .offline
                 ? String(format: "/api/tables/%d/open",table_id)
                 : String(format: "/api/%@/tables/%d/open", NetworkManager.version_of_order,table_id)
-//
-//            case .discount(let order_id,_,_,_,_,_):
-//
-//               return String(format: APIEndPoint.Name.urlDiscount, order_id)
-//
+            
+            case .ordersNeedMove(_, let order_id, _):
+                return environmentMode == .offline
+                ? String(format: "/api/orders/%d/order-detail-move",order_id)
+                : String(format: "/api/%@/orders/%d/order-detail-move", NetworkManager.version_of_order, order_id)
+                    
+            case .moveFoods(_,_, let destination_table_id,_,_):
+                return environmentMode == .offline
+                ? String(format: "/api/tables/%d/move-food",destination_table_id)
+                : String(format: "/api/%@/tables/%d/move-food", NetworkManager.version_of_order,destination_table_id)
+            
             case .moveTable(_,let from,_):
                return String(format: APIEndPoint.Name.urlMoveTable, from)
 

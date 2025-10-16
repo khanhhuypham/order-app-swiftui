@@ -84,6 +84,12 @@ extension NetworkManager{
             case .cancelFood(_, _, _, _, _):
                 return .POST
             
+            case .ordersNeedMove(_, _, _):
+                return .GET
+            
+            case .moveFoods(_, _, _, _, _):
+                return .POST
+            
             case .updateFoods(_,_,_):
                 return .POST
 

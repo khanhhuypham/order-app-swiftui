@@ -88,6 +88,8 @@ struct OrderDetailView:View{
                         
                     case .edit,.split:
                         EmptyView()
+                    
+                
                         
                     case .cancel:
                         TableOfCancelReasonView(completion: {reason in
@@ -101,7 +103,15 @@ struct OrderDetailView:View{
             
         })
         .sheet(isPresented: $viewModel.showSheet, content: {
-            AreaView(title:String(format: "TÁCH MÓN TỪ BÀN %@", viewModel.order.table_name))
+   
+            AreaView(
+                title:String(format: "TÁCH MÓN TỪ BÀN %@ SANG",viewModel.order.table_name),
+                order: Order(orderDetail: viewModel.order),
+                orderAction: .splitFood,
+                completion: {
+                    dLog("Huy")
+                }
+            )
         })
         
     }
@@ -282,7 +292,9 @@ struct OrderDetailView:View{
                     
             }
             
-            NavigationLink(destination: Text("Tách món"), label: {
+            Button(action: {
+                viewModel.showSheet = true
+            }, label: {
                 VStack(alignment:.center){
                     Spacer()
                     
@@ -305,6 +317,7 @@ struct OrderDetailView:View{
                 .cornerRadius(cornerRadius)
             })
             
+
             NavigationLink(destination:FoodView(order:viewModel.order,is_gift: ACTIVE),isActive:$isLinkActive) {
                 VStack{
                     Spacer()

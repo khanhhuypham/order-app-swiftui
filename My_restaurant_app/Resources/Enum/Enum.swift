@@ -13,6 +13,7 @@ enum OrderAction {
     case moveTable
     case mergeTable
     case splitFood
+    case chooseFoodToSplit
     case cancelOrder
     case sharePoint
 }

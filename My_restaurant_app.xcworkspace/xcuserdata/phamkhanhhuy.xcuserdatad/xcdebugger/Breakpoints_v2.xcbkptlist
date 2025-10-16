@@ -18,64 +18,6 @@
             endingLineNumber = "120"
             landmarkName = "createArea(area:is_confirmed:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "684C1DB3-B913-450D-B732-C713EE0E7C32 - 2ba1d5434deb3d41"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Foundation.Data, Swift.Error&gt;) -&gt; () in My_restaurant_app.AreaManagementViewModel.createArea(area: My_restaurant_app.Area, is_confirmed: Swift.Optional&lt;Swift.Int&gt;) -&gt; ()"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Utility/Management/AreaTableManagement/AreaManagementViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "120"
-                  endingLineNumber = "120">
-               </Location>
-               <Location
-                  uuid = "684C1DB3-B913-450D-B732-C713EE0E7C32 - 2ba1d5434deb3d41"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Foundation.Data, Swift.Error&gt;) -&gt; () in My_restaurant_app.AreaManagementViewModel.createArea(area: My_restaurant_app.Area, is_confirmed: Swift.Optional&lt;Swift.Int&gt;) -&gt; ()"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Utility/Management/AreaTableManagement/AreaManagementViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "120"
-                  endingLineNumber = "120">
-               </Location>
-               <Location
-                  uuid = "684C1DB3-B913-450D-B732-C713EE0E7C32 - 2ba1d5434deb3da0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Foundation.Data, Swift.Error&gt;) -&gt; () in My_restaurant_app.AreaManagementViewModel.createArea(area: My_restaurant_app.Area, is_confirmed: Swift.Optional&lt;Swift.Int&gt;) -&gt; ()"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Utility/Management/AreaTableManagement/AreaManagementViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "121"
-                  endingLineNumber = "121">
-               </Location>
-               <Location
-                  uuid = "684C1DB3-B913-450D-B732-C713EE0E7C32 - 2ba1d5434deb3d41"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Foundation.Data, Swift.Error&gt;) -&gt; () in My_restaurant_app.AreaManagementViewModel.createArea(area: My_restaurant_app.Area, is_confirmed: Swift.Optional&lt;Swift.Int&gt;) -&gt; ()"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Utility/Management/AreaTableManagement/AreaManagementViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "120"
-                  endingLineNumber = "120">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -92,78 +34,6 @@
             endingLineNumber = "164"
             landmarkName = "mainContent"
             landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "97446C11-BB12-4EB8-8531-8A1EC426E2C6 - 7e564e927f282f77"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #3 () -&gt; () in closure #2 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.buttonStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.PrimitiveButtonStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.buttonStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.PrimitiveButtonStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0)&gt; in My_restaurant_app.CreateTableView.mainContent.getter : some"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/Component/Table/CreateTableView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "164"
-                  endingLineNumber = "164">
-               </Location>
-               <Location
-                  uuid = "97446C11-BB12-4EB8-8531-8A1EC426E2C6 - 7e564e927f282f77"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #3 () -&gt; () in closure #2 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.buttonStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.PrimitiveButtonStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.buttonStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.PrimitiveButtonStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0)&gt; in My_restaurant_app.CreateTableView.mainContent.getter : some"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/Component/Table/CreateTableView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "164"
-                  endingLineNumber = "164">
-               </Location>
-               <Location
-                  uuid = "97446C11-BB12-4EB8-8531-8A1EC426E2C6 - 7e564e927f282f77"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #3 () -&gt; () in closure #2 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.buttonStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.PrimitiveButtonStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.buttonStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.PrimitiveButtonStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0)&gt; in My_restaurant_app.CreateTableView.mainContent.getter : some"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/Component/Table/CreateTableView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "164"
-                  endingLineNumber = "164">
-               </Location>
-               <Location
-                  uuid = "97446C11-BB12-4EB8-8531-8A1EC426E2C6 - 7e564e927f282f77"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #3 () -&gt; () in closure #2 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.buttonStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.PrimitiveButtonStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.buttonStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.PrimitiveButtonStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0)&gt; in My_restaurant_app.CreateTableView.mainContent.getter : some"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/Component/Table/CreateTableView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "164"
-                  endingLineNumber = "164">
-               </Location>
-               <Location
-                  uuid = "97446C11-BB12-4EB8-8531-8A1EC426E2C6 - 7e564e927f282f77"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #3 () -&gt; () in closure #2 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.buttonStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.PrimitiveButtonStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.buttonStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.PrimitiveButtonStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0)&gt; in My_restaurant_app.CreateTableView.mainContent.getter : some"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/Component/Table/CreateTableView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "164"
-                  endingLineNumber = "164">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -180,50 +50,6 @@
             endingLineNumber = "163"
             landmarkName = "mainContent"
             landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "5146A395-5120-49B5-BE48-1332C04E4D64 - 7e564e927f282fa8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #3 () -&gt; () in closure #2 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.buttonStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.PrimitiveButtonStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.buttonStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.PrimitiveButtonStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0)&gt; in My_restaurant_app.CreateTableView.mainContent.getter : some"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/Component/Table/CreateTableView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "163"
-                  endingLineNumber = "163">
-               </Location>
-               <Location
-                  uuid = "5146A395-5120-49B5-BE48-1332C04E4D64 - 7e564e927f282fa8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #3 () -&gt; () in closure #2 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.buttonStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.PrimitiveButtonStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.buttonStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.PrimitiveButtonStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0)&gt; in My_restaurant_app.CreateTableView.mainContent.getter : some"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/Component/Table/CreateTableView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "163"
-                  endingLineNumber = "163">
-               </Location>
-               <Location
-                  uuid = "5146A395-5120-49B5-BE48-1332C04E4D64 - 7e564e927f282fa8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #3 () -&gt; () in closure #2 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.buttonStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.PrimitiveButtonStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.buttonStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.PrimitiveButtonStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0)&gt; in My_restaurant_app.CreateTableView.mainContent.getter : some"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/Component/Table/CreateTableView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "163"
-                  endingLineNumber = "163">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -256,78 +82,6 @@
             endingLineNumber = "154"
             landmarkName = "createItem(item:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "6CEB6709-A4AF-4995-B1EE-357F87E17E2A - bead4adc817f76f3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "My_restaurant_app.CreateFoodViewModel.createItem(item: My_restaurant_app.Food) -&gt; ()"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Utility/Management/MenuManagement/FoodManagement/createFood/CreateFoodViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "156"
-                  endingLineNumber = "156">
-               </Location>
-               <Location
-                  uuid = "6CEB6709-A4AF-4995-B1EE-357F87E17E2A - 51865b4c9a745493"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Foundation.Data, Swift.Error&gt;) -&gt; () in My_restaurant_app.CreateFoodViewModel.createItem(item: My_restaurant_app.Food) -&gt; ()"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Utility/Management/MenuManagement/FoodManagement/createFood/CreateFoodViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "156"
-                  endingLineNumber = "156">
-               </Location>
-               <Location
-                  uuid = "6CEB6709-A4AF-4995-B1EE-357F87E17E2A - bead4adc817f7631"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "My_restaurant_app.CreateFoodViewModel.createItem(item: My_restaurant_app.Food) -&gt; ()"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Utility/Management/MenuManagement/FoodManagement/createFood/CreateFoodViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "154"
-                  endingLineNumber = "154">
-               </Location>
-               <Location
-                  uuid = "6CEB6709-A4AF-4995-B1EE-357F87E17E2A - 51865b4c9a745451"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Foundation.Data, Swift.Error&gt;) -&gt; () in My_restaurant_app.CreateFoodViewModel.createItem(item: My_restaurant_app.Food) -&gt; ()"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Utility/Management/MenuManagement/FoodManagement/createFood/CreateFoodViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "154"
-                  endingLineNumber = "154">
-               </Location>
-               <Location
-                  uuid = "6CEB6709-A4AF-4995-B1EE-357F87E17E2A - bead4adc817f7631"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "My_restaurant_app.CreateFoodViewModel.createItem(item: My_restaurant_app.Food) -&gt; ()"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Utility/Management/MenuManagement/FoodManagement/createFood/CreateFoodViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "154"
-                  endingLineNumber = "154">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -344,64 +98,6 @@
             endingLineNumber = "185"
             landmarkName = "createTable(table:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "8C70BD1E-AA52-4FD5-A793-F508900F3276 - d647245ce8a91f31"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Foundation.Data, Swift.Error&gt;) -&gt; () in My_restaurant_app.AreaManagementViewModel.createTable(table: My_restaurant_app.Table) -&gt; ()"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Utility/Management/AreaTableManagement/AreaManagementViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "187"
-                  endingLineNumber = "187">
-               </Location>
-               <Location
-                  uuid = "8C70BD1E-AA52-4FD5-A793-F508900F3276 - d647245ce8a918d0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Foundation.Data, Swift.Error&gt;) -&gt; () in My_restaurant_app.AreaManagementViewModel.createTable(table: My_restaurant_app.Table) -&gt; ()"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Utility/Management/AreaTableManagement/AreaManagementViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "186"
-                  endingLineNumber = "186">
-               </Location>
-               <Location
-                  uuid = "8C70BD1E-AA52-4FD5-A793-F508900F3276 - 1f659110105f1b64"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (My_restaurant_app.Area) -&gt; Swift.Bool in closure #1 (Swift.Result&lt;Foundation.Data, Swift.Error&gt;) -&gt; () in My_restaurant_app.AreaManagementViewModel.createTable(table: My_restaurant_app.Table) -&gt; ()"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Utility/Management/AreaTableManagement/AreaManagementViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "186"
-                  endingLineNumber = "186">
-               </Location>
-               <Location
-                  uuid = "8C70BD1E-AA52-4FD5-A793-F508900F3276 - 99216e5b73f7bdb2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "My_restaurant_app.AreaManagementViewModel.createTable(table: My_restaurant_app.Table) -&gt; ()"
-                  moduleName = "My_restaurant_app.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/order-swiftui/My_restaurant_app/Application/scenes/Utility/Management/AreaTableManagement/AreaManagementViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "185"
-                  endingLineNumber = "185">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -483,62 +179,6 @@
             landmarkName = "firstSetup(order:)"
             landmarkType = "7">
             <Locations>
-               <Location
-                  uuid = "8683D53B-95F9-4C85-9B03-49FD17335CC9 - fe5f58d2fa7ea993"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "My_restaurant_app.FoodView.firstSetup(order: My_restaurant_app.OrderDetail) -&gt; ()"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Food/extension/FoodView%20+%20extension.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "39"
-                  endingLineNumber = "39">
-               </Location>
-               <Location
-                  uuid = "8683D53B-95F9-4C85-9B03-49FD17335CC9 - fe5f58d2fa7ea993"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "My_restaurant_app.FoodView.firstSetup(order: My_restaurant_app.OrderDetail) -&gt; ()"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Food/extension/FoodView%20+%20extension.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "39"
-                  endingLineNumber = "39">
-               </Location>
-               <Location
-                  uuid = "8683D53B-95F9-4C85-9B03-49FD17335CC9 - fe5f58d2fa7ea9b2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "My_restaurant_app.FoodView.firstSetup(order: My_restaurant_app.OrderDetail) -&gt; ()"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Food/extension/FoodView%20+%20extension.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "38"
-                  endingLineNumber = "38">
-               </Location>
-               <Location
-                  uuid = "8683D53B-95F9-4C85-9B03-49FD17335CC9 - fe5f58d2fa7ea9b2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "My_restaurant_app.FoodView.firstSetup(order: My_restaurant_app.OrderDetail) -&gt; ()"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Food/extension/FoodView%20+%20extension.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "38"
-                  endingLineNumber = "38">
-               </Location>
                <Location
                   uuid = "8683D53B-95F9-4C85-9B03-49FD17335CC9 - f211abc258d4e2cd"
                   shouldBeEnabled = "Yes"
@@ -648,78 +288,6 @@
             endingLineNumber = "119"
             landmarkName = "handleChooseCategory(id:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "543FE968-DE1A-4D76-AEB0-9F57124DAD33 - c4e1a020c2fe8272"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "My_restaurant_app.FoodView.handleChooseCategory(id: Swift.Int) -&gt; ()"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Food/extension/FoodView%20+%20extension.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "121"
-                  endingLineNumber = "121">
-               </Location>
-               <Location
-                  uuid = "543FE968-DE1A-4D76-AEB0-9F57124DAD33 - c4e1a020c2fe8272"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "My_restaurant_app.FoodView.handleChooseCategory(id: Swift.Int) -&gt; ()"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Food/extension/FoodView%20+%20extension.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "121"
-                  endingLineNumber = "121">
-               </Location>
-               <Location
-                  uuid = "543FE968-DE1A-4D76-AEB0-9F57124DAD33 - c4e1a020c2fe82b4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "My_restaurant_app.FoodView.handleChooseCategory(id: Swift.Int) -&gt; ()"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Food/extension/FoodView%20+%20extension.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "123"
-                  endingLineNumber = "123">
-               </Location>
-               <Location
-                  uuid = "543FE968-DE1A-4D76-AEB0-9F57124DAD33 - c4e1a020c2fe8230"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "My_restaurant_app.FoodView.handleChooseCategory(id: Swift.Int) -&gt; ()"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Food/extension/FoodView%20+%20extension.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "119"
-                  endingLineNumber = "119">
-               </Location>
-               <Location
-                  uuid = "543FE968-DE1A-4D76-AEB0-9F57124DAD33 - c8af53306054b609"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "My_restaurant_app.FoodView.handleChooseCategory(id: Swift.Int) -&gt; ()"
-                  moduleName = "My_restaurant_app.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/order-swiftui/My_restaurant_app/Application/scenes/Food/extension/FoodView%20+%20extension.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "119"
-                  endingLineNumber = "119">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -753,48 +321,6 @@
             landmarkName = "processToAddFood()"
             landmarkType = "7">
             <Locations>
-               <Location
-                  uuid = "37B01741-5CDE-4E66-9FDB-C19495DD33B3 - 6c072a4ca9afbb59"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "My_restaurant_app.FoodViewModel.processToAddFood() -&gt; ()"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Food/viewModel/FoodViewModel%20+%20extension%20+%20AddFood.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "16"
-                  endingLineNumber = "16">
-               </Location>
-               <Location
-                  uuid = "37B01741-5CDE-4E66-9FDB-C19495DD33B3 - 81483045804ca706"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (My_restaurant_app.Food) -&gt; My_restaurant_app.FoodRequest in My_restaurant_app.FoodViewModel.processToAddFood() -&gt; ()"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Food/viewModel/FoodViewModel%20+%20extension%20+%20AddFood.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17">
-               </Location>
-               <Location
-                  uuid = "37B01741-5CDE-4E66-9FDB-C19495DD33B3 - 81483045804ca706"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (My_restaurant_app.Food) -&gt; My_restaurant_app.FoodRequest in My_restaurant_app.FoodViewModel.processToAddFood() -&gt; ()"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Food/viewModel/FoodViewModel%20+%20extension%20+%20AddFood.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17">
-               </Location>
                <Location
                   uuid = "37B01741-5CDE-4E66-9FDB-C19495DD33B3 - 24110ad163a52937"
                   shouldBeEnabled = "Yes"
@@ -886,106 +412,6 @@
             endingLineNumber = "23"
             landmarkName = "body"
             landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "23027D5B-0532-453D-B6C5-79C844569AC7 - 3adf46c43f2b37e5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;, SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;, SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;)&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onAppear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0 in My_restaurant_app.PrinterSetting.body.getter : some"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Utility/Setting/PrinterSetting/PrinterList/PrinterSetting.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "26"
-                  endingLineNumber = "26">
-               </Location>
-               <Location
-                  uuid = "23027D5B-0532-453D-B6C5-79C844569AC7 - caf6454840e494d6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Swift.Int, My_restaurant_app.Printer) -&gt; &lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderCell(printer: SwiftUI.Binding&lt;My_restaurant_app.Printer&gt;) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;, SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;, SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;)&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onAppear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0 in My_restaurant_app.PrinterSetting.body.getter : some"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Utility/Setting/PrinterSetting/PrinterList/PrinterSetting.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "23"
-                  endingLineNumber = "23">
-               </Location>
-               <Location
-                  uuid = "23027D5B-0532-453D-B6C5-79C844569AC7 - 25333f40038a9c1c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Swift.Int, My_restaurant_app.Printer) -&gt; SwiftUI.NavigationLink&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderCell(printer: SwiftUI.Binding&lt;My_restaurant_app.Printer&gt;) -&gt; some&gt;&gt;.0, My_restaurant_app.lazyNavigate&lt;My_restaurant_app.PrinterDetail&gt;&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;, SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;, SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;)&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onAppear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0 in My_restaurant_app.PrinterSetting.body.getter : some"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Utility/Setting/PrinterSetting/PrinterList/PrinterSetting.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "23"
-                  endingLineNumber = "23">
-               </Location>
-               <Location
-                  uuid = "23027D5B-0532-453D-B6C5-79C844569AC7 - 162abb067670a5b9"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; &lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderCell(printer: SwiftUI.Binding&lt;My_restaurant_app.Printer&gt;) -&gt; some&gt;&gt;.0 in closure #2 (Swift.Int, My_restaurant_app.Printer) -&gt; SwiftUI.NavigationLink&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderCell(printer: SwiftUI.Binding&lt;My_restaurant_app.Printer&gt;) -&gt; some&gt;&gt;.0, My_restaurant_app.lazyNavigate&lt;My_restaurant_app.PrinterDetail&gt;&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;, SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;, SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;)&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onAppear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0 in My_restaurant_app.PrinterSetting.body.getter : some"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Utility/Setting/PrinterSetting/PrinterList/PrinterSetting.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "24"
-                  endingLineNumber = "24">
-               </Location>
-               <Location
-                  uuid = "23027D5B-0532-453D-B6C5-79C844569AC7 - e24b093dbb2bdca5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Swift.Int, My_restaurant_app.Printer) -&gt; &lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0 in closure #2 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;, SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;, SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.NavigationLink&lt;SwiftUI.EmptyView, My_restaurant_app.lazyNavigate&lt;My_restaurant_app.PrinterDetail&gt;&gt;, &lt;&lt;opaque return type of SwiftUI.View.onAppear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0)&gt; in My_restaurant_app.PrinterSetting.body.getter : some"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Utility/Setting/PrinterSetting/PrinterList/PrinterSetting.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "23"
-                  endingLineNumber = "23">
-               </Location>
-               <Location
-                  uuid = "23027D5B-0532-453D-B6C5-79C844569AC7 - 733690e7245fd834"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #2 (Swift.Int, My_restaurant_app.Printer) -&gt; &lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0 in closure #2 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;, SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;, SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.NavigationLink&lt;SwiftUI.EmptyView, My_restaurant_app.lazyNavigate&lt;My_restaurant_app.PrinterDetail&gt;&gt;, &lt;&lt;opaque return type of SwiftUI.View.onAppear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0)&gt; in My_restaurant_app.PrinterSetting.body.getter : some"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Utility/Setting/PrinterSetting/PrinterList/PrinterSetting.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "25"
-                  endingLineNumber = "25">
-               </Location>
-               <Location
-                  uuid = "23027D5B-0532-453D-B6C5-79C844569AC7 - 733690e7245fd815"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #2 (Swift.Int, My_restaurant_app.Printer) -&gt; &lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0 in closure #2 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;, SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;, SwiftUI.Section&lt;&lt;&lt;opaque return type of My_restaurant_app.PrinterSetting.renderHeader(title: Swift.String) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.defaultListRowStyle() -&gt; some&gt;&gt;.0, SwiftUI.EmptyView&gt;)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.NavigationLink&lt;SwiftUI.EmptyView, My_restaurant_app.lazyNavigate&lt;My_restaurant_app.PrinterDetail&gt;&gt;, &lt;&lt;opaque return type of SwiftUI.View.onAppear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0)&gt; in My_restaurant_app.PrinterSetting.body.getter : some"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Utility/Setting/PrinterSetting/PrinterList/PrinterSetting.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "24"
-                  endingLineNumber = "24">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1052,34 +478,6 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "93B7AD27-C3A3-4190-864E-4CD76E7723D0 - 9885b1294b24c815"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SwiftUI.View.presentDialog&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(isPresented: SwiftUI.Binding&lt;Swift.Bool&gt;, showWithAnimation: Swift.Bool, dismissWithAnimation: Swift.Bool, afterDismiss: Swift.Optional&lt;() -&gt; ()&gt;, content: () -&gt; &#x3c4;_1_0) -&gt; some"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Extension/UIView%20+%20extension.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "143"
-                  endingLineNumber = "143">
-               </Location>
-               <Location
-                  uuid = "93B7AD27-C3A3-4190-864E-4CD76E7723D0 - 29d0ec87931338f9"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Bool) -&gt; () in SwiftUI.View.presentDialog&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(isPresented: SwiftUI.Binding&lt;Swift.Bool&gt;, showWithAnimation: Swift.Bool, dismissWithAnimation: Swift.Bool, afterDismiss: Swift.Optional&lt;() -&gt; ()&gt;, content: () -&gt; &#x3c4;_1_0) -&gt; some"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Extension/UIView%20+%20extension.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "144"
-                  endingLineNumber = "144">
-               </Location>
-               <Location
                   uuid = "93B7AD27-C3A3-4190-864E-4CD76E7723D0 - fe3e59dfe2a8275b"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
@@ -1140,36 +538,6 @@
             endingLineNumber = "84"
             landmarkName = "getOrders()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "C009FA1E-72FB-4CCF-81D4-C2120F2C8121 - 419f3552633848e7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 (Swift.Result&lt;Foundation.Data, Swift.Error&gt;) -&gt; () in My_restaurant_app.OrderListViewModel.getOrders() -&gt; ()"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Order/OrderList/OrderListViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "84"
-                  endingLineNumber = "84">
-               </Location>
-               <Location
-                  uuid = "C009FA1E-72FB-4CCF-81D4-C2120F2C8121 - 8425056fc9b3fea7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Foundation.Data, Swift.Error&gt;) -&gt; () in My_restaurant_app.OrderListViewModel.getOrders() -&gt; ()"
-                  moduleName = "My_restaurant_app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/My_restaurant_app/My_restaurant_app/Application/scenes/Order/OrderList/OrderListViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "84"
-                  endingLineNumber = "84">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

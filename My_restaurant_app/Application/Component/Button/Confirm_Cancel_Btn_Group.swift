@@ -12,6 +12,8 @@ struct Confirm_Cancel_Btn_Group: View {
     @Injected(\.colors) var color: ColorPalette
     @State var validForm = true
     
+    
+    
     var body: some View {
        
         HStack(spacing:0){

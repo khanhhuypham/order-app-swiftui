@@ -255,6 +255,23 @@ extension NetworkManager{
 
             case .openTable(let table_id):
                 return APIParam(body: ["table_id": table_id])
+            
+            
+            case .ordersNeedMove(let branch_id, let order_id, let food_status):
+                return APIParam(query: [
+                        "id": order_id,
+                        "branch_id": branch_id,
+                        "food_status": food_status
+                ])
+                
+            case .moveFoods(let branch_id, let order_id, let destination_table_id, let target_table_id, let foods_move):
+                return APIParam(body: [
+                        "from_order_id": order_id,
+                        "destination_table_id":destination_table_id,
+                        "to_table_id": target_table_id,
+                        "branch_id": branch_id,
+                        "list_food": foods_move.toDictionary()
+                ])
 
             case .moveTable(let branch_id,  let from, let to):
                 return APIParam(body: [
@@ -356,14 +373,14 @@ extension NetworkManager{
                 let key_search
             ):
                 return APIParam(query: [
-                        "restaurant_brand_id":brand_id,
-                        "branch_id": branch_id,
-                        "from_date":from_date,
-                        "to_date":to_date,
-                        "order_status": order_status,
-                        "limit":limit,
-                        "page":page,
-                        "key_search":key_search
+                    "restaurant_brand_id":brand_id,
+                    "branch_id": branch_id,
+                    "from_date":from_date,
+                    "to_date":to_date,
+                    "order_status": order_status,
+                    "limit":limit,
+                    "page":page,
+                    "key_search":key_search
                 ])
             
             case .getTotalAmountOfOrders(

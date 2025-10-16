@@ -92,8 +92,6 @@ extension NetworkManager{
             case .getBrandSetting(_):
                 return headerJava(ProjectId: .PROJECT_ID_DASHBOARD, Method: .GET)
             
-          
-            
             case .postApplyOnlyCashAmount(_):
                 return headerJava(ProjectId: .PROJECT_ID_DASHBOARD, Method: .POST)
             
@@ -134,15 +132,23 @@ extension NetworkManager{
 
             case .addNoteToOrder(_, _, _):
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)
-//                
+                
             case .reasonCancelFoods(_):
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .GET)
+            
             case .cancelFood(_, _, _, _, _):
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)
             
             case .updateFoods(_, _, _):
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)
 
+            case .ordersNeedMove(_, _, _):
+                return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .GET)
+            
+            case .moveFoods(_, _, _, _, _):
+                return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)
+            
+            
             case .openTable(_):
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)
             

@@ -235,8 +235,15 @@ struct OrderListView<Model>: View where Model: OrderListViewModel{
                         AreaView(
                             title:String(format: "TÁCH MÓN TỪ BÀN %@ SANG",order.table_name),
                             order: order,
-                            orderAction: orderAction
+                            orderAction: orderAction,
+                            completion: {
+        
+                                viewModel.presentSheet = (show:true,action:OrderAction.chooseFoodToSplit)
+                            }
                         )
+                    
+                    case .chooseFoodToSplit:
+                        MoveOrderItems(order: order)
                     
                     case .cancelOrder:
                         EmptyView()
@@ -244,6 +251,8 @@ struct OrderListView<Model>: View where Model: OrderListViewModel{
                     case .sharePoint:
 //                        SharePoint()
                         EmptyView()
+                    
+                    
                 }
                 
                 
