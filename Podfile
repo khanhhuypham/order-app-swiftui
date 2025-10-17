@@ -1,21 +1,22 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
 platform :ios, '13.0'
+
 target 'My_restaurant_app' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for My_restaurant_app
+
   pod 'Kingfisher'
   pod 'Socket.IO-Client-Swift'
-  pod "SwiftSignatureView"
-  pod 'OTPFieldView'
   pod 'AlertToast'
-  
-#    pod 'lottie-ios'
-#  pod 'RealmSwift'
-  # Pods for Example
   pod 'Wormholy'
+
+  target 'UnitTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+
 end
 
 post_install do |installer|
@@ -25,3 +26,4 @@ post_install do |installer|
     end
   end
 end
+

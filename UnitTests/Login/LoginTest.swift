@@ -1,13 +1,14 @@
 //
-//  LoginViewModelTests.swift
-//  TechresOrder
+//  LoginTest.swift
+//  UnitTests
 //
-//  Created by Pham Khanh Huy on 14/10/25.
+//  Created by Pham Khanh Huy on 17/10/25.
 //
+
 import XCTest
 @testable import My_restaurant_app
 
-final class LoginViewModelTests: XCTestCase {
+final class LoginTest: XCTestCase {
     var sut: LoginViewModel! // System Under Test
 
     override func setUp() {

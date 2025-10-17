@@ -1,40 +1,32 @@
 PODS:
   - AlertToast (1.3.9)
-  - Kingfisher (8.4.0)
-  - OTPFieldView (1.0.1)
+  - Kingfisher (8.6.0)
   - Socket.IO-Client-Swift (16.1.1):
     - Starscream (~> 4.0.8)
   - Starscream (4.0.8)
-  - SwiftSignatureView (3.2.1)
   - Wormholy (1.7.0)
 
 DEPENDENCIES:
   - AlertToast
   - Kingfisher
-  - OTPFieldView
   - Socket.IO-Client-Swift
-  - SwiftSignatureView
   - Wormholy
 
 SPEC REPOS:
   trunk:
     - AlertToast
     - Kingfisher
-    - OTPFieldView
     - Socket.IO-Client-Swift
     - Starscream
-    - SwiftSignatureView
     - Wormholy
 
 SPEC CHECKSUMS:
   AlertToast: e8db15da727beff75500bcf33a78cd617f408fa1
-  Kingfisher: b14cc47bbfa7a3c150dd12962ee9c86338545629
-  OTPFieldView: 700a752fe62c41d1c4914c78aa500fb30d97c255
+  Kingfisher: 64278f126a815d0e2d391cdf71311b85882c4de0
   Socket.IO-Client-Swift: 3614bea82ba005df1c2ff01154f4004993e05ad7
   Starscream: 19b5533ddb925208db698f0ac508a100b884a1b9
-  SwiftSignatureView: b09443ea8359a5bc267202226f4606fc03193173
   Wormholy: ab1c8c2f02f58587a0941deb0088555ffbf039a1
 
-PODFILE CHECKSUM: a3989ff567e65e0995d70bfa1128a93b6002a694
+PODFILE CHECKSUM: ec226c464dc6d26dc9be6e43e5d28e4040bcf315
 
 COCOAPODS: 1.16.2
