@@ -13,6 +13,7 @@ import SocketIO
 class OrderListViewModel: ObservableObject {
     @Injected(\.utils.toastUtils) var toast
     @Injected(\.utils) private var utils
+   
     
     @Published var orderList:[Order] = []
     

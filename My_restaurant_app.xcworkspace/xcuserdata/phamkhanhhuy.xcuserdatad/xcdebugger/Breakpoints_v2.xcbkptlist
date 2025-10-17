@@ -98,36 +98,6 @@
             endingLineNumber = "185"
             landmarkName = "createTable(table:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "8C70BD1E-AA52-4FD5-A793-F508900F3276 - 99216e5b73f7bdb2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "My_restaurant_app.AreaManagementViewModel.createTable(table: My_restaurant_app.Table) -&gt; ()"
-                  moduleName = "My_restaurant_app.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/order-swiftui/My_restaurant_app/Application/scenes/Utility/Management/AreaTableManagement/AreaManagementViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "185"
-                  endingLineNumber = "185">
-               </Location>
-               <Location
-                  uuid = "8C70BD1E-AA52-4FD5-A793-F508900F3276 - 99216e5b73f7bdb2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "My_restaurant_app.AreaManagementViewModel.createTable(table: My_restaurant_app.Table) -&gt; ()"
-                  moduleName = "My_restaurant_app.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/order-swiftui/My_restaurant_app/Application/scenes/Utility/Management/AreaTableManagement/AreaManagementViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "185"
-                  endingLineNumber = "185">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -192,36 +162,6 @@
             endingLineNumber = "119"
             landmarkName = "handleChooseCategory(id:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "543FE968-DE1A-4D76-AEB0-9F57124DAD33 - c8af53306054b609"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "My_restaurant_app.FoodView.handleChooseCategory(id: Swift.Int) -&gt; ()"
-                  moduleName = "My_restaurant_app.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/order-swiftui/My_restaurant_app/Application/scenes/Food/extension/FoodView%20+%20extension.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "119"
-                  endingLineNumber = "119">
-               </Location>
-               <Location
-                  uuid = "543FE968-DE1A-4D76-AEB0-9F57124DAD33 - c8af53306054b609"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "My_restaurant_app.FoodView.handleChooseCategory(id: Swift.Int) -&gt; ()"
-                  moduleName = "My_restaurant_app.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/order-swiftui/My_restaurant_app/Application/scenes/Food/extension/FoodView%20+%20extension.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "119"
-                  endingLineNumber = "119">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -270,36 +210,6 @@
             endingLineNumber = "160"
             landmarkName = "present(_:showWithAnimation:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "C83193C3-1D95-4B7C-9C58-77C9626F776C - 6716d9483646a44a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SwiftUI.View.present&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(_: () -&gt; &#x3c4;_1_0, showWithAnimation: Swift.Bool) -&gt; ()"
-                  moduleName = "My_restaurant_app.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/order-swiftui/My_restaurant_app/Extension/UIView%20+%20extension.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "160"
-                  endingLineNumber = "160">
-               </Location>
-               <Location
-                  uuid = "C83193C3-1D95-4B7C-9C58-77C9626F776C - 6716d9483646a44a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SwiftUI.View.present&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(_: () -&gt; &#x3c4;_1_0, showWithAnimation: Swift.Bool) -&gt; ()"
-                  moduleName = "My_restaurant_app.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/order-swiftui/My_restaurant_app/Extension/UIView%20+%20extension.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "160"
-                  endingLineNumber = "160">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -316,36 +226,6 @@
             endingLineNumber = "154"
             landmarkName = "present(_:showWithAnimation:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "0A0AFE91-12C4-4E54-BA55-4A37964F78DD - 6716d9483646a4e1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SwiftUI.View.present&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(_: () -&gt; &#x3c4;_1_0, showWithAnimation: Swift.Bool) -&gt; ()"
-                  moduleName = "My_restaurant_app.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/order-swiftui/My_restaurant_app/Extension/UIView%20+%20extension.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "155"
-                  endingLineNumber = "155">
-               </Location>
-               <Location
-                  uuid = "0A0AFE91-12C4-4E54-BA55-4A37964F78DD - 6716d9483646a480"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SwiftUI.View.present&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(_: () -&gt; &#x3c4;_1_0, showWithAnimation: Swift.Bool) -&gt; ()"
-                  moduleName = "My_restaurant_app.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/order-swiftui/My_restaurant_app/Extension/UIView%20+%20extension.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "154"
-                  endingLineNumber = "154">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -362,36 +242,6 @@
             endingLineNumber = "166"
             landmarkName = "dismiss(_:afterDismiss:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "7467F182-5878-4FD1-BE93-839342E7634B - 33918fa3f389efe5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SwiftUI.View.dismiss(_: Swift.Bool, afterDismiss: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; ()"
-                  moduleName = "My_restaurant_app.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/order-swiftui/My_restaurant_app/Extension/UIView%20+%20extension.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "167"
-                  endingLineNumber = "167">
-               </Location>
-               <Location
-                  uuid = "7467F182-5878-4FD1-BE93-839342E7634B - 33918fa3f389ef84"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SwiftUI.View.dismiss(_: Swift.Bool, afterDismiss: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; ()"
-                  moduleName = "My_restaurant_app.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/order-swiftui/My_restaurant_app/Extension/UIView%20+%20extension.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "166"
-                  endingLineNumber = "166">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -408,50 +258,6 @@
             endingLineNumber = "143"
             landmarkName = "presentDialog(isPresented:showWithAnimation:dismissWithAnimation:afterDismiss:@ViewBuilder:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "93B7AD27-C3A3-4190-864E-4CD76E7723D0 - fe3e59dfe2a8275b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SwiftUI.View.presentDialog&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(isPresented: SwiftUI.Binding&lt;Swift.Bool&gt;, showWithAnimation: Swift.Bool, dismissWithAnimation: Swift.Bool, afterDismiss: Swift.Optional&lt;() -&gt; ()&gt;, content: () -&gt; &#x3c4;_1_0) -&gt; some"
-                  moduleName = "My_restaurant_app.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/order-swiftui/My_restaurant_app/Extension/UIView%20+%20extension.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "144"
-                  endingLineNumber = "144">
-               </Location>
-               <Location
-                  uuid = "93B7AD27-C3A3-4190-864E-4CD76E7723D0 - 4f6b04713a9fd471"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Bool) -&gt; () in SwiftUI.View.presentDialog&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(isPresented: SwiftUI.Binding&lt;Swift.Bool&gt;, showWithAnimation: Swift.Bool, dismissWithAnimation: Swift.Bool, afterDismiss: Swift.Optional&lt;() -&gt; ()&gt;, content: () -&gt; &#x3c4;_1_0) -&gt; some"
-                  moduleName = "My_restaurant_app.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/order-swiftui/My_restaurant_app/Extension/UIView%20+%20extension.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "145"
-                  endingLineNumber = "145">
-               </Location>
-               <Location
-                  uuid = "93B7AD27-C3A3-4190-864E-4CD76E7723D0 - fe3e59dfe2a82774"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SwiftUI.View.presentDialog&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(isPresented: SwiftUI.Binding&lt;Swift.Bool&gt;, showWithAnimation: Swift.Bool, dismissWithAnimation: Swift.Bool, afterDismiss: Swift.Optional&lt;() -&gt; ()&gt;, content: () -&gt; &#x3c4;_1_0) -&gt; some"
-                  moduleName = "My_restaurant_app.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/order-swiftui/My_restaurant_app/Extension/UIView%20+%20extension.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "143"
-                  endingLineNumber = "143">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -548,36 +354,6 @@
             endingLineNumber = "29"
             landmarkName = "alertToast"
             landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "16D8343C-F158-4071-8BAB-A4A300953CF9 - 508024c32229613"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "My_restaurant_app.TabBar.alertToast.didset : AlertToast.AlertToast"
-                  moduleName = "My_restaurant_app.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/order-swiftui/My_restaurant_app/Application/Tabbar/view/TabBar.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "29"
-                  endingLineNumber = "29">
-               </Location>
-               <Location
-                  uuid = "16D8343C-F158-4071-8BAB-A4A300953CF9 - 508024c32229613"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "My_restaurant_app.TabBar.alertToast.didset : AlertToast.AlertToast"
-                  moduleName = "My_restaurant_app.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/order-swiftui/My_restaurant_app/Application/Tabbar/view/TabBar.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "29"
-                  endingLineNumber = "29">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -594,36 +370,6 @@
             endingLineNumber = "122"
             landmarkName = "body"
             landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "76C64F21-ABD4-4592-83A1-19878265EC16 - 4e143a29ba7ae2b1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (AlertToast.AlertToast) -&gt; () in closure #2 () -&gt; () in closure #1 (SwiftUI.GeometryProxy) -&gt; &lt;&lt;opaque return type of SwiftUI.View.environmentObject&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Combine.ObservableObject&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0 in My_restaurant_app.TabBar.body.getter : some"
-                  moduleName = "My_restaurant_app.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/order-swiftui/My_restaurant_app/Application/Tabbar/view/TabBar.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "122"
-                  endingLineNumber = "122">
-               </Location>
-               <Location
-                  uuid = "76C64F21-ABD4-4592-83A1-19878265EC16 - 4e143a29ba7ae2b1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (AlertToast.AlertToast) -&gt; () in closure #2 () -&gt; () in closure #1 (SwiftUI.GeometryProxy) -&gt; &lt;&lt;opaque return type of SwiftUI.View.environmentObject&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Combine.ObservableObject&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0 in My_restaurant_app.TabBar.body.getter : some"
-                  moduleName = "My_restaurant_app.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/order-swiftui/My_restaurant_app/Application/Tabbar/view/TabBar.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "122"
-                  endingLineNumber = "122">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -640,36 +386,6 @@
             endingLineNumber = "171"
             landmarkName = "body"
             landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "F0664166-23DB-4324-BFB4-E24BA2ECE24B - 8cd157680ffd27db"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #3 (Swift.Optional&lt;Swift.Int&gt;) -&gt; () in My_restaurant_app.PrinterDetail.body.getter : some"
-                  moduleName = "My_restaurant_app.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/order-swiftui/My_restaurant_app/Application/scenes/Utility/Setting/PrinterSetting/PrinterDetail/PrinterDetail.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "171"
-                  endingLineNumber = "171">
-               </Location>
-               <Location
-                  uuid = "F0664166-23DB-4324-BFB4-E24BA2ECE24B - 8cd157680ffd27db"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #3 (Swift.Optional&lt;Swift.Int&gt;) -&gt; () in My_restaurant_app.PrinterDetail.body.getter : some"
-                  moduleName = "My_restaurant_app.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/order-swiftui/My_restaurant_app/Application/scenes/Utility/Setting/PrinterSetting/PrinterDetail/PrinterDetail.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "171"
-                  endingLineNumber = "171">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -64,6 +64,7 @@
 		94277AD82CF01E7B00B2F2E6 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94277A402CF01E7B00B2F2E6 /* Brand.swift */; };
 		94277ADA2CF01E7B00B2F2E6 /* VersionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94277A422CF01E7B00B2F2E6 /* VersionModel.swift */; };
 		9437FABF2EA22F3D00DAF8B1 /* LoginTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9437FABE2EA22F3D00DAF8B1 /* LoginTest.swift */; };
+		9437FAC22EA230E900DAF8B1 /* OrderListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9437FAC12EA230E900DAF8B1 /* OrderListViewModelTest.swift */; };
 		945899182E9F7B36008868F9 /* SavedLoginInfor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945899162E9F7B36008868F9 /* SavedLoginInfor.swift */; };
 		945899192E9F7B36008868F9 /* AuthenticationToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945899152E9F7B36008868F9 /* AuthenticationToken.swift */; };
 		9458991A2E9F7B36008868F9 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945899142E9F7B36008868F9 /* Account.swift */; };
@@ -315,6 +316,7 @@
 		94277A422CF01E7B00B2F2E6 /* VersionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionModel.swift; sourceTree = "<group>"; };
 		943508CA2EA2277700007105 /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9437FABE2EA22F3D00DAF8B1 /* LoginTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTest.swift; sourceTree = "<group>"; };
+		9437FAC12EA230E900DAF8B1 /* OrderListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListViewModelTest.swift; sourceTree = "<group>"; };
 		945899142E9F7B36008868F9 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		945899152E9F7B36008868F9 /* AuthenticationToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationToken.swift; sourceTree = "<group>"; };
 		945899162E9F7B36008868F9 /* SavedLoginInfor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedLoginInfor.swift; sourceTree = "<group>"; };
@@ -872,6 +874,7 @@
 		9437FABA2EA22F1600DAF8B1 /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
+				9437FAC02EA230D400DAF8B1 /* OrderList */,
 				9437FABB2EA22F1F00DAF8B1 /* Login */,
 			);
 			path = UnitTests;
@@ -883,6 +886,14 @@
 				9437FABE2EA22F3D00DAF8B1 /* LoginTest.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		9437FAC02EA230D400DAF8B1 /* OrderList */ = {
+			isa = PBXGroup;
+			children = (
+				9437FAC12EA230E900DAF8B1 /* OrderListViewModelTest.swift */,
+			);
+			path = OrderList;
 			sourceTree = "<group>";
 		};
 		945899172E9F7B36008868F9 /* Account */ = {
@@ -2270,6 +2281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9437FAC22EA230E900DAF8B1 /* OrderListViewModelTest.swift in Sources */,
 				9437FABF2EA22F3D00DAF8B1 /* LoginTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
