@@ -54,10 +54,10 @@ class OrderHistoryViewModel: ObservableObject {
             switch result {
 
                 case .success(let res):
-                    if res.status == .ok{
+                    if res.status == .ok,let data = res.data{
                     
-                        self.invoiceList = res.data.list
-                        self.totalOrder = res.data.total_record
+                        self.invoiceList = data.list
+                        self.totalOrder = data.total_record
                     }
                         
                 case .failure(let error):
@@ -81,9 +81,9 @@ class OrderHistoryViewModel: ObservableObject {
             switch result {
 
                 case .success(let res):
-                    if res.status == .ok{
+                    if res.status == .ok,let data = res.data{
                         
-                        orderStatstic = res.data
+                        orderStatstic = data
                     }
                         
                 case .failure(let error):

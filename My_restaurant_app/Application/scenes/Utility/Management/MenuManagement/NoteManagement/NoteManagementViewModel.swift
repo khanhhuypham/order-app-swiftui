@@ -65,13 +65,13 @@ extension NoteManagementViewModel{
             switch result {
 
                 case .success(var res):
-                if res.status == .ok{
-                    for (i,_) in res.data.enumerated(){
-                        res.data[i].branch_id = branchId
-                    }
+                    if res.status == .ok,var data = res.data{
+                        for (i,_) in data.enumerated(){
+                            data[i].branch_id = branchId
+                        }
 
-                    NoteList = res.data
-                }
+                        NoteList = data
+                    }
              
                     
                 case .failure(let error):

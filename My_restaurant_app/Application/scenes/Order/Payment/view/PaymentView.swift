@@ -99,10 +99,14 @@ struct PaymentView:View{
         }
         .navigationTitle("")
         .refreshable {
-            viewModel.getOrder()
+            Task{
+                await viewModel.getOrder()
+            }
         }
         .onAppear(perform: {
-            viewModel.getOrder()
+            Task{
+                await viewModel.getOrder()
+            }
             viewModel.setupSocketIO()
         })
         .onDisappear{

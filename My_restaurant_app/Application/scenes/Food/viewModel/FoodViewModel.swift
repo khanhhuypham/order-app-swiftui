@@ -158,17 +158,17 @@ extension FoodViewModel{
 
                 case .success(let res):
                 
-                    if res.status == .ok{
-                        var list = res.data
+                    if res.status == .ok,var data = res.data{
+                       
                        
                         var cate = Category()
                         cate.id = -1
                         cate.name = "Tất cả"
                         cate.isSelect = true
                         
-                        list.insert(cate, at: 0)
+                        data.insert(cate, at: 0)
                     
-                        self.categories = list
+                        self.categories = data
                         
                         self.APIParameter.category_id = cate.id
                         
@@ -204,18 +204,19 @@ extension FoodViewModel{
             
             switch result {
 
-                case .success(var res):
+                case .success(let res):
                 
-                    if res.status == .ok{
-                        self.APIParameter.total_record = res.data.total_record
+                    if res.status == .ok,var data = res.data{
                         
-                        for (i,element) in res.data.list.enumerated(){
+                        self.APIParameter.total_record = data.total_record
+                        
+                        for (i,element) in data.list.enumerated(){
                             if let selectedItem = self.selectedFoods.first(where: {$0.id == element.id}){
-                                res.data.list[i] = selectedItem
+                                data.list[i] = selectedItem
                             }
                         }
                     
-                        self.foods.append(contentsOf: res.data.list)
+                        self.foods.append(contentsOf: data.list)
                     }
                    
                 case .failure(let error):

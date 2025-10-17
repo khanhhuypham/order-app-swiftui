@@ -26,8 +26,8 @@ class MoveOrderItemsViewModel: ObservableObject {
         switch result {
             case .success(let res):
             
-                if res.status == .ok{
-                    dataArray = res.data.orderItems
+                if res.status == .ok,let data = res.data{
+                    dataArray = data.orderItems
                     
                     await toast.alertSubject.send(
                         AlertToast(type: .regular, title: "Warning", subTitle: "Huỷ bản thành công")

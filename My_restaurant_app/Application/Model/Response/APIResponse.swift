@@ -7,18 +7,21 @@
 
 
 
-struct APIResponse<T: Decodable>: Decodable {
-    var data: T
+struct APIResponse<T: Codable>: Codable {
+    var data: T?
     var status: HTTPStatusCode
     var message: String
 
   
     private enum CodingKeys: String, CodingKey {
-        case data, status, message
+        case data
+        case status
+        case message
     }
+    
 }
 
-struct PlainAPIResponse: Decodable {
+struct PlainAPIResponse: Codable {
 
     var status: HTTPStatusCode
     var message: String
@@ -27,9 +30,26 @@ struct PlainAPIResponse: Decodable {
     private enum CodingKeys: String, CodingKey {
         case status, message
     }
+    
+    
 }
 
-enum HTTPStatusCode: Int,Decodable {
+
+struct ASD<T: Codable>: Codable {
+    var data: T?
+    var status: Int
+    var message: String
+
+  
+    private enum CodingKeys: String, CodingKey {
+        case data
+        case status
+        case message
+    }
+
+}
+
+enum HTTPStatusCode: Int,Codable {
     //1xx Informationals
     case `continue` = 100
     case switchingProtocols = 101

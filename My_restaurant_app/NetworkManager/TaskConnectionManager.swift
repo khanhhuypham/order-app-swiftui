@@ -198,7 +198,7 @@ extension NetworkManager{
                     "printer_paper_size":printer.paper_size,
                     "print_number":printer.number_of_copies,
                     "is_have_printer":printer.active ? ACTIVE : DEACTIVE,
-                    "is_print_each_food":printer.is_print_each_paper ? ACTIVE : DEACTIVE,
+                    "is_print_each_food":printer.print_each_paper ? ACTIVE : DEACTIVE,
                     "status":printer.status,
                     "printer_type":printer.connection_type.rawValue
                 ])
@@ -266,11 +266,11 @@ extension NetworkManager{
                 
             case .moveFoods(let branch_id, let order_id, let destination_table_id, let target_table_id, let foods_move):
                 return APIParam(body: [
-                        "from_order_id": order_id,
-                        "destination_table_id":destination_table_id,
-                        "to_table_id": target_table_id,
-                        "branch_id": branch_id,
-                        "list_food": foods_move.toDictionary()
+                    "from_order_id": order_id,
+                    "destination_table_id":destination_table_id,
+                    "to_table_id": target_table_id,
+                    "branch_id": branch_id,
+                    "list_food": foods_move.toDictionary()
                 ])
 
             case .moveTable(let branch_id,  let from, let to):

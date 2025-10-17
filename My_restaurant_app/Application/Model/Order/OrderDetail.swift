@@ -18,7 +18,7 @@ struct OrderDetail: Codable {
     var total_amount:Double = 0
     var total_final_amount:Int = 0
     var status:OrderStatus = .cancel
-    var order_method:ORDER_METHOD = .EAT_IN
+    var order_method:ORDER_METHOD?
     var orderItems:[OrderItem] = []
     var booking_status:BookingStatus?
     var customer_slot_number:Int = 0
@@ -66,6 +66,8 @@ struct OrderDetail: Codable {
         case booking_status = "booking_status"
         case buffet = "order_buffet_ticket"
         case customer_slot_number
+        case customer_phone
+        case customer_name
         case employee_name
         case shipping_address
         case customer_address
@@ -102,6 +104,56 @@ struct OrderDetail: Codable {
    
     
     init() {}
+    
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        id = try container.decodeIfPresent(Int.self, forKey: .id) ?? 0
+        id_in_branch = try container.decodeIfPresent(Int.self, forKey: .id_in_branch) ?? 0
+        area_id = try container.decodeIfPresent(Int.self, forKey: .area_id) ?? 0
+        table_id = try container.decodeIfPresent(Int.self, forKey: .table_id) ?? 0
+        table_name = try container.decodeIfPresent(String.self, forKey: .table_name) ?? ""
+        
+        amount = try container.decodeIfPresent(Double.self, forKey: .amount) ?? 0
+        total_amount = try container.decodeIfPresent(Double.self, forKey: .total_amount) ?? 0
+        total_final_amount = try container.decodeIfPresent(Int.self, forKey: .total_final_amount) ?? 0
+        
+        status = try container.decodeIfPresent(OrderStatus.self, forKey: .status) ?? .cancel
+        order_method = try container.decodeIfPresent(ORDER_METHOD.self, forKey: .order_method)
+        
+        orderItems = try container.decodeIfPresent([OrderItem].self, forKey: .orderItems) ?? []
+        booking_status = try container.decodeIfPresent(BookingStatus.self, forKey: .booking_status)
+        
+        customer_slot_number = try container.decodeIfPresent(Int.self, forKey: .customer_slot_number) ?? 0
+        employee_name = try container.decodeIfPresent(String.self, forKey: .employee_name) ?? ""
+        customer_name = try container.decodeIfPresent(String.self, forKey: .customer_name) ?? ""
+        customer_phone = try container.decodeIfPresent(String.self, forKey: .customer_phone) ?? ""
+        shipping_address = try container.decodeIfPresent(String.self, forKey: .shipping_address) ?? ""
+        customer_address = try container.decodeIfPresent(String.self, forKey: .customer_address) ?? ""
+        
+        service_charge_amount = try container.decodeIfPresent(Int.self, forKey: .service_charge_amount) ?? 0
+        extra_charge_amount = try container.decodeIfPresent(Int.self, forKey: .extra_charge_amount) ?? 0
+        vat_amount = try container.decodeIfPresent(Int.self, forKey: .vat_amount) ?? 0
+        
+        total_amount_discount_percent = try container.decodeIfPresent(Int.self, forKey: .total_amount_discount_percent) ?? 0
+        total_amount_discount_amount = try container.decodeIfPresent(Int.self, forKey: .total_amount_discount_amount) ?? 0
+        food_discount_amount = try container.decodeIfPresent(Int.self, forKey: .food_discount_amount) ?? 0
+        drink_discount_amount = try container.decodeIfPresent(Int.self, forKey: .drink_discount_amount) ?? 0
+        food_discount_percent = try container.decodeIfPresent(Int.self, forKey: .food_discount_percent) ?? 0
+        drink_discount_percent = try container.decodeIfPresent(Int.self, forKey: .drink_discount_percent) ?? 0
+        
+        created_at = try container.decodeIfPresent(String.self, forKey: .created_at) ?? ""
+        payment_date = try container.decodeIfPresent(String.self, forKey: .payment_date) ?? ""
+        
+        buffet = try container.decodeIfPresent(Buffet.self, forKey: .buffet)
+        
+        // Optional: clear buffet if invalid
+        if let b = buffet, b.id == 0 {
+            buffet = nil
+        }
+    }
+
     
 }
 

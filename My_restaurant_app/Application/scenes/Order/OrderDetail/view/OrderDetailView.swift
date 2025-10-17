@@ -132,8 +132,7 @@ struct OrderDetailView:View{
                 default:
                     EmptyView()
                 }
-            
-           
+        
         })
         
     }
@@ -183,7 +182,6 @@ struct OrderDetailView:View{
         .frame(maxWidth: .infinity)
         
     }
-    
     
     private var View_of_send_chef_bar_and_save: some View {
         
@@ -259,7 +257,6 @@ struct OrderDetailView:View{
         .padding(EdgeInsets(top:12, leading: 15, bottom: 12, trailing: 15))
     
     }
-    
     
     private var bottomBtnGroup: some View {
         let cornerRadius:CGFloat = 8

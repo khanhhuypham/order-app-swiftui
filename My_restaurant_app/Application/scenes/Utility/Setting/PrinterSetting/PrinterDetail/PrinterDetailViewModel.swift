@@ -9,28 +9,28 @@ import UIKit
 
 class PrinterDetailViewModel:ObservableObject {
     @Published var printer:Printer = Printer()
-    @Published var navigateTag:Int? = -1
+    @Published var navigateTag:Int? = nil
+
     
-    func updatePrinter(){
+    
+    @MainActor
+    func updatePrinter() async {
         
-        NetworkManager.callAPI(netWorkManger:.updatePrinter(branch_id: Constants.branch.id, printer: printer)){[weak self] (result: Result<PlainAPIResponse, Error>) in
+        let result: Result<PlainAPIResponse, Error> = await NetworkManager.callAPIResultAsync(
+                netWorkManger: .updatePrinter(branch_id: Constants.branch.id, printer: printer)
+        )
+        
+        switch result {
+            case .success(let res):
+                if res.status == .ok  {
+                    navigateTag = 1
+                }
+         
 
-            guard let self = self else { return }
-
-            switch result {
-                case .success(let res):
-                    
-                    if (res.status == .ok) {
-                        
-                        navigateTag = 1
-                    
-                    }
-                  
-                
-            
-                case .failure(let error):
-                    print(error)
-            }
+            case .failure(let error):
+                dLog("❌ Orders API failed: \(error)")
         }
     }
+
+
 }

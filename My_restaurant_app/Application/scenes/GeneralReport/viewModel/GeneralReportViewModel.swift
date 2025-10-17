@@ -90,8 +90,8 @@ extension GeneralReportViewModel{
 
                 case .success(var res):
                 
-                    if res.status == .ok{
-                        dailyOrderReport = res.data
+                    if res.status == .ok, let data = res.data{
+                        dailyOrderReport = data
                     }
                     
 
@@ -120,8 +120,8 @@ extension GeneralReportViewModel{
 
                 case .success(var res):
                 
-                    if res.status == .ok{
-                        foodAppReport = res.data
+                    if res.status == .ok,let data = res.data{
+                        foodAppReport = data
                     }
                     
 
@@ -151,8 +151,8 @@ extension GeneralReportViewModel{
 
                 case .success(var res):
                 
-                    if res.status == .ok{
-                        toDayRenueReport = res.data
+                    if res.status == .ok,let data = res.data{
+                        toDayRenueReport = data
                     }
                     
 
@@ -178,15 +178,15 @@ extension GeneralReportViewModel{
             
             switch result {
 
-                case .success(var res):
+                case .success(let res):
                 
-                    if res.status == .ok{
-                        res.data.reportType = report.reportType
-                        res.data.dateString = report.dateString
-                        res.data.fromDate = report.fromDate
-                        res.data.toDate = report.toDate
+                    if res.status == .ok,var data = res.data{
+                        data.reportType = report.reportType
+                        data.dateString = report.dateString
+                        data.fromDate = report.fromDate
+                        data.toDate = report.toDate
                
-                        saleReport = res.data
+                        saleReport = data
                     }
                     
 
@@ -214,13 +214,13 @@ extension GeneralReportViewModel{
             
             switch result {
 
-                case .success(var res):
+                case .success(let res):
                 
-                    if res.status == .ok{
-                        res.data.reportType = report.reportType
-                        res.data.dateString = report.dateString
+                    if res.status == .ok,var data = res.data{
+                        data.reportType = report.reportType
+                        data.dateString = report.dateString
     
-                        revenueCostProfitReport = res.data
+                        revenueCostProfitReport = data
                     }
                     
 
@@ -247,14 +247,14 @@ extension GeneralReportViewModel{
             
             switch result {
 
-                case .success(var res):
+                case .success(let res):
                 
-                    if res.status == .ok{
-                        res.data.reportType = report.reportType
-                        res.data.dateString = report.dateString
-                        res.data.fromDate = report.fromDate
-                        res.data.toDate = report.toDate
-                        res.data.data = res.data.data.map{element in
+                    if res.status == .ok,var data = res.data{
+                        data.reportType = report.reportType
+                        data.dateString = report.dateString
+                        data.fromDate = report.fromDate
+                        data.toDate = report.toDate
+                        data.data = data.data.map{element in
                             var newElement = element
                             newElement.color =  Color(
                                 red: .random(in: 0.3...1),
@@ -263,7 +263,7 @@ extension GeneralReportViewModel{
                             )
                             return newElement
                         }
-                        areaRevenueReport = res.data
+                        areaRevenueReport = data
                     }
                     
 
@@ -290,17 +290,17 @@ extension GeneralReportViewModel{
             
             switch result {
 
-                case .success(var res):
+                case .success(let res):
                 
-                    if res.status == .ok{
-                        res.data.reportType = report.reportType
-                        res.data.dateString = report.dateString
-                        res.data.fromDate = report.fromDate
-                        res.data.toDate = report.toDate
-                        res.data.data = res.data.data.filter{$0.revenue > 0}
-                        res.data.data.sort(by: {$0.revenue > $1.revenue})
+                    if res.status == .ok,var data = res.data{
+                        data.reportType = report.reportType
+                        data.dateString = report.dateString
+                        data.fromDate = report.fromDate
+                        data.toDate = report.toDate
+                        data.data = data.data.filter{$0.revenue > 0}
+                        data.data.sort(by: {$0.revenue > $1.revenue})
                         
-                        res.data.data = res.data.data.map{element in
+                        data.data = data.data.map{element in
                             var newElement = element
                             newElement.color =  Color(
                                 red: .random(in: 0.3...1),
@@ -312,7 +312,7 @@ extension GeneralReportViewModel{
                         
                     
                         
-                        tableRevenueReport = res.data
+                        tableRevenueReport = data
                     }
                     
 
@@ -337,15 +337,15 @@ extension GeneralReportViewModel{
             
             switch result {
 
-                case .success(var res):
+                case .success(let res):
                 
-                    if res.status == .ok{
-                        res.data.reportType = report.reportType
-                        res.data.dateString = report.dateString
-                        res.data.fromDate = report.fromDate
-                        res.data.toDate = report.toDate
-                        res.data.data.sort(by: {$0.revenue > $1.revenue})
-                        employeeRevenueReport = res.data
+                    if res.status == .ok,var data = res.data{
+                        data.reportType = report.reportType
+                        data.dateString = report.dateString
+                        data.fromDate = report.fromDate
+                        data.toDate = report.toDate
+                        data.data.sort(by: {$0.revenue > $1.revenue})
+                        employeeRevenueReport = data
                     }
                     
 
@@ -373,16 +373,16 @@ extension GeneralReportViewModel{
             
             switch result {
 
-                case .success(var res):
+                case .success(let res):
                 
-                    if res.status == .ok{
-                        res.data.reportType = report.reportType
-                        res.data.dateString = report.dateString
-                        res.data.fromDate = report.fromDate
-                        res.data.toDate = report.toDate
-                        res.data.data.sort(by: {$0.total_amount > $1.total_amount})
+                    if res.status == .ok,var data = res.data{
+                        data.reportType = report.reportType
+                        data.dateString = report.dateString
+                        data.fromDate = report.fromDate
+                        data.toDate = report.toDate
+                        data.data.sort(by: {$0.total_amount > $1.total_amount})
                         
-                        res.data.data = res.data.data.map{element in
+                        data.data = data.data.map{element in
                             var newElement = element
                             newElement.color =  Color(
                                 red: .random(in: 0.3...1),
@@ -392,7 +392,7 @@ extension GeneralReportViewModel{
                             return newElement
                         }
                         
-                        categoryRevenueReport = res.data
+                        categoryRevenueReport = data
                     }
                     
 
@@ -426,15 +426,15 @@ extension GeneralReportViewModel{
             
             switch result {
 
-                case .success(var res):
+                case .success(let res):
                 
-                    if res.status == .ok{
-                        res.data.reportType = report.reportType
-                        res.data.dateString = report.dateString
-                        res.data.fromDate = report.fromDate
-                        res.data.toDate = report.toDate
-                        res.data.data.sort(by: {$0.total_amount > $1.total_amount})
-                        foodReport = res.data
+                    if res.status == .ok,var data = res.data{
+                        data.reportType = report.reportType
+                        data.dateString = report.dateString
+                        data.fromDate = report.fromDate
+                        data.toDate = report.toDate
+                        data.data.sort(by: {$0.total_amount > $1.total_amount})
+                        foodReport = data
                     }
                     
 

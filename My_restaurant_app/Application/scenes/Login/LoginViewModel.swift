@@ -53,13 +53,13 @@ extension LoginViewModel{
 
         switch result {
             case .success(let res):
-                guard res.status == .ok else {
+                guard res.status == .ok,let data = res.data else {
                     dLog("⚠️ API status not ok")
                     return
                 }
 
                 ManageCacheObject.deleteItem(Constants.KEY_DEFAULT_STORAGE.KEY_ACCOUNT)
-                await getConfig(sessionStr: res.data)
+                await getConfig(sessionStr: data)
 
         case .failure(let err):
             dLog("❌ Network error: \(err)")
@@ -74,12 +74,12 @@ extension LoginViewModel{
         
         switch result {
             case .success(let res):
-                guard res.status == .ok else {
+                guard res.status == .ok,let data = res.data else {
                     dLog("⚠️ Config API returned non-ok status: \(res.status)")
                     return
                 }
 
-                var config = res.data
+                var config = data
                 config.api_key = "\(sessionStr):\(config.api_key ?? "")"
                 ManageCacheObject.setConfig(config)
                 await login()
@@ -96,34 +96,34 @@ extension LoginViewModel{
         let result: Result<APIResponse<Account>, Error> = await NetworkManager.callAPIResultAsync(netWorkManger: .login(username: username, password: password))
         
         switch result {
-            case .success(var res):
-                guard res.status == .ok else {
+            case .success(let res):
+                guard res.status == .ok,var data = res.data else {
                     AppState.shared.userState = .notLoggedIn
                     dLog("❌ Login failed with status: \(res.status)")
                     return
                 }
                 
                 // ✅ Save access token + password securely
-                if let token = res.data.access_token {
+                if let token = data.access_token {
                     _ = utils.keyChainUtils.savePassword(password: password)
                     if utils.keyChainUtils.saveAccessToken(accessToken: token) {
-                        res.data.access_token = nil
-                        res.data.password = nil
-                        ManageCacheObject.saveUser(res.data)
+                        data.access_token = nil
+                        data.password = nil
+                        ManageCacheObject.saveUser(data)
                     }
                 }
                 
                 // ✅ Save brand info
                 var brand = Brand()
-                brand.id = res.data.restaurant_brand_id
-                brand.name = res.data.brand_name
-                brand.restaurant_id = res.data.restaurant_id ?? 0
+                brand.id = data.restaurant_brand_id
+                brand.name = data.brand_name
+                brand.restaurant_id = data.restaurant_id ?? 0
                 ManageCacheObject.setBrand(brand)
                 
                 // ✅ Continue flow
                 await SettingUtils.getSetting(
-                    brandId: res.data.restaurant_brand_id,
-                    branchId: res.data.branch_id ?? 0,
+                    brandId: data.restaurant_brand_id,
+                    branchId: data.branch_id ?? 0,
                     completion: {
                         AppState.shared.userState = .loggedIn
                     },

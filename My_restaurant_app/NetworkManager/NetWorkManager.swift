@@ -399,6 +399,8 @@ extension NetworkManager{
         do {
             let (data, _) = try await URLSession.shared.data(for: request)
             util.toastUtils.subject.send(false)
+            
+            
 
             do {
                 let decoded = try JSONDecoder().decode(T.self, from: data)
@@ -407,7 +409,8 @@ extension NetworkManager{
                 dLog("❌ Decoding error: \(error)")
                 throw NetworkError.decodingError(error)
             }
-
+            
+        
         } catch {
             util.toastUtils.subject.send(false)
             dLog("❌ Transport/network error: \(error)")

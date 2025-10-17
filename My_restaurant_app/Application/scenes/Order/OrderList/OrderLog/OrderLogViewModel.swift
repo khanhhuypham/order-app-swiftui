@@ -30,8 +30,8 @@ class OrderLogViewModel: ObservableObject {
             switch result {
 
                 case .success(let res):
-                    if res.status == .ok{
-                        self.dataArray = res.data.data
+                    if res.status == .ok,let data = res.data{
+                        self.dataArray = data.data
                     }
                 
                 case .failure(let error):

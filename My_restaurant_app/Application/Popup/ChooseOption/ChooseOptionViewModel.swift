@@ -55,8 +55,9 @@ class ChooseOptionViewModel: ObservableObject {
             switch result {
 
                 case .success(let res):
-                    if res.status == .ok{
-                        noteList = res.data
+                
+                    if res.status == .ok,let data = res.data{
+                        noteList = data
                     }
                     break
                     
@@ -74,8 +75,8 @@ class ChooseOptionViewModel: ObservableObject {
 
                 case .success(let res):
                 
-                    if res.status == .ok{
-                        noteList = res.data
+                    if res.status == .ok,let data = res.data{
+                        noteList = data
                     }
                     break
                     

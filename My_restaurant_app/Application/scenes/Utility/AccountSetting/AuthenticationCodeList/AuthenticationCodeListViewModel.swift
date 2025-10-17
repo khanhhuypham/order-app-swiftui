@@ -22,8 +22,8 @@ class AuthenticationCodeListViewModel: ObservableObject {
             switch result {
 
                 case .success(let res):
-                    if res.status == .ok{
-                        list = res.data.filter{$0.status == ACTIVE && TimeUtils.getRemainingSeconds(from: $0.expire_at) > 0}
+                    if res.status == .ok,let data = res.data{
+                        list = data.filter{$0.status == ACTIVE && TimeUtils.getRemainingSeconds(from: $0.expire_at) > 0}
                     }
                         
                 case .failure(let error):

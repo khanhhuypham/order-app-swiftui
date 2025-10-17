@@ -88,7 +88,7 @@ struct FoodManagement: View {
     private func renderCell(data:Food) -> some View{
         HStack(alignment:.center,spacing: 5){
             
-            LogoImageView(imagePath: data.avatar,mold:.square)
+            LogoImageView(imagePath: MediaUtils.getFullMediaLink(string: data.avatar),mold:.square)
 
             VStack(alignment:.leading,spacing: 2){
                 Text(data.name)

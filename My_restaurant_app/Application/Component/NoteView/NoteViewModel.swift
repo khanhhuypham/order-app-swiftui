@@ -13,14 +13,14 @@ class NoteViewModel: ObservableObject {
     
     
     func notes() {
-        NetworkManager.callAPI(netWorkManger: .notes(branch_id: Constants.branch.id ?? 0)){[weak self] (result: Result<APIResponse<[Note]>, Error>) in
+        NetworkManager.callAPI(netWorkManger: .notes(branch_id: Constants.branch.id)){[weak self] (result: Result<APIResponse<[Note]>, Error>) in
             guard let self = self else { return }
             
             switch result {
 
                 case .success(let res):
-                    if res.status == .ok{
-                        noteList = res.data
+                    if res.status == .ok,let data = res.data{
+                        noteList = data
                     }
                     break
                     
@@ -37,9 +37,9 @@ class NoteViewModel: ObservableObject {
             switch result {
 
                 case .success(let res):
-                    if res.status == .ok{
-                        noteList = res.data
-                        dLog(res.data.count)
+                    if res.status == .ok,let data = res.data{
+                        noteList = data
+                        dLog(data.count)
                     }
                     break
                     

@@ -36,7 +36,7 @@ struct OrderListItem: View {
             
             HStack(spacing:8){
                 
-                LogoImageView(imagePath: item.food_avatar,mold:.square).frame(width: 40).frame(height: 40)
+                LogoImageView(imagePath:MediaUtils.getFullMediaLink(string: item.food_avatar),mold:.square).frame(width: 40).frame(height: 40)
                 
                 mainContent.frame(maxWidth: .infinity,alignment: .leading)
                 

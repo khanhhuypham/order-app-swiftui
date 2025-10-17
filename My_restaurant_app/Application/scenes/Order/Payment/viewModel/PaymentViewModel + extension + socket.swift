@@ -26,8 +26,9 @@ extension PaymentViewModel {
             self.socketManager.orderRealTimeSocket.emit("join_room", real_time_url)
             
             self.socketManager.orderRealTimeSocket.on(real_time_url) {data, ack in
-
-                self.getOrder()
+                Task{
+                    await self.getOrder()
+                }
             }
         }
         

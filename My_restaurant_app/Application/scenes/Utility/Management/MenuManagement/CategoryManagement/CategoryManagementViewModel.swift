@@ -42,8 +42,8 @@ extension CategoryManagementViewModel{
             switch result {
 
                 case .success(let res):
-                    if res.status == .ok{
-                        categories = res.data
+                    if res.status == .ok,let data = res.data{
+                        categories = data
                     }
                     
                 case .failure(let error):

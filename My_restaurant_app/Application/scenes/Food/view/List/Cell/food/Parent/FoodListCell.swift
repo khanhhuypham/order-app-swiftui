@@ -64,7 +64,7 @@ struct FoodListCell: View {
                 
                 HStack(spacing:5){
                     
-                    LogoImageView(imagePath: item.avatar,mold:.square)
+                    LogoImageView(imagePath: MediaUtils.getFullMediaLink(string: item.avatar),mold:.square)
                     
                     VStack(alignment:.leading,spacing:2){
                         

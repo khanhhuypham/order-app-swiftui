@@ -81,21 +81,21 @@ class AreaManagementViewModel: ObservableObject {
             
             switch result {
 
-                case .success(var res):
-                    guard res.status == .ok else{
+                case .success(let res):
+                    guard res.status == .ok,var data = res.data else{
                         return
                     }
                 
                     if tab == 2{
-                        var list = res.data
-                        list.insert(Area(id: -1, name: "Tất cả khu vực", isSelect: true), at: 0)
-                        btnArray = list.map{area in
+                
+                        data.insert(Area(id: -1, name: "Tất cả khu vực", isSelect: true), at: 0)
+                        btnArray = data.map{area in
                             return (id:area.id,title:area.name,isSelect:area.isSelect)
                         }
 
                         self.getTables(areaId: -1)
                     }else{
-                        self.areaList = res.data
+                        self.areaList = data
                     }
                         
                 case .failure(let error):
@@ -135,15 +135,15 @@ class AreaManagementViewModel: ObservableObject {
             switch result {
 
                 case .success(var res):
-                    guard res.status == .ok else{
+                    guard res.status == .ok,var data = res.data else{
                         return
                     }
                 
-                    for (i,table) in res.data.enumerated(){
-                        res.data[i].status = table.is_active == ACTIVE ? .using : .closed
+                    for (i,table) in data.enumerated(){
+                        data[i].status = table.is_active == ACTIVE ? .using : .closed
                     }
                 
-                    self.table = res.data
+                    self.table = data
                     
                 case .failure(let error):
                    dLog("Error: \(error)")

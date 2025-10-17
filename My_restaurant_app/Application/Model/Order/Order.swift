@@ -29,7 +29,7 @@ struct OrderResponse:Codable{
 
 
 
-struct Order:Codable,Identifiable,Hashable {
+struct Order:Codable,Identifiable {
     var id:Int = 0
     var id_in_branch:Int = 0
     var area_id:Int = 0
@@ -120,7 +120,7 @@ extension Order {
 
 
 
-struct EmployeeCreateOrder:Codable,Identifiable,Hashable {
+struct EmployeeCreateOrder:Codable,Identifiable {
     var id:Int = 0
     var avatar:String = ""
     var name:String = ""

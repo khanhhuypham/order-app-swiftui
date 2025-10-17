@@ -44,20 +44,20 @@ class OrderDetailViewModel: ObservableObject {
         }
     }
     
-    
+    @MainActor
     func getOrder() async{
         
         let result: Result<APIResponse<OrderDetail>, Error> = await NetworkManager.callAPIResultAsync(netWorkManger:.order(order_id: order.id , branch_id: Constants.branch.id))
         
         switch result {
-            case .success(var res):
-            
-                if res.status == .ok{
-                    if res.data.buffet != nil{
-                        res.data.buffet?.updateTickets()
+            case .success(let res):
+        
+                if res.status == .ok,var data = res.data{
+                    if data.buffet != nil{
+                        data.buffet?.updateTickets()
                     }
 
-                    self.order = res.data
+                    self.order = data
 
                     order.orderItems.removeAll(where: {($0.category_type == .drink || $0.category_type == .other) && $0.quantity == 0})
 
@@ -67,6 +67,10 @@ class OrderDetailViewModel: ObservableObject {
                     if let booking_status = order.booking_status,booking_status == .status_booking_setup{
                         await self.getBookingOrder()
                     }
+                }else{
+                    toast.alertSubject.send(
+                        AlertToast(type: .regular, title: "warning", subTitle: res.message)
+                    )
                 }
                 
 
@@ -74,14 +78,14 @@ class OrderDetailViewModel: ObservableObject {
                dLog("Error: \(error)")
         }
     }
+    
+   
 
 
     // Method to increase the quantity of an item
     func setQuantity(for item: OrderItem, quantity:Float) {
         if let index = order.orderItems.firstIndex(where: { $0.id == item.id }) {
-            
             order.orderItems[index].setQuantity(quantity: quantity)
-            
         }
     }
     
@@ -95,10 +99,10 @@ extension OrderDetailViewModel{
         let result: Result<APIResponse<[PrintItem]>, Error> = await NetworkManager.callAPIResultAsync(netWorkManger:.foodsNeedPrint(order_id: order.id))
         
         switch result {
-            case .success(var res):
+            case .success(let res):
             
-                if res.status == .ok{
-                    self.printItems = res.data
+                if res.status == .ok,let data = res.data{
+                    self.printItems = data
                 }
                 
 
@@ -112,16 +116,16 @@ extension OrderDetailViewModel{
         let result: Result<APIResponse<[PrintItem]>, Error> = await NetworkManager.callAPIResultAsync(netWorkManger:.getFoodsBookingStatus(order_id: order.id))
       
         switch result {
-            case .success(var res):
+            case .success(let res):
             
-                if res.status == .ok{
-                    var bookingItems = res.data
+                if res.status == .ok,var data = res.data{
+       
 
-                    bookingItems.enumerated().forEach{(i,_) in
-                        bookingItems[i].is_booking_item = ACTIVE
+                    data.enumerated().forEach{(i,_) in
+                        data[i].is_booking_item = ACTIVE
                     }
 
-                    self.printItems += bookingItems
+                    self.printItems += data
                 }
                 
 

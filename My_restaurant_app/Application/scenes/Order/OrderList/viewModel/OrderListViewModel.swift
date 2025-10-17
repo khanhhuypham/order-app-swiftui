@@ -89,9 +89,9 @@ class OrderListViewModel: ObservableObject {
         
         switch result {
             case .success(let res):
-                if res.status == .ok  {
-                    self.orderList = res.data.list
-                    self.fullList = res.data.list
+                if res.status == .ok,let data = res.data  {
+                    self.orderList = data.list
+                    self.fullList = data.list
                 }
          
 
@@ -108,6 +108,7 @@ class OrderListViewModel: ObservableObject {
         
         switch result {
             case .success(let res):
+            
                 if res.status == .ok{
                     
                     await toast.alertSubject.send(

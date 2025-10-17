@@ -34,11 +34,14 @@ extension AreaViewModel{
             switch result {
 
                 case .success(let res):
-                    var list = res.data
-                    list.insert(Area(id: -1, name: "Tất cả khu vực", isSelect: true), at: 0)
-                    self.area = list
-                 
-                    getTables(areaId: -1)
+                
+                    if res.status == .ok,var data = res.data{
+                        var list = data
+                        list.insert(Area(id: -1, name: "Tất cả khu vực", isSelect: true), at: 0)
+                        self.area = list
+                        
+                        getTables(areaId: -1)
+                    }
                 
                 case .failure(let error):
                    dLog("Error: \(error)")
@@ -93,18 +96,18 @@ extension AreaViewModel{
 
                     case .success(let res):
                     
-        
-                        if orderAction == nil{
-                            
-                            self.table = res.data
-                       
-                        }else{
-                     
-                            self.table = res.data.filter({$0.status != .booking && $0.status != .mergered && $0.order_status != 1 && $0.order_status != 4})
+                        if res.status == .ok,var data = res.data{
+                            if orderAction == nil{
+                                
+                                self.table = data
+                                
+                            }else{
+                                
+                                self.table = data.filter({$0.status != .booking && $0.status != .mergered && $0.order_status != 1 && $0.order_status != 4})
+                                
+                            }
                             
                         }
-                    
-
                         
                     case .failure(let error):
                        dLog("Error: \(error)")

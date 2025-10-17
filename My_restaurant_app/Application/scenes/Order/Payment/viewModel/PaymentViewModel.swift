@@ -26,36 +26,63 @@ class PaymentViewModel: ObservableObject {
     
   
 
-    func getOrder(){
+//    func getOrder(){
+//        let food_status = String(format: "%d,%d,%d",FOOD_STATUS.pending.rawValue, FOOD_STATUS.cooking.rawValue, FOOD_STATUS.done.rawValue)
+//        NetworkManager.callAPI(netWorkManger: .order(order_id: order.id, branch_id: Constants.branch.id ?? 0,is_print_bill: ACTIVE, food_status: food_status)){[weak self] (result: Result<APIResponse<OrderDetail>, Error>) in
+//            guard let self = self else {
+//                return
+//            }
+//            
+//            switch result {
+//
+//                case .success(var res):
+//                
+//                    if res.status == .ok{
+//                        if res.data.buffet != nil{
+//                            res.data.buffet?.updateTickets()
+//                        }
+//
+//                        self.order = res.data
+//
+//                        order.orderItems.removeAll(where: {($0.category_type == .drink || $0.category_type == .other) && $0.quantity == 0})
+//
+//                
+//                    }
+//                    
+//
+//                case .failure(let error):
+//                   dLog("Error: \(error)")
+//            }
+//        }
+//    }
+//
+    
+    
+    @MainActor
+    func getOrder() async {
         let food_status = String(format: "%d,%d,%d",FOOD_STATUS.pending.rawValue, FOOD_STATUS.cooking.rawValue, FOOD_STATUS.done.rawValue)
-        NetworkManager.callAPI(netWorkManger: .order(order_id: order.id, branch_id: Constants.branch.id ?? 0,is_print_bill: ACTIVE, food_status: food_status)){[weak self] (result: Result<APIResponse<OrderDetail>, Error>) in
-            guard let self = self else {
-                return
-            }
-            
-            switch result {
-
-                case .success(var res):
-                
-                    if res.status == .ok{
-                        if res.data.buffet != nil{
-                            res.data.buffet?.updateTickets()
-                        }
-
-                        self.order = res.data
-
-                        order.orderItems.removeAll(where: {($0.category_type == .drink || $0.category_type == .other) && $0.quantity == 0})
-
-                
+        let result: Result<APIResponse<OrderDetail>, Error> = await NetworkManager.callAPIResultAsync(
+            netWorkManger:.order(order_id: order.id, branch_id: Constants.branch.id, is_print_bill: ACTIVE, food_status: food_status)
+        )
+        
+        switch result {
+            case .success(let res):
+                if res.status == .ok,var data = res.data  {
+                    if data.buffet != nil{
+                        data.buffet?.updateTickets()
                     }
-                    
 
-                case .failure(let error):
-                   dLog("Error: \(error)")
-            }
+                    self.order = data
+
+                    order.orderItems.removeAll(where: {($0.category_type == .drink || $0.category_type == .other) && $0.quantity == 0})
+
+                }
+         
+
+            case .failure(let error):
+                dLog("❌ Orders API failed: \(error)")
         }
     }
-    
    
    
 }

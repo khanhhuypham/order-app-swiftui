@@ -36,13 +36,13 @@ class SettingUtils {
             let res: APIResponse<[Brand]> = try await NetworkManager.callAPIAsync(netWorkManger: .brands(status: ACTIVE))
             
             // 🛑 Validate status
-            guard res.status == .ok else {
+            guard res.status == .ok,let data = res.data else {
                 (self.incompletion ?? {})()
                 return
             }
             
             // 🧩 Find the matching brand
-            guard let brand = res.data.filter({ $0.is_office == DEACTIVE }).first(where: { $0.id == id }) else {
+            guard let brand = data.filter({ $0.is_office == DEACTIVE }).first(where: { $0.id == id }) else {
                 (self.incompletion ?? {})()
                 dLog("⚠️ Brand not found for id: \(id)")
                 return
@@ -66,14 +66,14 @@ class SettingUtils {
             let res: APIResponse<BrandSetting> = try await NetworkManager.callAPIAsync(netWorkManger: .getBrandSetting(brand_id: brandId))
             
             // 🧩 Check response
-            guard res.status == .ok else {
+            guard res.status == .ok,let data = res.data else {
                 (self.incompletion ?? {})()
                 return
             }
 
             // ✅ Update brand and cache
             var brand = Constants.brand
-            brand.setting = res.data
+            brand.setting = data
             ManageCacheObject.setBrand(brand)
 
         } catch {
@@ -90,13 +90,13 @@ class SettingUtils {
             let result: APIResponse<AccountSetting> = try await NetworkManager.callAPIAsync(netWorkManger: .setting(branch_id: branchId))
 
             // 🛑 Validate response
-            guard result.status == .ok else {
+            guard result.status == .ok,let data = result.data else {
                 (self.incompletion ?? {})()
                 return
             }
 
             // ✅ Save account setting
-            ManageCacheObject.saveAccountSetting(result.data)
+            ManageCacheObject.saveAccountSetting(data)
 
             // 🧩 Define innerCompletion as async function
             func innerCompletion(_ data: Branch?) async {
@@ -122,10 +122,10 @@ class SettingUtils {
             // 🧩 Handle step logic
             switch step {
                 case 1:
-                    await PermissionUtils.GPBH_1 ? innerCompletion(result.data.branch) : fetBranches()
+                    await PermissionUtils.GPBH_1 ? innerCompletion(data.branch) : fetBranches()
 
                 case 2:
-                    await innerCompletion(result.data.branch)
+                    await innerCompletion(data.branch)
 
                 default:
                     break
@@ -146,12 +146,12 @@ class SettingUtils {
             let res: APIResponse<[Branch]> = try await NetworkManager.callAPIAsync(netWorkManger: .branches(brand_id: -1, status: 1))
             
             // Check status
-            guard res.status == .ok else {
+            guard res.status == .ok,let data = res.data else {
                 (self.incompletion ?? {})()
                 return
             }
             
-            let list = res.data.filter { $0.is_office == DEACTIVE }
+            let list = data.filter { $0.is_office == DEACTIVE }
             
             if let branch = list.first {
                 ManageCacheObject.setBranch(branch)

@@ -22,8 +22,8 @@ class BranchOptionViewModel: ObservableObject {
             switch result {
 
                 case .success(let res):
-                    if res.status == .ok{
-                        self.brands = res.data.filter{$0.is_office == DEACTIVE}
+                    if res.status == .ok,let data = res.data{
+                        self.brands = data.filter{$0.is_office == DEACTIVE}
                     }
                        
 
@@ -40,8 +40,8 @@ class BranchOptionViewModel: ObservableObject {
             switch result {
 
                 case .success(let res):
-                    if res.status == .ok{
-                        self.branches = res.data.filter{$0.is_office == DEACTIVE}
+                    if res.status == .ok,let data = res.data{
+                        self.branches = data.filter{$0.is_office == DEACTIVE}
                         self.type = 2
                     }
               

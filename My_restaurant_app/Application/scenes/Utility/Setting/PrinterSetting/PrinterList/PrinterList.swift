@@ -78,8 +78,10 @@ struct PrinterList: View {
             }
             .onAppear(perform: {
                 viewModel.foodAppPrinter = self.foodAppPrinter
-                viewModel.getPrinters()
             })
+            .task{
+                await viewModel.getPrinters()
+            }
             
         }
    

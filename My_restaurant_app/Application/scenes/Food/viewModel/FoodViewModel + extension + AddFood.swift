@@ -83,8 +83,8 @@ extension FoodViewModel {
 
                 case .success(let res):
 
-                    if res.status == .ok{
-                        order.id = res.data.order_id
+                    if res.status == .ok,let data = res.data{
+                        order.id = data.order_id
                         self.navigateTag = 0
                     }
                 
@@ -129,14 +129,14 @@ extension FoodViewModel {
             switch result {
 
                 case .success(let res):
-                    if (res.status == .ok) {
-                        order = OrderDetail(table: res.data)
+                    if res.status == .ok, let data = res.data {
+                        order = OrderDetail(table: data)
                         processToAddFood()
                         self.navigateTag = 1
                     } else if (res.status == .badRequest) {
-                        dLog(res.message ?? "")
+                        dLog(res.message)
                     } else {
-                        dLog(res.message ?? "")
+                        dLog(res.message)
                     }
                     break
                     

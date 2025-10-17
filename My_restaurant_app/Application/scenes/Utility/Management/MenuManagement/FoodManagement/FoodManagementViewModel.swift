@@ -38,7 +38,7 @@ extension FoodManagementViewModel{
 
                 case .success(let res):
                     if res.status == .ok{
-                        foods = res.data
+                        foods = res.data ?? []
                     }
                  
                     

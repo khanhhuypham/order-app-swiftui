@@ -121,8 +121,8 @@ private struct TableOfCancelReasoncontent: View {
             switch result {
 
                 case .success(let res):
-                    if res.status == .ok{
-                        list = res.data
+                    if res.status == .ok,let data = res.data{
+                        list = data
                     }
                         
                 
