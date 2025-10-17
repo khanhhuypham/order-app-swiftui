@@ -33,9 +33,6 @@
             reference = "container:TestPlan.xctestplan"
             default = "YES">
          </TestPlanReference>
-         <TestPlanReference
-            reference = "container:TestPlan.xctestplan">
-         </TestPlanReference>
       </TestPlans>
       <Testables>
          <TestableReference
@@ -46,6 +43,17 @@
                BlueprintIdentifier = "9424DF932EA2252D00781366"
                BuildableName = "My_restaurant_appTests.xctest"
                BlueprintName = "My_restaurant_appTests"
+               ReferencedContainer = "container:My_restaurant_app.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "943508C92EA2277700007105"
+               BuildableName = "UnitTests.xctest"
+               BlueprintName = "UnitTests"
                ReferencedContainer = "container:My_restaurant_app.xcodeproj">
             </BuildableReference>
          </TestableReference>

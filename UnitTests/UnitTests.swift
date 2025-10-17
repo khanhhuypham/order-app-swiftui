@@ -1,13 +1,13 @@
 //
-//  My_restaurant_appTests.swift
-//  My_restaurant_appTests
+//  UnitTests.swift
+//  UnitTests
 //
 //  Created by Pham Khanh Huy on 17/10/25.
 //
 
 import XCTest
 
-final class My_restaurant_appTests: XCTestCase {
+final class UnitTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

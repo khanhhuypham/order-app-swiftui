@@ -14,7 +14,7 @@
 			<key>orderHint</key>
 			<integer>11</integer>
 		</dict>
-		<key>My_restaurant_appTests.xcscheme_^#shared#^_</key>
+		<key>UnitTests.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>12</integer>
@@ -28,6 +28,11 @@
 			<true/>
 		</dict>
 		<key>9427794F2CF01D0900B2F2E6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>943508C92EA2277700007105</key>
 		<dict>
 			<key>primary</key>
 			<true/>
