@@ -35,7 +35,6 @@
 		94277AB92CF01E7B00B2F2E6 /* NoteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94277A1B2CF01E7B00B2F2E6 /* NoteRequest.swift */; };
 		94277ABB2CF01E7B00B2F2E6 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94277A1D2CF01E7B00B2F2E6 /* Review.swift */; };
 		94277ABC2CF01E7B00B2F2E6 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94277A1F2CF01E7B00B2F2E6 /* APIResponse.swift */; };
-		94277ABD2CF01E7B00B2F2E6 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94277A202CF01E7B00B2F2E6 /* Setting.swift */; };
 		94277ABE2CF01E7B00B2F2E6 /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94277A222CF01E7B00B2F2E6 /* Table.swift */; };
 		94277ABF2CF01E7B00B2F2E6 /* Area.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94277A232CF01E7B00B2F2E6 /* Area.swift */; };
 		94277AC02CF01E7B00B2F2E6 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94277A242CF01E7B00B2F2E6 /* Config.swift */; };
@@ -56,7 +55,6 @@
 		94277AD02CF01E7B00B2F2E6 /* FoodRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94277A362CF01E7B00B2F2E6 /* FoodRequest.swift */; };
 		94277AD12CF01E7B00B2F2E6 /* CloseWorkingSessionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94277A372CF01E7B00B2F2E6 /* CloseWorkingSessionRequest.swift */; };
 		94277AD22CF01E7B00B2F2E6 /* DeviceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94277A382CF01E7B00B2F2E6 /* DeviceRequest.swift */; };
-		94277AD32CF01E7B00B2F2E6 /* CreateFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94277A392CF01E7B00B2F2E6 /* CreateFood.swift */; };
 		94277AD42CF01E7B00B2F2E6 /* BuffetDummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94277A3B2CF01E7B00B2F2E6 /* BuffetDummyData.swift */; };
 		94277AD52CF01E7B00B2F2E6 /* FoodResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94277A3C2CF01E7B00B2F2E6 /* FoodResponseData.swift */; };
 		94277AD62CF01E7B00B2F2E6 /* Branch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94277A3E2CF01E7B00B2F2E6 /* Branch.swift */; };
@@ -227,6 +225,9 @@
 		94589AB72E9F7F54008868F9 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589AB42E9F7F54008868F9 /* LoginViewModel.swift */; };
 		9473BA972CF9CBAB009F3C67 /* ChildrenItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9473BA962CF9CBAB009F3C67 /* ChildrenItem.swift */; };
 		94852ABB2CFD6619003D2E2F /* Printer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94852ABA2CFD6619003D2E2F /* Printer.swift */; };
+		948CD7A22EA251BF00F9803B /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948CD7A12EA251BF00F9803B /* Unit.swift */; };
+		948CD7A42EA32F8100F9803B /* CreateFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948CD7A32EA32F8100F9803B /* CreateFood.swift */; };
+		948CD7A62EA3372000F9803B /* Vat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948CD7A52EA3372000F9803B /* Vat.swift */; };
 		9491DA0E2E9F79B300D0A0F1 /* BaseURLConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9491DA0D2E9F79B300D0A0F1 /* BaseURLConnectionManager.swift */; };
 		9491DA262E9F79D800D0A0F1 /* ReportOfRevenueOfTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9491DA1D2E9F79D800D0A0F1 /* ReportOfRevenueOfTable.swift */; };
 		9491DA272E9F79D800D0A0F1 /* ReportOfFoodRevenue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9491DA172E9F79D800D0A0F1 /* ReportOfFoodRevenue.swift */; };
@@ -286,7 +287,6 @@
 		94277A1B2CF01E7B00B2F2E6 /* NoteRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteRequest.swift; sourceTree = "<group>"; };
 		94277A1D2CF01E7B00B2F2E6 /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		94277A1F2CF01E7B00B2F2E6 /* APIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
-		94277A202CF01E7B00B2F2E6 /* Setting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		94277A222CF01E7B00B2F2E6 /* Table.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
 		94277A232CF01E7B00B2F2E6 /* Area.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Area.swift; sourceTree = "<group>"; };
 		94277A242CF01E7B00B2F2E6 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -307,7 +307,6 @@
 		94277A362CF01E7B00B2F2E6 /* FoodRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodRequest.swift; sourceTree = "<group>"; };
 		94277A372CF01E7B00B2F2E6 /* CloseWorkingSessionRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseWorkingSessionRequest.swift; sourceTree = "<group>"; };
 		94277A382CF01E7B00B2F2E6 /* DeviceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceRequest.swift; sourceTree = "<group>"; };
-		94277A392CF01E7B00B2F2E6 /* CreateFood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateFood.swift; sourceTree = "<group>"; };
 		94277A3B2CF01E7B00B2F2E6 /* BuffetDummyData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuffetDummyData.swift; sourceTree = "<group>"; };
 		94277A3C2CF01E7B00B2F2E6 /* FoodResponseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodResponseData.swift; sourceTree = "<group>"; };
 		94277A3E2CF01E7B00B2F2E6 /* Branch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Branch.swift; sourceTree = "<group>"; };
@@ -480,6 +479,9 @@
 		9473BA962CF9CBAB009F3C67 /* ChildrenItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenItem.swift; sourceTree = "<group>"; };
 		9477A0B92EA228D500424DE5 /* Pods_My_restaurant_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_My_restaurant_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94852ABA2CFD6619003D2E2F /* Printer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Printer.swift; sourceTree = "<group>"; };
+		948CD7A12EA251BF00F9803B /* Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
+		948CD7A32EA32F8100F9803B /* CreateFood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFood.swift; sourceTree = "<group>"; };
+		948CD7A52EA3372000F9803B /* Vat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vat.swift; sourceTree = "<group>"; };
 		9491DA0D2E9F79B300D0A0F1 /* BaseURLConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURLConnectionManager.swift; sourceTree = "<group>"; };
 		9491DA0F2E9F79D800D0A0F1 /* ReportOfCategoryRevenue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportOfCategoryRevenue.swift; sourceTree = "<group>"; };
 		9491DA112E9F79D800D0A0F1 /* ReportOfDailyOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportOfDailyOrder.swift; sourceTree = "<group>"; };
@@ -757,11 +759,11 @@
 				94277A192CF01E7B00B2F2E6 /* Note */,
 				94277A1D2CF01E7B00B2F2E6 /* Review.swift */,
 				94277A1E2CF01E7B00B2F2E6 /* Response */,
-				94277A202CF01E7B00B2F2E6 /* Setting.swift */,
 				94277A212CF01E7B00B2F2E6 /* Area */,
 				94277A242CF01E7B00B2F2E6 /* Config.swift */,
 				94277A252CF01E7B00B2F2E6 /* Media.swift */,
 				94277A262CF01E7B00B2F2E6 /* Payment.swift */,
+				948CD7A02EA251B200F9803B /* CreateFood */,
 				94277A272CF01E7B00B2F2E6 /* Food */,
 				94277A2C2CF01E7B00B2F2E6 /* ActivityLog.swift */,
 				94277A2D2CF01E7B00B2F2E6 /* Request */,
@@ -839,7 +841,6 @@
 				94277A362CF01E7B00B2F2E6 /* FoodRequest.swift */,
 				94277A372CF01E7B00B2F2E6 /* CloseWorkingSessionRequest.swift */,
 				94277A382CF01E7B00B2F2E6 /* DeviceRequest.swift */,
-				94277A392CF01E7B00B2F2E6 /* CreateFood.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1210,18 +1211,10 @@
 			path = AuthenticationCodeList;
 			sourceTree = "<group>";
 		};
-		945899E52E9F7DD6008868F9 /* Chat */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Chat;
-			sourceTree = "<group>";
-		};
 		945899E72E9F7DD6008868F9 /* AccountSetting */ = {
 			isa = PBXGroup;
 			children = (
 				945899E42E9F7DD6008868F9 /* AuthenticationCodeList */,
-				945899E52E9F7DD6008868F9 /* Chat */,
 				945899E62E9F7DD6008868F9 /* SettingVIew.swift */,
 			);
 			path = AccountSetting;
@@ -1345,13 +1338,6 @@
 			path = Management;
 			sourceTree = "<group>";
 		};
-		94589A042E9F7DD6008868F9 /* Report */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Report;
-			sourceTree = "<group>";
-		};
 		94589A072E9F7DD6008868F9 /* InternalSetting */ = {
 			isa = PBXGroup;
 			children = (
@@ -1402,7 +1388,6 @@
 			children = (
 				945899E72E9F7DD6008868F9 /* AccountSetting */,
 				94589A032E9F7DD6008868F9 /* Management */,
-				94589A042E9F7DD6008868F9 /* Report */,
 				94589A0F2E9F7DD6008868F9 /* Setting */,
 				94589A102E9F7DD6008868F9 /* UtilityView.swift */,
 			);
@@ -1746,6 +1731,16 @@
 				94852ABA2CFD6619003D2E2F /* Printer.swift */,
 			);
 			path = Print;
+			sourceTree = "<group>";
+		};
+		948CD7A02EA251B200F9803B /* CreateFood */ = {
+			isa = PBXGroup;
+			children = (
+				948CD7A52EA3372000F9803B /* Vat.swift */,
+				948CD7A32EA32F8100F9803B /* CreateFood.swift */,
+				948CD7A12EA251BF00F9803B /* Unit.swift */,
+			);
+			path = CreateFood;
 			sourceTree = "<group>";
 		};
 		9491DA102E9F79D800D0A0F1 /* ReportOfCategoryRevenue */ = {
@@ -2190,9 +2185,9 @@
 				94277A472CF01E7B00B2F2E6 /* TaskConnectionManager.swift in Sources */,
 				94277AD72CF01E7B00B2F2E6 /* AccountSetting.swift in Sources */,
 				94277AD52CF01E7B00B2F2E6 /* FoodResponseData.swift in Sources */,
+				948CD7A22EA251BF00F9803B /* Unit.swift in Sources */,
 				94277A442CF01E7B00B2F2E6 /* PathConnectionManager.swift in Sources */,
 				94277A9A2CF01E7B00B2F2E6 /* TabbarRouter.swift in Sources */,
-				94277ABD2CF01E7B00B2F2E6 /* Setting.swift in Sources */,
 				94277AB52CF01E7B00B2F2E6 /* CancelReason.swift in Sources */,
 				945899262E9F7B47008868F9 /* FoodReportData.swift in Sources */,
 				945899272E9F7B47008868F9 /* EmployeeRevenueReport.swift in Sources */,
@@ -2240,6 +2235,7 @@
 				94589A162E9F7DD6008868F9 /* AuthenticationCodeListViewModel.swift in Sources */,
 				94DC1BA12EA089E700EE549C /* MoveOrderItems.swift in Sources */,
 				94589A172E9F7DD6008868F9 /* InternalSettingViewModel.swift in Sources */,
+				948CD7A62EA3372000F9803B /* Vat.swift in Sources */,
 				94589A182E9F7DD6008868F9 /* MenuManagementViewModel.swift in Sources */,
 				94589A192E9F7DD6008868F9 /* InvoiceManagementViewModel.swift in Sources */,
 				94589A1A2E9F7DD6008868F9 /* MenuManagement.swift in Sources */,
@@ -2263,7 +2259,7 @@
 				9458995E2E9F7D07008868F9 /* PopupWrapper.swift in Sources */,
 				9458995F2E9F7D07008868F9 /* ActionSheetCardItem.swift in Sources */,
 				94277A482CF01E7B00B2F2E6 /* APIEndPoint.swift in Sources */,
-				94277AD32CF01E7B00B2F2E6 /* CreateFood.swift in Sources */,
+				948CD7A42EA32F8100F9803B /* CreateFood.swift in Sources */,
 				94277ABE2CF01E7B00B2F2E6 /* Table.swift in Sources */,
 				94277AD62CF01E7B00B2F2E6 /* Branch.swift in Sources */,
 				94277AB42CF01E7B00B2F2E6 /* Order.swift in Sources */,

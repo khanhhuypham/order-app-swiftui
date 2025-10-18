@@ -187,10 +187,12 @@ extension NetworkManager{
             
             case .getTotalAmountOfOrders(_,_,_,_,_,_):
                 return headerJava(ProjectId: PermissionUtils.GPBH_1 ? .PROJECT_ID_ORDER_SMALL : .PROJECT_ID_ORDER,Method: .GET)
-//            case .units:
-//                return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .GET)
-//            case .createFood(_, _):
-//                return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)
+            
+            case .units:
+                return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .GET)
+            
+            case .createFood(_, _):
+                return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)
 //            case .generateFileNameResource(_):
 //                return headerNode(ProjectId: .PROJECT_UPLOAD_SERVICE, Method: .POST)
 //                

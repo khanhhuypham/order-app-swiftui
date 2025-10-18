@@ -191,6 +191,12 @@ extension NetworkManager{
 
             case .getTotalAmountOfOrders(_,_,_,_,_,_):
                 return String(format: "/api/%@/orders/elk/count",PermissionUtils.GPBH_1 ? NetworkManager.version_of_small_order : NetworkManager.version_of_dashboard)
+                
+            case .units:
+                return String(format: "/api/%@/foods/unit",NetworkManager.version_of_order)
+            
+            case .createFood(_, _):
+                return String(format: "/api/%@/foods/create",NetworkManager.version_of_order)
             
             case .closeTable(let order_id):
                 return environmentMode == .offline

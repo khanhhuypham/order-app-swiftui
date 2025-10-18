@@ -34,9 +34,9 @@ struct FoodManagement: View {
             
             // Tabs
             List {
-                ForEach(Array($viewModel.foods.enumerated()),id:\.1.id) {index, item in
-                    renderCell(data: item.wrappedValue).onTapGesture(perform: {
-                        
+                ForEach(viewModel.foods) {item in
+                    renderCell(data: item).onTapGesture(perform: {
+                        routeLink = (tag:"CreateFoodView",item:item)
                     })
                 }.defaultListRowStyle()
             }

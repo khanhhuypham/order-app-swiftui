@@ -79,7 +79,7 @@ enum NetworkManager{
     case foodsManagement(branch_id:Int, is_addition:Int, status:Int = -1, category_types:Int = -1, restaurant_kitchen_place_id:Int = -1)
     case categories(brand_id:Int, status:Int = -1,category_types:String = "")
     case notesManagement(branch_id:Int, status:Int = -1)
-//    
+    
     case createTable(branch_id:Int, table_id:Int, table_name:String, area_id:Int, total_slot:Int,status:Int)
 
     case foodsNeedPrint(order_id:Int)
@@ -98,8 +98,13 @@ enum NetworkManager{
         page:Int,
         key_search:String
     )
+
     
     case getTotalAmountOfOrders(restaurant_brand_id:Int,branch_id:Int,order_status:String, key_search:String,from_date:String,to_date:String)
+    
+    case units
+    
+    case createFood(branch_id:Int,food:CreateFood)
 
     case closeTable(order_id:Int)
 

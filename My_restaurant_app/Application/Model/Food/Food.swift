@@ -32,6 +32,7 @@ struct Food:Identifiable {
     var avatar:String = ""
     var temporary_price:Double = 0
     var is_sell_by_weight:Int = DEACTIVE
+    var is_addition:Int = DEACTIVE
     var category_type:FOOD_CATEGORY = .food
     var food_in_combo:[FoodAddition] = []
     var addition_foods:[FoodAddition] = []
@@ -40,6 +41,7 @@ struct Food:Identifiable {
     var food_list_in_promotion_buy_one_get_one:[FoodAddition] = []
     var is_allow_print_stamp:Int = 0
     var restaurant_kitchen_place_id:Int = 0
+    var restaurant_vat_config_id:Int = 0
     var is_out_stock:Int = 0
     var isSelect:Bool = false
     var buffet_ticket_ids:[Int]? = nil
@@ -65,6 +67,7 @@ struct Food:Identifiable {
         case avatar
         case temporary_price
         case is_sell_by_weight
+        case is_addition
         case category_type
         case food_in_combo
         case addition_foods
@@ -72,6 +75,7 @@ struct Food:Identifiable {
         case food_list_in_promotion_buy_one_get_one
         case is_allow_print_stamp
         case restaurant_kitchen_place_id
+        case restaurant_vat_config_id
         case is_out_stock
         case buffet_ticket_ids = "buffet_ticket_ids"
 
@@ -161,6 +165,7 @@ extension Food: Codable {
         is_out_stock = try container.decodeIfPresent(Int.self, forKey: .is_out_stock) ?? 0
         buffet_ticket_ids = try container.decodeIfPresent([Int].self, forKey: .buffet_ticket_ids) ?? nil
         is_allow_print_stamp = try container.decodeIfPresent(Int.self, forKey: .is_allow_print_stamp) ?? 0
+        restaurant_vat_config_id = try container.decodeIfPresent(Int.self, forKey: .restaurant_vat_config_id) ?? 0
         restaurant_kitchen_place_id = try container.decodeIfPresent(Int.self, forKey: .restaurant_kitchen_place_id) ?? 0
     }
 }

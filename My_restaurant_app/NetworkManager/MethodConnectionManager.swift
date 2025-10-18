@@ -140,6 +140,12 @@ extension NetworkManager{
             
             case .getTotalAmountOfOrders(_,_,_,_,_,_):
                 return .GET
+            
+            case .units:
+                return .GET
+            
+            case .createFood(_, _):
+                return .POST
 
             case .closeTable(_):
                 return .POST

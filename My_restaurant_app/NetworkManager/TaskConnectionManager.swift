@@ -399,7 +399,45 @@ extension NetworkManager{
                     "from_date":from_date,
                     "to_date":to_date
                 ])
-            
+                
+            case .units:
+                return APIParam(query: [:])
+                
+            case .createFood(let branch_id, let food):
+                return APIParam(body: [
+                    "id":food.id,
+                    "restaurant_brand_id":Constants.brand.id,
+                    "branch_id":branch_id,
+                    "category_id":food.category_id,
+                    "avatar":food.avatar,
+                    "avatar_thump":food.avatar_thump,
+                    "description":food.description,
+                    "name":food.name,
+                    "price":food.price,
+//                    "is_bbq":food.is_bbq,
+                    "unit":food.unit_type,
+//                    "is_allow_print":food.is_allow_print,
+                    "is_allow_print_stamp":food.is_allow_print_stamp,
+                    "is_addition":food.is_addition,
+                    "code":food.code,
+                    "is_sell_by_weight":food.is_sell_by_weight,
+//                    "is_allow_review":food.is_allow_review,
+                    "is_take_away":food.is_take_away,
+//                    "is_addition_like_food":food.is_addition_like_food,
+//                    "food_material_type":food.food_material_type,
+                    "food_addition_ids":food.food_addition_ids,
+                    "status":food.status,
+                    "temporary_price": food.temporary_price,
+                    "temporary_percent": food.temporary_percent,
+                    "temporary_price_from_date": food.temporary_price_from_date,
+                    "temporary_price_to_date": food.temporary_price_to_date,
+//                    "promotion_percent": food.promotion_percent,
+//                    "promotion_from_date": food.promotion_from_date,
+//                    "promotion_to_date": food.promotion_to_date,
+                    "restaurant_vat_config_id": food.vat_id,
+                    "restaurant_kitchen_place_id":food.printer_id
+                ])
+                
 
             case .closeTable(let order_id):
                 return APIParam(body:[

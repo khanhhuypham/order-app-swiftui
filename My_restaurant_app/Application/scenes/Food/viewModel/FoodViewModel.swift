@@ -148,7 +148,7 @@ extension FoodViewModel{
     func getCategories(){
         
         NetworkManager.callAPI(netWorkManger: .categories(
-            brand_id: Constants.brand.id ?? 0,
+            brand_id: Constants.brand.id,
             status: ACTIVE,
             category_types: APIParameter.category_type == .all ? "" : APIParameter.category_type.rawValue.description))
         {[weak self] (result: Result<APIResponse<[Category]>, Error>) in
@@ -177,8 +177,7 @@ extension FoodViewModel{
                     
                  
 
-                    
-                case .failure(let error):
+                                    case .failure(let error):
                    dLog("Error: \(error)")
             }
         }

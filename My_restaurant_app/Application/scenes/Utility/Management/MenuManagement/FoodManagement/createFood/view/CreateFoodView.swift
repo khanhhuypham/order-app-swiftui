@@ -20,7 +20,7 @@ struct CreateFoodView: View {
     @State private var isPrintEnabled = true
     @State private var isPrintStamp = false
     @State private var isApplyVAT = false
-    @State private var selectedPrinter = ""
+
     
 
     var body: some View {
@@ -33,10 +33,11 @@ struct CreateFoodView: View {
                     Button(action: {
                         // Action for selecting image
                     }) {
-                        VStack {
-                            Image(systemName: "photo")
-                                .font(.system(size: 40))
-                                .foregroundColor(.gray)
+                        ZStack {
+                            
+                            LogoImageView(imagePath: MediaUtils.getFullMediaLink(string: viewModel.food.avatar),mold:.square)
+                                .frame(width: 100, height: 100)
+                            
                             Image(systemName: "camera.fill")
                                 .font(.system(size: 16))
                                 .foregroundColor(.blue)
@@ -64,6 +65,7 @@ struct CreateFoodView: View {
                         Text("Danh mục:")
                             .font(font.r_14)
                             .foregroundColor(color.gray_600)
+                            .frame(width: 100)
                         
                         Menu {
                             ForEach(viewModel.categories, id: \.id) { category in
@@ -93,40 +95,40 @@ struct CreateFoodView: View {
                             }.commonTextFieldDecor(height: 40)
                         }.menuIndicator(.hidden)
                     }
-//
+
                     
-//                    HStack(spacing:20) {
-//                        Text("Đơn vị:")
-//                            .font(font.r_14)
-//                            .foregroundColor(color.gray_600)
-//                        
-//                        Menu {
-//                            ForEach(viewModel.units, id: \.id) { unit in
-//                                Button(action: {
-//
-//                                    for (i,element) in viewModel.units.enumerated(){
-//                                        if element.id == unit.id{
-//                                            viewModel.units[i].isSelect = true
+                    HStack(spacing:20) {
+                        Text("Đơn vị:")
+                            .font(font.r_14)
+                            .foregroundColor(color.gray_600)
+                            .frame(width: 100)
+                        
+                        Menu {
+                            ForEach(viewModel.units) { unit in
+                                Button(action: {
+
+                                    for (i,element) in viewModel.units.enumerated(){
+                                        if element.id == unit.id{
+                                            viewModel.units[i].isSelect = true
 //                                            viewModel.food.unit_id = unit.id
-//                                        }else{
-//                                            viewModel.units[i].isSelect = false
-//                                        }
-//                   
-//                                    }
-//                                }) {
-//                          
-//                                    Label(unit.name, systemImage: unit.isSelect ? "checkmark" : "")
-//                                }
-//                            }
-//                        } label: {
-//                            HStack {
-//                                Text(viewModel.units.first(where:{$0.isSelect})?.name ?? "").font(font.r_14).foregroundColor(.black)
-//                                Spacer()
-//                                Image(systemName: "chevron.down").foregroundColor(.gray)
-//                            }
-//                            .commonTextFieldDecor(height: 40)
-//                        }
-//                    }
+                                        }else{
+                                            viewModel.units[i].isSelect = false
+                                        }
+                   
+                                    }
+                                }) {
+                                    Label(unit.name ?? "", systemImage: unit.isSelect ? "checkmark" : "")
+                                }
+                            }
+                        } label: {
+                            HStack {
+                                Text(viewModel.units.first(where:{$0.isSelect})?.name ?? "").font(font.r_14).foregroundColor(.black)
+                                Spacer()
+                                Image(systemName: "chevron.down").foregroundColor(.gray)
+                            }
+                            .commonTextFieldDecor(height: 40)
+                        }
+                    }
                     
                                 
 //                    HStack {
@@ -144,7 +146,7 @@ struct CreateFoodView: View {
 //
 //                        Spacer()
 //                    }.commonTextFieldDecor(height: 45)
-//
+
                     
                     HStack {
                         Button(action: {
@@ -162,63 +164,64 @@ struct CreateFoodView: View {
 
                     
 
-//                    VStack(alignment: .leading, spacing: 16) {
-//     
-//                            HStack {
-//                                Button(action: {
-//                                    isPrintEnabled.toggle()
-//                                }) {
-//                                    Image(isPrintEnabled ? "icon-check-square" : "icon-uncheck-square", bundle: .main)
-//                                        .resizable()
-//                                        .frame(width: 20, height: 20)
-//                                }
-//                                Text("In phiếu bếp/bar")
-//                                    .font(font.r_14)
-//            
-//                                Spacer()
-//                            }
-//                        
-//                            
-//                            if isPrintEnabled {
-//                                HStack(spacing:20) {
-//                                    Text("Printer:")
-//                                        .font(font.r_14)
-//                                        .foregroundColor(color.gray_600)
-//                                    
-//                                    Menu {
-//                                        ForEach(viewModel.printers, id: \.id) { printer in
-//                                            Button(action: {
-//                                                for (i,element) in viewModel.printers.enumerated(){
-//                                                    if element.id == printer.id{
-//                                                        viewModel.printers[i].isSelect = true
-//                                                        viewModel.food.printer_id = printer.id
-//                                                    }else{
-//                                                        viewModel.printers[i].isSelect = false
-//                                                    }
-//                                                }
-//                                            }) {
-//                                                Label(printer.name, systemImage:printer.isSelect ? "checkmark" : "")
-//                                            }
-//                                        }
-//                                    } label: {
-//                                        HStack {
-//                                            Text(viewModel.printers.first(where:{$0.isSelect})?.name ?? "Please choose printer").font(font.r_14)
-//                                                .foregroundColor(viewModel.printers.first(where:{$0.isSelect}) == nil ? color.gray_600 : .black)
-//                                            Spacer()
-//                                            Image(systemName: "chevron.down").foregroundColor(.gray)
-//                                        }
-//                                        .commonTextFieldDecor(height: 40)
-//                                    }
-//                                }
-//                            }
-//                        }
-//                        .foregroundColor(.black)
-//                        .padding(EdgeInsets(top: 12, leading: 8, bottom: 12, trailing: 6))
-//                        .overlay(
-//                          // Placeholder and border overlay
-//                          RoundedRectangle(cornerRadius: 5)
-//                            .stroke(Color(uiColor: .black).opacity(0.6), lineWidth: 0.3) // Border
-//                        )
+                    VStack(alignment: .leading, spacing: 16) {
+     
+                        HStack {
+                            Button(action: {
+                                isPrintEnabled.toggle()
+                            }) {
+                                Image(isPrintEnabled ? "icon-check-square" : "icon-uncheck-square", bundle: .main)
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                            }
+                            Text("In phiếu bếp/bar")
+                                .font(font.r_14)
+        
+                            Spacer()
+                        }
+                    
+                        
+                        if isPrintEnabled {
+                            HStack(spacing:20) {
+                                Text("Chọn bếp:")
+                                    .font(font.r_14)
+                                    .foregroundColor(color.gray_600)
+                                    .frame(width: 100)
+                                
+                                Menu {
+                                    ForEach(viewModel.printers) { printer in
+                                        Button(action: {
+                                            for (i,element) in viewModel.printers.enumerated(){
+                                                if element.id == printer.id{
+                                                    viewModel.printers[i].isSelect = true
+//                                                    viewModel.food.printer_id = printer.id
+                                                }else{
+                                                    viewModel.printers[i].isSelect = false
+                                                }
+                                            }
+                                        }) {
+                                            Label(printer.name, systemImage:printer.isSelect ? "checkmark" : "")
+                                        }
+                                    }
+                                } label: {
+                                    HStack {
+                                        Text(viewModel.printers.first(where:{$0.isSelect})?.name ?? "Please choose printer").font(font.r_14)
+                                            .foregroundColor(viewModel.printers.first(where:{$0.isSelect}) == nil ? color.gray_600 : .black)
+                                        Spacer()
+                                        Image(systemName: "chevron.down").foregroundColor(.gray)
+                                    }
+                                    .commonTextFieldDecor(height: 40)
+                                }
+                            }
+                        }
+                    }
+                    .foregroundColor(.black)
+                    .padding(EdgeInsets(top: 12, leading: 8, bottom: 12, trailing: 6))
+                    .overlay(
+                      // Placeholder and border overlay
+                      RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color(uiColor: .black).opacity(0.6), lineWidth: 0.3) // Border
+                    )
                   
                 
                     
@@ -244,6 +247,11 @@ struct CreateFoodView: View {
                         HStack {
                             Button(action: {
                                 isApplyVAT.toggle()
+                                if !isApplyVAT{
+                                    viewModel.food.vat_id = 0
+                                }
+                                
+                                
                             }) {
                                 Image(isApplyVAT ? "icon-check-square" : "icon-uncheck-square", bundle: .main)
                                     .resizable()
@@ -259,15 +267,34 @@ struct CreateFoodView: View {
                         if isApplyVAT {
                             // Label and Picker for selecting printer
                             HStack {
-                                Text("VAT:").font(font.r_14)
+                                Text("Chọn thuế:").font(font.r_14).frame(width: 100)
                                 
-                                Picker(selection: $selectedPrinter, label: Text(selectedPrinter.isEmpty ? "Vui lòng chọn máy in" : selectedPrinter)) {
-                                    ForEach(viewModel.printers, id: \.id) { printer in
-                                        Text(printer.name).tag(printer.id)
+                                
+                                Menu {
+                                    ForEach(viewModel.vats) { vat in
+                                        Button(action: {
+                                            for (i,element) in viewModel.vats.enumerated(){
+                                                if element.id == vat.id{
+                                                    viewModel.vats[i].isSelect = true
+                                                    viewModel.food.vat_id = vat.id
+                                                }else{
+                                                    viewModel.vats[i].isSelect = false
+                                                }
+                                            }
+                                        }) {
+                                            Label(vat.vat_config_name, systemImage:vat.isSelect ? "checkmark" : "")
+                                        }
                                     }
+                                } label: {
+                                    HStack {
+                                        Text(viewModel.vats.first(where:{$0.isSelect})?.vat_config_name ?? "Vui lòng chọn vat").font(font.r_14)
+                                            .foregroundColor(viewModel.vats.first(where:{$0.isSelect}) == nil ? color.gray_600 : .black)
+                                        Spacer()
+                                        Image(systemName: "chevron.down").foregroundColor(.gray)
+                                    }
+                                    .commonTextFieldDecor(height: 40)
                                 }
-                                .pickerStyle(MenuPickerStyle())
-                                .background(RoundedRectangle(cornerRadius: 5).stroke(Color.gray, lineWidth: 1))
+                                
                             }
                         }
                     }
@@ -318,12 +345,37 @@ struct CreateFoodView: View {
             .padding()
        
         }.onAppear(perform: {
-           
-            viewModel.getCategories()
-            viewModel.getPrinters()
-            viewModel.getUnits()
-            viewModel.getChildrenItem()
-            viewModel.food = item
+            
+            viewModel.food = CreateFood(food:item)
+            
+            isApplyVAT = viewModel.food.vat_id > 0
+
+            dLog(viewModel.food.vat_id > 0)
+            
+            Task{
+                await viewModel.getPrinters()
+            }
+            Task{
+                await viewModel.getCategories()
+            }
+            
+            Task{
+                await viewModel.getChildrenItem()
+            }
+            
+            Task{
+                await viewModel.getUnits()
+            }
+            
+            
+            Task{
+                await viewModel.getVats()
+            }
+            
+            Task{
+                await viewModel.getChildrenItem()
+            }
+            
         
         })
         
