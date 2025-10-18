@@ -417,7 +417,7 @@ extension NetworkManager{
 //                    "is_bbq":food.is_bbq,
                     "unit":food.unit_type,
 //                    "is_allow_print":food.is_allow_print,
-                    "is_allow_print_stamp":food.is_allow_print_stamp,
+                    "is_allow_print_stamp":food.allow_print_stamp ? ACTIVE : DEACTIVE,
                     "is_addition":food.is_addition,
                     "code":food.code,
                     "is_sell_by_weight":food.is_sell_by_weight,

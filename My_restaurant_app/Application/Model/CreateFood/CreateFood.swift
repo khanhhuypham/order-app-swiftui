@@ -35,7 +35,7 @@ struct CreateFood: Codable,Identifiable {
     var status = 0
     var is_sell_by_weight = 0
     var description = ""
-    var is_allow_print_stamp = 0
+    var allow_print_stamp:Bool = false
     var is_take_away = 0
     var categories = [Category]()
     var food_addition_ids = [Int]()
@@ -65,7 +65,7 @@ struct CreateFood: Codable,Identifiable {
 //        self.temporary_percent = food.temporary_percent
         self.price = food.price
         self.avatar = food.avatar
-        self.is_allow_print_stamp = food.is_allow_print_stamp
+        self.allow_print_stamp = food.is_allow_print_stamp == ACTIVE 
 //        self.temporary_price_from_date = food.temporary_price_from_date
 //        self.temporary_price_to_date = food.temporary_price_to_date
         self.is_addition = food.is_addition

@@ -18,7 +18,6 @@ struct CreateFoodView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var isSeasonalPrice: Bool = false
     @State private var isPrintEnabled = true
-    @State private var isPrintStamp = false
     @State private var isApplyVAT = false
 
     
@@ -35,12 +34,18 @@ struct CreateFoodView: View {
                     }) {
                         ZStack {
                             
-                            LogoImageView(imagePath: MediaUtils.getFullMediaLink(string: viewModel.food.avatar),mold:.square)
-                                .frame(width: 100, height: 100)
+                            LogoImageView(
+                                imagePath: MediaUtils.getFullMediaLink(string: viewModel.food.avatar),
+                                width: 100,
+                                height: 100,
+                                mold:.square
+                            )
+                             
                             
                             Image(systemName: "camera.fill")
                                 .font(.system(size: 16))
                                 .foregroundColor(.blue)
+                                .offset(x:35,y:35)
                         }
                         .frame(width: 100, height: 100)
                         .background(Color.gray.opacity(0.2))
@@ -227,10 +232,10 @@ struct CreateFoodView: View {
                     
                     HStack {
                         Button(action: {
-                            isPrintStamp.toggle()
+                            viewModel.food.allow_print_stamp.toggle()
                             
                         }) {
-                            Image(isPrintStamp ? "icon-check-square" : "icon-uncheck-square", bundle: .main)
+                            Image(viewModel.food.allow_print_stamp ? "icon-check-square" : "icon-uncheck-square", bundle: .main)
                                 .resizable()
                                 .frame(width: 20, height: 20)
                         }

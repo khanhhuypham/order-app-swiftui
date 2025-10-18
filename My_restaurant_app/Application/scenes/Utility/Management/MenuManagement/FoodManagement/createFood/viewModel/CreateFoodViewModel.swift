@@ -137,18 +137,21 @@ extension CreateFoodViewModel{
 
         switch result {
             case .success(let res):
-                if res.status == .ok, let data = res.data {
+                if res.status == .ok, var data = res.data {
+                    guard !data.isEmpty else { return }
+                    
+                    if(food.vat_id > 0) {
+                        if let position = data.firstIndex(where: {$0.id == food.vat_id}){
+                            food.vat_id = data[position].id
+                            data[position].isSelect = true
+                            
+                        }
+                    }else{
+                        food.vat_id = data[0].id
+                        data[0].isSelect = true
+                    }
+                    
                     self.vats = data
-
-//                    if(model.restaurant_vat_config_id > 0) {
-//                        if let position = data.firstIndex(where: {$0.id == model.restaurant_vat_config_id}){
-//                            self.btn_show_vat_list.setTitle("  " + data[position].vat_config_name, for: .normal)
-//                            model.restaurant_vat_config_id = data[position].id
-//                        }
-//                    }else{
-//                        model.restaurant_vat_config_id = data[0].id
-//                        self.btn_show_vat_list.setTitle("  " + data[0].vat_config_name, for: .normal)
-//                    }
                 }
 
         case .failure(let error):
