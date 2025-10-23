@@ -6,79 +6,73 @@
 //
 
 import SwiftUI
-
-
+import Combine
 class FoodManagementViewModel: ObservableObject {
-    let branchId = Constants.branch.id ?? 0
-    let brandId = Constants.brand.id ?? 0
+    let branchId = Constants.branch.id
+    let brandId = Constants.brand.id
     
-    @Published var foods:[Food] = []
 
-    @Published var tab = 1
+    @Published var tab = 0
     @Published var tabArray:[(id:Int,title:String,isSelect:Bool)] = [
-        (id:1,title:"MÓN THƯỜNG",isSelect:true),
-        (id:2,title:"BÁN KÈM / TOPPING",isSelect:false),
+        (id:0,title:"MÓN THƯỜNG",isSelect:true),
+        (id:1,title:"BÁN KÈM / TOPPING",isSelect:false),
     ]
     
+    @Published var text: String = ""
+    @Published var data:[Food] = []
+    var fullList:[Food] = []
     
+    
+    private var cancellables = Set<AnyCancellable>()
+    init() {
 
-    
-    
-    
+          $text
+//              .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
+          .removeDuplicates()
+          .sink { [weak self] keyWord in
+              
+              if !keyWord.isEmpty {
+                  let filteredDataArray = self?.fullList.filter({(value) -> Bool in
+                      let str1 = keyWord.uppercased().applyingTransform(.stripDiacritics, reverse: false)!
+                      let str2 = value.name.uppercased().applyingTransform(.stripDiacritics, reverse: false)!
+        
+                      return str2.contains(str1)
+                  })
+                  self?.data = filteredDataArray ?? []
+              }else{
+                  self?.data = self?.fullList ?? []
+              }
+          }
+          .store(in: &cancellables)
+      }
+
 }
 
 //MARK: categories
 extension FoodManagementViewModel{
-    func getFood(isAddition:Int){
+    
+    @MainActor
+    func getFood(isAddition:Int) async{
         
-        NetworkManager.callAPI(netWorkManger: .foodsManagement(branch_id:branchId, is_addition: isAddition,status: ALL)){[weak self] (result: Result<APIResponse<[Food]>, Error>) in
-            guard let self = self else { return }
-            
-            switch result {
+        
+        let result: Result<APIResponse<[Food]>, Error> = await NetworkManager.callAPIResultAsync(
+            netWorkManger: .foodsManagement(branch_id:branchId, is_addition: isAddition,status: ALL)
+        )
+        
+        switch result {
 
-                case .success(let res):
-                    if res.status == .ok{
-                        foods = res.data ?? []
-                    }
-                 
-                    
-                case .failure(let error):
-                   dLog("Error: \(error)")
-            }
+            case .success(let res):
+                if res.status == .ok{
+                    data = res.data ?? []
+                    fullList = res.data ?? []
+                }
+             
+                
+            case .failure(let error):
+               dLog("Error: \(error)")
         }
     }
     
-//    func createCategory(category:Category){
-//        
-//        NetworkManager.callAPI(netWorkManger:.createCategory(
-//            id: category.id,
-//            name: category.name,
-//            code: category.code,
-//            description: category.description,
-//            categoryType: category.category_type.value,
-//            status:category.status
-//                                                    
-//        )){[weak self] result in
-//            
-//            guard let self = self else { return }
-//            
-//            switch result {
-//                case .success(let data):
-//
-//                    guard var res = try? JSONDecoder().decode(PlainAPIResponse.self, from: data) else{
-//                        dLog("Parse model sai")
-//                        return
-//                    }
-//                    
-//                    getCategories()
-//
-//                case .failure(let error):
-//                
-//                    print(error)
-//            }
-//        }
-//    }
-    
-    
+
 
 }

@@ -45,36 +45,7 @@ class AreaManagementViewModel: ObservableObject {
     
     func getAreaList(){
         
-//        NetworkManager.callAPI(netWorkManger: .areas(branch_id: branchId, status: ALL)){[weak self] result in
-//            
-//            guard let self = self else { return }
-//            
-//            switch result {
-//                  case .success(let data):
-//                        
-//                    guard var res = try? JSONDecoder().decode(APIResponse<[Area]>.self, from: data) else{
-//                        dLog("Parse model sai")
-//                        return
-//                    }
-//                    
-//                    if tab == 2{
-//                        var list = res.data
-//                        list.insert(Area(id: -1, name: "Tất cả khu vực", isSelect: true), at: 0)
-//                        btnArray = list.map{area in
-//                            return (id:area.id,title:area.name,isSelect:area.isSelect)
-//                        }
-//                            
-//                        self.getTables(areaId: -1)
-//                    }else{
-//                        self.areaList = res.data
-//                    }
-//                
-//                  
-//              
-//                  case .failure(let error):
-//                      print(error)
-//            }
-//        }
+
         
         NetworkManager.callAPI(netWorkManger: .areas(branch_id: branchId, status: ALL)){[weak self] (result: Result<APIResponse<[Area]>, Error>) in
             guard let self = self else { return }
@@ -106,28 +77,7 @@ class AreaManagementViewModel: ObservableObject {
     
     
     func getTables(areaId:Int){
-//        NetworkManager.callAPI(netWorkManger: .tablesManager(area_id: areaId, branch_id: branchId, status: -1, is_deleted: 0)){[weak self] result in
-//            guard let self = self else { return }
-//            
-//            switch result {
-//                  case .success(let data):
-//                        
-//                    guard var res = try? JSONDecoder().decode(APIResponse<[Table]>.self, from: data) else{
-//                        dLog("parse model sai rồi")
-//                        return
-//                    }
-//                    
-//                    for (i,table) in res.data.enumerated(){
-//                        
-//                        res.data[i].status = table.is_active == ACTIVE ? .using : .closed
-//                    }
-//                
-//                    self.table = res.data
-//                    
-//                  case .failure(let error):
-//                    dLog(error)
-//            }
-//        }
+
         
         NetworkManager.callAPI(netWorkManger: .tablesManager(area_id: areaId, branch_id: branchId, status: -1, is_deleted: 0)){[weak self] (result: Result<APIResponse<[Table]>, Error>) in
             guard let self = self else { return }

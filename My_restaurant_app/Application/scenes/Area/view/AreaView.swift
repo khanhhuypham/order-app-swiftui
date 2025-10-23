@@ -89,7 +89,9 @@ struct AreaView: View {
                     to: to,
                     completion: {
                         if action == .moveTable{
-                            viewModel.moveTable(from: order.table_id, to: to.id ?? 0)
+                            Task{
+                                await viewModel.moveTable(from: order.table_id, to: to.id ?? 0)
+                            }
                         }else if action == .splitFood{
                             self.splitFoodCompletion?(from,to)
                         }

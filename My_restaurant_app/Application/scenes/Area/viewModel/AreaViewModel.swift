@@ -122,27 +122,23 @@ extension AreaViewModel{
   
     
     
-    func moveTable(from:Int,to:Int){
+    func moveTable(from:Int,to:Int) async{
         
-        NetworkManager.callAPI(netWorkManger: .moveTable(branch_id:Constants.branch.id ?? 0,from: from, to: to)){[weak self] (result: Result<PlainAPIResponse, Error>)  in
-            guard let self = self else { return }
-            
-            switch result {
-                case .success(let res):
-                        
-                    if res.status == .ok{
-                        presentDialog = false
-                        shouldNavigateBack = true
-                    }else{
-                        dLog(res.message)
-                    }
-                
+        let result: Result<APIResponse<Account>, Error> = await NetworkManager.callAPIResultAsync(netWorkManger: .moveTable(branch_id:Constants.branch.id,from: from, to: to))
+        switch result {
+            case .success(let res):
                     
-
-                case .failure(let error):
-                    dLog(error)
-            }
+                if res.status == .ok{
+                    presentDialog = false
+                    shouldNavigateBack = true
+                }else{
+                    dLog(res.message)
+                }
+            
+            case .failure(let error):
+                dLog(error)
         }
+
     }
     
     func mergeTable(destination_table_id:Int,target_table_ids:[Int]){

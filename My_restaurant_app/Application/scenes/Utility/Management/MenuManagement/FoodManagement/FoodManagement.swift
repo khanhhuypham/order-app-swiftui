@@ -12,7 +12,7 @@ struct FoodManagement: View {
     @Injected(\.fonts) var font: Fonts
     @ObservedObject var viewModel = FoodManagementViewModel()
     @State private var routeLink:(tag:String?,item:Food) = (tag:nil,item:Food())
-    @State var searchText = ""
+
     
     var body: some View {
         
@@ -20,12 +20,11 @@ struct FoodManagement: View {
         VStack(spacing:0){
             NavigationLink(destination: CreateFoodView(item: routeLink.item), tag: "CreateFoodView", selection: $routeLink.tag) { EmptyView() }
             NavigationLink(destination: Text("View B"), tag: "B", selection: $routeLink.tag) { EmptyView() }
+            
             textField
             
             TabHeader(tabArray: $viewModel.tabArray){id in
                 viewModel.tab = id
-                viewModel.getFood(isAddition: id == 1 ? DEACTIVE : ACTIVE)
-                    
             }.frame(height: 50)
             
             Rectangle()
@@ -34,16 +33,17 @@ struct FoodManagement: View {
             
             // Tabs
             List {
-                ForEach(viewModel.foods) {item in
+                ForEach(viewModel.data) {item in
                     renderCell(data: item).onTapGesture(perform: {
                         routeLink = (tag:"CreateFoodView",item:item)
                     })
                 }.defaultListRowStyle()
             }
             .listStyle(.plain)
-            .onAppear(perform: {
-                viewModel.getFood(isAddition: DEACTIVE)
-            })
+            .task(id: viewModel.tab){
+                await viewModel.getFood(isAddition: viewModel.tab)
+            }
+         
             Divider()
             
             Button(action: {
@@ -73,8 +73,10 @@ struct FoodManagement: View {
                 .foregroundColor(color.orange_brand_900)
                 .padding(.leading,10)
 
-            TextField("Tìm kiếm", text: $searchText)
+            TextField("Tìm kiếm", text: $viewModel.text)
+                .font(font.r_14)
                 .padding(.trailing,20)
+             
                 
                 
         }

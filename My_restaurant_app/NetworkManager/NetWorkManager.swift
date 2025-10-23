@@ -105,6 +105,8 @@ enum NetworkManager{
     case units
     
     case createFood(branch_id:Int,food:CreateFood)
+    
+    case updateFood(branch_id:Int,food:CreateFood)
 
     case closeTable(order_id:Int)
 

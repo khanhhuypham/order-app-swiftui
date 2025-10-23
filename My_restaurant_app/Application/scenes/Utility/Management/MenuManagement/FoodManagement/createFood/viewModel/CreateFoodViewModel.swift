@@ -13,11 +13,13 @@ class CreateFoodViewModel:ObservableObject {
     let branchId = Constants.branch.id
     let brandId = Constants.brand.id
     @Published var food:CreateFood = CreateFood()
-    @Published var childrenItem:[ChildrenItem] = []
+    @Published var childrenItem:[Food] = []
     @Published var categories:[Category] = []
     @Published var units:[Unit] = []
     @Published var printers:[Printer] = []
     @Published var vats:[Vat] = []
+    
+    
     
     func bind(view:CreateFoodView){
         self.view = view
@@ -59,13 +61,13 @@ extension CreateFoodViewModel{
     func getChildrenItem() async{
         
         let result: Result<APIResponse<[Food]>, Error> = await NetworkManager.callAPIResultAsync(
-            netWorkManger: .foodsManagement(branch_id:Constants.branch.id, is_addition: 1, status:ACTIVE)
+            netWorkManger: .foodsManagement(branch_id:Constants.branch.id, is_addition: ACTIVE, status:ACTIVE)
         )
         
         switch result {
             case .success(let res):
                 if res.status == .ok,let data = res.data  {
-                    dLog(data)
+                    childrenItem = data
                 }
 
             case .failure(let error):
@@ -161,24 +163,40 @@ extension CreateFoodViewModel{
 
     
     
-    func createItem(item:CreateFood){
-//        NetworkManager.callAPI(netWorkManger:.createFood(branch_id: branchId, item: item)){[weak self] result in
-//            
-//            guard let self = self else { return }
-//            
-//            switch result {
-//                case .success(let data):
-//             
-//                    guard var res = try? JSONDecoder().decode(APIResponse<Food>.self, from: data) else{
-//                        dLog("Parse model sai")
-//                        return
-//                    }
-//                
-//                    view?.presentationMode.wrappedValue.dismiss()
-//                
-//                case .failure(let error):
-//                print(error)
-//            }
-//        }
+    func createFood(item:CreateFood)async{
+        
+        let result: Result<APIResponse<Food>, Error> = await NetworkManager.callAPIResultAsync(
+            netWorkManger: .createFood(branch_id: branchId, food: item)
+        )
+        
+        switch result {
+           case .success(let data):
+
+               view?.presentationMode.wrappedValue.dismiss()
+
+           case .failure(let error):
+            print(error)
+        }
+        
+
+    }
+    
+    @MainActor
+    func updateFood(food:CreateFood)async{
+        
+        let result: Result<APIResponse<Food>, Error> = await NetworkManager.callAPIResultAsync(
+            netWorkManger: .updateFood(branch_id: branchId, food: food)
+        )
+        
+        switch result {
+            case .success(let res):
+                
+               view?.presentationMode.wrappedValue.dismiss()
+
+            case .failure(let error):
+            print(error)
+        }
+        
+
     }
 }

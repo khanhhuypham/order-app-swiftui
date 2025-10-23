@@ -7,7 +7,7 @@
 
 
 import SwiftUI
-
+import PhotosUI
 struct CreateFoodView: View {
     @Injected(\.fonts) private var font
     @Injected(\.colors) private var color
@@ -20,7 +20,8 @@ struct CreateFoodView: View {
     @State private var isPrintEnabled = true
     @State private var isApplyVAT = false
 
-    
+    @State private var selectedItem: PhotosPickerItem? = nil
+    @State private var selectedImageData: Data? = nil
 
     var body: some View {
         
@@ -28,10 +29,8 @@ struct CreateFoodView: View {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 16) {
                     
-                    // Image picker placeholder
-                    Button(action: {
-                        // Action for selecting image
-                    }) {
+
+                    PhotosPicker(selection: $selectedItem,matching: .images, photoLibrary: .shared()) {
                         ZStack {
                             
                             LogoImageView(
@@ -50,6 +49,21 @@ struct CreateFoodView: View {
                         .frame(width: 100, height: 100)
                         .background(Color.gray.opacity(0.2))
                         .cornerRadius(10)
+                    }
+                    .onChange(of: selectedItem) { newItem in
+                       Task {
+                           // Retrieve selected asset in the form of Data
+                           if let data = try? await newItem?.loadTransferable(type: Data.self) {
+                               selectedImageData = data
+                           }
+                       }
+                    }
+
+                    if let selectedImageData,let uiImage = UIImage(data: selectedImageData) {
+                        Image(uiImage: uiImage)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 250, height: 250)
                     }
                     
                     // Dish name input field
@@ -115,7 +129,7 @@ struct CreateFoodView: View {
                                     for (i,element) in viewModel.units.enumerated(){
                                         if element.id == unit.id{
                                             viewModel.units[i].isSelect = true
-//                                            viewModel.food.unit_id = unit.id
+                                            viewModel.food.unit_type = unit.name ?? ""
                                         }else{
                                             viewModel.units[i].isSelect = false
                                         }
@@ -152,6 +166,22 @@ struct CreateFoodView: View {
 //                        Spacer()
 //                    }.commonTextFieldDecor(height: 45)
 
+                    
+                    HStack {
+                        Button(action: {
+
+                            viewModel.food.status = viewModel.food.status == ACTIVE ? DEACTIVE : ACTIVE
+
+                        }) {
+                            Image(viewModel.food.status == ACTIVE ? "icon-check-square" : "icon-uncheck-square", bundle: .main)
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                        }
+                        Text("Đang bán")
+                            .font(font.r_14)
+
+                        Spacer()
+                    }.commonTextFieldDecor(height: 45)
                     
                     HStack {
                         Button(action: {
@@ -199,7 +229,7 @@ struct CreateFoodView: View {
                                             for (i,element) in viewModel.printers.enumerated(){
                                                 if element.id == printer.id{
                                                     viewModel.printers[i].isSelect = true
-//                                                    viewModel.food.printer_id = printer.id
+                                                    viewModel.food.printer_id = printer.id
                                                 }else{
                                                     viewModel.printers[i].isSelect = false
                                                 }
@@ -274,7 +304,6 @@ struct CreateFoodView: View {
                             HStack {
                                 Text("Chọn thuế:").font(font.r_14).frame(width: 100)
                                 
-                                
                                 Menu {
                                     ForEach(viewModel.vats) { vat in
                                         Button(action: {
@@ -310,6 +339,9 @@ struct CreateFoodView: View {
                       RoundedRectangle(cornerRadius: 5)
                         .stroke(Color(uiColor: .black).opacity(0.6), lineWidth: 0.3) // Border
                     )
+                    
+                    
+                    
               
                 }
 
@@ -323,21 +355,20 @@ struct CreateFoodView: View {
                 }) {
                     Text("HỦY")
                         .font(font.b_16)
-                        .foregroundColor(.red)
+                        .foregroundColor(color.red_600)
                         .frame(maxWidth: .infinity)
                         .padding(10)
-                        .background(Color.white)
+                        .background(color.gray_200)
                         .cornerRadius(8)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.red, lineWidth: 1)
-                        )
+                     
                 }
                 
                 Button(action: {
-                    viewModel.createItem(item: viewModel.food)
+                    Task{
+                        await viewModel.food.id > 0 ? viewModel.updateFood(food: viewModel.food) : viewModel.createFood(item: viewModel.food)
+                    }
                 }) {
-                    Text("THÊM")
+                    Text(viewModel.food.id > 0 ? "CẬP NHẬT" : "THÊM")
                         .font(font.b_16)
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
@@ -352,11 +383,11 @@ struct CreateFoodView: View {
         }.onAppear(perform: {
             
             viewModel.food = CreateFood(food:item)
+            viewModel.bind(view: self)
             
             isApplyVAT = viewModel.food.vat_id > 0
 
-            dLog(viewModel.food.vat_id > 0)
-            
+          
             Task{
                 await viewModel.getPrinters()
             }

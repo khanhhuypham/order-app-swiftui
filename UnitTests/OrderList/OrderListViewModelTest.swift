@@ -11,14 +11,18 @@ import XCTest
 
 final class OrderListViewModelTests: XCTestCase {
     var sut: OrderListViewModel! // System Under Test
-
+    var app: XCUIApplication!
     override func setUp() {
         super.setUp()
+        app = XCUIApplication()
+        app.launchArguments = ["-mockLoginAPI"]
+        app.launch()
         sut = OrderListViewModel()
     }
 
     override func tearDown() {
         // Clean up after each test
+        app = nil
         sut = nil
         super.tearDown()
     }
@@ -34,28 +38,18 @@ final class OrderListViewModelTests: XCTestCase {
     
     // Test case: The login from valid or not when fields are empty
     func test_close_order() async{
-
-  
     }
     
-    func test_get_orders() async {
  
-        await sut.getOrders()
-    
-        dLog(sut.orderList.toJSON())
-    }
-    
     
     func test_userTapButton_showsResult() {
-//        let app = XCUIApplication()
-//        app.launchArguments = ["-UITestMode"] // use mock server or stub
-//        app.launch()
-//
-//        // Tap the button
-//        app.buttons["Loại đơn"].tap() // open menu
-//        app.buttons["Mang về"].tap()  // tap menu item by text
-//
-//        XCTAssertEqual(sut.orderList.count, 0)
+
+        // Tap the button
+        app.buttons["Loại đơn"].tap() // open menu
+        app.buttons["Mang về"].tap()  // tap menu item by text
+        
+        dLog(sut.orderList.toJSON())
+        XCTAssertEqual(sut.orderList.count, 0)
 
      }
     

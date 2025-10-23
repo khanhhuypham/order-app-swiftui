@@ -198,6 +198,9 @@ extension NetworkManager{
             case .createFood(_, _):
                 return String(format: "/api/%@/foods/create",NetworkManager.version_of_order)
             
+            case .updateFood(_, let food):
+                return String(format: "/api/%@/foods/%d/update",NetworkManager.version_of_order,food.id)
+            
             case .closeTable(let order_id):
                 return environmentMode == .offline
                 ? String(format: "/api/tables/%d/close",order_id)

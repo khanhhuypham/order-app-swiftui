@@ -146,6 +146,9 @@ extension NetworkManager{
             
             case .createFood(_, _):
                 return .POST
+            
+            case .updateFood(_, _):
+                return .POST
 
             case .closeTable(_):
                 return .POST

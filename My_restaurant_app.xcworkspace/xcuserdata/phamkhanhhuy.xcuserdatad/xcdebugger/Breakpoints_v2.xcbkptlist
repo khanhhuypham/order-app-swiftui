@@ -7,22 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "684C1DB3-B913-450D-B732-C713EE0E7C32"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "My_restaurant_app/Application/scenes/Utility/Management/AreaTableManagement/AreaManagementViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
-            landmarkName = "getTables(areaId:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "97446C11-BB12-4EB8-8531-8A1EC426E2C6"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -94,8 +78,8 @@
             filePath = "My_restaurant_app/Application/scenes/Utility/Management/AreaTableManagement/AreaManagementViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "185"
-            endingLineNumber = "185"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
             landmarkName = "createTable(table:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -242,6 +226,36 @@
             endingLineNumber = "143"
             landmarkName = "presentDialog(isPresented:showWithAnimation:dismissWithAnimation:afterDismiss:content:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "93B7AD27-C3A3-4190-864E-4CD76E7723D0 - fe3e59dfe2a8275b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SwiftUI.View.presentDialog&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(isPresented: SwiftUI.Binding&lt;Swift.Bool&gt;, showWithAnimation: Swift.Bool, dismissWithAnimation: Swift.Bool, afterDismiss: Swift.Optional&lt;() -&gt; ()&gt;, content: () -&gt; &#x3c4;_1_0) -&gt; some"
+                  moduleName = "My_restaurant_app.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/order-swiftui/My_restaurant_app/Extension/UIView%20+%20extension.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "144"
+                  endingLineNumber = "144">
+               </Location>
+               <Location
+                  uuid = "93B7AD27-C3A3-4190-864E-4CD76E7723D0 - 4f6b04713a9fd471"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool) -&gt; () in SwiftUI.View.presentDialog&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(isPresented: SwiftUI.Binding&lt;Swift.Bool&gt;, showWithAnimation: Swift.Bool, dismissWithAnimation: Swift.Bool, afterDismiss: Swift.Optional&lt;() -&gt; ()&gt;, content: () -&gt; &#x3c4;_1_0) -&gt; some"
+                  moduleName = "My_restaurant_app.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/order-swiftui/My_restaurant_app/Extension/UIView%20+%20extension.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "145"
+                  endingLineNumber = "145">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -327,22 +341,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "16D8343C-F158-4071-8BAB-A4A300953CF9"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "My_restaurant_app/Application/Tabbar/view/TabBar.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "alertToast"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "76C64F21-ABD4-4592-83A1-19878265EC16"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -386,6 +384,22 @@
             endingLineNumber = "58"
             landmarkName = "init(food:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8CFB5D7C-B820-477C-B1D8-172115DD1BA9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "My_restaurant_app/Application/scenes/Utility/Management/MenuManagement/FoodManagement/FoodManagement.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -57,6 +57,17 @@
                ReferencedContainer = "container:My_restaurant_app.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "94F2CACC2EA781F2001FD6BB"
+               BuildableName = "My_restaurant_appUITests.xctest"
+               BlueprintName = "My_restaurant_appUITests"
+               ReferencedContainer = "container:My_restaurant_app.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

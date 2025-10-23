@@ -12,12 +12,12 @@
 		<key>My_restaurant_app.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>11</integer>
+			<integer>0</integer>
 		</dict>
 		<key>UnitTests.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>12</integer>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -33,6 +33,11 @@
 			<true/>
 		</dict>
 		<key>943508C92EA2277700007105</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>94F2CAE82EA784CE001FD6BB</key>
 		<dict>
 			<key>primary</key>
 			<true/>

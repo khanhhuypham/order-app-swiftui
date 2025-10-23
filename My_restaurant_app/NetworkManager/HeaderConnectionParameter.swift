@@ -193,6 +193,9 @@ extension NetworkManager{
             
             case .createFood(_, _):
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)
+            
+            case .updateFood(_, _):
+                return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)
 //            case .generateFileNameResource(_):
 //                return headerNode(ProjectId: .PROJECT_UPLOAD_SERVICE, Method: .POST)
 //                

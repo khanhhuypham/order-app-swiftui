@@ -25,418 +25,452 @@ extension NetworkManager{
     var task:APIParam {
         switch self{
             //MARK: authentication
-            case .sessions:
-                return APIParam(query:["device_uid":UIDevice.current.identifierForVendor!.uuidString.lowercased()])
-
-
-            case .config(let restaurant_name):
-                return APIParam(query:[
-                    "project_id": Constants.apiKey,
-                    "device_uid": UIDevice.current.identifierForVendor!.uuidString.lowercased(),
-                    "restaurant_name": restaurant_name
-                ])
-
-
-
-            case .login(let username, let password):
-                return APIParam(body:[
-                    "username": username,
-                    "password": GeneralUtils.encoded(str: password),
-                    "device_uid":GeneralUtils.getUDID(),
-                    "app_type":String(GeneralUtils.getAppType()),
-                    "push_token": ""
-                ])
-            
-            case .loginUsingCode(let code,let device_uid,let device_name,let app_type):
-                return APIParam(body:[
-                    "code": code,
-                    "device_uid":device_uid,
-                    "device_name":device_name,
-                    "app_type":app_type,
-                ])
+        case .sessions:
+            return APIParam(query:["device_uid":UIDevice.current.identifierForVendor!.uuidString.lowercased()])
             
             
-            case .getCodeAuthenticationList:
-                return APIParam(query:[:])
+        case .config(let restaurant_name):
+            return APIParam(query:[
+                "project_id": Constants.apiKey,
+                "device_uid": UIDevice.current.identifierForVendor!.uuidString.lowercased(),
+                "restaurant_name": restaurant_name
+            ])
             
-            case .postCreateAuthenticationCode(let expire_at,let code):
-                return APIParam(body:["expire_at": expire_at,"code":code])
-           
-            case .postChangeStatusOfAuthenticationCode(_):
-                return APIParam(body:[:])
-
+            
+            
+        case .login(let username, let password):
+            return APIParam(body:[
+                "username": username,
+                "password": GeneralUtils.encoded(str: password),
+                "device_uid":GeneralUtils.getUDID(),
+                "app_type":String(GeneralUtils.getAppType()),
+                "push_token": ""
+            ])
+            
+        case .loginUsingCode(let code,let device_uid,let device_name,let app_type):
+            return APIParam(body:[
+                "code": code,
+                "device_uid":device_uid,
+                "device_name":device_name,
+                "app_type":app_type,
+            ])
+            
+            
+        case .getCodeAuthenticationList:
+            return APIParam(query:[:])
+            
+        case .postCreateAuthenticationCode(let expire_at,let code):
+            return APIParam(body:["expire_at": expire_at,"code":code])
+            
+        case .postChangeStatusOfAuthenticationCode(_):
+            return APIParam(body:[:])
+            
             
             //MARK: restaurant setting
-            case .setting(let branch_id):
-             
-                return APIParam(query:[
-                    "branch_id":String(branch_id),
-                    "udid":UIDevice.current.identifierForVendor!.uuidString.lowercased(),
-                    "app_type":String(11)
-                ])
-
-            case .brands(let key_search, let status):
+        case .setting(let branch_id):
             
-                return APIParam(query:[
-                    "key_search": key_search,
-                    "status":String(status)
-                ])
-
-
-
-            case .branches(let brand_id, let status):
-                return APIParam(query:[
-                    "restaurant_brand_id": String(brand_id),
-                    "status": String(status)
-                ])
-
-            case .getBrandSetting(_):
-                return APIParam(query:[:])
-
-           
-            case .postApplyOnlyCashAmount(_):
-                return  APIParam(query:[:])
-
-
-            case .getApplyOnlyCashAmount(_):
-                return  APIParam(query:[:])
-
+            return APIParam(query:[
+                "branch_id":String(branch_id),
+                "udid":UIDevice.current.identifierForVendor!.uuidString.lowercased(),
+                "app_type":String(11)
+            ])
+            
+        case .brands(let key_search, let status):
+            
+            return APIParam(query:[
+                "key_search": key_search,
+                "status":String(status)
+            ])
+            
+            
+            
+        case .branches(let brand_id, let status):
+            return APIParam(query:[
+                "restaurant_brand_id": String(brand_id),
+                "status": String(status)
+            ])
+            
+        case .getBrandSetting(_):
+            return APIParam(query:[:])
+            
+            
+        case .postApplyOnlyCashAmount(_):
+            return  APIParam(query:[:])
+            
+            
+        case .getApplyOnlyCashAmount(_):
+            return  APIParam(query:[:])
+            
             //MARK: ===================
-            case .orders(let brand_id,let branch_id,let user_id,let order_methods,let order_status):
-                return APIParam(query:[
-                    "restaurant_brand_id": brand_id,
-                    "branch_id": branch_id,
-                    "id":user_id,
-                    "order_status": order_status,
-                    "order_methods":order_methods,
-                    "page":1,
-                    "limit":1000
-                ])
-
-    
-            case .order(let order_id, let branch_id, let is_print_bill, let food_status):
-              
-                return APIParam(query:[
-                    "id": String(order_id),
-                    "branch_id": String(branch_id),
-                    "is_print_bill": is_print_bill.description,
-                    "food_status": food_status
-                ])
-
-            case .foods(let branch_id, let area_id, let category_id, let category_type, let is_allow_employee_gift, let is_sell_by_weight, let is_out_stock, let keyword, let limit, let page):
-                   
-                return APIParam(query:[
-                    "branch_id":branch_id,
-                    "area_id": area_id,
-                    "category_id": category_id,
-                    "category_type": category_type,
-                    "is_allow_employee_gift": is_allow_employee_gift,
-                    "is_sell_by_weight": is_sell_by_weight,
-                    "is_out_stock": is_out_stock,
-                    "key_search": keyword,
-                    "is_get_restaurant_kitchen_place": ALL,
-                    "status":ACTIVE,
-                    "limit": limit,
-                    "page": page
-                ])
-
-
-            case .addFoods(let branch_id, let order_id, let foods, let is_use_point):
+        case .orders(let brand_id,let branch_id,let user_id,let order_methods,let order_status):
+            return APIParam(query:[
+                "restaurant_brand_id": brand_id,
+                "branch_id": branch_id,
+                "id":user_id,
+                "order_status": order_status,
+                "order_methods":order_methods,
+                "page":1,
+                "limit":1000
+            ])
             
-                return APIParam(body:[
-                    "branch_id": branch_id.description,
-                    "order_id": order_id.description,
-                    "foods": foods.map{item in
-                        
-                        var parameters: [String: Any] = [
-                            "id": item.id,
-                            "quantity": item.quantity,
-                            "note": item.note,
-                            "is_use_point": item.is_use_point,
-                            "customer_order_detail_id": item.customer_order_detail_id,
-                            "addition_foods": item.addition_foods.toDictionary(),
-                            "buy_one_get_one_foods": item.buy_one_get_one_foods.toDictionary(),
-                            "discount_percent": item.discount_percent,
-                            "food_option_foods": item.food_option_foods
-                        ]
-                        
-                        if item.price > 0 {
-                            parameters["price"] = item.price
-                        }
-
-                        return parameters
-                        
-                    },
-                    "is_use_point": is_use_point.description
-                ])
+            
+        case .order(let order_id, let branch_id, let is_print_bill, let food_status):
+            
+            return APIParam(query:[
+                "id": String(order_id),
+                "branch_id": String(branch_id),
+                "is_print_bill": is_print_bill.description,
+                "food_status": food_status
+            ])
+            
+        case .foods(let branch_id, let area_id, let category_id, let category_type, let is_allow_employee_gift, let is_sell_by_weight, let is_out_stock, let keyword, let limit, let page):
+            
+            return APIParam(query:[
+                "branch_id":branch_id,
+                "area_id": area_id,
+                "category_id": category_id,
+                "category_type": category_type,
+                "is_allow_employee_gift": is_allow_employee_gift,
+                "is_sell_by_weight": is_sell_by_weight,
+                "is_out_stock": is_out_stock,
+                "key_search": keyword,
+                "is_get_restaurant_kitchen_place": ALL,
+                "status":ACTIVE,
+                "limit": limit,
+                "page": page
+            ])
+            
+            
+        case .addFoods(let branch_id, let order_id, let foods, let is_use_point):
+            
+            return APIParam(body:[
+                "branch_id": branch_id.description,
+                "order_id": order_id.description,
+                "foods": foods.map{item in
                     
-            case .addGiftFoods(let branch_id, let order_id, let foods, let is_use_point):
-                return APIParam(body:[
-                    "branch_id": branch_id.description,
-                    "order_id": order_id.description,
-                    "is_use_point":is_use_point.description
-                ])
-
-         
-
-            case .getPrinters(let branch_id, let status):
-                return APIParam(query:[
-                    "branch_id":String(branch_id),
-                    "status":String(status)
-                ])
-            
-            case .updatePrinter(let branch_id, let printer):
-                return APIParam(body:[
-                    "branch_id":branch_id,
-                    "name":printer.name,
-                    "id":printer.id,
-                    "type": printer.type.rawValue,
-                    "description":printer.description,
-                    "printer_name":printer.printer_name,
-                    "printer_ip_address":printer.ip_address,
-                    "printer_port":printer.port,
-                    "printer_paper_size":printer.paper_size,
-                    "print_number":printer.number_of_copies,
-                    "is_have_printer":printer.active ? ACTIVE : DEACTIVE,
-                    "is_print_each_food":printer.print_each_paper ? ACTIVE : DEACTIVE,
-                    "status":printer.status,
-                    "printer_type":printer.connection_type.rawValue
-                ])
-
-             case .vats:
-                return  APIParam(query:[:])
-
-
-
-
-            case .areas(let branch_id, let status):
-                return APIParam(query:["branch_id": branch_id.description,"status": status.description])
-
-              
-//
-            case .tables(let branch_dd, let area_id, let status, let exclude_table_id, let order_statuses,let buffet_ticket_id):
-                return APIParam(query:[
-                    "branch_id": branch_dd.description,
-                    "area_id": area_id.description,
-                    "status":status,
-                    "exclude_table_id":exclude_table_id.description,
-                    "order_statuses":order_statuses,
-                    "is_active": "",
-                    "buffet_ticket_id": buffet_ticket_id.description
-                ])
-          
-
-            case .addNoteToOrder(let branch_id, let order_detail_id, let note):
-                return APIParam(body:[
-                    "branch_id": branch_id.description,
-                    "id": order_detail_id.description,
-                    "note": note
-                ])
-
-            case .reasonCancelFoods(let branch_id):
-                return APIParam(query: ["branch_id": branch_id.description])
-
-            case .cancelFood(let branch_id, let order_id, let reason, let order_detail_id, let quantity):
-                return APIParam(body:[
-                    "branch_id": branch_id,
-                    "id": order_id,
-                    "reason":reason,
-                    "order_detail_id": order_detail_id,
-                    "quantity":quantity
-                ])
-             
-            case .updateFoods(let branch_id, let order_id, let itemsUpdate):
-                return APIParam(body:[
-                        "branch_id": branch_id,
-                        "id": order_id,
-                        "order_details":itemsUpdate.toDictionary()
+                    var parameters: [String: Any] = [
+                        "id": item.id,
+                        "quantity": item.quantity,
+                        "note": item.note,
+                        "is_use_point": item.is_use_point,
+                        "customer_order_detail_id": item.customer_order_detail_id,
+                        "addition_foods": item.addition_foods.toDictionary(),
+                        "buy_one_get_one_foods": item.buy_one_get_one_foods.toDictionary(),
+                        "discount_percent": item.discount_percent,
+                        "food_option_foods": item.food_option_foods
                     ]
-                )
-
-            case .openTable(let table_id):
-                return APIParam(body: ["table_id": table_id])
+                    
+                    if item.price > 0 {
+                        parameters["price"] = item.price
+                    }
+                    
+                    return parameters
+                    
+                },
+                "is_use_point": is_use_point.description
+            ])
+            
+        case .addGiftFoods(let branch_id, let order_id, let foods, let is_use_point):
+            return APIParam(body:[
+                "branch_id": branch_id.description,
+                "order_id": order_id.description,
+                "is_use_point":is_use_point.description
+            ])
             
             
-            case .ordersNeedMove(let branch_id, let order_id, let food_status):
-                return APIParam(query: [
-                        "id": order_id,
-                        "branch_id": branch_id,
-                        "food_status": food_status
-                ])
+            
+        case .getPrinters(let branch_id, let status):
+            return APIParam(query:[
+                "branch_id":String(branch_id),
+                "status":String(status)
+            ])
+            
+        case .updatePrinter(let branch_id, let printer):
+            return APIParam(body:[
+                "branch_id":branch_id,
+                "name":printer.name,
+                "id":printer.id,
+                "type": printer.type.rawValue,
+                "description":printer.description,
+                "printer_name":printer.printer_name,
+                "printer_ip_address":printer.ip_address,
+                "printer_port":printer.port,
+                "printer_paper_size":printer.paper_size,
+                "print_number":printer.number_of_copies,
+                "is_have_printer":printer.active ? ACTIVE : DEACTIVE,
+                "is_print_each_food":printer.print_each_paper ? ACTIVE : DEACTIVE,
+                "status":printer.status,
+                "printer_type":printer.connection_type.rawValue
+            ])
+            
+        case .vats:
+            return  APIParam(query:[:])
+            
+            
+            
+            
+        case .areas(let branch_id, let status):
+            return APIParam(query:["branch_id": branch_id.description,"status": status.description])
+            
+            
+            //
+        case .tables(let branch_dd, let area_id, let status, let exclude_table_id, let order_statuses,let buffet_ticket_id):
+            return APIParam(query:[
+                "branch_id": branch_dd.description,
+                "area_id": area_id.description,
+                "status":status,
+                "exclude_table_id":exclude_table_id.description,
+                "order_statuses":order_statuses,
+                "is_active": "",
+                "buffet_ticket_id": buffet_ticket_id.description
+            ])
+            
+            
+        case .addNoteToOrder(let branch_id, let order_detail_id, let note):
+            return APIParam(body:[
+                "branch_id": branch_id.description,
+                "id": order_detail_id.description,
+                "note": note
+            ])
+            
+        case .reasonCancelFoods(let branch_id):
+            return APIParam(query: ["branch_id": branch_id.description])
+            
+        case .cancelFood(let branch_id, let order_id, let reason, let order_detail_id, let quantity):
+            return APIParam(body:[
+                "branch_id": branch_id,
+                "id": order_id,
+                "reason":reason,
+                "order_detail_id": order_detail_id,
+                "quantity":quantity
+            ])
+            
+        case .updateFoods(let branch_id, let order_id, let itemsUpdate):
+            return APIParam(body:[
+                "branch_id": branch_id,
+                "id": order_id,
+                "order_details":itemsUpdate.toDictionary()
+            ]
+            )
+            
+        case .openTable(let table_id):
+            return APIParam(body: ["table_id": table_id])
+            
+            
+        case .ordersNeedMove(let branch_id, let order_id, let food_status):
+            return APIParam(query: [
+                "id": order_id,
+                "branch_id": branch_id,
+                "food_status": food_status
+            ])
+            
+        case .moveFoods(let branch_id, let order_id, let destination_table_id, let target_table_id, let foods_move):
+            return APIParam(body: [
+                "from_order_id": order_id,
+                "destination_table_id":destination_table_id,
+                "to_table_id": target_table_id,
+                "branch_id": branch_id,
+                "list_food": foods_move.toDictionary()
+            ])
+            
+        case .moveTable(let branch_id,  let from, let to):
+            return APIParam(body: [
+                "branch_id": branch_id,
+                "id": from,
+                "table_id": to
+            ])
+            
+            
+        case .mergeTable(let branch_id,  let destination_table_id, let target_table_ids):
+            return APIParam(body: [
+                "branch_id": branch_id,
+                "destination_table_id": destination_table_id,
+                "table_ids": target_table_ids
+            ])
+            
+        case .createArea(let branch_id, let area, let is_confirmed):
+            var parameter:[String:Any] = [
+                "id": area.id,
+                "branch_id":branch_id.description,
+                "name": area.name,
+                "status":area.status.description,
                 
-            case .moveFoods(let branch_id, let order_id, let destination_table_id, let target_table_id, let foods_move):
-                return APIParam(body: [
-                    "from_order_id": order_id,
-                    "destination_table_id":destination_table_id,
-                    "to_table_id": target_table_id,
-                    "branch_id": branch_id,
-                    "list_food": foods_move.toDictionary()
-                ])
-
-            case .moveTable(let branch_id,  let from, let to):
-                return APIParam(body: [
-                    "branch_id": branch_id,
-                    "id": from,
-                    "table_id": to
-                ])
+            ]
+            if is_confirmed != nil{
+                parameter.updateValue(is_confirmed, forKey: "is_confirmed")
+            }
             
-
-            case .mergeTable(let branch_id,  let destination_table_id, let target_table_ids):
-                return APIParam(body: [
-                    "branch_id": branch_id,
-                    "destination_table_id": destination_table_id,
-                    "table_ids": target_table_ids
-                ])
-    
-            case .createArea(let branch_id, let area, let is_confirmed):
-                var parameter:[String:Any] = [
-                    "id": area.id,
-                    "branch_id":branch_id.description,
-                    "name": area.name,
-                    "status":area.status.description,
-
-                ]
-                if is_confirmed != nil{
-                    parameter.updateValue(is_confirmed, forKey: "is_confirmed")
-                }
-
-                return APIParam(query: parameter)
-
-
-            case .foodsManagement(let branch_id, let is_addition, let status, let category_types, let restaurant_kitchen_place_id):
+            return APIParam(query: parameter)
             
-                return APIParam(query: [
-                    "branch_id":branch_id.description,
-                    "is_addition": is_addition.description,
-                    "status": status.description,
-                    "category_types": category_types.description,
-                    "restaurant_kitchen_place_id": restaurant_kitchen_place_id.description
-                ])
-
-            case .categories(let brand_id, let status, let category_types):
-                return APIParam(query: [
-                    "restaurant_brand_id":brand_id.description,
-                    "status": status.description,
-                    "category_types":category_types
-                ])
-      
-
-            case .notesManagement(let branch_id, let status):
             
-                return APIParam(query: [
-                    "branch_id":branch_id.description,
-                    "status": status.description
-                ])
-
-            case .createTable(let branch_id, let table_id, let table_name, let area_id, let total_slot, let status):
-                return APIParam(query: [
-                    "branch_id":branch_id.description,
-                    "table_id":table_id.description,
-                    "table_name":table_name,
-                    "area_id":area_id.description,
-                    "total_slot":total_slot.description,
-                    "status":status.description
-                ])
+        case .foodsManagement(let branch_id, let is_addition, let status, let category_types, let restaurant_kitchen_place_id):
             
-
-            case .foodsNeedPrint(let order_id):
-                return APIParam(query: ["order_id":String(order_id)])
-
-            case .createNote(let note):
-             
-                return APIParam(query: [
-                    "id": note.id.description,
-                    "content": note.content,
-                    "delete": note.delete?.description,
-                    "branch_id": note.branch_id?.description
-                ])
-
-            case .createCategory(let id,let name, let code,let description, let category_type, let status):
-                return APIParam(body: [
-                    "name":name,
-                    "code":code,
-                    "restaurant_brand_id": (Constants.brand.id ?? 0).description,
-                    "description":description,
-                    "category_type":category_type.description,
-                    "status":status.description,
-                    "id":id.description
-                ])
-                 
-            case  .ordersHistory(
-                let brand_id,
-                let branch_id,
-                let from_date,
-                let to_date,
-                let order_status,
-                let limit,
-                let page,
-                let key_search
-            ):
-                return APIParam(query: [
-                    "restaurant_brand_id":brand_id,
-                    "branch_id": branch_id,
-                    "from_date":from_date,
-                    "to_date":to_date,
-                    "order_status": order_status,
-                    "limit":limit,
-                    "page":page,
-                    "key_search":key_search
-                ])
+            return APIParam(query: [
+                "branch_id":branch_id.description,
+                "is_addition": is_addition.description,
+                "status": status.description,
+                "category_types": category_types.description,
+                "restaurant_kitchen_place_id": restaurant_kitchen_place_id.description
+            ])
             
-            case .getTotalAmountOfOrders(
-                let restaurant_brand_id,
-                let branch_id,
-                let order_status,
-                let key_search,
-                let from_date,
-                let to_date
-            ):
-                return APIParam(query: [
-                    "restaurant_brand_id": restaurant_brand_id,
-                    "branch_id": branch_id,
-                    "order_status":order_status,
-                    "key_search":key_search,
-                    "from_date":from_date,
-                    "to_date":to_date
-                ])
-                
-            case .units:
-                return APIParam(query: [:])
-                
-            case .createFood(let branch_id, let food):
-                return APIParam(body: [
-                    "id":food.id,
-                    "restaurant_brand_id":Constants.brand.id,
-                    "branch_id":branch_id,
-                    "category_id":food.category_id,
-                    "avatar":food.avatar,
-                    "avatar_thump":food.avatar_thump,
-                    "description":food.description,
-                    "name":food.name,
-                    "price":food.price,
-//                    "is_bbq":food.is_bbq,
-                    "unit":food.unit_type,
-//                    "is_allow_print":food.is_allow_print,
-                    "is_allow_print_stamp":food.allow_print_stamp ? ACTIVE : DEACTIVE,
-                    "is_addition":food.is_addition,
-                    "code":food.code,
-                    "is_sell_by_weight":food.is_sell_by_weight,
-//                    "is_allow_review":food.is_allow_review,
-                    "is_take_away":food.is_take_away,
-//                    "is_addition_like_food":food.is_addition_like_food,
-//                    "food_material_type":food.food_material_type,
-                    "food_addition_ids":food.food_addition_ids,
-                    "status":food.status,
-                    "temporary_price": food.temporary_price,
-                    "temporary_percent": food.temporary_percent,
-                    "temporary_price_from_date": food.temporary_price_from_date,
-                    "temporary_price_to_date": food.temporary_price_to_date,
-//                    "promotion_percent": food.promotion_percent,
-//                    "promotion_from_date": food.promotion_from_date,
-//                    "promotion_to_date": food.promotion_to_date,
-                    "restaurant_vat_config_id": food.vat_id,
-                    "restaurant_kitchen_place_id":food.printer_id
-                ])
+        case .categories(let brand_id, let status, let category_types):
+            return APIParam(query: [
+                "restaurant_brand_id":brand_id.description,
+                "status": status.description,
+                "category_types":category_types
+            ])
+            
+            
+        case .notesManagement(let branch_id, let status):
+            
+            return APIParam(query: [
+                "branch_id":branch_id.description,
+                "status": status.description
+            ])
+            
+        case .createTable(let branch_id, let table_id, let table_name, let area_id, let total_slot, let status):
+            return APIParam(query: [
+                "branch_id":branch_id.description,
+                "table_id":table_id.description,
+                "table_name":table_name,
+                "area_id":area_id.description,
+                "total_slot":total_slot.description,
+                "status":status.description
+            ])
+            
+            
+        case .foodsNeedPrint(let order_id):
+            return APIParam(query: ["order_id":String(order_id)])
+            
+        case .createNote(let note):
+            
+            return APIParam(query: [
+                "id": note.id.description,
+                "content": note.content,
+                "delete": note.delete?.description,
+                "branch_id": note.branch_id?.description
+            ])
+            
+        case .createCategory(let id,let name, let code,let description, let category_type, let status):
+            return APIParam(body: [
+                "name":name,
+                "code":code,
+                "restaurant_brand_id": (Constants.brand.id ?? 0).description,
+                "description":description,
+                "category_type":category_type.description,
+                "status":status.description,
+                "id":id.description
+            ])
+            
+        case  .ordersHistory(
+            let brand_id,
+            let branch_id,
+            let from_date,
+            let to_date,
+            let order_status,
+            let limit,
+            let page,
+            let key_search
+        ):
+            return APIParam(query: [
+                "restaurant_brand_id":brand_id,
+                "branch_id": branch_id,
+                "from_date":from_date,
+                "to_date":to_date,
+                "order_status": order_status,
+                "limit":limit,
+                "page":page,
+                "key_search":key_search
+            ])
+            
+        case .getTotalAmountOfOrders(
+            let restaurant_brand_id,
+            let branch_id,
+            let order_status,
+            let key_search,
+            let from_date,
+            let to_date
+        ):
+            return APIParam(query: [
+                "restaurant_brand_id": restaurant_brand_id,
+                "branch_id": branch_id,
+                "order_status":order_status,
+                "key_search":key_search,
+                "from_date":from_date,
+                "to_date":to_date
+            ])
+            
+        case .units:
+            return APIParam(query: [:])
+            
+        case .createFood(let branch_id, let food):
+            return APIParam(body: [
+                "id":food.id,
+                "restaurant_brand_id":Constants.brand.id,
+                "branch_id":branch_id,
+                "category_id":food.category_id,
+                "avatar":food.avatar,
+                "avatar_thump":food.avatar_thump,
+                "description":food.description,
+                "name":food.name,
+                "price":food.price,
+                //                    "is_bbq":food.is_bbq,
+                "unit":food.unit_type,
+                //                    "is_allow_print":food.is_allow_print,
+                "is_allow_print_stamp":food.allow_print_stamp ? ACTIVE : DEACTIVE,
+                "is_addition":food.is_addition,
+                "code":food.code,
+                "is_sell_by_weight":food.is_sell_by_weight,
+                //                    "is_allow_review":food.is_allow_review,
+                "is_take_away":food.is_take_away,
+                //                    "is_addition_like_food":food.is_addition_like_food,
+                //                    "food_material_type":food.food_material_type,
+                "food_addition_ids":food.food_addition_ids,
+                "status":food.status,
+                "temporary_price": food.temporary_price,
+                "temporary_percent": food.temporary_percent,
+                "temporary_price_from_date": food.temporary_price_from_date,
+                "temporary_price_to_date": food.temporary_price_to_date,
+                //                    "promotion_percent": food.promotion_percent,
+                //                    "promotion_from_date": food.promotion_from_date,
+                //                    "promotion_to_date": food.promotion_to_date,
+                "restaurant_vat_config_id": food.vat_id,
+                "restaurant_kitchen_place_id":food.printer_id
+            ])
+            
+        case .updateFood(let branch_id, let food):
+            return  APIParam(body: [
+                "id":food.id,
+                "restaurant_brand_id":branch_id,
+                "branch_id":branch_id,
+                "category_id":food.category_id,
+                "avatar":food.avatar,
+                "avatar_thump":food.avatar_thump,
+                "description":food.description,
+                "name":food.name,
+                "price":food.price,
+                "is_bbq":food.is_bbq,
+                "unit":food.unit_type,
+//                "is_allow_print":food.is_allow_print,
+//                "is_allow_print_stamp":food.is_allow_print_stamp,
+                "is_addition_like_food":food.is_addition_like_food,
+                "is_addition":food.is_addition,
+                "code":food.code,
+                "is_sell_by_weight":food.is_sell_by_weight,
+                "is_take_away":food.is_take_away,
+                "food_material_type":food.food_material_type,
+                "food_addition_ids":food.food_addition_ids,
+                "status":food.status,
+                "temporary_price": food.temporary_price,
+                "temporary_percent": food.temporary_percent,
+                "temporary_price_from_date": food.temporary_price_from_date,
+                "temporary_price_to_date": food.temporary_price_to_date,
+                "promotion_percent": food.promotion_percent,
+                "promotion_from_date": food.promotion_from_date,
+                "promotion_to_date": food.promotion_to_date,
+                "restaurant_vat_config_id": food.vat_id,
+                "restaurant_kitchen_place_id":food.printer_id
+            ])
                 
 
             case .closeTable(let order_id):

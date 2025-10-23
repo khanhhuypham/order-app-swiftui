@@ -1,0 +1,18 @@
+//
+//  Staging.xcconfig
+//  My_restaurant_app
+//
+//  Created by Pham Khanh Huy on 21/10/25.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project
+
+
+FX_APP_NAME = Project (Staging)
+FX_APP_VERSION = 0.2.0
+FX_APP_BUNDLE_ID = com.fx.thelastproject
+
+BACKEND_URL = http:\/\/api.intensifystudio.com/staging
+CONSUMER_KEY = ck_a57e4fa2e14c12f400371cf2951ec3dea5_staging
+CONSUMER_SECRET = cs_c847caa35ce1041e9c69d239141f13f63bb22b_staging
