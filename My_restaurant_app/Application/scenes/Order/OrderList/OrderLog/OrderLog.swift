@@ -67,8 +67,8 @@ struct OrderLog: View {
         
         }
         .navigationTitle("Lịch sử đơn hàng")
-        .onAppear {
-            viewModel.getOrderLog(orderId: orderId)
+        .task {
+            await viewModel.getOrderLog(orderId: orderId)
         }
     
         

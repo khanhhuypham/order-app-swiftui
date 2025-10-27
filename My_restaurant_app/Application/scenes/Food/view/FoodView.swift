@@ -69,11 +69,11 @@ struct FoodView: View {
             
             if let order = self.order{
                 viewModel.order = order
-//                viewModel.APIParameter.is_allow_employee_gift = is_gift
             }
-//            dLog(is_gift)
             self.firstSetup(order: viewModel.order)
-            viewModel.reloadContent()
+            Task{
+                await viewModel.reloadContent()
+            }
         })
         .onReceive(viewModel.$navigateTag) { tag in
 
@@ -136,7 +136,9 @@ struct FoodView: View {
                         }
     
                         viewModel.APIParameter.category_id = cate.id
-                        viewModel.reloadContent()
+                        Task{
+                            await viewModel.reloadContent()
+                        }
                         
                     }) {
                         Text(cate.name)

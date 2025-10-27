@@ -31,9 +31,9 @@ struct ReportOfDailyRevenue: View {
             
             TemporaryTodayRevenueReport
         }
-        .onAppear{
-            viewModel.getTodayRevenueReport()
-            viewModel.getDailyRevenueReportOfFoodApp()
+        .task{
+            await viewModel.getTodayRevenueReport()
+            await viewModel.getDailyRevenueReportOfFoodApp()
         }
     }
     

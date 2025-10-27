@@ -103,7 +103,7 @@ class OrderListViewModel: ObservableObject {
 
 
     
-    
+    @MainActor
     func closeTable(id: Int) async {
         let result: Result<PlainAPIResponse, Error> = await NetworkManager.callAPIResultAsync(netWorkManger: .closeTable(order_id: id))
         

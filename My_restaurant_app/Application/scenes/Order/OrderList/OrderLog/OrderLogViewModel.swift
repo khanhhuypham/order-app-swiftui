@@ -14,9 +14,10 @@ class OrderLogViewModel: ObservableObject {
     
     @Published var searchKey = ""
     
-    func getOrderLog(orderId:Int){
+    @MainActor
+    func getOrderLog(orderId:Int)async{
 
-        NetworkManager.callAPI(netWorkManger: .getActivityLog(
+        let result:Result<APIResponse<ActivityLogResponse>, Error> = try await NetworkManager.callAPIResultAsync(netWorkManger: .getActivityLog(
             object_id: orderId,
             type: 2,
             key_search: "",
@@ -25,8 +26,8 @@ class OrderLogViewModel: ObservableObject {
             to: "",
             page: 1,
             limit: 500
-        )){ (result: Result<APIResponse<ActivityLogResponse>, Error>) in
-       
+        ))
+  
             switch result {
 
                 case .success(let res):
@@ -37,7 +38,7 @@ class OrderLogViewModel: ObservableObject {
                 case .failure(let error):
                    dLog("Error: \(error)")
             }
-        }
+        
     }
     
     

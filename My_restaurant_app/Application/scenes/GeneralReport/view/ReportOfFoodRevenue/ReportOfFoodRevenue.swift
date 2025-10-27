@@ -73,7 +73,9 @@ struct ReportOfFoodRevenue: View {
                 report.reportType = id
                 report.dateString = Constants.REPORT_TYPE_DICTIONARY[id] ?? ""
                 viewModel.foodReport.data.removeAll()
-                viewModel.getFoodReport(report: report)
+                Task{
+                    await viewModel.getFoodReport(report: report)
+                }
                 
             }.padding(.horizontal,5)
 
@@ -88,8 +90,8 @@ struct ReportOfFoodRevenue: View {
             .frame(height: 180)
             .padding(.vertical,10)
         }
-        .onAppear{
-            viewModel.getFoodReport(report: viewModel.foodReport)
+        .task{
+            await viewModel.getFoodReport(report: viewModel.foodReport)
         }
     }
     

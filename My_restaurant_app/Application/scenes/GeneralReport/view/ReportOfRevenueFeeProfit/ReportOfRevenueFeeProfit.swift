@@ -34,7 +34,9 @@ struct ReportOfRevenueFeeProfit: View {
                     report.reportType = id
                     report.dateString = Constants.REPORT_TYPE_DICTIONARY[id] ?? ""
                     viewModel.saleReport.data.removeAll()
-                    viewModel.reportRevenueCostProfit(report: report)
+                    Task{
+                        await viewModel.reportRevenueCostProfit(report: report)
+                    }
                 }.padding(.horizontal,5)
                 
                 Divider()
@@ -85,8 +87,8 @@ struct ReportOfRevenueFeeProfit: View {
             
             
         }
-        .onAppear{
-            viewModel.reportRevenueCostProfit(report: viewModel.revenueCostProfitReport)
+        .task{
+            await viewModel.reportRevenueCostProfit(report: viewModel.revenueCostProfitReport)
       
         }
     }

@@ -47,8 +47,8 @@ struct ReportOfDailyOrder: View {
             }
         }
         .foregroundColor(color.gray_600)
-        .onAppear{
-            viewModel.getDailyReport()
+        .task{
+            await viewModel.getDailyReport()
       
         }
  

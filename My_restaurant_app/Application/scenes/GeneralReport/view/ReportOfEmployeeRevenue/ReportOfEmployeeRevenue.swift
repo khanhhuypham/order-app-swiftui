@@ -64,9 +64,11 @@ struct ReportOfEmployeeRevenue: View {
                 var report = viewModel.employeeRevenueReport
                 report.reportType = id
                 report.dateString = Constants.REPORT_TYPE_DICTIONARY[id] ?? ""
-
+                
                 viewModel.employeeRevenueReport.data.removeAll()
-                viewModel.getReportEmployeeRevenue(report: report)
+                Task{
+                    await viewModel.getReportEmployeeRevenue(report: report)
+                }
             }.padding(.horizontal,5)
 
             Divider()
@@ -81,8 +83,8 @@ struct ReportOfEmployeeRevenue: View {
             .padding(.vertical,10)
             
         }
-        .onAppear{
-            viewModel.getReportEmployeeRevenue(report: viewModel.employeeRevenueReport)
+        .task{
+            await viewModel.getReportEmployeeRevenue(report: viewModel.employeeRevenueReport)
         }
     }
     

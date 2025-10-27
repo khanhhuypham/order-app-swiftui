@@ -144,8 +144,10 @@ extension FoodView{
             
         }
         viewModel.APIParameter = p
-        self.viewModel.reloadContent()
-        self.viewModel.getCategories()
+        Task{
+            await self.viewModel.reloadContent()
+            await self.viewModel.getCategories()
+        }
 
     }
     

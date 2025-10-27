@@ -71,39 +71,36 @@ class GeneralReportViewModel: ObservableObject {
 }
 
 extension GeneralReportViewModel{
-    
-    func getDailyReport(){
-       
-        NetworkManager.callAPI(netWorkManger: .report_revenue_activities_in_day_by_branch(
+    @MainActor
+    func getDailyReport()async{
+        let result:Result<APIResponse<DailyOrderReport>, Error> = await NetworkManager.callAPIResultAsync(netWorkManger: .report_revenue_activities_in_day_by_branch(
             restaurant_brand_id: Constants.brand.id,
             branch_id: Constants.branch.id,
             report_type: dailyOrderReport.reportType,
             date_string: dailyOrderReport.dateString,
             from_date: "",
             to_date: ""
-        )){[weak self] (result: Result<APIResponse<DailyOrderReport>, Error>) in
-            guard let self = self else {
-                return
-            }
+        ))
+        
+
+        switch result {
+
+            case .success(var res):
             
-            switch result {
-
-                case .success(var res):
+                if res.status == .ok, let data = res.data{
+                    dailyOrderReport = data
+                }
                 
-                    if res.status == .ok, let data = res.data{
-                        dailyOrderReport = data
-                    }
-                    
 
-                case .failure(let error):
-                   dLog("Error: \(error)")
-            }
+            case .failure(let error):
+               dLog("Error: \(error)")
         }
+    
     }
     
-    func getDailyRevenueReportOfFoodApp(){
-       
-        NetworkManager.callAPI(netWorkManger: .getDailyRevenueReportOfFoodApp(
+    @MainActor
+    func getDailyRevenueReportOfFoodApp()async{
+        let result: Result<APIResponse<FoodAppReport>, Error> = await NetworkManager.callAPIResultAsync(netWorkManger:.getDailyRevenueReportOfFoodApp(
             restaurant_id: Constants.restaurant_id,
             restaurant_brand_id: Constants.brand.id,
             branch_id: Constants.branch.id,
@@ -111,95 +108,80 @@ extension GeneralReportViewModel{
             date_string: foodAppReport.dateString,
             report_type: foodAppReport.reportType,
             hour_to_take_report: Constants.setting.hour_to_take_report
-        )){[weak self] (result: Result<APIResponse<FoodAppReport>, Error>) in
-            guard let self = self else {
-                return
-            }
+        ))
+        
+        switch result {
+
+            case .success(var res):
             
-            switch result {
-
-                case .success(var res):
+                if res.status == .ok,let data = res.data{
+                    foodAppReport = data
+                }
                 
-                    if res.status == .ok,let data = res.data{
-                        foodAppReport = data
-                    }
-                    
 
-                case .failure(let error):
-                   dLog("Error: \(error)")
-            }
+            case .failure(let error):
+               dLog("Error: \(error)")
         }
     }
     
 
-    
-    func getTodayRevenueReport(){
-       
-        NetworkManager.callAPI(netWorkManger: .report_revenue_by_time(
+    @MainActor
+    func getTodayRevenueReport()async{
+        let result: Result<APIResponse<RevenueReport>, Error> = await NetworkManager.callAPIResultAsync(netWorkManger:.report_revenue_by_time(
             restaurant_brand_id: Constants.brand.id,
             branch_id: Constants.branch.id,
             report_type: toDayRenueReport.reportType,
             date_string: toDayRenueReport.dateString,
             from_date: "",
             to_date: ""
-        )){[weak self] (result: Result<APIResponse<RevenueReport>, Error>) in
-            guard let self = self else {
-                return
-            }
+        ))
+       
+        switch result {
+
+            case .success(var res):
             
-            switch result {
-
-                case .success(var res):
+                if res.status == .ok,let data = res.data{
+                    toDayRenueReport = data
+                }
                 
-                    if res.status == .ok,let data = res.data{
-                        toDayRenueReport = data
-                    }
-                    
 
-                case .failure(let error):
-                   dLog("Error: \(error)")
-            }
+            case .failure(let error):
+               dLog("Error: \(error)")
         }
     }
     
-    func getReportRevenueGenral(report:SaleReport){
-       
-        NetworkManager.callAPI(netWorkManger: .getReportRevenueGenral(
+    func getReportRevenueGenral(report:SaleReport)async{
+        let result: Result<APIResponse<SaleReport>, Error> = await NetworkManager.callAPIResultAsync(netWorkManger: .getReportRevenueGenral(
             restaurant_brand_id: Constants.brand.id,
             branch_id: Constants.branch.id,
             report_type: report.reportType,
             date_string: report.dateString,
             from_date: report.fromDate,
             to_date: report.toDate
-        )){[weak self] (result: Result<APIResponse<SaleReport>, Error>) in
-            guard let self = self else {
-                return
-            }
+        ))
+       
+        switch result {
+
+            case .success(let res):
             
-            switch result {
-
-                case .success(let res):
+                if res.status == .ok,var data = res.data{
+                    data.reportType = report.reportType
+                    data.dateString = report.dateString
+                    data.fromDate = report.fromDate
+                    data.toDate = report.toDate
+           
+                    saleReport = data
+                }
                 
-                    if res.status == .ok,var data = res.data{
-                        data.reportType = report.reportType
-                        data.dateString = report.dateString
-                        data.fromDate = report.fromDate
-                        data.toDate = report.toDate
-               
-                        saleReport = data
-                    }
-                    
 
-                case .failure(let error):
-                   dLog("Error: \(error)")
-            }
+            case .failure(let error):
+               dLog("Error: \(error)")
         }
     }
     
-    
-    func reportRevenueCostProfit(report:RevenueFeeProfitReport){
-       
-        NetworkManager.callAPI(netWorkManger: .report_revenue_fee_profit(
+    @MainActor
+    func reportRevenueCostProfit(report:RevenueFeeProfitReport)async{
+        let result: Result<APIResponse<RevenueFeeProfitReport>, Error> = await NetworkManager.callAPIResultAsync(netWorkManger: .report_revenue_fee_profit(
             restaurant_brand_id: Constants.brand.id,
             branch_id: Constants.branch.id,
             is_count_to_revenue: ACTIVE,
@@ -207,75 +189,68 @@ extension GeneralReportViewModel{
             date_string: report.dateString,
             from_date: "",
             to_date: ""
-        )){[weak self] (result: Result<APIResponse<RevenueFeeProfitReport>, Error>) in
-            guard let self = self else {
-                return
-            }
+        ))
+       
+        switch result {
+
+            case .success(let res):
             
-            switch result {
+                if res.status == .ok,var data = res.data{
+                    data.reportType = report.reportType
+                    data.dateString = report.dateString
 
-                case .success(let res):
+                    revenueCostProfitReport = data
+                }
                 
-                    if res.status == .ok,var data = res.data{
-                        data.reportType = report.reportType
-                        data.dateString = report.dateString
-    
-                        revenueCostProfitReport = data
-                    }
-                    
 
-                case .failure(let error):
-                   dLog("Error: \(error)")
-            }
+            case .failure(let error):
+               dLog("Error: \(error)")
         }
     }
     
     
-    
-    func getReportAreaRevenue(report:AreaRevenueReport){
-        NetworkManager.callAPI(netWorkManger: .report_area_revenue(
+    @MainActor
+    func getReportAreaRevenue(report:AreaRevenueReport) async{
+        let result:Result<APIResponse<AreaRevenueReport>, Error> = await NetworkManager.callAPIResultAsync(netWorkManger: .report_area_revenue(
             restaurant_brand_id: Constants.brand.id,
             branch_id: Constants.branch.id,
             report_type:report.reportType,
             date_string: report.dateString,
             from_date: report.fromDate,
             to_date:  report.toDate
-        )){[weak self] (result: Result<APIResponse<AreaRevenueReport>, Error>) in
-            guard let self = self else {
-                return
-            }
+        ))
+       
+        switch result {
+
+            case .success(let res):
             
-            switch result {
-
-                case .success(let res):
-                
-                    if res.status == .ok,var data = res.data{
-                        data.reportType = report.reportType
-                        data.dateString = report.dateString
-                        data.fromDate = report.fromDate
-                        data.toDate = report.toDate
-                        data.data = data.data.map{element in
-                            var newElement = element
-                            newElement.color =  Color(
-                                red: .random(in: 0.3...1),
-                                green: .random(in: 0.3...1),
-                                blue: .random(in: 0.3...1)
-                            )
-                            return newElement
-                        }
-                        areaRevenueReport = data
+                if res.status == .ok,var data = res.data{
+                    data.reportType = report.reportType
+                    data.dateString = report.dateString
+                    data.fromDate = report.fromDate
+                    data.toDate = report.toDate
+                    data.data = data.data.map{element in
+                        var newElement = element
+                        newElement.color =  Color(
+                            red: .random(in: 0.3...1),
+                            green: .random(in: 0.3...1),
+                            blue: .random(in: 0.3...1)
+                        )
+                        return newElement
                     }
-                    
+                    areaRevenueReport = data
+                }
+                
 
-                case .failure(let error):
-                   dLog("Error: \(error)")
-            }
+            case .failure(let error):
+               dLog("Error: \(error)")
         }
     }
     
-    
-    func getReportTableRevenue(report:TableRevenueReport){
-        NetworkManager.callAPI(netWorkManger: .report_table_revenue(
+    @MainActor
+    func getReportTableRevenue(report:TableRevenueReport) async{
+        
+        let result:Result<APIResponse<TableRevenueReport>, Error> = await NetworkManager.callAPIResultAsync(netWorkManger: .report_table_revenue(
             restaurant_brand_id: Constants.brand.id,
             branch_id: Constants.branch.id,
             area_id: -1,
@@ -283,129 +258,115 @@ extension GeneralReportViewModel{
             date_string: report.dateString,
             from_date: report.fromDate,
             to_date: report.toDate
-        )){[weak self] (result: Result<APIResponse<TableRevenueReport>, Error>) in
-            guard let self = self else {
-                return
-            }
-            
-            switch result {
+        ))
+        switch result {
 
-                case .success(let res):
-                
-                    if res.status == .ok,var data = res.data{
-                        data.reportType = report.reportType
-                        data.dateString = report.dateString
-                        data.fromDate = report.fromDate
-                        data.toDate = report.toDate
-                        data.data = data.data.filter{$0.revenue > 0}
-                        data.data.sort(by: {$0.revenue > $1.revenue})
-                        
-                        data.data = data.data.map{element in
-                            var newElement = element
-                            newElement.color =  Color(
-                                red: .random(in: 0.3...1),
-                                green: .random(in: 0.3...1),
-                                blue: .random(in: 0.3...1)
-                            )
-                            return newElement
-                        }
-                        
+            case .success(let res):
+            
+                if res.status == .ok,var data = res.data{
+                    data.reportType = report.reportType
+                    data.dateString = report.dateString
+                    data.fromDate = report.fromDate
+                    data.toDate = report.toDate
+                    data.data = data.data.filter{$0.revenue > 0}
+                    data.data.sort(by: {$0.revenue > $1.revenue})
                     
-                        
-                        tableRevenueReport = data
+                    data.data = data.data.map{element in
+                        var newElement = element
+                        newElement.color =  Color(
+                            red: .random(in: 0.3...1),
+                            green: .random(in: 0.3...1),
+                            blue: .random(in: 0.3...1)
+                        )
+                        return newElement
                     }
                     
+                
+                    
+                    tableRevenueReport = data
+                }
+                
 
-                case .failure(let error):
-                   dLog("Error: \(error)")
-            }
+            case .failure(let error):
+               dLog("Error: \(error)")
         }
     }
     
-    func getReportEmployeeRevenue(report:EmployeeRevenueReport){
-        NetworkManager.callAPI(netWorkManger: .report_employee_revenue(
+    @MainActor
+    func getReportEmployeeRevenue(report:EmployeeRevenueReport) async{
+        let result:Result<APIResponse<EmployeeRevenueReport>, Error> = await NetworkManager.callAPIResultAsync(netWorkManger:.report_employee_revenue(
             restaurant_brand_id: Constants.brand.id,
             branch_id: Constants.branch.id,
             report_type: report.reportType,
             date_string: report.dateString,
             from_date: report.fromDate,
             to_date: report.toDate
-        )){[weak self] (result: Result<APIResponse<EmployeeRevenueReport>, Error>) in
-            guard let self = self else {
-                return
-            }
+        ))
+        switch result {
+
+            case .success(let res):
             
-            switch result {
-
-                case .success(let res):
+                if res.status == .ok,var data = res.data{
+                    data.reportType = report.reportType
+                    data.dateString = report.dateString
+                    data.fromDate = report.fromDate
+                    data.toDate = report.toDate
+                    data.data.sort(by: {$0.revenue > $1.revenue})
+                    employeeRevenueReport = data
+                }
                 
-                    if res.status == .ok,var data = res.data{
-                        data.reportType = report.reportType
-                        data.dateString = report.dateString
-                        data.fromDate = report.fromDate
-                        data.toDate = report.toDate
-                        data.data.sort(by: {$0.revenue > $1.revenue})
-                        employeeRevenueReport = data
-                    }
-                    
 
-                case .failure(let error):
-                   dLog("Error: \(error)")
-            }
+            case .failure(let error):
+               dLog("Error: \(error)")
         }
     }
     
 
     
-    
-    func getReportRevenueByCategory(report:RevenueCategoryReport){
-        NetworkManager.callAPI(netWorkManger: .report_revenue_by_category(
+    @MainActor
+    func getReportRevenueByCategory(report:RevenueCategoryReport) async{
+        let result:Result<APIResponse<RevenueCategoryReport>, Error> = await NetworkManager.callAPIResultAsync(netWorkManger: .report_revenue_by_category(
             restaurant_brand_id: Constants.brand.id,
             branch_id: Constants.branch.id,
             report_type: report.reportType,
             date_string: report.dateString,
             from_date: report.fromDate,
             to_date: report.toDate
-        )){[weak self] (result: Result<APIResponse<RevenueCategoryReport>, Error>) in
-            guard let self = self else {
-                return
-            }
-            
-            switch result {
+        ))
+        switch result {
 
-                case .success(let res):
-                
-                    if res.status == .ok,var data = res.data{
-                        data.reportType = report.reportType
-                        data.dateString = report.dateString
-                        data.fromDate = report.fromDate
-                        data.toDate = report.toDate
-                        data.data.sort(by: {$0.total_amount > $1.total_amount})
-                        
-                        data.data = data.data.map{element in
-                            var newElement = element
-                            newElement.color =  Color(
-                                red: .random(in: 0.3...1),
-                                green: .random(in: 0.3...1),
-                                blue: .random(in: 0.3...1)
-                            )
-                            return newElement
-                        }
-                        
-                        categoryRevenueReport = data
+            case .success(let res):
+            
+                if res.status == .ok,var data = res.data{
+                    data.reportType = report.reportType
+                    data.dateString = report.dateString
+                    data.fromDate = report.fromDate
+                    data.toDate = report.toDate
+                    data.data.sort(by: {$0.total_amount > $1.total_amount})
+                    
+                    data.data = data.data.map{element in
+                        var newElement = element
+                        newElement.color =  Color(
+                            red: .random(in: 0.3...1),
+                            green: .random(in: 0.3...1),
+                            blue: .random(in: 0.3...1)
+                        )
+                        return newElement
                     }
                     
+                    categoryRevenueReport = data
+                }
+                
 
-                case .failure(let error):
-                   dLog("Error: \(error)")
-            }
+            case .failure(let error):
+               dLog("Error: \(error)")
         }
     }
     
     
-    
-    func getFoodReport(report:FoodRevenueReport){
-        NetworkManager.callAPI(netWorkManger: .report_food(
+    @MainActor
+    func getFoodReport(report:FoodRevenueReport) async{
+        let result:Result<APIResponse<FoodRevenueReport>, Error> = await NetworkManager.callAPIResultAsync(netWorkManger: .report_food(
             restaurant_brand_id: Constants.brand.id,
             branch_id: Constants.branch.id,
             report_type: report.reportType,
@@ -419,28 +380,24 @@ extension GeneralReportViewModel{
             is_cancelled_food:DEACTIVE,
             is_gift:DEACTIVE,
             is_take_away_food:ALL
-        )){[weak self] (result: Result<APIResponse<FoodRevenueReport>, Error>) in
-            guard let self = self else {
-                return
-            }
+        ))
+        
+        switch result {
+
+            case .success(let res):
             
-            switch result {
-
-                case .success(let res):
+                if res.status == .ok,var data = res.data{
+                    data.reportType = report.reportType
+                    data.dateString = report.dateString
+                    data.fromDate = report.fromDate
+                    data.toDate = report.toDate
+                    data.data.sort(by: {$0.total_amount > $1.total_amount})
+                    foodReport = data
+                }
                 
-                    if res.status == .ok,var data = res.data{
-                        data.reportType = report.reportType
-                        data.dateString = report.dateString
-                        data.fromDate = report.fromDate
-                        data.toDate = report.toDate
-                        data.data.sort(by: {$0.total_amount > $1.total_amount})
-                        foodReport = data
-                    }
-                    
 
-                case .failure(let error):
-                   dLog("Error: \(error)")
-            }
+            case .failure(let error):
+               dLog("Error: \(error)")
         }
     }
     

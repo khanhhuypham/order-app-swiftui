@@ -42,7 +42,9 @@ struct AreaManageView: View {
               }else{
        
                   HorizontalBtnGroup(btnArray:$viewModel.btnArray){id in
-                      viewModel.getTables(areaId: id)
+                      Task{
+                          await viewModel.getTables(areaId: id)
+                      }
                   }.padding(.horizontal,12)
                   
                   Divider()
@@ -90,9 +92,9 @@ struct AreaManageView: View {
               }
               
           })
-          .onAppear(perform: {
-              viewModel.getAreaList()
-          })
+          .task {
+              await viewModel.getAreaList()
+          }
               
           
       }
@@ -101,7 +103,9 @@ struct AreaManageView: View {
         HStack{
             Button(action: {
                 viewModel.tab = 1
-                viewModel.getAreaList()
+                Task{
+                    await viewModel.getAreaList()
+                }
             }) {
                 VStack(alignment:.center,spacing:0){
                     
@@ -123,7 +127,9 @@ struct AreaManageView: View {
           
             Button(action: {
                 viewModel.tab = 2
-                viewModel.getAreaList()
+                Task{
+                    await viewModel.getAreaList()
+                }
             }) {
                 VStack(alignment:.center,spacing:0){
                     Spacer()

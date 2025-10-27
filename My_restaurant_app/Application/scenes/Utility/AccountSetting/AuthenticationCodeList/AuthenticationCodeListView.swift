@@ -94,7 +94,9 @@ struct AuthenticationCodeList: View {
             Divider()
             
             Button(action: {
-                viewModel.createAuthenticationCode(expire_at: dateAfterAddingHoursString(2), code: randomString().uppercased())
+                Task{
+                    await viewModel.createAuthenticationCode(expire_at: dateAfterAddingHoursString(2), code: randomString().uppercased())
+                }
             }) {
                 Text("TẠO MÃ TOKEN")
                     .font(font.sb_16)

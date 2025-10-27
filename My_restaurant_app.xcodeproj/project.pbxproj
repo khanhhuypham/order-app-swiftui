@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -505,6 +505,10 @@
 		F1798CE75DFD657B1C723125 /* Pods_My_restaurant_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_My_restaurant_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCDD630944C4D375DC74C20A /* Pods-My_restaurant_app.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My_restaurant_app.staging.xcconfig"; path = "Target Support Files/Pods-My_restaurant_app/Pods-My_restaurant_app.staging.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		9463C1072EAF3E6A005E4A1B /* service */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = service; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		9427794D2CF01D0900B2F2E6 /* Frameworks */ = {
@@ -1482,6 +1486,7 @@
 		94589A5D2E9F7ED7008868F9 /* OrderList */ = {
 			isa = PBXGroup;
 			children = (
+				9463C1072EAF3E6A005E4A1B /* service */,
 				94589A572E9F7ED7008868F9 /* OrderLog */,
 				94589A592E9F7ED7008868F9 /* view */,
 				94589A5C2E9F7ED7008868F9 /* viewModel */,
@@ -1892,6 +1897,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				9463C1072EAF3E6A005E4A1B /* service */,
 			);
 			name = My_restaurant_app;
 			productName = My_restaurant_app;
