@@ -10,34 +10,52 @@ import AlertToast
 import Combine
 import SocketIO
 
+
+private class APIParameter {
+    var isAPICalling = false
+    var isGetFullData = false
+    var limit = 20
+    var page = 1
+    var key_word = ""
+    var order_methods:[ORDER_METHOD] = []
+    var order_status: String = ""
+}
+
 class OrderListViewModel: ObservableObject {
     @Injected(\.utils.toastUtils) var toast
     @Injected(\.utils) private var utils
-   
+    let service: OrderServiceProtocol
     
     @Published var orderList:[Order] = []
-    
-    @Published var fullList:[Order] = []
     
     @Published var selectedOrder:Order? = nil
     
     var splitFood:(from:Table,to:Table)? = nil
     
-    @Published var APIParameter:(
+    var APIParameter:(
         branch_id:Int,
         userId: Int,
         order_status: String,
         order_methods:[ORDER_METHOD],
         key_word:String,
-        is_take_away:Int
+        is_take_away:Int,
+        limit:Int,
+        page:Int,
+        isAPICalling:Bool,
+        isGetFullData:Bool
     ) = (
         branch_id:0,
         userId: 0,
         order_status: "0,1,4,6,7",
         order_methods:[.EAT_IN, .TAKE_AWAY,.ONLINE_DELIVERY],
         key_word:"",
-        is_take_away:(PermissionUtils.GPBH_1 || PermissionUtils.GPBH_2_o_1) ? ALL : DEACTIVE)
-    
+        is_take_away:(PermissionUtils.GPBH_1 || PermissionUtils.GPBH_2_o_1) ? ALL : DEACTIVE,
+        limit:20,
+        page:0,
+        isAPICalling:false,
+        isGetFullData:false
+        
+    )
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -46,101 +64,57 @@ class OrderListViewModel: ObservableObject {
     
     let socketManager = SocketIOManager.shared
     
-    init() {
-        $APIParameter
-        .map{$0.key_word}
-        .removeDuplicates()
-        .sink {[weak self]keyWord in
-            guard let self = self else { return }
-            
-            if !keyWord.isEmpty {
-                let filteredDataArray = fullList.filter({(value) -> Bool in
-                    let str1 = keyWord.uppercased().applyingTransform(.stripDiacritics, reverse: false)!
-                    let str2 = value.table_name.uppercased().applyingTransform(.stripDiacritics, reverse: false)!
-                    let str3 = String(value.total_amount)
-                    return str2.contains(str1) || str3.contains(str1)
-                })
-                self.orderList = filteredDataArray
-            }else{
-                self.orderList = fullList
-            }
-            
+    init(service: OrderServiceProtocol = OrderService()) {
+        self.service = service
         
-        }.store(in: &cancellables)
-        dLog("init")
+//        $APIParameter
+//        .map{$0.key_word}
+//        .removeDuplicates()
+//        .sink {[weak self]keyWord in
+//            guard let self = self else { return }
+//                
+//        }.store(in: &cancellables)
+
     }
     
-    deinit{
-        dLog("deinit")
-    }
-    
-
-    @MainActor
-    func getOrders() async {
-        
-        let result: Result<APIResponse<OrderResponse>, Error> = await NetworkManager.callAPIResultAsync(
-                netWorkManger: .orders(
-                    brand_id: Constants.brand.id,
-                    branch_id: Constants.branch.id,
-                    userId: 0,
-                    order_methods: APIParameter.order_methods.map { $0.rawValue.description }.joined(separator: ","),
-                    order_status: APIParameter.order_status
-                )
-        )
-        
-        switch result {
-            case .success(let res):
-                if res.status == .ok,let data = res.data  {
-                    self.orderList = data.list
-                    self.fullList = data.list
-                }
-         
-
-            case .failure(let error):
-                dLog("❌ Orders API failed: \(error)")
-        }
-    }
-
-
     
     @MainActor
-    func closeTable(id: Int) async {
-        let result: Result<PlainAPIResponse, Error> = await NetworkManager.callAPIResultAsync(netWorkManger: .closeTable(order_id: id))
-        
-        switch result {
-            case .success(let res):
-            
-                if res.status == .ok{
-                    
-                    await toast.alertSubject.send(
-                        AlertToast(type: .regular, title: "Warning", subTitle: "Huỷ bản thành công")
-                    )
-                    
-                    await getOrders()
-                    
-                }else{
-                    await toast.alertSubject.send(
-                        AlertToast(type: .regular, title: "warning", subTitle: res.message)
-                    )
-                }
-              
-                
-            case .failure(let error):
-                dLog("❌ Close table failed: \(error.localizedDescription)")
-               
-        }
+    func loadMoreContent(currentItem: Order) async {
+
+        guard !APIParameter.isAPICalling else { return }
+        guard !APIParameter.isGetFullData else { return }
+
+        guard let lastItem = orderList.last, lastItem.id == currentItem.id else { return }
+
+
+        await getOrders(page: APIParameter.page + 1)
+    }
+    
+    @MainActor
+    func clearDataAndCallAPI() async{
+        orderList.removeAll()
+        APIParameter.page = 0
+        APIParameter.isGetFullData = false
+        APIParameter.isAPICalling = false
+        await getOrders(page: APIParameter.page + 1)
     }
 
-
+    
 }
+
+
+
 
 enum OrderTypeGroup: CaseIterable {
     case dineIn, appFood
 
     var title: String {
         switch self {
-        case .dineIn: return "Tại bàn"
-        case .appFood: return "App Food"
+            case .dineIn: 
+                return "Tại bàn"
+            
+            case .appFood: 
+                return "App Food"
         }
     }
 

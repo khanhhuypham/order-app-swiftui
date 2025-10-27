@@ -216,6 +216,7 @@ class SettingUtils {
         
         switch result {
             case .success(let res):
+                self.completion?()
                 break
             
             case .failure(let error):

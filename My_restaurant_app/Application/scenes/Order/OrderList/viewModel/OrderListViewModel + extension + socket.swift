@@ -27,7 +27,7 @@ extension OrderListViewModel {
             
             self.socketManager.orderRealTimeSocket.on(real_time_url) {data, ack in
                 Task{
-                    await self.getOrders()
+                    await self.clearDataAndCallAPI()
                 }
             }
         }

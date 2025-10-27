@@ -102,15 +102,15 @@ extension NetworkManager{
             return  APIParam(query:[:])
             
             //MARK: ===================
-        case .orders(let brand_id,let branch_id,let user_id,let order_methods,let order_status):
+        case .orders(let brand_id,let branch_id,let user_id,let order_methods,let order_status,let limit, let page):
             return APIParam(query:[
                 "restaurant_brand_id": brand_id,
                 "branch_id": branch_id,
                 "id":user_id,
                 "order_status": order_status,
                 "order_methods":order_methods,
-                "page":1,
-                "limit":1000
+                "page":page,
+                "limit":limit
             ])
             
             

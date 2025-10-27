@@ -38,7 +38,7 @@ enum NetworkManager{
     
     //MARK: ============
 //    case orders(brand_id:Int,branch_id:Int, order_status:String, area_id:Int = -1,page_number:Int=1000)
-    case orders(brand_id:Int,branch_id:Int,userId:Int,order_methods:String,order_status:String)
+    case orders(brand_id:Int,branch_id:Int,userId:Int,order_methods:String,order_status:String,limit:Int,page:Int)
     
     case order(order_id:Int, branch_id:Int,is_print_bill:Int = DEACTIVE,food_status:String = "")
     case foods(branch_id:Int, area_id:Int = -1, category_id:Int, category_type:Int, is_allow_employee_gift:Int = -1, is_sell_by_weight:Int = -1, is_out_stock:Int = 0, key_word:String = "",limit:Int,page:Int)
@@ -298,78 +298,6 @@ extension NetworkManager{
         return request
     }
     
-//    static func callAPI<T: Decodable>(
-//        logRequest: Bool = true,
-//        netWorkManger: NetworkManager,
-//        completion: @escaping (Result<T, Error>) -> Void
-//    ) {
-//        @Injected(\.utils) var util
-//        
-//
-//        util.toastUtils.subject.send(true)
-//        
-//        var components = URLComponents(string: environmentMode.baseUrl)
-//        components?.scheme = "https"
-//        components?.path = netWorkManger.path
-//
-//        // Add query items for GET-like methods
-//        if ![.POST, .PUT, .PATCH].contains(netWorkManger.method),
-//            let query = netWorkManger.task.query {
-//            components?.queryItems = makeQueryItems(from: query)
-//        }
-//
-//        guard let url = components?.url else {
-//            dLog("Invalid URL: \(components?.description ?? "nil")")
-//            return
-//        }
-//
-//        do {
-//            let request = try makeRequest(from: netWorkManger, url: url)
-//
-//            if logRequest {
-//                dLog("Method: \(netWorkManger.method.description)")
-//                request.allHTTPHeaderFields?.forEach { dLog("\($0.key): \($0.value)") }
-//                dLog("URL: \(url.absoluteString)")
-//            }
-//
-//            let task = URLSession.shared.dataTask(with: request) { data, _, error in
-//                
-//                util.toastUtils.subject.send(false)
-//
-//                DispatchQueue.main.async {
-//                 
-//                    
-//                    if let error = error {
-//                        completion(.failure(error))
-//                        return
-//                    }
-//
-//                    guard let data = data else {
-//                        completion(.failure(NSError(domain: "No data", code: -1)))
-//                        return
-//                    }
-//
-//                    do {
-//                        let decoded = try JSONDecoder().decode(T.self, from: data)
-//                        completion(.success(decoded))
-//                    } catch {
-//                        dLog("❌ Decoding error: \(error)")
-//                        completion(.failure(error))
-//                    }
-//                }
-//            }
-//
-//            task.resume()
-//            
-//        } catch {
-//            
-//            completion(.failure(error))
-//            
-//        }
-//        
-//    }
-
-
 }
 
 

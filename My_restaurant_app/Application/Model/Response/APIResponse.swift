@@ -19,6 +19,7 @@ struct APIResponse<T: Codable>: Codable {
         case message
     }
     
+   
 }
 
 struct PlainAPIResponse: Codable {

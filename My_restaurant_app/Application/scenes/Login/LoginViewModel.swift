@@ -91,7 +91,7 @@ extension LoginViewModel{
     }
     
     
-
+    @MainActor
     func login() async {
         let result: Result<APIResponse<Account>, Error> = await NetworkManager.callAPIResultAsync(netWorkManger: .login(username: username, password: password))
         

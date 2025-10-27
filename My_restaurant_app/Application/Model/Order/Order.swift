@@ -12,6 +12,7 @@ struct OrderResponse:Codable{
     var limit: Int = 0
     var total_record:Int = 0
     var list:[Order] = []
+    
     enum CodingKeys: String, CodingKey {
         case limit
         case total_record
@@ -23,6 +24,12 @@ struct OrderResponse:Codable{
         limit = try container.decodeIfPresent(Int.self, forKey: .limit) ?? 0
         total_record = try container.decodeIfPresent(Int.self, forKey: .total_record) ?? 0
         list = try container.decodeIfPresent([Order].self, forKey: .list) ?? []
+    }
+    
+    init(limit: Int, total_record: Int, list: [Order]){
+        self.limit = limit
+        self.total_record = total_record
+        self.list = list
     }
     
 }

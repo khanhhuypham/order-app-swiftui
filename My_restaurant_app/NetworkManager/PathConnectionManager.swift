@@ -69,7 +69,7 @@ extension NetworkManager{
                 : String(format: "/api/%@/branches/%d/setting/is-apply-only-cash-amount",NetworkManager.version_of_dashboard,branchId)
             
             //MARK: ======
-            case .orders(_, _, _, _,_):
+            case .orders(_, _, _, _,_,_,_):
                 return String(
                     format: environmentMode == .offline ? "/api/orders/elk/list" : "/api/%@/orders/elk/list",
                     PermissionUtils.GPBH_1 ? NetworkManager.version_of_small_order : NetworkManager.version_of_order

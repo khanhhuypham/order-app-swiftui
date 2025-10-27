@@ -221,6 +221,7 @@
 		94589AB22E9F7F23008868F9 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589AA82E9F7F23008868F9 /* CounterView.swift */; };
 		94589AB62E9F7F54008868F9 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589AB32E9F7F54008868F9 /* LoginView.swift */; };
 		94589AB72E9F7F54008868F9 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589AB42E9F7F54008868F9 /* LoginViewModel.swift */; };
+		9463C10B2EAF4B3A005E4A1B /* MockOrderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9463C10A2EAF4B3A005E4A1B /* MockOrderService.swift */; };
 		9473BA972CF9CBAB009F3C67 /* ChildrenItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9473BA962CF9CBAB009F3C67 /* ChildrenItem.swift */; };
 		94852ABB2CFD6619003D2E2F /* Printer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94852ABA2CFD6619003D2E2F /* Printer.swift */; };
 		948CD7A22EA251BF00F9803B /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948CD7A12EA251BF00F9803B /* Unit.swift */; };
@@ -238,6 +239,7 @@
 		9491DA2E2E9F79D800D0A0F1 /* ReportOfRevenueOfArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9491DA1B2E9F79D800D0A0F1 /* ReportOfRevenueOfArea.swift */; };
 		9491DA2F2E9F79D800D0A0F1 /* ReportOfEmployeeRevenue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9491DA152E9F79D800D0A0F1 /* ReportOfEmployeeRevenue.swift */; };
 		9491DA302E9F79D800D0A0F1 /* ReportOfSale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9491DA1F2E9F79D800D0A0F1 /* ReportOfSale.swift */; };
+		94925C2A2EAF7179008BBCE8 /* OrderListViewModel + extension + api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94925C292EAF7179008BBCE8 /* OrderListViewModel + extension + api.swift */; };
 		94C76FEA2EA1EC4B0051B19C /* MediaUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C76FE92EA1EC4B0051B19C /* MediaUtils.swift */; };
 		94DC1BA12EA089E700EE549C /* MoveOrderItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DC1BA02EA089E700EE549C /* MoveOrderItems.swift */; };
 		94DC1BA32EA08CBF00EE549C /* MoveOrderItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DC1BA22EA08CB600EE549C /* MoveOrderItemsViewModel.swift */; };
@@ -475,6 +477,7 @@
 		94589AAC2E9F7F23008868F9 /* TodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewModel.swift; sourceTree = "<group>"; };
 		94589AB32E9F7F54008868F9 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		94589AB42E9F7F54008868F9 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		9463C10A2EAF4B3A005E4A1B /* MockOrderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOrderService.swift; sourceTree = "<group>"; };
 		9473BA962CF9CBAB009F3C67 /* ChildrenItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenItem.swift; sourceTree = "<group>"; };
 		94852ABA2CFD6619003D2E2F /* Printer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Printer.swift; sourceTree = "<group>"; };
 		948CD7A12EA251BF00F9803B /* Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
@@ -492,6 +495,7 @@
 		9491DA1F2E9F79D800D0A0F1 /* ReportOfSale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportOfSale.swift; sourceTree = "<group>"; };
 		9491DA222E9F79D800D0A0F1 /* GeneralReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralReportView.swift; sourceTree = "<group>"; };
 		9491DA242E9F79D800D0A0F1 /* GeneralReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralReportViewModel.swift; sourceTree = "<group>"; };
+		94925C292EAF7179008BBCE8 /* OrderListViewModel + extension + api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderListViewModel + extension + api.swift"; sourceTree = "<group>"; };
 		94C76FE92EA1EC4B0051B19C /* MediaUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaUtils.swift; sourceTree = "<group>"; };
 		94DC1BA02EA089E700EE549C /* MoveOrderItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveOrderItems.swift; sourceTree = "<group>"; };
 		94DC1BA22EA08CB600EE549C /* MoveOrderItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveOrderItemsViewModel.swift; sourceTree = "<group>"; };
@@ -1478,6 +1482,7 @@
 			isa = PBXGroup;
 			children = (
 				94589A5A2E9F7ED7008868F9 /* OrderListViewModel.swift */,
+				94925C292EAF7179008BBCE8 /* OrderListViewModel + extension + api.swift */,
 				94589A5B2E9F7ED7008868F9 /* OrderListViewModel + extension + socket.swift */,
 			);
 			path = viewModel;
@@ -1853,6 +1858,7 @@
 		94F2CAFC2EA787E1001FD6BB /* OrderList */ = {
 			isa = PBXGroup;
 			children = (
+				9463C10A2EAF4B3A005E4A1B /* MockOrderService.swift */,
 				94F2CAFB2EA787E1001FD6BB /* OrderListViewModelTest.swift */,
 			);
 			path = OrderList;
@@ -2199,6 +2205,7 @@
 				94852ABB2CFD6619003D2E2F /* Printer.swift in Sources */,
 				9491DA0E2E9F79B300D0A0F1 /* BaseURLConnectionManager.swift in Sources */,
 				94277A472CF01E7B00B2F2E6 /* TaskConnectionManager.swift in Sources */,
+				94925C2A2EAF7179008BBCE8 /* OrderListViewModel + extension + api.swift in Sources */,
 				94277AD72CF01E7B00B2F2E6 /* AccountSetting.swift in Sources */,
 				94277AD52CF01E7B00B2F2E6 /* FoodResponseData.swift in Sources */,
 				948CD7A22EA251BF00F9803B /* Unit.swift in Sources */,
@@ -2295,6 +2302,7 @@
 			files = (
 				9437FABF2EA22F3D00DAF8B1 /* LoginTest.swift in Sources */,
 				94F2CAFD2EA787E1001FD6BB /* OrderListViewModelTest.swift in Sources */,
+				9463C10B2EAF4B3A005E4A1B /* MockOrderService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
