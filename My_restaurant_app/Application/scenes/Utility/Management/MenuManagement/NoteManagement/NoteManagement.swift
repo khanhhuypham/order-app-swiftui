@@ -25,9 +25,9 @@ struct NoteManagement: View {
                 }.defaultListRowStyle()
             }
             .listStyle(.plain)
-            .onAppear(perform: {
-                viewModel.getNotes()
-            })
+            .task{
+               await viewModel.getNotes()
+            }
             
             Divider()
             
@@ -71,7 +71,9 @@ struct NoteManagement: View {
             Button {
                 if var first = viewModel.NoteList.first{$0.id == note.wrappedValue.id}{
                     first.delete = ACTIVE
-                    viewModel.createNote(note: first)
+                    Task{
+                       await viewModel.createNote(note: first)
+                    }
                 }
             } label: {
                 Image(systemName: "trash.fill")

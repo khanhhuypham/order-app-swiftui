@@ -32,7 +32,9 @@ struct AuthenticationCodeList: View {
             if viewModel.list.isEmpty{
                 
                 EmptyData {
-                    viewModel.getAuthCodeList()
+                    Task{
+                        await viewModel.getAuthCodeList()
+                    }
                 }
                 
             }else{
@@ -62,7 +64,9 @@ struct AuthenticationCodeList: View {
                             HStack{
                                 Text(data.expire_at)
                                 Button(action: {
-                                    viewModel.changeStatusOfAuthenticationCode(id: data.id)
+                                    Task{
+                                        await viewModel.changeStatusOfAuthenticationCode(id: data.id)
+                                    }
                                 }) {
                                     HStack {
                                         Image(systemName: "trash")
@@ -116,8 +120,8 @@ struct AuthenticationCodeList: View {
                     .foregroundColor(color.orange_brand_900)
             }
         }
-        .onAppear{
-            viewModel.getAuthCodeList()
+        .task{
+            await viewModel.getAuthCodeList()
         }
 
     }

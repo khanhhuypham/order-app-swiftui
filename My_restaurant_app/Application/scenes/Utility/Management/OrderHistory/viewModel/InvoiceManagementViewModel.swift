@@ -37,58 +37,54 @@ class OrderHistoryViewModel: ObservableObject {
     @Published var orderStatstic:OrderStatistic = OrderStatistic()
     @Published var totalOrder:Int = 0
     
-    func getInvoiceList(){
+    func getInvoiceList() async{
+        let result:Result<APIResponse<OrderResponse>, Error> = try await NetworkManager.callAPIResultAsync(netWorkManger:
+            .ordersHistory(
+                brand_id:APIParameter.brand_id,
+                branch_id:APIParameter.branch_id,
+                from_date:APIParameter.from_date,
+                to_date:APIParameter.to_date,
+                order_status: String(format: "%d,%d,%d", ORDER_STATUS_COMPLETE, ORDER_STATUS_DEBT_COMPLETE, ORDER_STATUS_CANCEL),
+                limit: APIParameter.limit,
+                page: APIParameter.page,
+                key_search: APIParameter.key_search
+        ))
+        
+        switch result {
 
-        NetworkManager.callAPI(netWorkManger: .ordersHistory(
-            brand_id:APIParameter.brand_id,
-            branch_id:APIParameter.branch_id,
-            from_date:APIParameter.from_date,
-            to_date:APIParameter.to_date,
-            order_status: String(format: "%d,%d,%d", ORDER_STATUS_COMPLETE, ORDER_STATUS_DEBT_COMPLETE, ORDER_STATUS_CANCEL),
-            limit: APIParameter.limit,
-            page: APIParameter.page,
-            key_search: APIParameter.key_search
-          )){[weak self] (result: Result<APIResponse<OrderResponse>, Error>) in
-            guard let self = self else { return } 
-            
-            switch result {
-
-                case .success(let res):
-                    if res.status == .ok,let data = res.data{
+            case .success(let res):
+                if res.status == .ok,let data = res.data{
+                
+                    self.invoiceList = data.list
+                    self.totalOrder = data.total_record
+                }
                     
-                        self.invoiceList = data.list
-                        self.totalOrder = data.total_record
-                    }
-                        
-                case .failure(let error):
-                   dLog("Error: \(error)")
-            }
+            case .failure(let error):
+               dLog("Error: \(error)")
         }
     }
     
     
-    func getTotalAmountOfOrders(){
-        NetworkManager.callAPI(netWorkManger: .getTotalAmountOfOrders(
-            restaurant_brand_id: APIParameter.brand_id,
-            branch_id: APIParameter.branch_id,
-            order_status: String(format: "%d,%d,%d", ORDER_STATUS_COMPLETE, ORDER_STATUS_DEBT_COMPLETE, ORDER_STATUS_CANCEL),
-            key_search:APIParameter.key_search,
-            from_date:APIParameter.from_date,
-            to_date:APIParameter.to_date
-        )){[weak self] (result: Result<APIResponse<OrderStatistic>, Error>) in
-            guard let self = self else { return }
-            
-            switch result {
+    func getTotalAmountOfOrders() async{
+        let result:Result<APIResponse<OrderStatistic>, Error> = try await NetworkManager.callAPIResultAsync(netWorkManger:
+            .getTotalAmountOfOrders(
+                restaurant_brand_id: APIParameter.brand_id,
+                branch_id: APIParameter.branch_id,
+                order_status: String(format: "%d,%d,%d", ORDER_STATUS_COMPLETE, ORDER_STATUS_DEBT_COMPLETE, ORDER_STATUS_CANCEL),
+                key_search:APIParameter.key_search,
+                from_date:APIParameter.from_date,
+                to_date:APIParameter.to_date
+        ))
+        switch result {
 
-                case .success(let res):
-                    if res.status == .ok,let data = res.data{
-                        
-                        orderStatstic = data
-                    }
-                        
-                case .failure(let error):
-                   dLog("Error: \(error)")
-            }
+            case .success(let res):
+                if res.status == .ok,let data = res.data{
+                    
+                    orderStatstic = data
+                }
+                    
+            case .failure(let error):
+               dLog("Error: \(error)")
         }
     }
     

@@ -51,7 +51,9 @@ struct AreaView: View {
             
             AreaHeader(areaArray: $viewModel.area,closure: {
                 if let area = viewModel.area.filter{$0.isSelect}.first{
-                    viewModel.getTables(areaId: area.id)
+                    Task{
+                        await viewModel.getTables(areaId: area.id)
+                    }
                 }
             })
             
@@ -65,7 +67,9 @@ struct AreaView: View {
                 TableList
             }else{
                 EmptyData{
-                    viewModel.getAreas()
+                    Task{
+                        await viewModel.getAreas()
+                    }
                 }
             }
             
@@ -111,7 +115,9 @@ struct AreaView: View {
         .onAppear(perform: {
             viewModel.order = order
             viewModel.orderAction = orderAction
-            viewModel.getAreas()
+            Task{
+                await viewModel.getAreas()
+            }
         })
     }
     
@@ -235,7 +241,9 @@ struct AreaView: View {
             Button(action: {
                
                 if let order = viewModel.order{
-                    viewModel.mergeTable(destination_table_id: order.table_id, target_table_ids: viewModel.table.filter{$0.is_selected}.map{$0.id ?? 0})
+                    Task{
+                        await viewModel.mergeTable(destination_table_id: order.table_id, target_table_ids: viewModel.table.filter{$0.is_selected}.map{$0.id ?? 0})
+                    }
                 }
                 
     

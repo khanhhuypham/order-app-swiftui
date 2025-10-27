@@ -36,9 +36,9 @@ struct OrderHistoryView: View {
                    .foregroundColor(color.orange_brand_900)
            }
         }
-        .onAppear{
-            viewModel.getInvoiceList()
-            viewModel.getTotalAmountOfOrders()
+        .task{
+            await viewModel.getInvoiceList()
+            await viewModel.getTotalAmountOfOrders()
         }
 
     }
@@ -50,16 +50,20 @@ struct OrderHistoryView: View {
                 var p = viewModel.APIParameter
                 p.key_search = str
                 viewModel.APIParameter = p
-                viewModel.getInvoiceList()
-                viewModel.getTotalAmountOfOrders()
+                Task{
+                    await viewModel.getInvoiceList()
+                    await viewModel.getTotalAmountOfOrders()
+                }
             },
             clickClosure: {id in
                 var p = viewModel.APIParameter
                 p.from_date = REPORT_TYPE(rawValue: id)?.from_date ?? ""
                 p.to_date = REPORT_TYPE(rawValue: id)?.to_date ?? ""
                 viewModel.APIParameter = p
-                viewModel.getInvoiceList()
-                viewModel.getTotalAmountOfOrders()
+                Task{
+                    await viewModel.getInvoiceList()
+                    await viewModel.getTotalAmountOfOrders()
+                }
             }
         ).padding(.horizontal,5)
     }
@@ -70,8 +74,10 @@ struct OrderHistoryView: View {
         if viewModel.invoiceList.isEmpty {
             
            EmptyData {
-               viewModel.getInvoiceList()
-               viewModel.getTotalAmountOfOrders()
+               Task{
+                   await viewModel.getInvoiceList()
+                   await viewModel.getTotalAmountOfOrders()
+               }
            }
             
         } else{
@@ -98,8 +104,10 @@ struct OrderHistoryView: View {
             )
             .listStyle(.plain)
             .refreshable {
-                viewModel.getInvoiceList()
-                viewModel.getTotalAmountOfOrders()
+                Task{
+                    await viewModel.getInvoiceList()
+                    await viewModel.getTotalAmountOfOrders()
+                }
             }
         }
     }

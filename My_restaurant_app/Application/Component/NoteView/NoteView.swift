@@ -129,11 +129,9 @@ private struct NoteContent: View {
         .shadowedStyle()
         .cornerRadius(10)
         .padding(.horizontal, 40)
-        .onAppear(perform: {
-            
-            PermissionUtils.GPBH_1 ? viewModel.notes() : viewModel.notesByFood(foodId: id)
-            
-        })
+        .task{
+            await PermissionUtils.GPBH_1 ? viewModel.notes() : viewModel.notesByFood(foodId: id)
+        }
         
     }
 }

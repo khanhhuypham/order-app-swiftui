@@ -43,46 +43,44 @@ class ChooseOptionViewModel: ObservableObject {
             
             item.food_options[i] = option
         }
-        
-        PermissionUtils.GPBH_1 ? notes() : notesByFood()
+        Task{
+            await PermissionUtils.GPBH_1 ? notes() : notesByFood()
+        }
    
     }
     
-    private func notes() {
-        NetworkManager.callAPI(netWorkManger: .notes(branch_id: Constants.branch.id ?? 0)){[weak self] (result: Result<APIResponse<[Note]>, Error>) in
-            guard let self = self else { return }
-            
-            switch result {
+    private func notes() async{
+        
+        let result:Result<APIResponse<[Note]>, Error> = try await NetworkManager.callAPIResultAsync(netWorkManger: .notes(branch_id: Constants.branch.id))
+        
+        switch result {
 
-                case .success(let res):
+            case .success(let res):
+            
+                if res.status == .ok,let data = res.data{
+                    noteList = data
+                }
+                break
                 
-                    if res.status == .ok,let data = res.data{
-                        noteList = data
-                    }
-                    break
-                    
-                case .failure(let error):
-                   dLog("Error: \(error)")
-            }
+            case .failure(let error):
+               dLog("Error: \(error)")
         }
     }
     
-    private func notesByFood() {
-        NetworkManager.callAPI(netWorkManger: .notesByFood(food_id: item.id, branch_id: Constants.branch.id ?? 0)){[weak self] (result: Result<APIResponse<[Note]>, Error>) in
-            guard let self = self else { return }
-            
-            switch result {
+    private func notesByFood() async{
+        let result:Result<APIResponse<[Note]>, Error> = try await NetworkManager.callAPIResultAsync(netWorkManger: .notesByFood(food_id: item.id, branch_id: Constants.branch.id))
+        
+        switch result {
 
-                case .success(let res):
+            case .success(let res):
+            
+                if res.status == .ok,let data = res.data{
+                    noteList = data
+                }
+                break
                 
-                    if res.status == .ok,let data = res.data{
-                        noteList = data
-                    }
-                    break
-                    
-                case .failure(let error):
-                   dLog("Error: \(error)")
-            }
+            case .failure(let error):
+               dLog("Error: \(error)")
         }
     }
     

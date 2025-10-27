@@ -26,9 +26,9 @@ struct CategoryManagement: View {
                 }.defaultListRowStyle()
             }
             .listStyle(.plain)
-            .onAppear(perform: {
-                viewModel.getCategories()
-            })
+            .task{
+                await viewModel.getCategories()
+            }
             Divider()
             
             Button(action: {

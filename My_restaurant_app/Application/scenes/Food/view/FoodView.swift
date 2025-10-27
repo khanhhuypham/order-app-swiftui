@@ -178,11 +178,12 @@ struct FoodView: View {
                 if viewModel.order.id > 0{
                     viewModel.processToAddFood()
                 }else{
-                    
-                    if viewModel.order.table_id == 0{
-                        viewModel.createTakeOutOder()
-                    }else{
-                        viewModel.createDineInOrder()
+                    Task{
+                        if viewModel.order.table_id == 0{
+                            await viewModel.createTakeOutOder()
+                        }else{
+                            await viewModel.createDineInOrder()
+                        }
                     }
                 }
                 

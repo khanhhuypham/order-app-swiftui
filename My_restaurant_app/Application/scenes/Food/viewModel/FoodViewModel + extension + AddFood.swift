@@ -42,7 +42,10 @@ extension FoodViewModel {
                 
                 return food_request
             }
-            APIParameter.is_allow_employee_gift == ADD_GIFT ? addGiftFoods(items:items) : addFoods(items:items)
+            
+            Task{
+                await APIParameter.is_allow_employee_gift == ADD_GIFT ? addGiftFoods(items:items) : addFoods(items:items)
+            }
         }
         
         
@@ -68,99 +71,85 @@ extension FoodViewModel {
     }
     
     //    //MARK: API thêm món ăn vào order
-    private func addFoods(items:[FoodRequest]){
-                
-
-        NetworkManager.callAPI(netWorkManger: .addFoods(
+    private func addFoods(items:[FoodRequest]) async{
+        let result:Result<APIResponse<NewOrder>, Error> = try await NetworkManager.callAPIResultAsync(netWorkManger: .addFoods(
             branch_id: Constants.branch.id,
             order_id: order.id,
             foods: items,
             is_use_point: APIParameter.is_use_point
-        )){[weak self] (result: Result<APIResponse<NewOrder>, Error>) in
-            guard let self = self else { return }
+        ))
+        
+        switch result {
+
+            case .success(let res):
+
+                if res.status == .ok,let data = res.data{
+                    order.id = data.order_id
+                    self.navigateTag = 0
+                }
             
-            switch result {
-
-                case .success(let res):
-
-                    if res.status == .ok,let data = res.data{
-                        order.id = data.order_id
-                        self.navigateTag = 0
-                    }
                 
-                    
-                    break
-                    
-                case .failure(let error):
-                   dLog("Error: \(error)")
-            }
+                break
+                
+            case .failure(let error):
+               dLog("Error: \(error)")
         }
     }
     //
-    private func addGiftFoods(items:[FoodRequest]) {
-
-        NetworkManager.callAPI(netWorkManger: .addGiftFoods(
+    private func addGiftFoods(items:[FoodRequest]) async{
+        let result:Result<PlainAPIResponse, Error> = try await NetworkManager.callAPIResultAsync(netWorkManger: .addGiftFoods(
             branch_id: Constants.branch.id,
             order_id: order.id,
             foods: items,
             is_use_point: APIParameter.is_use_point
-        )){[weak self] (result: Result<PlainAPIResponse, Error>) in
-            guard let self = self else { return }
-            
-            switch result {
-
-                case .success(let res):
-                    if res.status == .ok{
-                        self.navigateTag = 0
-                    }
-                    
-                case .failure(let error):
-                   dLog("Error: \(error)")
-            }
+        ))
+        
+        switch result {
+            case .success(let res):
+                if res.status == .ok{
+                    self.navigateTag = 0
+                }
+                
+            case .failure(let error):
+               dLog("Error: \(error)")
         }
 
     }
     //    //MARK: API order tại bàn
-    func createDineInOrder(){
-    
-        NetworkManager.callAPI(netWorkManger: .openTable(table_id: order.table_id)){[weak self] (result: Result<APIResponse<Table>, Error>) in
-            guard let self = self else { return }
-            
-            switch result {
+    func createDineInOrder() async{
+        let result:Result<APIResponse<Table>, Error> = try await NetworkManager.callAPIResultAsync(netWorkManger: .openTable(table_id: order.table_id))
+        
+        switch result {
 
-                case .success(let res):
-                    if res.status == .ok, let data = res.data {
-                        order = OrderDetail(table: data)
-                        processToAddFood()
-                        self.navigateTag = 1
-                    } else if (res.status == .badRequest) {
-                        dLog(res.message)
-                    } else {
-                        dLog(res.message)
-                    }
-                    break
-                    
-                case .failure(let error):
-                   dLog("Error: \(error)")
-            }
+            case .success(let res):
+                if res.status == .ok, let data = res.data {
+                    order = OrderDetail(table: data)
+                    processToAddFood()
+                    self.navigateTag = 1
+                } else if (res.status == .badRequest) {
+                    dLog(res.message)
+                } else {
+                    dLog(res.message)
+                }
+                break
+                
+            case .failure(let error):
+               dLog("Error: \(error)")
         }
         
         
     }
     
     //    //MARK: API tạo order mới, trong trường hợp mang về.
-    func createTakeOutOder() {
-        NetworkManager.callAPI(netWorkManger: .postCreateOrder(branch_id: Constants.branch.id ?? 0,table_id: order.table_id, note: "")){[weak self] (result: Result<String, Error>) in
-            guard let self = self else { return }
-            
-            switch result {
+    func createTakeOutOder() async{
+        let result:Result<String, Error> = try await NetworkManager.callAPIResultAsync(netWorkManger: .postCreateOrder(branch_id: Constants.branch.id,table_id: order.table_id, note: ""))
+        switch result {
 
-                case .success(var data):
-                    break
-                    
-                case .failure(let error):
-                   dLog("Error: \(error)")
-            }
+            case .success(var data):
+                break
+                
+            case .failure(let error):
+               dLog("Error: \(error)")
         }
     }
 }

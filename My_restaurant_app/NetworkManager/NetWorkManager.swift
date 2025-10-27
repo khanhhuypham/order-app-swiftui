@@ -298,76 +298,76 @@ extension NetworkManager{
         return request
     }
     
-    static func callAPI<T: Decodable>(
-        logRequest: Bool = true,
-        netWorkManger: NetworkManager,
-        completion: @escaping (Result<T, Error>) -> Void
-    ) {
-        @Injected(\.utils) var util
-        
-
-        util.toastUtils.subject.send(true)
-        
-        var components = URLComponents(string: environmentMode.baseUrl)
-        components?.scheme = "https"
-        components?.path = netWorkManger.path
-
-        // Add query items for GET-like methods
-        if ![.POST, .PUT, .PATCH].contains(netWorkManger.method),
-            let query = netWorkManger.task.query {
-            components?.queryItems = makeQueryItems(from: query)
-        }
-
-        guard let url = components?.url else {
-            dLog("Invalid URL: \(components?.description ?? "nil")")
-            return
-        }
-
-        do {
-            let request = try makeRequest(from: netWorkManger, url: url)
-
-            if logRequest {
-                dLog("Method: \(netWorkManger.method.description)")
-                request.allHTTPHeaderFields?.forEach { dLog("\($0.key): \($0.value)") }
-                dLog("URL: \(url.absoluteString)")
-            }
-
-            let task = URLSession.shared.dataTask(with: request) { data, _, error in
-                
-                util.toastUtils.subject.send(false)
-
-                DispatchQueue.main.async {
-                 
-                    
-                    if let error = error {
-                        completion(.failure(error))
-                        return
-                    }
-
-                    guard let data = data else {
-                        completion(.failure(NSError(domain: "No data", code: -1)))
-                        return
-                    }
-
-                    do {
-                        let decoded = try JSONDecoder().decode(T.self, from: data)
-                        completion(.success(decoded))
-                    } catch {
-                        dLog("❌ Decoding error: \(error)")
-                        completion(.failure(error))
-                    }
-                }
-            }
-
-            task.resume()
-            
-        } catch {
-            
-            completion(.failure(error))
-            
-        }
-        
-    }
+//    static func callAPI<T: Decodable>(
+//        logRequest: Bool = true,
+//        netWorkManger: NetworkManager,
+//        completion: @escaping (Result<T, Error>) -> Void
+//    ) {
+//        @Injected(\.utils) var util
+//        
+//
+//        util.toastUtils.subject.send(true)
+//        
+//        var components = URLComponents(string: environmentMode.baseUrl)
+//        components?.scheme = "https"
+//        components?.path = netWorkManger.path
+//
+//        // Add query items for GET-like methods
+//        if ![.POST, .PUT, .PATCH].contains(netWorkManger.method),
+//            let query = netWorkManger.task.query {
+//            components?.queryItems = makeQueryItems(from: query)
+//        }
+//
+//        guard let url = components?.url else {
+//            dLog("Invalid URL: \(components?.description ?? "nil")")
+//            return
+//        }
+//
+//        do {
+//            let request = try makeRequest(from: netWorkManger, url: url)
+//
+//            if logRequest {
+//                dLog("Method: \(netWorkManger.method.description)")
+//                request.allHTTPHeaderFields?.forEach { dLog("\($0.key): \($0.value)") }
+//                dLog("URL: \(url.absoluteString)")
+//            }
+//
+//            let task = URLSession.shared.dataTask(with: request) { data, _, error in
+//                
+//                util.toastUtils.subject.send(false)
+//
+//                DispatchQueue.main.async {
+//                 
+//                    
+//                    if let error = error {
+//                        completion(.failure(error))
+//                        return
+//                    }
+//
+//                    guard let data = data else {
+//                        completion(.failure(NSError(domain: "No data", code: -1)))
+//                        return
+//                    }
+//
+//                    do {
+//                        let decoded = try JSONDecoder().decode(T.self, from: data)
+//                        completion(.success(decoded))
+//                    } catch {
+//                        dLog("❌ Decoding error: \(error)")
+//                        completion(.failure(error))
+//                    }
+//                }
+//            }
+//
+//            task.resume()
+//            
+//        } catch {
+//            
+//            completion(.failure(error))
+//            
+//        }
+//        
+//    }
 
 
 }
@@ -375,27 +375,40 @@ extension NetworkManager{
 
 extension NetworkManager{
     
-    static func callAPIAsync<T: Decodable>(logRequest: Bool = true,netWorkManger: NetworkManager) async throws -> T {
+    static func callAPIResultAsync<T: Decodable>(logRequest: Bool = true,netWorkManger: NetworkManager,timeout: TimeInterval = 15) async -> Result<T, Error> {
         @Injected(\.utils) var util
         util.toastUtils.subject.send(true)
+ 
+        defer {
+            util.toastUtils.subject.send(false)
+        }
         
         var components = URLComponents(string: environmentMode.baseUrl)
         components?.scheme = "https"
         components?.path = netWorkManger.path
 
         // Add query items
-        if ![.POST, .PUT, .PATCH].contains(netWorkManger.method),
-           let query = netWorkManger.task.query {
+        if ![.POST, .PUT, .PATCH].contains(netWorkManger.method), let query = netWorkManger.task.query {
             components?.queryItems = makeQueryItems(from: query)
         }
 
         guard let url = components?.url else {
-            util.toastUtils.subject.send(false)
-            dLog("❌ Invalid URL: \(components?.description ?? "nil")")
-            throw NetworkError.invalidURL
+            return .failure(NetworkError.invalidURL)
         }
 
-        let request = try makeRequest(from: netWorkManger, url: url)
+        let request: URLRequest
+        
+        do {
+            request = try makeRequest(from: netWorkManger, url: url)
+        } catch {
+            return .failure(error)
+        }
+
+        // Custom session with timeout
+        let config = URLSessionConfiguration.default
+        config.timeoutIntervalForRequest = timeout
+        config.timeoutIntervalForResource = timeout * 2
+        let session = URLSession(configuration: config)
 
         if logRequest {
             dLog("📡 Method: \(netWorkManger.method.description)")
@@ -404,42 +417,88 @@ extension NetworkManager{
         }
 
         do {
-            let (data, _) = try await URLSession.shared.data(for: request)
-            util.toastUtils.subject.send(false)
-            
-            
+            let (data, response) = try await session.data(for: request)
 
-            do {
-                let decoded = try JSONDecoder().decode(T.self, from: data)
-                return decoded
-            } catch {
-                dLog("❌ Decoding error: \(error)")
-                throw NetworkError.decodingError(error)
+            guard let httpResponse = response as? HTTPURLResponse else {
+                return .failure(NetworkError.unknown)
             }
-            
-        
+
+            switch httpResponse.statusCode {
+                case 200...299:
+                    do {
+                        let decoded = try JSONDecoder().decode(T.self, from: data)
+                        return .success(decoded)
+                    } catch {
+                        return .failure(NetworkError.decodingError(error))
+                    }
+                
+                case 400:
+                    let message = String(data: data, encoding: .utf8) ?? "Bad Request"
+                    return .failure(NetworkError.badRequest(message: message))
+                
+                case 404:
+                    let message = String(data: data, encoding: .utf8) ?? "Not Found"
+                    return .failure(NetworkError.badRequest(message: message))
+                
+                default:
+                    let message = String(data: data, encoding: .utf8)
+                    return .failure(NetworkError.serverError(statusCode: httpResponse.statusCode, message: message))
+                
+            }
+        } catch let error as URLError where error.code == .timedOut {
+            return .failure(NetworkError.timeout(error))
         } catch {
-            util.toastUtils.subject.send(false)
-            dLog("❌ Transport/network error: \(error)")
-            throw NetworkError.transportError(error)
+            return .failure(NetworkError.unknown)
         }
     }
     
-    /// A non-throwing async variant that wraps the throwing version
-      static func callAPIResultAsync<T: Decodable>(logRequest: Bool = true,netWorkManger: NetworkManager) async -> Result<T, Error> {
-          do {
-              let response: T = try await callAPIAsync(logRequest: logRequest,netWorkManger: netWorkManger)
-              return .success(response)
-          } catch {
-              return .failure(error)
-          }
-      }
+//    /// A non-throwing async variant that wraps the throwing version
+//      static func callAPIResultAsync<T: Decodable>(logRequest: Bool = true,netWorkManger: NetworkManager) async -> Result<T, Error> {
+//          do {
+//              let response: T = try await callAPIAsync(logRequest: logRequest,netWorkManger: netWorkManger)
+//              return .success(response)
+//          } catch {
+//              return .failure(error)
+//          }
+//      }
 
 }
 
 enum NetworkError: Error {
     case invalidURL
-    case serverError(String)
+    case badRequest(message: String)
+    case notFound(message: String)
+    case networkError(Error)
     case decodingError(Error)
-    case transportError(Error)
+    case serverError(statusCode: Int, message: String?)
+    case timeout(Error)
+    case unknown
+    
+    var description: String {
+        switch self {
+            case .invalidURL:
+                return "Invalid URL"
+            
+            case .badRequest(message: let message):
+                return "Bad Request: \(message)"
+            
+            case .notFound(message: let message):
+                return "Not Found: \(message)"
+            
+            case .networkError(let underlyingError):
+                return "Network Error: \(underlyingError)"
+            
+            case .decodingError(let error):
+                return error.localizedDescription
+            
+            case .serverError(statusCode: let statusCode, message: let message):
+                return message ?? "Server Error (\(statusCode))"
+            
+            case .timeout:
+                return "timeout Error"
+                
+            case .unknown:
+                return "Unknown Error"
+        }
+    }
 }

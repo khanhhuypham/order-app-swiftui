@@ -47,8 +47,8 @@ struct BranchOptionView: View {
             
             
 
-        }.onAppear {
-            viewModel.getBrands()
+        }.task{
+            await viewModel.getBrands()
         }
     }
     
@@ -75,7 +75,9 @@ struct BranchOptionView: View {
         
         
        return Button(action: {
-           viewModel.getBranches(brand: brand.wrappedValue)
+           Task{
+              await viewModel.getBranches(brand: brand.wrappedValue)
+           }
        }){
            HStack {
 //

@@ -15,40 +15,34 @@ class BranchOptionViewModel: ObservableObject {
     @Published var branches: [Branch] = []
     
     
-    func getBrands(){
+    func getBrands() async{
+        let result:Result<APIResponse<[Brand]>, Error> = try await NetworkManager.callAPIResultAsync(netWorkManger: .brands(key_search: "", status: ACTIVE))
         
-        NetworkManager.callAPI(netWorkManger: .brands(key_search: "", status: ACTIVE)){[weak self] (result: Result<APIResponse<[Brand]>, Error>) in
-            guard let self = self else { return }
-            switch result {
+        switch result {
+            case .success(let res):
+                if res.status == .ok,let data = res.data{
+                    self.brands = data.filter{$0.is_office == DEACTIVE}
+                }
+                   
 
-                case .success(let res):
-                    if res.status == .ok,let data = res.data{
-                        self.brands = data.filter{$0.is_office == DEACTIVE}
-                    }
-                       
-
-                case .failure(let error):
-                   dLog("Error: \(error)")
-            }
+            case .failure(let error):
+               dLog("Error: \(error)")
         }
     }
     
-    func getBranches(brand:Brand){
+    func getBranches(brand:Brand) async{
+        let result:Result<APIResponse<[Branch]>, Error> = try await NetworkManager.callAPIResultAsync(netWorkManger: .branches(brand_id: brand.id, status: ACTIVE))
         
-        NetworkManager.callAPI(netWorkManger: .branches(brand_id: brand.id ?? 0, status: ACTIVE)){[weak self] (result: Result<APIResponse<[Branch]>, Error>) in
-            guard let self = self else { return }
-            switch result {
+        switch result {
+            case .success(let res):
+                if res.status == .ok,let data = res.data{
+                    self.branches = data.filter{$0.is_office == DEACTIVE}
+                    self.type = 2
+                }
+          
 
-                case .success(let res):
-                    if res.status == .ok,let data = res.data{
-                        self.branches = data.filter{$0.is_office == DEACTIVE}
-                        self.type = 2
-                    }
-              
-
-                case .failure(let error):
-                   dLog("Error: \(error)")
-            }
+            case .failure(let error):
+               dLog("Error: \(error)")
         }
        
     }

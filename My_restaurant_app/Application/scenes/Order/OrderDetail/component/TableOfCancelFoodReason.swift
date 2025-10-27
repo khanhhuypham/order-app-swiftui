@@ -102,9 +102,9 @@ private struct TableOfCancelReasoncontent: View {
         .shadowedStyle()
         .cornerRadius(10)
         .padding(.horizontal, 40)
-        .onAppear(perform: {
-            self.getReasonOfCancel()
-        })
+        .task{
+            await getReasonOfCancel()
+        }
 //        .onDisappear(perform: {
 //            if shouldPerformCompletion{
 //                completion?()
@@ -114,21 +114,20 @@ private struct TableOfCancelReasoncontent: View {
     }
     
     
-    private func getReasonOfCancel(){
+    private func getReasonOfCancel() async{
 
-        NetworkManager.callAPI(netWorkManger: .reasonCancelFoods(branch_id: Constants.branch.id ?? 0)){ (result: Result<APIResponse<[CancelReason]>, Error>) in
-           
-            switch result {
+        let result:Result<APIResponse<[CancelReason]>, Error> = try await NetworkManager.callAPIResultAsync(netWorkManger: .reasonCancelFoods(branch_id: Constants.branch.id))
+        
+        switch result {
 
-                case .success(let res):
-                    if res.status == .ok,let data = res.data{
-                        list = data
-                    }
-                        
-                
-                case .failure(let error):
-                   dLog("Error: \(error)")
-            }
+            case .success(let res):
+                if res.status == .ok,let data = res.data{
+                    list = data
+                }
+                    
+            
+            case .failure(let error):
+               dLog("Error: \(error)")
         }
         
         

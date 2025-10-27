@@ -23,7 +23,9 @@ class CategoryManagementViewModel: ObservableObject {
         )
         isPresent = true
         popup = CreateCategory(isPresent:binding,category:category,onConfirmPress: {category in
-            self.createCategory(category: category)
+            Task{
+                await self.createCategory(category: category)
+            }
         })
     }
     
@@ -34,27 +36,24 @@ class CategoryManagementViewModel: ObservableObject {
 
 //MARK: categories
 extension CategoryManagementViewModel{
-    func getCategories(){
+    func getCategories() async{
         
-        NetworkManager.callAPI(netWorkManger: .categories(brand_id:brandId,status:-1)){[weak self] (result: Result<APIResponse<[Category]>, Error>) in
-            guard let self = self else { return }
-            
-            switch result {
+        let result:Result<APIResponse<[Category]>, Error> = try await NetworkManager.callAPIResultAsync(netWorkManger: .categories(brand_id:brandId,status:-1))
+        
+        switch result {
 
-                case .success(let res):
-                    if res.status == .ok,let data = res.data{
-                        categories = data
-                    }
-                    
-                case .failure(let error):
-                   dLog("Error: \(error)")
-            }
+            case .success(let res):
+                if res.status == .ok,let data = res.data{
+                    categories = data
+                }
+                
+            case .failure(let error):
+               dLog("Error: \(error)")
         }
     }
     
-    func createCategory(category:Category){
-                
-        NetworkManager.callAPI(netWorkManger: .createCategory(
+    func createCategory(category:Category)async{
+        let result:Result<APIResponse<[Category]>, Error> = try await NetworkManager.callAPIResultAsync(netWorkManger:  .createCategory(
             id: category.id,
             name: category.name,
             code: category.code,
@@ -62,17 +61,15 @@ extension CategoryManagementViewModel{
             categoryType: category.category_type.value,
             status:category.status
                                                     
-        )){[weak self] (result: Result<PlainAPIResponse, Error>) in
-            guard let self = self else { return }
-            
-            switch result {
+        ))
+        
+        switch result {
 
-                case .success(let data):
-                    getCategories()
-                    
-                case .failure(let error):
-                   dLog("Error: \(error)")
-            }
+            case .success(let data):
+                await getCategories()
+                
+            case .failure(let error):
+               dLog("Error: \(error)")
         }
     }
     

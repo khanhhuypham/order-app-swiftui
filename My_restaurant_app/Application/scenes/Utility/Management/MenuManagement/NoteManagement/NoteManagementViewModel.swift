@@ -29,11 +29,15 @@ class NoteManagementViewModel: ObservableObject, NotFoodDelegate {
         popup = NoteView(isPresent: binding, id: note.id ,inputText:note.content,completion:{id,content in
             if var first = self.NoteList.first{$0.id == id}{
                 first.content = content
-                self.createNote(note: first)
+                Task{
+                    await self.createNote(note: first)
+                }
             }else{
                 var newNote = Note()
                 newNote.content = content
-                self.createNote(note: newNote)
+                Task{
+                    await self.createNote(note: newNote)
+                }
             }
         })
     }
@@ -42,12 +46,16 @@ class NoteManagementViewModel: ObservableObject, NotFoodDelegate {
     func callBackNoteFood(id: Int, note: String) {
         if var first = self.NoteList.first{$0.id == id}{
             first.content = note
-            createNote(note: first)
+            Task{
+                await createNote(note: first)
+            }
         }else{
             var newNote = Note()
             newNote.content = note
             newNote.branch_id = branchId
-            createNote(note: newNote)
+            Task{
+                await createNote(note: newNote)
+            }
         }
         
     }
@@ -56,45 +64,40 @@ class NoteManagementViewModel: ObservableObject, NotFoodDelegate {
 
 
 extension NoteManagementViewModel{
-    func getNotes(){
+    func getNotes() async{
+        let result:Result<APIResponse<[Note]>, Error> = try await NetworkManager.callAPIResultAsync(netWorkManger: .notesManagement(branch_id:branchId,status: ACTIVE))
+                
+        switch result {
 
-        
-        NetworkManager.callAPI(netWorkManger: .notesManagement(branch_id:branchId,status: ACTIVE)){[weak self] (result: Result<APIResponse<[Note]>, Error>) in
-            guard let self = self else { return }
-            
-            switch result {
-
-                case .success(var res):
-                    if res.status == .ok,var data = res.data{
-                        for (i,_) in data.enumerated(){
-                            data[i].branch_id = branchId
-                        }
-
-                        NoteList = data
+            case .success(var res):
+                if res.status == .ok,var data = res.data{
+                    for (i,_) in data.enumerated(){
+                        data[i].branch_id = branchId
                     }
-             
-                    
-                case .failure(let error):
-                   dLog("Error: \(error)")
-            }
+
+                    NoteList = data
+                }
+         
+                
+            case .failure(let error):
+               dLog("Error: \(error)")
         }
+
     }
     
-    func createNote(note:Note){
+    func createNote(note:Note) async{
         
+        let result:Result<PlainAPIResponse, Error> = try await NetworkManager.callAPIResultAsync(netWorkManger: .createNote(note:note))
+       
+        switch result {
 
-        NetworkManager.callAPI(netWorkManger: .createNote(note:note)){[weak self] (result: Result<PlainAPIResponse, Error>) in
-            guard let self = self else { return }
-            
-            switch result {
-
-                case .success(let data):
-                    getNotes()
-                    
-                case .failure(let error):
-                   dLog("Error: \(error)")
-            }
+            case .success(let data):
+               await getNotes()
+                
+            case .failure(let error):
+               dLog("Error: \(error)")
         }
+        
     }
     
     
