@@ -17,6 +17,11 @@ enum PopupType{
     case cancel
 }
 
+/*
+ ✅ SOLID enough for your current module.
+ ✅ Perfect for MVVM — since one ViewModel manages all order details.
+ ✅ Simple and pragmatic.
+ */
 class OrderDetailViewModel: ObservableObject {
     @Injected(\.utils.toastUtils) var toast
     let socketManager = SocketIOManager.shared
@@ -24,7 +29,6 @@ class OrderDetailViewModel: ObservableObject {
     @Published var order:OrderDetail = OrderDetail()
     @Published var printItems:[PrintItem] = []
     
-
     @Published public var showSheet:(show:Bool,type:OrderAction) = (false,.splitFood)
     @Published public var showPopup:(show:Bool,type:PopupType,item:OrderItem?) = (false,.cancel,nil)
     var splitFood:(from:Table,to:Table)? = nil
@@ -72,6 +76,37 @@ class OrderDetailViewModel: ObservableObject {
             case .failure(let error):
                dLog("Error: \(error)")
         }
+        
+        
+//        let result = await orderService.fetchOrderDetail(orderId: order.id, branchId:  Constants.branch.id)
+//        switch result {
+//           case .success(let res):
+//       
+//               if res.status == .ok,var data = res.data{
+//                   if data.buffet != nil{
+//                       data.buffet?.updateTickets()
+//                   }
+//
+//                   self.order = data
+//
+//                   order.orderItems.removeAll(where: {($0.category_type == .drink || $0.category_type == .other) && $0.quantity == 0})
+//
+//                   await self.getFoodsNeedPrint()
+//
+//                   //Nếu bàn booking thì sẽ lấy thêm các món ăn
+//                   if let booking_status = order.booking_status,booking_status == .status_booking_setup{
+//                       await self.getBookingOrder()
+//                   }
+//               }else{
+//                   toast.alertSubject.send(
+//                       AlertToast(type: .regular, title: "warning", subTitle: res.message)
+//                   )
+//               }
+//
+//
+//           case .failure(let error):
+//              dLog("Error: \(error)")
+//       }
     }
     
    
@@ -93,7 +128,6 @@ extension OrderDetailViewModel{
     func getFoodsNeedPrint() async{
         let result = await service.getFoodsNeedPrint(orderId: order.id)
         
-    
         switch result {
             case .success(let res):
             
@@ -173,6 +207,20 @@ extension OrderDetailViewModel{
                dLog("Error: \(error)")
         }
         
+//        let result = await discountService.discountOrderItem(branchId: Constants.branch.id, orderId: order.id, orderItem: item)
+//        switch result {
+//
+//            case .success(let res):
+//                if res.status != .ok{
+//                    dLog(res.message)
+//                }
+//                break
+//
+//
+//            case .failure(let error):
+//               dLog("Error: \(error)")
+//        }
+        
     }
     
     @MainActor
@@ -197,7 +245,26 @@ extension OrderDetailViewModel{
             
         }
         
-      
+//        let result = await noteService.addNote(branchId: Constants.branch.id, orderDetailId: orderDetailId, note: note)
+//        
+//        switch result {
+//
+//            case .success(let res):
+//                if res.status != .ok{
+//                    await toast.alertSubject.send(
+//                        AlertToast(type: .regular, title: "warning", subTitle: res.message)
+//                    )
+//                }
+//                break
+//
+//
+//            case .failure(let error):
+//               dLog("Error: \(error)")
+//
+//        }
+//        
+        
+
     }
     
     
@@ -223,8 +290,7 @@ extension OrderDetailViewModel{
 
     
 
-    
-    
+
    private func repairUpdateFoods(items:[OrderItem]) -> [OrderItemUpdate]{
         var itemArrayNeedToUpdate:[OrderItemUpdate] = []
         let foods = items.filter{$0.isChange}
@@ -252,5 +318,5 @@ extension OrderDetailViewModel{
         }
        return itemArrayNeedToUpdate
     }
-    
+
 }
