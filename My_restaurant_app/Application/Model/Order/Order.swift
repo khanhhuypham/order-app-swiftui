@@ -81,6 +81,9 @@ struct Order:Codable,Identifiable {
        
     }
     
+    init(id:Int) {
+        self.id = id
+    }
     
     init(table:Table) {
         self.id = table.order_id ?? 0

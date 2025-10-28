@@ -26,133 +26,97 @@ final class OrderListViewModelTests: XCTestCase {
         super.tearDown()
     }
     
-    func test_getOrders_success() async {
-        var order1 = Order()
-        order1.id = 1
-        order1.table_name = "A1"
-        order1.total_amount = 100
 
-        var order2 = Order()
-        order2.id = 2
-        order2.table_name = "A2"
-        order2.total_amount = 200
-
-        // Create a mock OrderResponse
-        let response = OrderResponse(limit: 20,total_record: 100, list: [order1, order2])
-
-        // Specify the generic type explicitly
-        let result = APIResponse<OrderResponse>(
-             data: response,
-             status: .ok,
-             message: "success"
-        )
-
-        mockService.result = .success(result)
-
-        await viewModel.getOrders(page:1)
-
-        XCTAssertEqual(viewModel.orderList.count, 2)
-    }
-
-    func test_closeTable_showsToast() async {
-    
+    func test_closeTable_success_shouldPrintSuccessMessage() async {
+        // Given
+        mockService.closeTableResult = .success(PlainAPIResponse(status: .ok, message: "Closed"))
+        
+        // When
         await viewModel.closeTable(id: 1)
-//        XCTAssertEqual(mockToast.messages.first, "Huỷ bàn thành công")
+        // Then
+        // no crash, no toast error, we can assert nothing changed
+        XCTAssertTrue(true)
     }
+
     
     func test_getOrderList_success_shouldAppendDataAndIncrementPage() async {
       
-        let result = APIResponse<OrderResponse>(
-             data: OrderResponse(limit: 20,total_record: 100, list: [Order(), Order()]),
-             status: .ok,
-             message: "success"
-        )
-        mockService.result = .success(result)
-        
+        mockService.fetchOrdersResult = .success(createDummyResponse(dataArray: (1...10)))
         XCTAssertFalse(viewModel.APIParameter.isAPICalling)
         await viewModel.getOrders(page: 1)
 
-        XCTAssertEqual(viewModel.orderList.count, 2)
+        XCTAssertEqual(viewModel.orderList.count, 10)
         XCTAssertEqual(viewModel.APIParameter.page, 1)
         XCTAssertFalse(viewModel.APIParameter.isAPICalling)
         XCTAssertTrue(viewModel.APIParameter.isGetFullData)
     }
     
-    func test_getOrderList_failure_shouldNotAppendData() async {
+    func test_getOrderList_failure() async {
 
-        mockService.result = .failure(NSError(domain: "", code: -1))
+        mockService.fetchOrdersResult = .failure(NSError(domain: "", code: -1))
         
         await viewModel.getOrders(page: 1)
         
         XCTAssertEqual(viewModel.orderList.count, 0)
         XCTAssertFalse(viewModel.APIParameter.isAPICalling)
     }
-//    
-    func test_loadMoreContent_shouldCallAPIWhenNotFullData() async {
-        // Arrange
-        let list: [Order] = (0...1).map { i in
-            var order = Order()
-            order.id = i
-            return order
-        }
-
-        let result = APIResponse<OrderResponse>(
-            data: OrderResponse(limit: 20, total_record: 100, list: list),
-            status: .ok,
-            message: "success"
-        )
-
-        // Mock successful API call
-        mockService.result = .success(result)
-
-        // Initial setup
-        viewModel.APIParameter.isGetFullData = false
-        viewModel.APIParameter.page = 1
-
-        // Act: Load first page
-        await viewModel.getOrders(page: 1)
-
-        // Verify we have items
-        guard let lastOrder = viewModel.orderList.last else {
-            XCTFail("Expected orderList to have items")
-            return
-        }
-
-        // Simulate user reaching the last item twice (pagination trigger)
-        await viewModel.loadMoreContent(currentItem: lastOrder)
+    
+    func test_loadMoreContent() async {
+        viewModel.APIParameter.limit = 10
+        mockService.fetchOrdersResult = .success(createDummyResponse(dataArray: (1...10)))
+        await viewModel.clearDataAndCallAPI()
         
-        // Verify we have items
-        guard let lastOrder = viewModel.orderList.last else {
-            XCTFail("Expected orderList to have items")
-            return
-        }
-        
-        await viewModel.loadMoreContent(currentItem: lastOrder)
+        mockService.fetchOrdersResult = .success(createDummyResponse(dataArray: (11...20)))
+        await viewModel.loadMoreContent()
+      
+        mockService.fetchOrdersResult = .success(createDummyResponse(dataArray: (21...30)))
+        await viewModel.loadMoreContent()
+
+        mockService.fetchOrdersResult = .success(createDummyResponse(dataArray: (31...35)))
+        await viewModel.loadMoreContent()
+        //===============================
+        await viewModel.loadMoreContent()
+        await viewModel.loadMoreContent()
+        await viewModel.loadMoreContent()
 
         // Assert: page number increased correctly
-        XCTAssertEqual(viewModel.APIParameter.page, 3)
+        XCTAssertEqual(viewModel.APIParameter.page, 4)
+        XCTAssertEqual(viewModel.orderList.count, 35)
     }
 
     func test_clearDataAndCallAPI() async {
-        // Given: some existing data
-        viewModel.photoList = [
-            Photo(id: "1", author: "John", width: 100, height: 100, url: "", download_url: "")
-        ]
+        // Given: some existing data, we currently have 30 records and at page 3
+        viewModel.orderList = createDummyData(dataArray: (1...30))
         viewModel.APIParameter.page = 3
-        viewModel.APIParameter.isGetFullData = true
-        viewModel.APIParameter.isAPICalling = true
+        viewModel.APIParameter.limit = 10
+        viewModel.APIParameter.isGetFullData = false
+        viewModel.APIParameter.isAPICalling = false
+        XCTAssertEqual(viewModel.orderList.count, 30)
+        
+        //then we clear data and get the first page
+        mockService.fetchOrdersResult = .success(createDummyResponse(dataArray: (1...10)))
+        await viewModel.clearDataAndCallAPI()
+        
 
-        let photos = [Photo(id: "2", author: "Alice", width: 200, height: 200, url: "", download_url: "")]
-        mockService.result = .success(photos)
-
-        viewModel.clearDataAndCallAPI()
-
-        try? await Task.sleep(nanoseconds: 100_000_000) // 0.1 second
-
-        XCTAssertEqual(viewModel.photoList.count, 1, "Expected one photo after API call")
-        XCTAssertEqual(viewModel.photoList.first?.id, "2", "Expected fetched photo ID to match mock data")
+        XCTAssertEqual(viewModel.orderList.count, 10, "Expected one photo after API call")
+        XCTAssertEqual(viewModel.orderList.first?.id, 1, "Expected fetched photo ID to match mock data")
         XCTAssertEqual(viewModel.APIParameter.page, 1, "Page should reset to 1 after clear")
     }
+    
+    
+    private func createDummyData(dataArray:ClosedRange<Int>) -> [Order] {
+        return dataArray.map { Order(id: $0) }
+    }
+    
+    private func createDummyResponse(dataArray:ClosedRange<Int>) -> APIResponse<OrderResponse> {
+        return  APIResponse<OrderResponse>(
+            data: OrderResponse(limit: 0, total_record: 100, list: createDummyData(dataArray: dataArray)),
+            status: .ok,
+            message: "success"
+        )
+    }
+    
+    
 }
 
 

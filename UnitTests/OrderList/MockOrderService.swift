@@ -9,25 +9,21 @@
 
 final class MockOrderListService: OrderServiceProtocol {
 
-    var result:Result<APIResponse<OrderResponse>, Error>?
+    var fetchOrdersResult:Result<APIResponse<OrderResponse>, Error>?
+    var closeTableResult: Result<PlainAPIResponse, Error>?
 
     func fetchOrders(brandId: Int,branchId: Int,userId: Int,orderMethods: String,orderStatus: String,limit:Int,page:Int) async -> Result<APIResponse<OrderResponse>, Error> {
 
-        // Create a mock OrderResponse
-        let response = OrderResponse(limit: 20,total_record: 0, list: [])
-
-        // Specify the generic type explicitly
-        let r = APIResponse<OrderResponse>(
-             data: response,
-             status: .ok,
-             message: "success"
-        )
-        
-        return result ?? .success(r)
+        return fetchOrdersResult ?? .success(APIResponse<OrderResponse>(
+            data: OrderResponse(limit: limit,total_record: 1000, list: []),
+            status: .ok,
+            message: "success"
+       ))
     }
 
     func closeTable(orderId: Int) async -> Result<PlainAPIResponse, Error> {
-        .success(PlainAPIResponse(status: .ok, message: "Closed"))
+        closeTableResult ?? .success(PlainAPIResponse(status: .ok, message: "Closed"))
     }
+
 }
 

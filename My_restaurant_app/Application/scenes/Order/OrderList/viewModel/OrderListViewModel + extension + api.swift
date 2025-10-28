@@ -35,7 +35,7 @@ extension OrderListViewModel {
                        APIParameter.isGetFullData = true
                        return
                    }
-               
+         
                    orderList.append(contentsOf: data.list)
                    APIParameter.page = page
                    APIParameter.isGetFullData = data.list.count < APIParameter.limit

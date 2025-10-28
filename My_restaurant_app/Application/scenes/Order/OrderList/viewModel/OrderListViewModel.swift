@@ -32,7 +32,7 @@ class OrderListViewModel: ObservableObject {
     
     var splitFood:(from:Table,to:Table)? = nil
     
-    var APIParameter:(
+    @Published var APIParameter:(
         branch_id:Int,
         userId: Int,
         order_status: String,
@@ -67,25 +67,21 @@ class OrderListViewModel: ObservableObject {
     init(service: OrderServiceProtocol = OrderService()) {
         self.service = service
         
-//        $APIParameter
-//        .map{$0.key_word}
-//        .removeDuplicates()
-//        .sink {[weak self]keyWord in
-//            guard let self = self else { return }
-//                
-//        }.store(in: &cancellables)
+        $APIParameter
+        .map{$0.key_word}
+        .removeDuplicates()
+        .sink {[weak self]keyWord in
+            guard let self = self else { return }
+                
+        }.store(in: &cancellables)
 
     }
     
     
     @MainActor
-    func loadMoreContent(currentItem: Order) async {
-
-        guard !APIParameter.isAPICalling else { return }
-        guard !APIParameter.isGetFullData else { return }
-
-        guard let lastItem = orderList.last, lastItem.id == currentItem.id else { return }
-
+    func loadMoreContent() async {
+        guard !APIParameter.isAPICalling else {return}
+        guard !APIParameter.isGetFullData else {return}
 
         await getOrders(page: APIParameter.page + 1)
     }

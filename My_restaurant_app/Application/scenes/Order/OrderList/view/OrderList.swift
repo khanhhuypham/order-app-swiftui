@@ -160,7 +160,9 @@ struct OrderListView<Model>: View where Model: OrderListViewModel{
                         }
                         .onAppear{
                             Task {
-                                await viewModel.loadMoreContent(currentItem: order.wrappedValue)
+                                if let lastItem = viewModel.orderList.last, lastItem.id == order.id {
+                                    await viewModel.loadMoreContent()
+                                }
                             }
                         }
                         .onTapGesture { handleOrderTap(order: order.wrappedValue) }

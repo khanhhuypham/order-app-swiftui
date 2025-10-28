@@ -5,19 +5,19 @@
 //  Created by Pham Khanh Huy on 27/10/25.
 //
 
+import SocketIO
 
 protocol OrderServiceProtocol {
     func fetchOrders(brandId: Int,branchId: Int,userId: Int,orderMethods: String,orderStatus: String,limit:Int,page:Int) async -> Result<APIResponse<OrderResponse>, Error>
     func closeTable(orderId: Int) async -> Result<PlainAPIResponse, Error>
 }
 
-protocol ToastUtilsProtocol {
-    func show(_ message: String)
-}
+
 
 protocol SocketManagerProtocol {
-    func joinRoom()
-    func leaveRoom()
+
+    var orderRealTimeSocket: SocketIOClient { get }
+    func initOrderRealTimeSocketInstance(_ namespace: String)
 }
 
 
