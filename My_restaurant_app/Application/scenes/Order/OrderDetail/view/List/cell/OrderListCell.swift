@@ -72,26 +72,6 @@ struct OrderListItem: View {
                data.presentDiscountAmount = item.discount_amount > 0 ? true : false
             }
             
-//            if item.is_booking_item == ACTIVE{
-//                switch item.category_type {
-//                    case .drink:
-//                        presentActionView = true
-//                        break
-//
-//                    case .food:
-//                        presentActionView = false
-//                        break
-//
-//                    case .service:
-//                        presentActionView = false
-//                        break
-//
-//                    default:
-//                        presentActionView = true
-//                        break
-//                    }
-//            }
-            
             
         })
     
@@ -241,8 +221,7 @@ struct OrderListItem: View {
                         
                         QuantityView(width: 25,height:25, quantity: $item.quantity){(type,quantity) in
                             
-                            dLog(quantity)
-                            
+        
                             switch type{
                                 case .minus:
                                     item.setQuantity(quantity: item.quantity - (item.is_sell_by_weight == ACTIVE ? 0.01 : 1))

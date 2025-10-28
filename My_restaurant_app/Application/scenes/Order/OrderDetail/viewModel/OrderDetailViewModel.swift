@@ -20,34 +20,29 @@ enum PopupType{
 class OrderDetailViewModel: ObservableObject {
     @Injected(\.utils.toastUtils) var toast
     let socketManager = SocketIOManager.shared
+    let service: OrderDetailServiceProtocol
     @Published var order:OrderDetail = OrderDetail()
-        
     @Published var printItems:[PrintItem] = []
     
 
-    @Published var showSheet:(show:Bool,type:OrderAction) = (false,.splitFood)
+    @Published public var showSheet:(show:Bool,type:OrderAction) = (false,.splitFood)
+    @Published public var showPopup:(show:Bool,type:PopupType,item:OrderItem?) = (false,.cancel,nil)
     var splitFood:(from:Table,to:Table)? = nil
-
-    @Published public var showPopup:(
-        show:Bool,
-        type:PopupType,
-        item:OrderItem?
-    ) = (false,.cancel,nil)
     
     
-    
-    init(order:Order? = nil){
+    init(order:Order? = nil,service:OrderDetailServiceProtocol = OrderDetailService()){
         if let orderDetail = order{
             self.order = OrderDetail(order: orderDetail)
         }else{
             self.order = OrderDetail()
         }
+        self.service = service
     }
     
     @MainActor
     func getOrder() async{
         
-        let result: Result<APIResponse<OrderDetail>, Error> = await NetworkManager.callAPIResultAsync(netWorkManger:.order(order_id: order.id , branch_id: Constants.branch.id))
+        let result = await service.getOrder(orderId: order.id, branchId: Constants.branch.id)
         
         switch result {
             case .success(let res):
@@ -94,10 +89,11 @@ class OrderDetailViewModel: ObservableObject {
 }
 extension OrderDetailViewModel{
     
+    @MainActor
     func getFoodsNeedPrint() async{
+        let result = await service.getFoodsNeedPrint(orderId: order.id)
         
-        let result: Result<APIResponse<[PrintItem]>, Error> = await NetworkManager.callAPIResultAsync(netWorkManger:.foodsNeedPrint(order_id: order.id))
-        
+    
         switch result {
             case .success(let res):
             
@@ -105,15 +101,14 @@ extension OrderDetailViewModel{
                     self.printItems = data
                 }
                 
-
             case .failure(let error):
                dLog("Error: \(error)")
         }
     }
 
+    @MainActor
     func getBookingOrder() async{
-        
-        let result: Result<APIResponse<[PrintItem]>, Error> = await NetworkManager.callAPIResultAsync(netWorkManger:.getFoodsBookingStatus(order_id: order.id))
+        let result = await service.getBookingOrder(orderId: order.id)
       
         switch result {
             case .success(let res):
@@ -141,18 +136,13 @@ extension OrderDetailViewModel{
     
     
     //MARK: API Huỷ món
+    @MainActor
     func cancelItem(item:OrderItem,reason:String) async{
-        let result: Result<PlainAPIResponse, Error> = await NetworkManager.callAPIResultAsync(netWorkManger:
-            .cancelFood(
-                branch_id: Constants.branch.id,
-                order_id: order.id,
-                reason: reason,
-                order_detail_id: item.id,
-                quantity: Int(item.quantity)
-        ))
+        
+        let result = await service.cancelItem(branchId: Constants.branch.id, orderId: order.id, reason: reason, orderDetailId: item.id, quantity: Int(item.quantity))
       
         switch result {
-            case .success(var res):
+            case .success(let res):
                 
                 if res.status != .ok{
                     await toast.alertSubject.send(
@@ -165,12 +155,11 @@ extension OrderDetailViewModel{
         }
     }
     
+    @MainActor
     func discountOrderItem(item:OrderItem) async{
-        let result: Result<PlainAPIResponse, Error> = await NetworkManager.callAPIResultAsync(netWorkManger:
-            .postDiscountOrderItem(branch_id: Constants.branch.id, orderId: order.id, orderItem: item)
-        )
-     
-        
+   
+        let result = await service.discountOrderItem(branchId: Constants.branch.id, orderId: order.id, orderItem: item)
+
         switch result {
 
             case .success(let res):
@@ -186,11 +175,11 @@ extension OrderDetailViewModel{
         
     }
     
+    @MainActor
     func addNote(orderDetailId:Int,note:String) async{
         
-        let result: Result<PlainAPIResponse, Error> = await NetworkManager.callAPIResultAsync(netWorkManger:
-            .addNoteToOrder(branch_id: Constants.branch.id, order_detail_id:orderDetailId, note:note)
-        )
+ 
+        let result = await service.addNote(branchId: Constants.branch.id, orderDetailId: orderDetailId, note: note)
     
         switch result {
 
@@ -212,14 +201,12 @@ extension OrderDetailViewModel{
     }
     
     
-    
+    @MainActor
     func updateItems() async{
         let orderItemsUpdate = repairUpdateFoods(items: order.orderItems)
         
-        let result: Result<PlainAPIResponse, Error> = await NetworkManager.callAPIResultAsync(netWorkManger:
-            .updateFoods(branch_id: Constants.branch.id, order_id: order.id, orderItemUpdate:orderItemsUpdate)
-        )
     
+        let result = await service.updateItems(branchId: Constants.branch.id, orderId: order.id, orderItems: orderItemsUpdate)
         
         switch result {
 

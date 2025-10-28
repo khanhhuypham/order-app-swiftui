@@ -14,13 +14,6 @@ protocol OrderServiceProtocol {
 
 
 
-protocol SocketManagerProtocol {
-
-    var orderRealTimeSocket: SocketIOClient { get }
-    func initOrderRealTimeSocketInstance(_ namespace: String)
-}
-
-
 final class OrderService: OrderServiceProtocol {
     func fetchOrders(brandId: Int,branchId: Int,userId: Int,orderMethods: String,orderStatus: String,limit:Int,page:Int) async -> Result<APIResponse<OrderResponse>, Error> {
         await NetworkManager.callAPIResultAsync(

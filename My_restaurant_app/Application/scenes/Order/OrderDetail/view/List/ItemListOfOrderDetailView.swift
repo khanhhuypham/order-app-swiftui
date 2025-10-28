@@ -8,10 +8,9 @@
 import SwiftUI
 
 
-struct OrderList: View, ReasonCancelItemDelegate {
+struct OrderList: View {
     
-    
-    func cancel(item: OrderItem) {}
+//    func cancel(item: OrderItem) {}
     
     @ObservedObject var viewModel:OrderDetailViewModel
     
