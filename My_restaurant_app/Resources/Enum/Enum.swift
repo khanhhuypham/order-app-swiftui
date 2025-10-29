@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+//import RealmSwift
 
 enum OrderAction {
     case orderHistory
@@ -433,7 +434,39 @@ enum PRINTER_METHOD:Int{
     case BLEPrinter = 3
 }
 
+//@objc(PRINT_MODE)
+//enum PRINT_MODE:Int,PersistableEnum{
+//    case printBackgroundWithRetry = 0
+//    case printBackgroundWithoutRetry = 1
+//    case printForeground = 2
+//}
 
+
+
+enum KITCHEN_TICKET_TYPE {
+    case new_item
+    case cancel_item
+    case return_item
+    case print_test
+
+
+    // 2- Hủy món | 3- trả bia | 1- món mới
+    var value: Int {
+        switch self {
+        case .print_test:
+            return 0
+        case .new_item:
+            return 1
+        case .cancel_item:
+            return 2
+        case .return_item:
+            return 3
+        
+        }
+    }
+}
+
+//MARK: enum for food app
 enum APP_PARTNER:String{
     case shoppee = "SHF"
     case grabfood = "GRF"

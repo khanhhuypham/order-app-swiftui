@@ -8,25 +8,19 @@
 import SwiftUI
 
 class OrderLogViewModel: ObservableObject {
-    
-
+    let service: OrderLogServiceProtocol
     @Published public var dataArray:[ActivityLog] = []
-    
     @Published var searchKey = ""
+    init(service: OrderLogServiceProtocol = OrderLogService()) {
+        self.service = service
+   
+    }
+    
     
     @MainActor
     func getOrderLog(orderId:Int)async{
 
-        let result:Result<APIResponse<ActivityLogResponse>, Error> = try await NetworkManager.callAPIResultAsync(netWorkManger: .getActivityLog(
-            object_id: orderId,
-            type: 2,
-            key_search: "",
-            object_type: "",
-            from: "",
-            to: "",
-            page: 1,
-            limit: 500
-        ))
+        let result = await service.getOrderLog(orderId: orderId)
   
             switch result {
 

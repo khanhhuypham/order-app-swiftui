@@ -183,12 +183,10 @@
 		94589A442E9F7E96008868F9 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A332E9F7E96008868F9 /* DoubleExtension.swift */; };
 		94589A452E9F7E96008868F9 /* Date + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A302E9F7E96008868F9 /* Date + extension.swift */; };
 		94589A672E9F7ED7008868F9 /* PaymentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A5E2E9F7ED7008868F9 /* PaymentViewCell.swift */; };
-		94589A682E9F7ED7008868F9 /* OrderLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A562E9F7ED7008868F9 /* OrderLogViewModel.swift */; };
 		94589A692E9F7ED7008868F9 /* ItemListOfOrderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A4D2E9F7ED7008868F9 /* ItemListOfOrderDetailView.swift */; };
 		94589A6A2E9F7ED7008868F9 /* OrderListViewModel + extension + socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A5B2E9F7ED7008868F9 /* OrderListViewModel + extension + socket.swift */; };
 		94589A6B2E9F7ED7008868F9 /* OrderDetail + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A482E9F7ED7008868F9 /* OrderDetail + extension.swift */; };
 		94589A6C2E9F7ED7008868F9 /* OrderListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A5A2E9F7ED7008868F9 /* OrderListViewModel.swift */; };
-		94589A6D2E9F7ED7008868F9 /* OrderLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A552E9F7ED7008868F9 /* OrderLog.swift */; };
 		94589A6E2E9F7ED7008868F9 /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A602E9F7ED7008868F9 /* PaymentView.swift */; };
 		94589A6F2E9F7ED7008868F9 /* BuffetOfOrderListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A4A2E9F7ED7008868F9 /* BuffetOfOrderListCell.swift */; };
 		94589A702E9F7ED7008868F9 /* OrderDetailViewModel + extension + socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A522E9F7ED7008868F9 /* OrderDetailViewModel + extension + socket.swift */; };
@@ -242,6 +240,9 @@
 		94DC1BA12EA089E700EE549C /* MoveOrderItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DC1BA02EA089E700EE549C /* MoveOrderItems.swift */; };
 		94DC1BA32EA08CBF00EE549C /* MoveOrderItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DC1BA22EA08CB600EE549C /* MoveOrderItemsViewModel.swift */; };
 		94F2CAFD2EA787E1001FD6BB /* OrderListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F2CAFB2EA787E1001FD6BB /* OrderListViewModelTest.swift */; };
+		94F65C9B2EB1A97B000A61A5 /* OrderLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F65C992EB1A97B000A61A5 /* OrderLogViewModel.swift */; };
+		94F65C9C2EB1A97B000A61A5 /* OrderLogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F65C952EB1A97B000A61A5 /* OrderLogService.swift */; };
+		94F65C9D2EB1A97B000A61A5 /* OrderLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F65C972EB1A97B000A61A5 /* OrderLog.swift */; };
 		D2BC75C93CAA0663141B99E8 /* Pods_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66210620D987AFCF12F9F41B /* Pods_UnitTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -444,8 +445,6 @@
 		94589A4F2E9F7ED7008868F9 /* OrderDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailView.swift; sourceTree = "<group>"; };
 		94589A512E9F7ED7008868F9 /* OrderDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailViewModel.swift; sourceTree = "<group>"; };
 		94589A522E9F7ED7008868F9 /* OrderDetailViewModel + extension + socket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderDetailViewModel + extension + socket.swift"; sourceTree = "<group>"; };
-		94589A552E9F7ED7008868F9 /* OrderLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderLog.swift; sourceTree = "<group>"; };
-		94589A562E9F7ED7008868F9 /* OrderLogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderLogViewModel.swift; sourceTree = "<group>"; };
 		94589A582E9F7ED7008868F9 /* OrderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderList.swift; sourceTree = "<group>"; };
 		94589A5A2E9F7ED7008868F9 /* OrderListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListViewModel.swift; sourceTree = "<group>"; };
 		94589A5B2E9F7ED7008868F9 /* OrderListViewModel + extension + socket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderListViewModel + extension + socket.swift"; sourceTree = "<group>"; };
@@ -500,6 +499,9 @@
 		94F2CB052EA78F51001FD6BB /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
 		94F2CB062EA78F62001FD6BB /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		94F2CB1A2EA793B7001FD6BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		94F65C952EB1A97B000A61A5 /* OrderLogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderLogService.swift; sourceTree = "<group>"; };
+		94F65C972EB1A97B000A61A5 /* OrderLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderLog.swift; sourceTree = "<group>"; };
+		94F65C992EB1A97B000A61A5 /* OrderLogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderLogViewModel.swift; sourceTree = "<group>"; };
 		CBCD3D71EDE2CEDAE24902F7 /* Pods-UnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.debug.xcconfig"; path = "Target Support Files/Pods-UnitTests/Pods-UnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E14DDE195424ADCE05D0C02E /* Pods-UnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.release.xcconfig"; path = "Target Support Files/Pods-UnitTests/Pods-UnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		F1798CE75DFD657B1C723125 /* Pods_My_restaurant_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_My_restaurant_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1460,8 +1462,9 @@
 		94589A572E9F7ED7008868F9 /* OrderLog */ = {
 			isa = PBXGroup;
 			children = (
-				94589A552E9F7ED7008868F9 /* OrderLog.swift */,
-				94589A562E9F7ED7008868F9 /* OrderLogViewModel.swift */,
+				94F65C962EB1A97B000A61A5 /* service */,
+				94F65C982EB1A97B000A61A5 /* view */,
+				94F65C9A2EB1A97B000A61A5 /* viewModel */,
 			);
 			path = OrderLog;
 			sourceTree = "<group>";
@@ -1868,6 +1871,30 @@
 			path = Configs;
 			sourceTree = "<group>";
 		};
+		94F65C962EB1A97B000A61A5 /* service */ = {
+			isa = PBXGroup;
+			children = (
+				94F65C952EB1A97B000A61A5 /* OrderLogService.swift */,
+			);
+			path = service;
+			sourceTree = "<group>";
+		};
+		94F65C982EB1A97B000A61A5 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				94F65C972EB1A97B000A61A5 /* OrderLog.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		94F65C9A2EB1A97B000A61A5 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				94F65C992EB1A97B000A61A5 /* OrderLogViewModel.swift */,
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
 		CD7902FC612E0D466CC0190F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -2098,12 +2125,10 @@
 				945899D02E9F7DA1008868F9 /* MathUtils.swift in Sources */,
 				945899D12E9F7DA1008868F9 /* ChartUtils.swift in Sources */,
 				94589A672E9F7ED7008868F9 /* PaymentViewCell.swift in Sources */,
-				94589A682E9F7ED7008868F9 /* OrderLogViewModel.swift in Sources */,
 				94589A692E9F7ED7008868F9 /* ItemListOfOrderDetailView.swift in Sources */,
 				94589A6A2E9F7ED7008868F9 /* OrderListViewModel + extension + socket.swift in Sources */,
 				94589A6B2E9F7ED7008868F9 /* OrderDetail + extension.swift in Sources */,
 				94589A6C2E9F7ED7008868F9 /* OrderListViewModel.swift in Sources */,
-				94589A6D2E9F7ED7008868F9 /* OrderLog.swift in Sources */,
 				94589A6E2E9F7ED7008868F9 /* PaymentView.swift in Sources */,
 				94589A6F2E9F7ED7008868F9 /* BuffetOfOrderListCell.swift in Sources */,
 				94589A702E9F7ED7008868F9 /* OrderDetailViewModel + extension + socket.swift in Sources */,
@@ -2166,6 +2191,9 @@
 				945899972E9F7D66008868F9 /* MailView.swift in Sources */,
 				945899982E9F7D66008868F9 /* PieChart.swift in Sources */,
 				945899992E9F7D66008868F9 /* TagListView.swift in Sources */,
+				94F65C9B2EB1A97B000A61A5 /* OrderLogViewModel.swift in Sources */,
+				94F65C9C2EB1A97B000A61A5 /* OrderLogService.swift in Sources */,
+				94F65C9D2EB1A97B000A61A5 /* OrderLog.swift in Sources */,
 				9458999A2E9F7D66008868F9 /* BtnGroupOfReportType.swift in Sources */,
 				9458999B2E9F7D66008868F9 /* NoteViewModel.swift in Sources */,
 				9458999C2E9F7D66008868F9 /* SwipeActionView.swift in Sources */,
@@ -2450,7 +2478,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2481,7 +2509,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2506,7 +2534,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Huy.UnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2530,7 +2558,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Huy.UnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2625,7 +2653,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2650,7 +2678,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Huy.UnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
