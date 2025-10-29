@@ -7,5 +7,12 @@
 
 
 final class LocalDBService: LocalDBServiceProtocol {
-   
+    func removeAllQueuedItem() {
+        
+    }
+    
+    func CheckFinishedQueuedItem() {
+        
+    }
+    
 }

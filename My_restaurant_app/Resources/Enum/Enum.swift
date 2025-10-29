@@ -434,12 +434,12 @@ enum PRINTER_METHOD:Int{
     case BLEPrinter = 3
 }
 
-//@objc(PRINT_MODE)
-//enum PRINT_MODE:Int,PersistableEnum{
-//    case printBackgroundWithRetry = 0
-//    case printBackgroundWithoutRetry = 1
-//    case printForeground = 2
-//}
+@objc(PRINT_MODE)
+enum PRINT_MODE:Int{
+    case printBackgroundWithRetry = 0
+    case printBackgroundWithoutRetry = 1
+    case printForeground = 2
+}
 
 
 

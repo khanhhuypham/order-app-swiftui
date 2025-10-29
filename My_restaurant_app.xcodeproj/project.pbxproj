@@ -235,14 +235,24 @@
 		9491DA302E9F79D800D0A0F1 /* ReportOfSale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9491DA1F2E9F79D800D0A0F1 /* ReportOfSale.swift */; };
 		94925C2A2EAF7179008BBCE8 /* OrderListViewModel + extension + api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94925C292EAF7179008BBCE8 /* OrderListViewModel + extension + api.swift */; };
 		94C76FEA2EA1EC4B0051B19C /* MediaUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C76FE92EA1EC4B0051B19C /* MediaUtils.swift */; };
-		94D0677C2EB077DC00723987 /* OrderDetailServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D0677B2EB077DC00723987 /* OrderDetailServiceProtocol.swift */; };
-		94D067CC2EB0B27400723987 /* OrderDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D067CB2EB0B27400723987 /* OrderDetailService.swift */; };
 		94DC1BA12EA089E700EE549C /* MoveOrderItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DC1BA02EA089E700EE549C /* MoveOrderItems.swift */; };
 		94DC1BA32EA08CBF00EE549C /* MoveOrderItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DC1BA22EA08CB600EE549C /* MoveOrderItemsViewModel.swift */; };
+		94EB72112EB1B092002E9155 /* OrderLogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB720B2EB1B092002E9155 /* OrderLogService.swift */; };
+		94EB72122EB1B092002E9155 /* OrderLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB720D2EB1B092002E9155 /* OrderLog.swift */; };
+		94EB72132EB1B092002E9155 /* OrderLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB720F2EB1B092002E9155 /* OrderLogViewModel.swift */; };
+		94EB72192EB1B0CA002E9155 /* OrderDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB72142EB1B0CA002E9155 /* OrderDetailService.swift */; };
+		94EB721A2EB1B0CA002E9155 /* OrderDetailServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB72162EB1B0CA002E9155 /* OrderDetailServiceProtocol.swift */; };
+		94EB72222EB1B12F002E9155 /* LocalDataBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB721B2EB1B12F002E9155 /* LocalDataBaseService.swift */; };
+		94EB72232EB1B12F002E9155 /* LocalDataBaseProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB721D2EB1B12F002E9155 /* LocalDataBaseProtocols.swift */; };
+		94EB72252EB1B30A002E9155 /* QueuedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB72242EB1B30A002E9155 /* QueuedItem.swift */; };
+		94EB72292EB1B451002E9155 /* LocalDataBaseService + extension + Printer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB72282EB1B451002E9155 /* LocalDataBaseService + extension + Printer.swift */; };
+		94EB722B2EB1B45E002E9155 /* LocalDataBaseService + extension + POS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB722A2EB1B45E002E9155 /* LocalDataBaseService + extension + POS.swift */; };
+		94EB722D2EB1B46E002E9155 /* LocalDataBaseService + extension + TSC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB722C2EB1B46E002E9155 /* LocalDataBaseService + extension + TSC.swift */; };
+		94EB72322EB1B6F2002E9155 /* PrinterUtilServiceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB72312EB1B6F2002E9155 /* PrinterUtilServiceProtocols.swift */; };
+		94EB72342EB1BA7E002E9155 /* POSPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB72332EB1BA7E002E9155 /* POSPrinter.swift */; };
+		94EB72362EB1BC12002E9155 /* TSCPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB72352EB1BC12002E9155 /* TSCPrinter.swift */; };
+		94EB72382EB1BC8B002E9155 /* BLEPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB72372EB1BC8B002E9155 /* BLEPrinter.swift */; };
 		94F2CAFD2EA787E1001FD6BB /* OrderListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F2CAFB2EA787E1001FD6BB /* OrderListViewModelTest.swift */; };
-		94F65C9B2EB1A97B000A61A5 /* OrderLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F65C992EB1A97B000A61A5 /* OrderLogViewModel.swift */; };
-		94F65C9C2EB1A97B000A61A5 /* OrderLogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F65C952EB1A97B000A61A5 /* OrderLogService.swift */; };
-		94F65C9D2EB1A97B000A61A5 /* OrderLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F65C972EB1A97B000A61A5 /* OrderLog.swift */; };
 		D2BC75C93CAA0663141B99E8 /* Pods_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66210620D987AFCF12F9F41B /* Pods_UnitTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -490,18 +500,28 @@
 		9491DA242E9F79D800D0A0F1 /* GeneralReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralReportViewModel.swift; sourceTree = "<group>"; };
 		94925C292EAF7179008BBCE8 /* OrderListViewModel + extension + api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderListViewModel + extension + api.swift"; sourceTree = "<group>"; };
 		94C76FE92EA1EC4B0051B19C /* MediaUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaUtils.swift; sourceTree = "<group>"; };
-		94D0677B2EB077DC00723987 /* OrderDetailServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailServiceProtocol.swift; sourceTree = "<group>"; };
-		94D067CB2EB0B27400723987 /* OrderDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailService.swift; sourceTree = "<group>"; };
 		94DC1BA02EA089E700EE549C /* MoveOrderItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveOrderItems.swift; sourceTree = "<group>"; };
 		94DC1BA22EA08CB600EE549C /* MoveOrderItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveOrderItemsViewModel.swift; sourceTree = "<group>"; };
+		94EB720B2EB1B092002E9155 /* OrderLogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderLogService.swift; sourceTree = "<group>"; };
+		94EB720D2EB1B092002E9155 /* OrderLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderLog.swift; sourceTree = "<group>"; };
+		94EB720F2EB1B092002E9155 /* OrderLogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderLogViewModel.swift; sourceTree = "<group>"; };
+		94EB72142EB1B0CA002E9155 /* OrderDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailService.swift; sourceTree = "<group>"; };
+		94EB72162EB1B0CA002E9155 /* OrderDetailServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailServiceProtocol.swift; sourceTree = "<group>"; };
+		94EB721B2EB1B12F002E9155 /* LocalDataBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataBaseService.swift; sourceTree = "<group>"; };
+		94EB721D2EB1B12F002E9155 /* LocalDataBaseProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataBaseProtocols.swift; sourceTree = "<group>"; };
+		94EB72242EB1B30A002E9155 /* QueuedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueuedItem.swift; sourceTree = "<group>"; };
+		94EB72282EB1B451002E9155 /* LocalDataBaseService + extension + Printer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDataBaseService + extension + Printer.swift"; sourceTree = "<group>"; };
+		94EB722A2EB1B45E002E9155 /* LocalDataBaseService + extension + POS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDataBaseService + extension + POS.swift"; sourceTree = "<group>"; };
+		94EB722C2EB1B46E002E9155 /* LocalDataBaseService + extension + TSC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDataBaseService + extension + TSC.swift"; sourceTree = "<group>"; };
+		94EB72312EB1B6F2002E9155 /* PrinterUtilServiceProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterUtilServiceProtocols.swift; sourceTree = "<group>"; };
+		94EB72332EB1BA7E002E9155 /* POSPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POSPrinter.swift; sourceTree = "<group>"; };
+		94EB72352EB1BC12002E9155 /* TSCPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSCPrinter.swift; sourceTree = "<group>"; };
+		94EB72372EB1BC8B002E9155 /* BLEPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEPrinter.swift; sourceTree = "<group>"; };
 		94F2CAFB2EA787E1001FD6BB /* OrderListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListViewModelTest.swift; sourceTree = "<group>"; };
 		94F2CB042EA78F1D001FD6BB /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		94F2CB052EA78F51001FD6BB /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
 		94F2CB062EA78F62001FD6BB /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		94F2CB1A2EA793B7001FD6BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		94F65C952EB1A97B000A61A5 /* OrderLogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderLogService.swift; sourceTree = "<group>"; };
-		94F65C972EB1A97B000A61A5 /* OrderLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderLog.swift; sourceTree = "<group>"; };
-		94F65C992EB1A97B000A61A5 /* OrderLogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderLogViewModel.swift; sourceTree = "<group>"; };
 		CBCD3D71EDE2CEDAE24902F7 /* Pods-UnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.debug.xcconfig"; path = "Target Support Files/Pods-UnitTests/Pods-UnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E14DDE195424ADCE05D0C02E /* Pods-UnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.release.xcconfig"; path = "Target Support Files/Pods-UnitTests/Pods-UnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		F1798CE75DFD657B1C723125 /* Pods_My_restaurant_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_My_restaurant_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1181,6 +1201,8 @@
 		945899CC2E9F7DA1008868F9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				94EB72202EB1B12F002E9155 /* LocalDB */,
+				94EB72212EB1B12F002E9155 /* PrinterCore */,
 				94C76FE92EA1EC4B0051B19C /* MediaUtils.swift */,
 				945899C32E9F7DA1008868F9 /* Injection */,
 				945899C42E9F7DA1008868F9 /* ChartUtils.swift */,
@@ -1450,7 +1472,7 @@
 		94589A542E9F7ED7008868F9 /* OrderDetail */ = {
 			isa = PBXGroup;
 			children = (
-				94D0677A2EB0779100723987 /* service */,
+				94EB72182EB1B0CA002E9155 /* service */,
 				94589A472E9F7ED7008868F9 /* component */,
 				94589A492E9F7ED7008868F9 /* exentsion */,
 				94589A532E9F7ED7008868F9 /* viewModel */,
@@ -1462,9 +1484,9 @@
 		94589A572E9F7ED7008868F9 /* OrderLog */ = {
 			isa = PBXGroup;
 			children = (
-				94F65C962EB1A97B000A61A5 /* service */,
-				94F65C982EB1A97B000A61A5 /* view */,
-				94F65C9A2EB1A97B000A61A5 /* viewModel */,
+				94EB720C2EB1B092002E9155 /* service */,
+				94EB720E2EB1B092002E9155 /* view */,
+				94EB72102EB1B092002E9155 /* viewModel */,
 			);
 			path = OrderLog;
 			sourceTree = "<group>";
@@ -1698,6 +1720,7 @@
 		94852AB92CFD6610003D2E2F /* Print */ = {
 			isa = PBXGroup;
 			children = (
+				94EB72242EB1B30A002E9155 /* QueuedItem.swift */,
 				94852ABA2CFD6619003D2E2F /* Printer.swift */,
 			);
 			path = Print;
@@ -1818,31 +1841,6 @@
 			path = viewModel;
 			sourceTree = "<group>";
 		};
-		94D0677A2EB0779100723987 /* service */ = {
-			isa = PBXGroup;
-			children = (
-				94D067C22EB0B0F900723987 /* Impl */,
-				94D067C12EB0B0E800723987 /* Protocols */,
-			);
-			path = service;
-			sourceTree = "<group>";
-		};
-		94D067C12EB0B0E800723987 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				94D0677B2EB077DC00723987 /* OrderDetailServiceProtocol.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		94D067C22EB0B0F900723987 /* Impl */ = {
-			isa = PBXGroup;
-			children = (
-				94D067CB2EB0B27400723987 /* OrderDetailService.swift */,
-			);
-			path = Impl;
-			sourceTree = "<group>";
-		};
 		94DC1B9F2EA089C800EE549C /* MoveOrderItem */ = {
 			isa = PBXGroup;
 			children = (
@@ -1850,6 +1848,118 @@
 				94DC1BA02EA089E700EE549C /* MoveOrderItems.swift */,
 			);
 			path = MoveOrderItem;
+			sourceTree = "<group>";
+		};
+		94EB720C2EB1B092002E9155 /* service */ = {
+			isa = PBXGroup;
+			children = (
+				94EB720B2EB1B092002E9155 /* OrderLogService.swift */,
+			);
+			path = service;
+			sourceTree = "<group>";
+		};
+		94EB720E2EB1B092002E9155 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				94EB720D2EB1B092002E9155 /* OrderLog.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		94EB72102EB1B092002E9155 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				94EB720F2EB1B092002E9155 /* OrderLogViewModel.swift */,
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
+		94EB72152EB1B0CA002E9155 /* Impl */ = {
+			isa = PBXGroup;
+			children = (
+				94EB72142EB1B0CA002E9155 /* OrderDetailService.swift */,
+			);
+			path = Impl;
+			sourceTree = "<group>";
+		};
+		94EB72172EB1B0CA002E9155 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				94EB72162EB1B0CA002E9155 /* OrderDetailServiceProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		94EB72182EB1B0CA002E9155 /* service */ = {
+			isa = PBXGroup;
+			children = (
+				94EB72152EB1B0CA002E9155 /* Impl */,
+				94EB72172EB1B0CA002E9155 /* Protocols */,
+			);
+			path = service;
+			sourceTree = "<group>";
+		};
+		94EB721C2EB1B12F002E9155 /* Impl */ = {
+			isa = PBXGroup;
+			children = (
+				94EB721B2EB1B12F002E9155 /* LocalDataBaseService.swift */,
+				94EB72282EB1B451002E9155 /* LocalDataBaseService + extension + Printer.swift */,
+				94EB722A2EB1B45E002E9155 /* LocalDataBaseService + extension + POS.swift */,
+				94EB722C2EB1B46E002E9155 /* LocalDataBaseService + extension + TSC.swift */,
+			);
+			path = Impl;
+			sourceTree = "<group>";
+		};
+		94EB721E2EB1B12F002E9155 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				94EB721D2EB1B12F002E9155 /* LocalDataBaseProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		94EB721F2EB1B12F002E9155 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				94EB721C2EB1B12F002E9155 /* Impl */,
+				94EB721E2EB1B12F002E9155 /* Protocols */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		94EB72202EB1B12F002E9155 /* LocalDB */ = {
+			isa = PBXGroup;
+			children = (
+				94EB721F2EB1B12F002E9155 /* Service */,
+			);
+			path = LocalDB;
+			sourceTree = "<group>";
+		};
+		94EB72212EB1B12F002E9155 /* PrinterCore */ = {
+			isa = PBXGroup;
+			children = (
+				94EB722F2EB1B661002E9155 /* Protocols */,
+				94EB722E2EB1B62E002E9155 /* Printer */,
+			);
+			path = PrinterCore;
+			sourceTree = "<group>";
+		};
+		94EB722E2EB1B62E002E9155 /* Printer */ = {
+			isa = PBXGroup;
+			children = (
+				94EB72372EB1BC8B002E9155 /* BLEPrinter.swift */,
+				94EB72352EB1BC12002E9155 /* TSCPrinter.swift */,
+				94EB72332EB1BA7E002E9155 /* POSPrinter.swift */,
+			);
+			path = Printer;
+			sourceTree = "<group>";
+		};
+		94EB722F2EB1B661002E9155 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				94EB72312EB1B6F2002E9155 /* PrinterUtilServiceProtocols.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		94F2CAFC2EA787E1001FD6BB /* OrderList */ = {
@@ -1869,30 +1979,6 @@
 				94F2CB062EA78F62001FD6BB /* Release.xcconfig */,
 			);
 			path = Configs;
-			sourceTree = "<group>";
-		};
-		94F65C962EB1A97B000A61A5 /* service */ = {
-			isa = PBXGroup;
-			children = (
-				94F65C952EB1A97B000A61A5 /* OrderLogService.swift */,
-			);
-			path = service;
-			sourceTree = "<group>";
-		};
-		94F65C982EB1A97B000A61A5 /* view */ = {
-			isa = PBXGroup;
-			children = (
-				94F65C972EB1A97B000A61A5 /* OrderLog.swift */,
-			);
-			path = view;
-			sourceTree = "<group>";
-		};
-		94F65C9A2EB1A97B000A61A5 /* viewModel */ = {
-			isa = PBXGroup;
-			children = (
-				94F65C992EB1A97B000A61A5 /* OrderLogViewModel.swift */,
-			);
-			path = viewModel;
 			sourceTree = "<group>";
 		};
 		CD7902FC612E0D466CC0190F /* Pods */ = {
@@ -2110,9 +2196,13 @@
 				9491DA2E2E9F79D800D0A0F1 /* ReportOfRevenueOfArea.swift in Sources */,
 				9491DA2F2E9F79D800D0A0F1 /* ReportOfEmployeeRevenue.swift in Sources */,
 				9491DA302E9F79D800D0A0F1 /* ReportOfSale.swift in Sources */,
+				94EB722B2EB1B45E002E9155 /* LocalDataBaseService + extension + POS.swift in Sources */,
+				94EB72222EB1B12F002E9155 /* LocalDataBaseService.swift in Sources */,
+				94EB72232EB1B12F002E9155 /* LocalDataBaseProtocols.swift in Sources */,
 				94277ACA2CF01E7B00B2F2E6 /* OtherFoodRequest.swift in Sources */,
 				94277A492CF01E7B00B2F2E6 /* HeaderConnectionParameter.swift in Sources */,
 				94277A4A2CF01E7B00B2F2E6 /* Constants.swift in Sources */,
+				94EB72322EB1B6F2002E9155 /* PrinterUtilServiceProtocols.swift in Sources */,
 				94277AC62CF01E7B00B2F2E6 /* FoodAddition.swift in Sources */,
 				94277ADA2CF01E7B00B2F2E6 /* VersionModel.swift in Sources */,
 				94277ACE2CF01E7B00B2F2E6 /* CashValue.swift in Sources */,
@@ -2127,6 +2217,7 @@
 				94589A672E9F7ED7008868F9 /* PaymentViewCell.swift in Sources */,
 				94589A692E9F7ED7008868F9 /* ItemListOfOrderDetailView.swift in Sources */,
 				94589A6A2E9F7ED7008868F9 /* OrderListViewModel + extension + socket.swift in Sources */,
+				94EB72292EB1B451002E9155 /* LocalDataBaseService + extension + Printer.swift in Sources */,
 				94589A6B2E9F7ED7008868F9 /* OrderDetail + extension.swift in Sources */,
 				94589A6C2E9F7ED7008868F9 /* OrderListViewModel.swift in Sources */,
 				94589A6E2E9F7ED7008868F9 /* PaymentView.swift in Sources */,
@@ -2166,6 +2257,7 @@
 				94589A432E9F7E96008868F9 /* UIView + extension.swift in Sources */,
 				94589A442E9F7E96008868F9 /* DoubleExtension.swift in Sources */,
 				94589A452E9F7E96008868F9 /* Date + extension.swift in Sources */,
+				94EB72362EB1BC12002E9155 /* TSCPrinter.swift in Sources */,
 				94589A2D2E9F7E55008868F9 /* HandlerDelegate.swift in Sources */,
 				945899DF2E9F7DA1008868F9 /* ManageCacheObject.swift in Sources */,
 				945899E02E9F7DA1008868F9 /* DependencyInjection.swift in Sources */,
@@ -2191,9 +2283,6 @@
 				945899972E9F7D66008868F9 /* MailView.swift in Sources */,
 				945899982E9F7D66008868F9 /* PieChart.swift in Sources */,
 				945899992E9F7D66008868F9 /* TagListView.swift in Sources */,
-				94F65C9B2EB1A97B000A61A5 /* OrderLogViewModel.swift in Sources */,
-				94F65C9C2EB1A97B000A61A5 /* OrderLogService.swift in Sources */,
-				94F65C9D2EB1A97B000A61A5 /* OrderLog.swift in Sources */,
 				9458999A2E9F7D66008868F9 /* BtnGroupOfReportType.swift in Sources */,
 				9458999B2E9F7D66008868F9 /* NoteViewModel.swift in Sources */,
 				9458999C2E9F7D66008868F9 /* SwipeActionView.swift in Sources */,
@@ -2207,6 +2296,7 @@
 				945899A42E9F7D66008868F9 /* ToastPopup.swift in Sources */,
 				945899A52E9F7D66008868F9 /* AreaHeaderView.swift in Sources */,
 				945899A62E9F7D66008868F9 /* EnterPercentView.swift in Sources */,
+				94EB722D2EB1B46E002E9155 /* LocalDataBaseService + extension + TSC.swift in Sources */,
 				945899A72E9F7D66008868F9 /* AnimatedAsyncImageView.swift in Sources */,
 				945899A82E9F7D66008868F9 /* Confirm_Cancel_Btn_Group.swift in Sources */,
 				945899A92E9F7D66008868F9 /* CreateAreaView.swift in Sources */,
@@ -2223,13 +2313,18 @@
 				94852ABB2CFD6619003D2E2F /* Printer.swift in Sources */,
 				9491DA0E2E9F79B300D0A0F1 /* BaseURLConnectionManager.swift in Sources */,
 				94277A472CF01E7B00B2F2E6 /* TaskConnectionManager.swift in Sources */,
+				94EB72382EB1BC8B002E9155 /* BLEPrinter.swift in Sources */,
 				94925C2A2EAF7179008BBCE8 /* OrderListViewModel + extension + api.swift in Sources */,
 				94277AD72CF01E7B00B2F2E6 /* AccountSetting.swift in Sources */,
 				94277AD52CF01E7B00B2F2E6 /* FoodResponseData.swift in Sources */,
+				94EB72112EB1B092002E9155 /* OrderLogService.swift in Sources */,
+				94EB72122EB1B092002E9155 /* OrderLog.swift in Sources */,
+				94EB72132EB1B092002E9155 /* OrderLogViewModel.swift in Sources */,
 				948CD7A22EA251BF00F9803B /* Unit.swift in Sources */,
 				94277A442CF01E7B00B2F2E6 /* PathConnectionManager.swift in Sources */,
 				94277A9A2CF01E7B00B2F2E6 /* TabbarRouter.swift in Sources */,
 				94277AB52CF01E7B00B2F2E6 /* CancelReason.swift in Sources */,
+				94EB72342EB1BA7E002E9155 /* POSPrinter.swift in Sources */,
 				945899262E9F7B47008868F9 /* FoodReportData.swift in Sources */,
 				945899272E9F7B47008868F9 /* EmployeeRevenueReport.swift in Sources */,
 				945899282E9F7B47008868F9 /* DailyOrderReport.swift in Sources */,
@@ -2254,6 +2349,7 @@
 				94589AA02E9F7F12008868F9 /* FoodViewModel + extension + buffet.swift in Sources */,
 				94589AA12E9F7F12008868F9 /* FoodViewModel.swift in Sources */,
 				94589AA22E9F7F12008868F9 /* FoodViewModel + extension + AddFood.swift in Sources */,
+				94EB72252EB1B30A002E9155 /* QueuedItem.swift in Sources */,
 				94589AA32E9F7F12008868F9 /* FoodView + extension + popup.swift in Sources */,
 				94589AA42E9F7F12008868F9 /* SplitFood.swift in Sources */,
 				94589AA52E9F7F12008868F9 /* ConfirmToMoveTable.swift in Sources */,
@@ -2266,10 +2362,11 @@
 				94277AD22CF01E7B00B2F2E6 /* DeviceRequest.swift in Sources */,
 				945899582E9F7D07008868F9 /* OptionSectionView.swift in Sources */,
 				945899592E9F7D07008868F9 /* ActionSheetView.swift in Sources */,
-				94D0677C2EB077DC00723987 /* OrderDetailServiceProtocol.swift in Sources */,
 				9458995A2E9F7D07008868F9 /* Dialog.swift in Sources */,
 				9458995B2E9F7D07008868F9 /* ChooseOptionViewModel.swift in Sources */,
 				9458995C2E9F7D07008868F9 /* PopupExpiredSessionViewController.swift in Sources */,
+				94EB72192EB1B0CA002E9155 /* OrderDetailService.swift in Sources */,
+				94EB721A2EB1B0CA002E9155 /* OrderDetailServiceProtocol.swift in Sources */,
 				94589A122E9F7DD6008868F9 /* NoteManagement.swift in Sources */,
 				94589A132E9F7DD6008868F9 /* AreaManageView.swift in Sources */,
 				94589A142E9F7DD6008868F9 /* OrderHistoryCell.swift in Sources */,
@@ -2289,7 +2386,6 @@
 				94589A202E9F7DD6008868F9 /* PrinterDetail.swift in Sources */,
 				94589A212E9F7DD6008868F9 /* SettingVIew.swift in Sources */,
 				94589A222E9F7DD6008868F9 /* FoodManagement.swift in Sources */,
-				94D067CC2EB0B27400723987 /* OrderDetailService.swift in Sources */,
 				94589A232E9F7DD6008868F9 /* PrinterDetailViewModel.swift in Sources */,
 				94589A242E9F7DD6008868F9 /* FoodManagementViewModel.swift in Sources */,
 				94589A252E9F7DD6008868F9 /* InternalSetting.swift in Sources */,
@@ -2339,6 +2435,7 @@
 /* Begin XCBuildConfiguration section */
 		9427795C2CF01D0B00B2F2E6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 94F2CB042EA78F1D001FD6BB /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -2478,7 +2575,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2509,7 +2606,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2534,7 +2631,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Huy.UnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2558,7 +2655,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Huy.UnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2653,7 +2750,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2678,7 +2775,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Huy.UnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
