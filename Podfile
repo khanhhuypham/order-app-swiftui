@@ -10,7 +10,7 @@ target 'My_restaurant_app' do
   pod 'AlertToast'
   pod 'Wormholy'
   pod 'Socket.IO-Client-Swift'
-  
+  pod 'RealmSwift'
   target 'UnitTests' do
     inherit! :search_paths
     # Pods for testing
