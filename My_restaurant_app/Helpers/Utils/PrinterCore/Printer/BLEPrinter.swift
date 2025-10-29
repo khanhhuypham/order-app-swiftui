@@ -7,7 +7,7 @@
 import Foundation
 import UIKit
 
-final class BLEPrinter: PrinterProtocol {
+final class BLEPrinter: PrinterCoreProtocol {
 
     let id: String
     let name: String

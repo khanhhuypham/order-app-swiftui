@@ -8,7 +8,7 @@
 import UIKit
 
 
-protocol PrinterProtocol {
+protocol PrinterCoreProtocol {
     var id: String { get }
     func connect() async throws
     func disconnect()

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-final class TSCPrinter: PrinterProtocol {
+final class TSCPrinter: PrinterCoreProtocol {
 
     let id: String
     let name: String

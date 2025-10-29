@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-final class POSPrinter:PrinterProtocol {
+final class POSPrinter:PrinterCoreProtocol {
 
     let id: String
     let name: String

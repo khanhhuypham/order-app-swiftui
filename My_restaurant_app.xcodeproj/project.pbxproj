@@ -252,6 +252,11 @@
 		94EB72342EB1BA7E002E9155 /* POSPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB72332EB1BA7E002E9155 /* POSPrinter.swift */; };
 		94EB72362EB1BC12002E9155 /* TSCPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB72352EB1BC12002E9155 /* TSCPrinter.swift */; };
 		94EB72382EB1BC8B002E9155 /* BLEPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB72372EB1BC8B002E9155 /* BLEPrinter.swift */; };
+		94EB72432EB1BFC6002E9155 /* MockOrderDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB72412EB1BFC6002E9155 /* MockOrderDetailService.swift */; };
+		94EB72472EB1C07D002E9155 /* POSPrinterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB72462EB1C07D002E9155 /* POSPrinterTests.swift */; };
+		94EB72492EB1C0AD002E9155 /* TSCPrinterTests .swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB72482EB1C0AD002E9155 /* TSCPrinterTests .swift */; };
+		94EB724D2EB1C10D002E9155 /* MockTSCPrinterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB724C2EB1C10D002E9155 /* MockTSCPrinterService.swift */; };
+		94EB724F2EB1C165002E9155 /* MockPOSPrinterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB724E2EB1C165002E9155 /* MockPOSPrinterService.swift */; };
 		94F2CAFD2EA787E1001FD6BB /* OrderListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F2CAFB2EA787E1001FD6BB /* OrderListViewModelTest.swift */; };
 		D2BC75C93CAA0663141B99E8 /* Pods_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66210620D987AFCF12F9F41B /* Pods_UnitTests.framework */; };
 /* End PBXBuildFile section */
@@ -517,6 +522,11 @@
 		94EB72332EB1BA7E002E9155 /* POSPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POSPrinter.swift; sourceTree = "<group>"; };
 		94EB72352EB1BC12002E9155 /* TSCPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSCPrinter.swift; sourceTree = "<group>"; };
 		94EB72372EB1BC8B002E9155 /* BLEPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEPrinter.swift; sourceTree = "<group>"; };
+		94EB72412EB1BFC6002E9155 /* MockOrderDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOrderDetailService.swift; sourceTree = "<group>"; };
+		94EB72462EB1C07D002E9155 /* POSPrinterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POSPrinterTests.swift; sourceTree = "<group>"; };
+		94EB72482EB1C0AD002E9155 /* TSCPrinterTests .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TSCPrinterTests .swift"; sourceTree = "<group>"; };
+		94EB724C2EB1C10D002E9155 /* MockTSCPrinterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTSCPrinterService.swift; sourceTree = "<group>"; };
+		94EB724E2EB1C165002E9155 /* MockPOSPrinterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPOSPrinterService.swift; sourceTree = "<group>"; };
 		94F2CAFB2EA787E1001FD6BB /* OrderListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListViewModelTest.swift; sourceTree = "<group>"; };
 		94F2CB042EA78F1D001FD6BB /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		94F2CB052EA78F51001FD6BB /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
@@ -896,6 +906,8 @@
 		9437FABA2EA22F1600DAF8B1 /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
+				94EB72442EB1BFDD002E9155 /* PrinterCore */,
+				94EB72422EB1BFC6002E9155 /* OrderDetail */,
 				94F2CAFC2EA787E1001FD6BB /* OrderList */,
 				9437FABB2EA22F1F00DAF8B1 /* Login */,
 			);
@@ -1962,6 +1974,41 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		94EB72422EB1BFC6002E9155 /* OrderDetail */ = {
+			isa = PBXGroup;
+			children = (
+				94EB72412EB1BFC6002E9155 /* MockOrderDetailService.swift */,
+			);
+			path = OrderDetail;
+			sourceTree = "<group>";
+		};
+		94EB72442EB1BFDD002E9155 /* PrinterCore */ = {
+			isa = PBXGroup;
+			children = (
+				94EB724B2EB1C101002E9155 /* PosPrinter */,
+				94EB724A2EB1C0F3002E9155 /* TSCPrinter */,
+			);
+			path = PrinterCore;
+			sourceTree = "<group>";
+		};
+		94EB724A2EB1C0F3002E9155 /* TSCPrinter */ = {
+			isa = PBXGroup;
+			children = (
+				94EB724C2EB1C10D002E9155 /* MockTSCPrinterService.swift */,
+				94EB72482EB1C0AD002E9155 /* TSCPrinterTests .swift */,
+			);
+			path = TSCPrinter;
+			sourceTree = "<group>";
+		};
+		94EB724B2EB1C101002E9155 /* PosPrinter */ = {
+			isa = PBXGroup;
+			children = (
+				94EB724E2EB1C165002E9155 /* MockPOSPrinterService.swift */,
+				94EB72462EB1C07D002E9155 /* POSPrinterTests.swift */,
+			);
+			path = PosPrinter;
+			sourceTree = "<group>";
+		};
 		94F2CAFC2EA787E1001FD6BB /* OrderList */ = {
 			isa = PBXGroup;
 			children = (
@@ -2416,9 +2463,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94EB72472EB1C07D002E9155 /* POSPrinterTests.swift in Sources */,
+				94EB724D2EB1C10D002E9155 /* MockTSCPrinterService.swift in Sources */,
+				94EB72492EB1C0AD002E9155 /* TSCPrinterTests .swift in Sources */,
 				9437FABF2EA22F3D00DAF8B1 /* LoginTest.swift in Sources */,
+				94EB72432EB1BFC6002E9155 /* MockOrderDetailService.swift in Sources */,
 				94F2CAFD2EA787E1001FD6BB /* OrderListViewModelTest.swift in Sources */,
 				9463C10B2EAF4B3A005E4A1B /* MockOrderService.swift in Sources */,
+				94EB724F2EB1C165002E9155 /* MockPOSPrinterService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
