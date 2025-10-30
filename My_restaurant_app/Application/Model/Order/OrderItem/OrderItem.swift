@@ -21,7 +21,7 @@ struct OrderItem: Codable,Identifiable {
     var printed_quantity:Float = 0
 
     var total_price:Float = 0
-    var status:FOOD_STATUS = .pending
+    var status:ORDER_ITEM_STATUS = .pending
     var category_type:FOOD_CATEGORY = .food
     var is_gift:Int = 0
     var enable_return_beer:Int = 0
@@ -183,7 +183,7 @@ extension OrderItem {
         return_quantity_for_drink = try container.decodeIfPresent(Float.self, forKey: .return_quantity_for_drink) ?? 0
         printed_quantity = try container.decodeIfPresent(Float.self, forKey: .printed_quantity) ?? 0
         total_price = try container.decodeIfPresent(Float.self, forKey: .total_price) ?? 0
-        status = try container.decodeIfPresent(FOOD_STATUS.self, forKey: .status) ?? .pending
+        status = try container.decodeIfPresent(ORDER_ITEM_STATUS.self, forKey: .status) ?? .pending
         category_type = try container.decodeIfPresent(FOOD_CATEGORY.self, forKey: .category_type) ?? .food
         is_gift = try container.decodeIfPresent(Int.self, forKey: .is_gift) ?? 0
         enable_return_beer = try container.decodeIfPresent(Int.self, forKey: .enable_return_beer) ?? 0

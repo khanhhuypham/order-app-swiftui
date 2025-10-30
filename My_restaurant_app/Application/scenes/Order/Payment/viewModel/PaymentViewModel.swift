@@ -60,7 +60,7 @@ class PaymentViewModel: ObservableObject {
     
     @MainActor
     func getOrder() async {
-        let food_status = String(format: "%d,%d,%d",FOOD_STATUS.pending.rawValue, FOOD_STATUS.cooking.rawValue, FOOD_STATUS.done.rawValue)
+        let food_status = String(format: "%d,%d,%d",ORDER_ITEM_STATUS.pending.rawValue, ORDER_ITEM_STATUS.cooking.rawValue, ORDER_ITEM_STATUS.done.rawValue)
         let result: Result<APIResponse<OrderDetail>, Error> = await NetworkManager.callAPIResultAsync(
             netWorkManger:.order(order_id: order.id, branch_id: Constants.branch.id, is_print_bill: ACTIVE, food_status: food_status)
         )

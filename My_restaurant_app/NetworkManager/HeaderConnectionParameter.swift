@@ -175,6 +175,12 @@ extension NetworkManager{
 
             case .foodsNeedPrint(_):
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .GET)
+            
+            case .updateAlreadyPrinted(_,_):
+                return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .GET)
+            
+            case .sendRequestPrintOrderItem(_,_,_):
+                return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .GET)
 
             case .createNote(_):
                 return headerJava(ProjectId: .PROJECT_ID_ORDER, Method: .POST)

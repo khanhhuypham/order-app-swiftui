@@ -72,12 +72,8 @@ extension FoodViewModel {
     
     //    //MARK: API thêm món ăn vào order
     private func addFoods(items:[FoodRequest]) async{
-        let result:Result<APIResponse<NewOrder>, Error> = try await NetworkManager.callAPIResultAsync(netWorkManger: .addFoods(
-            branch_id: Constants.branch.id,
-            order_id: order.id,
-            foods: items,
-            is_use_point: APIParameter.is_use_point
-        ))
+        
+        let result = await service.addFoods(branchId:Constants.branch.id, orderId: order.id, items: items)
         
         switch result {
 
@@ -97,12 +93,8 @@ extension FoodViewModel {
     }
     //
     private func addGiftFoods(items:[FoodRequest]) async{
-        let result:Result<PlainAPIResponse, Error> = try await NetworkManager.callAPIResultAsync(netWorkManger: .addGiftFoods(
-            branch_id: Constants.branch.id,
-            order_id: order.id,
-            foods: items,
-            is_use_point: APIParameter.is_use_point
-        ))
+  
+        let result = await service.addGiftFoods(branchId:Constants.branch.id, orderId: order.id, items: items)
         
         switch result {
             case .success(let res):
@@ -117,7 +109,8 @@ extension FoodViewModel {
     }
     //    //MARK: API order tại bàn
     func createDineInOrder() async{
-        let result:Result<APIResponse<Table>, Error> = try await NetworkManager.callAPIResultAsync(netWorkManger: .openTable(table_id: order.table_id))
+   
+        let result = await service.createDineInOrder(tableId:  order.table_id)
         
         switch result {
 
@@ -142,7 +135,9 @@ extension FoodViewModel {
     
     //    //MARK: API tạo order mới, trong trường hợp mang về.
     func createTakeOutOder() async{
-        let result:Result<String, Error> = try await NetworkManager.callAPIResultAsync(netWorkManger: .postCreateOrder(branch_id: Constants.branch.id,table_id: order.table_id, note: ""))
+ 
+        let result = await service.createTakeOutOder(branchId: Constants.branch.id, tableId:  order.table_id, note: "")
+        
         switch result {
 
             case .success(var data):

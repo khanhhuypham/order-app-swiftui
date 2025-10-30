@@ -128,6 +128,12 @@ extension NetworkManager{
 
             case .foodsNeedPrint(_):
                 return .GET
+            
+            case .updateAlreadyPrinted(_, _):
+                return .POST
+            
+            case .sendRequestPrintOrderItem(_,_,_):
+                return .POST
 
             case .createNote(_):
                 return .POST

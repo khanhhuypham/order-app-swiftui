@@ -73,7 +73,7 @@ struct OrderDetailView:View{
                     case .note:
                         NoteView(isPresent:$viewModel.showPopup.show, id: item.id,inputText: item.note){id,note in
                             Task{
-                                await viewModel.addNote(orderDetailId: id, note: note)
+                                await viewModel.addNote(item:item, note: note)
                             }
                         }
                         
@@ -188,8 +188,9 @@ struct OrderDetailView:View{
         HStack (alignment: .center){
             
             Button(action: {
-                // Action for first button
-          
+                Task{
+                    await viewModel.getFoodsNeedPrint(print: true)
+                }
             }) {
                 
                 HStack{

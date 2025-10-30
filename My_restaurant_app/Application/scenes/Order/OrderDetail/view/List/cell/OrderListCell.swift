@@ -14,21 +14,14 @@ struct OrderListItem: View {
     
     @State private var data:(
         presentChilrenItem:Bool,
-        presentNote: Bool,
         presentGift:Bool,
-        presentActionView: Bool,
         presentDiscountView: Bool,
         presentDiscountAmount: Bool,
         totalPrice:String,
         discountedPrice:String
-    ) = (false,false,false,false,false,false,"","")
+    ) = (false,false,false,false,"","")
     
 
-    
-    var onIncrease:(()->Void)? = nil
-    
-    var onDecrease:(()->Void)? = nil
-    
 
     var body: some View {
         
@@ -46,6 +39,9 @@ struct OrderListItem: View {
             actionView.frame(width: 115)
         }
         .background(item.status.bgColor)
+        .task{
+            dLog("Huy")
+        }
         .onAppear(perform: {
     
             data.totalPrice = (!item.order_detail_additions.isEmpty || !item.order_detail_options.isEmpty ? item.total_price_include_addition_foods : item.total_price).toString
@@ -56,7 +52,6 @@ struct OrderListItem: View {
             
             data.presentChilrenItem = !item.order_detail_additions.isEmpty || !item.order_detail_combo.isEmpty || !item.order_detail_options.isEmpty
 
-            data.presentNote = item.note.isEmpty ? false : true
 
             data.presentDiscountView = item.discount_percent == 0 ? false : true
             
@@ -64,33 +59,11 @@ struct OrderListItem: View {
 
             data.presentGift = item.is_gift == DEACTIVE ? false : true
 
-            data.presentActionView = item.status == .pending ? true : false
-            
             if(item.is_gift == 1){
                data.presentDiscountAmount = false
             }else{
                data.presentDiscountAmount = item.discount_amount > 0 ? true : false
             }
-            
-//            if item.is_booking_item == ACTIVE{
-//                switch item.category_type {
-//                    case .drink:
-//                        presentActionView = true
-//                        break
-//
-//                    case .food:
-//                        presentActionView = false
-//                        break
-//
-//                    case .service:
-//                        presentActionView = false
-//                        break
-//
-//                    default:
-//                        presentActionView = true
-//                        break
-//                    }
-//            }
             
             
         })
@@ -172,7 +145,7 @@ struct OrderListItem: View {
             }
 
             
-            if data.presentNote{
+            if !item.note.isEmpty{
                 HStack{
                     Image("icon-doc-text.fill", bundle: .main)
                         .resizable()
@@ -237,11 +210,9 @@ struct OrderListItem: View {
                 }
                 
                 HStack {
-                    if data.presentActionView{
+                    if item.status == .pending{
                         
                         QuantityView(width: 25,height:25, quantity: $item.quantity){(type,quantity) in
-                            
-                            dLog(quantity)
                             
                             switch type{
                                 case .minus:
@@ -264,9 +235,7 @@ struct OrderListItem: View {
                         Text("Số lượng:"){ $0.font = Font.system(size: 14)}
                         Text(item.quantity.toString) { $0.foregroundColor = .red }
                     }
-                    
                 }
-
             }
             .font(font.r_12)
             .frame(maxWidth: .infinity,alignment:.center)
@@ -311,8 +280,6 @@ struct OrderListItem: View {
             case .servic_block_stopped:
                 return color.blue_brand_700
         }
-
-           
     }
     
 }

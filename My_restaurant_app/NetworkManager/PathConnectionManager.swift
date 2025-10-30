@@ -8,8 +8,8 @@
 import UIKit
 
 extension NetworkManager{
-    private static let version_of_small_order = "v15"
-    private static let version_of_order = "v15"
+    private static let version_of_small_order = "v16"
+    private static let version_of_order = "v16"
     private static let version_of_dashboard = "v14"
     private static let version_of_app_food = "v3"
     private static let version_of_report = "v2"
@@ -132,7 +132,7 @@ extension NetworkManager{
                 : String(format: "/api/%@/tables/%d/move-food", NetworkManager.version_of_order,destination_table_id)
             
             case .moveTable(_,let from,_):
-               return String(format: APIEndPoint.Name.urlMoveTable, from)
+               return String(format:"/api/%@/tables/%d/move",NetworkManager.version_of_order,from)
 
             
             case .areas(_, _):
@@ -179,7 +179,15 @@ extension NetworkManager{
 
             case .foodsNeedPrint(_):
                 return String(format:environmentMode == .offline ? "/api/orders/is-print" : "/api/%@/orders/is-print",NetworkManager.version_of_order )
+            
+            case .updateAlreadyPrinted(_, _):
+                return String(format:environmentMode == .offline ? "/api/orders/is-print" : "/api/%@/orders/is-print", NetworkManager.version_of_order)
 
+            case .sendRequestPrintOrderItem(let order_id,_,_):
+                return environmentMode == .offline
+                ?  String(format: "/api/orders/%d/print",order_id)
+                :  String(format: "/api/%@/orders/%d/print",NetworkManager.version_of_order,order_id)
+            
             case .createNote(_):
                 return String(format:"/api/%@/order-detail-notes/manage",NetworkManager.version_of_order )
 
@@ -230,7 +238,7 @@ extension NetworkManager{
                 return String(format:environmentMode == .offline ? "api/orders/create" : "api/%@/orders/create", NetworkManager.version_of_order)
 
             case .postCreateTableList(_,_,_):
-                return APIEndPoint.Name.urlPostCreateTableList
+                return String(format: "/api/%@/tables/create/list",NetworkManager.version_of_order)
    
             case .getBuffetTickets(_,_,_,_,_):
                 return String(format: "/api/%@/buffet-ticket",NetworkManager.version_of_order)

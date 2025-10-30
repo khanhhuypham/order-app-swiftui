@@ -19,7 +19,7 @@ class MoveOrderItemsViewModel: ObservableObject {
             .ordersNeedMove(
                 branch_id:Constants.branch.id,
                 order_id: order.id,
-                food_status: String(format: "%d,%d,%d", FOOD_STATUS.pending.rawValue, FOOD_STATUS.cooking.rawValue, FOOD_STATUS.done.rawValue)
+                food_status: String(format: "%d,%d,%d", ORDER_ITEM_STATUS.pending.rawValue, ORDER_ITEM_STATUS.cooking.rawValue, ORDER_ITEM_STATUS.done.rawValue)
             )
         )
         

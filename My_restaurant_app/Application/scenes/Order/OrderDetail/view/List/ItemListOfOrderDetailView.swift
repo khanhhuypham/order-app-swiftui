@@ -8,10 +8,9 @@
 import SwiftUI
 
 
-struct OrderList: View, ReasonCancelItemDelegate {
+struct OrderList: View {
     
-    
-    func cancel(item: OrderItem) {}
+//    func cancel(item: OrderItem) {}
     
     @ObservedObject var viewModel:OrderDetailViewModel
     
@@ -52,24 +51,11 @@ struct OrderList: View, ReasonCancelItemDelegate {
             
             ForEach($viewModel.order.orderItems) { data in
          
-                OrderListItem(
-                    item: data,
-                    onIncrease: {
+                OrderListItem(item: data)
+                    .swipeActions(edge: .trailing) {
                         let item = data.wrappedValue
-                        item.is_gift == DEACTIVE
-                        ? viewModel.setQuantity(for: item, quantity:item.quantity + (item.is_sell_by_weight == ACTIVE ? 0.01 : 1))
-                        : {}()
-                    },
-                    onDecrease: {
-                        let item = data.wrappedValue
-                        item.is_gift == DEACTIVE
-                        ? viewModel.setQuantity(for: item, quantity:item.quantity - (item.is_sell_by_weight == ACTIVE ? 0.01 : 1))
-                        : {}()
-                    }
-                ).swipeActions(edge: .trailing) {
-                    let item = data.wrappedValue
-                    SwipeActionView(actions: setupSwipeAction(data: item))
-                }.defaultListRowStyle()
+                        SwipeActionView(actions: setupSwipeAction(data: item))
+                    }.defaultListRowStyle()
                 
             }
         }.listStyle(.plain)

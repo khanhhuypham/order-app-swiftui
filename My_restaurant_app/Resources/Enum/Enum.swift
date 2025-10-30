@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+//import RealmSwift
 
 enum OrderAction {
     case orderHistory
@@ -278,8 +279,7 @@ enum FOOD_CATEGORY:Int,Codable{
 }
 
 
-enum FOOD_STATUS:Int,Codable{
-    
+enum ORDER_ITEM_STATUS:Int,Codable{
     
     case pending = 0; //Mon moi goi
     case cooking = 1; // Dang nau
@@ -308,8 +308,6 @@ enum FOOD_STATUS:Int,Codable{
                 return "ĐANG TẠM DỪNG"
         }
     }
-    
-    
     
     
     var fgColor: Color {
@@ -361,7 +359,6 @@ enum FOOD_STATUS:Int,Codable{
                 return Color(ColorUtils.white())
         }
     }
-    
     
 }
 
@@ -433,7 +430,39 @@ enum PRINTER_METHOD:Int{
     case BLEPrinter = 3
 }
 
+@objc(PRINT_MODE)
+enum PRINT_MODE:Int{
+    case printBackgroundWithRetry = 0
+    case printBackgroundWithoutRetry = 1
+    case printForeground = 2
+}
 
+
+
+enum KITCHEN_TICKET_TYPE {
+    case new_item
+    case cancel_item
+    case return_item
+    case print_test
+
+
+    // 2- Hủy món | 3- trả bia | 1- món mới
+    var value: Int {
+        switch self {
+        case .print_test:
+            return 0
+        case .new_item:
+            return 1
+        case .cancel_item:
+            return 2
+        case .return_item:
+            return 3
+        
+        }
+    }
+}
+
+//MARK: enum for food app
 enum APP_PARTNER:String{
     case shoppee = "SHF"
     case grabfood = "GRF"
