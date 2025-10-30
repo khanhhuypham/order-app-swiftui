@@ -13,19 +13,19 @@ final class MockTSCPrinterService: PrinterCoreProtocol {
     var id: String = UUID().uuidString
     
     func connect() async throws {
-        <#code#>
+        
     }
     
     func disconnect() {
-        <#code#>
+        
     }
     
     func print(data: Data) async throws {
-        <#code#>
+        
     }
     
     func printBitMap(id: String, printer: Printer, img: UIImage, isLastItem: Bool) {
-        <#code#>
+        
     }
     
 

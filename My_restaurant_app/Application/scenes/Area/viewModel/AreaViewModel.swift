@@ -9,11 +9,10 @@ import SwiftUI
 
 
 class AreaViewModel: ObservableObject {
+    let service: AreaServiceProtocol
     @Published var shouldNavigateBack: Bool = false // 👈 Add this
     @Published var table:[Table] = []
     @Published var area:[Area] = []
-    
-    
     @Published var presentDialog:Bool = false
 
     
@@ -21,13 +20,16 @@ class AreaViewModel: ObservableObject {
     var orderAction: OrderAction? = nil
     var selectedTable: Table? = nil
 
+    init(service: AreaServiceProtocol = AreaService()) {
+        self.service = service
+    }
 }
 
 extension AreaViewModel{
 
     func getAreas() async{
         
-        let result:Result<APIResponse<[Area]>, Error> = try await NetworkManager.callAPIResultAsync(netWorkManger: .areas(branch_id: Constants.branch.id, status: ACTIVE))
+        let result = await service.getAreas(branchId: Constants.branch.id, status: ACTIVE)
         
         switch result {
 
@@ -74,43 +76,27 @@ extension AreaViewModel{
         
         func callAPI(areaId:Int,status:[TableStatus] = [],exclude_table_id:Int = 0)async{
             
-            var tableStatus = ""
+            var tableStatus = status.map { $0.rawValue.description }.joined(separator: ",")
             
-            for (index,s) in status.enumerated(){
-                if index < status.count - 1 {
-                    tableStatus.append(String(format: "%d,", s.rawValue))
-                }else{
-                    tableStatus.append(s.rawValue.description)
-                }
-                
-            }
-            
-            let result:Result<APIResponse<[Table]>, Error> = try await NetworkManager.callAPIResultAsync(netWorkManger:.tables(branchId: Constants.branch.id, area_id: areaId, status:tableStatus, exclude_table_id: exclude_table_id))
+            let result = await service.getTables(branchId: Constants.branch.id, areaId: areaId, status: tableStatus, exclude_table_id: exclude_table_id)
+                                                 
             
             switch result {
 
                 case .success(let res):
                 
-                    if res.status == .ok,var data = res.data{
+                    if res.status == .ok,let data = res.data{
                         if orderAction == nil{
-                            
                             self.table = data
-                            
                         }else{
-                            
                             self.table = data.filter({$0.status != .booking && $0.status != .mergered && $0.order_status != 1 && $0.order_status != 4})
-                            
                         }
-                        
                     }
                     
                 case .failure(let error):
                    dLog("Error: \(error)")
             }
-            
         }
-        
-        
     }
     
     
@@ -118,10 +104,10 @@ extension AreaViewModel{
     @MainActor
     func moveTable(from:Int,to:Int) async{
         
-        let result: Result<APIResponse<Account>, Error> = await NetworkManager.callAPIResultAsync(netWorkManger: .moveTable(branch_id:Constants.branch.id,from: from, to: to))
+        let result = await service.moveTable(branchId: Constants.branch.id, from: from, to: to)
+
         switch result {
             case .success(let res):
-                    
                 if res.status == .ok{
                     presentDialog = false
                     shouldNavigateBack = true
@@ -138,7 +124,7 @@ extension AreaViewModel{
     @MainActor
     func mergeTable(destination_table_id:Int,target_table_ids:[Int])async{
         
-        let result: Result<PlainAPIResponse,Error> = await NetworkManager.callAPIResultAsync(netWorkManger:.mergeTable(branch_id: Constants.branch.id, destination_table_id: destination_table_id, target_table_ids: target_table_ids))
+        let result = await service.mergeTable(branchId:  Constants.branch.id, destination_table_id: destination_table_id, target_table_ids: target_table_ids)
         
         switch result {
             case .success(let res):
@@ -155,8 +141,7 @@ extension AreaViewModel{
                 dLog(error)
         }
         
-        
-
+    
     }
     
   

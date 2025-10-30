@@ -62,10 +62,11 @@ class OrderDetailViewModel: ObservableObject {
 
                     await self.getFoodsNeedPrint()
 
-                    //Nếu bàn booking thì sẽ lấy thêm các món ăn
+//                  Nếu bàn booking thì sẽ lấy thêm các món ăn
                     if let booking_status = order.booking_status,booking_status == .status_booking_setup{
                         await self.getBookingOrder()
                     }
+                    
                 }else{
                     toast.alertSubject.send(
                         AlertToast(type: .regular, title: "warning", subTitle: res.message)
@@ -77,36 +78,6 @@ class OrderDetailViewModel: ObservableObject {
                dLog("Error: \(error)")
         }
         
-        
-//        let result = await orderService.fetchOrderDetail(orderId: order.id, branchId:  Constants.branch.id)
-//        switch result {
-//           case .success(let res):
-//       
-//               if res.status == .ok,var data = res.data{
-//                   if data.buffet != nil{
-//                       data.buffet?.updateTickets()
-//                   }
-//
-//                   self.order = data
-//
-//                   order.orderItems.removeAll(where: {($0.category_type == .drink || $0.category_type == .other) && $0.quantity == 0})
-//
-//                   await self.getFoodsNeedPrint()
-//
-//                   //Nếu bàn booking thì sẽ lấy thêm các món ăn
-//                   if let booking_status = order.booking_status,booking_status == .status_booking_setup{
-//                       await self.getBookingOrder()
-//                   }
-//               }else{
-//                   toast.alertSubject.send(
-//                       AlertToast(type: .regular, title: "warning", subTitle: res.message)
-//                   )
-//               }
-//
-//
-//           case .failure(let error):
-//              dLog("Error: \(error)")
-//       }
     }
     
    
@@ -125,13 +96,40 @@ class OrderDetailViewModel: ObservableObject {
 extension OrderDetailViewModel{
     
     @MainActor
-    func getFoodsNeedPrint() async{
+    func getFoodsNeedPrint(print:Bool = false) async{
+        
         let result = await service.getFoodsNeedPrint(orderId: order.id)
         
         switch result {
             case .success(let res):
             
                 if res.status == .ok,let data = res.data{
+                    
+                    
+                    let pendingItem = data.filter{$0.status == .pending}
+                    let cancelItem = data.filter{$0.status == .cancel}
+                    let returnedItem = data.filter{$0.category_type == .drink && $0.return_quantity_for_drink > 0}
+                    
+                    if pendingItem.count > 0 && print{
+                        await PermissionUtils.GPBH_2_o_2
+                        ? sendRequestPrintOrderItem(printType:.new_item)
+                        : self.print(items:pendingItem, printType:.new_item)
+                    }
+                    
+                    if cancelItem.count > 0{
+                        await PermissionUtils.GPBH_2_o_2
+                        ? sendRequestPrintOrderItem(printType:.cancel_item)
+                        : self.print(items:cancelItem, printType:.cancel_item)
+                    }
+                    
+                    
+                    if returnedItem.count > 0{
+                        await PermissionUtils.GPBH_2_o_2
+                        ? sendRequestPrintOrderItem(printType: .return_item)
+                        : self.print(items: returnedItem,printType: .return_item)
+                    }
+                    
+                    
                     self.printItems = data
                 }
                 
@@ -163,8 +161,22 @@ extension OrderDetailViewModel{
         }
     }
     
-   
-    
+    @MainActor
+    private func sendRequestPrintOrderItem(printType:Constants.printType)async{
+        let result = await service.sendRequestPrintOrderItem(branchId: Constants.branch.id, orderId: order.id, printType: printType.value)
+        switch result {
+            case .success(let res):
+                
+                if res.status != .ok{
+                    await toast.alertSubject.send(
+                        AlertToast(type: .regular, subTitle: "Yêu cầu gửi bếp bar thành công")
+                    )
+                }
+
+            case .failure(let error):
+               dLog("Error: \(error)")
+        }
+    }
     
 
     
@@ -178,7 +190,11 @@ extension OrderDetailViewModel{
         switch result {
             case .success(let res):
                 
-                if res.status != .ok{
+                if res.status == .ok{
+                    if let index = order.orderItems.firstIndex(where: { $0.id == item.id }) {
+                        order.orderItems[index].status = .cancel
+                    }
+                }else{
                     await toast.alertSubject.send(
                         AlertToast(type: .regular, title: "warning", subTitle: res.message)
                     )
@@ -197,42 +213,36 @@ extension OrderDetailViewModel{
         switch result {
 
             case .success(let res):
-                if res.status != .ok{
-                    dLog(res.message)
+                if res.status == .ok{
+                    if let index = order.orderItems.firstIndex(where: { $0.id == item.id }) {
+                        order.orderItems[index].discount_percent = item.discount_percent
+                    }
+                }else{
+                    
                 }
                 break
 
                 
             case .failure(let error):
                dLog("Error: \(error)")
+               dLog("Error: \(error)")
         }
-        
-//        let result = await discountService.discountOrderItem(branchId: Constants.branch.id, orderId: order.id, orderItem: item)
-//        switch result {
-//
-//            case .success(let res):
-//                if res.status != .ok{
-//                    dLog(res.message)
-//                }
-//                break
-//
-//
-//            case .failure(let error):
-//               dLog("Error: \(error)")
-//        }
-        
+    
     }
     
     @MainActor
-    func addNote(orderDetailId:Int,note:String) async{
+    func addNote(item:OrderItem,note:String) async{
         
- 
-        let result = await service.addNote(branchId: Constants.branch.id, orderDetailId: orderDetailId, note: note)
+        let result = await service.addNote(branchId: Constants.branch.id, orderDetailId: item.id, note: note)
     
         switch result {
 
             case .success(let res):
-                if res.status != .ok{
+                if res.status == .ok{
+                    if let index = order.orderItems.firstIndex(where: { $0.id == item.id }) {
+                        order.orderItems[index].note = note
+                    }
+                }else{
                     await toast.alertSubject.send(
                         AlertToast(type: .regular, title: "warning", subTitle: res.message)
                     )
@@ -244,42 +254,25 @@ extension OrderDetailViewModel{
                dLog("Error: \(error)")
             
         }
-        
-//        let result = await noteService.addNote(branchId: Constants.branch.id, orderDetailId: orderDetailId, note: note)
-//        
-//        switch result {
-//
-//            case .success(let res):
-//                if res.status != .ok{
-//                    await toast.alertSubject.send(
-//                        AlertToast(type: .regular, title: "warning", subTitle: res.message)
-//                    )
-//                }
-//                break
-//
-//
-//            case .failure(let error):
-//               dLog("Error: \(error)")
-//
-//        }
-//        
-        
-
     }
     
     
     @MainActor
     func updateItems() async{
-        let orderItemsUpdate = repairUpdateFoods(items: order.orderItems)
+        let updatedItems = repairUpdateFoods(items: order.orderItems)
         
-    
-        let result = await service.updateItems(branchId: Constants.branch.id, orderId: order.id, orderItems: orderItemsUpdate)
+        let result = await service.updateItems(branchId: Constants.branch.id, orderId: order.id, orderItems: updatedItems)
         
         switch result {
 
             case .success(_):
+                for item in updatedItems {
+                    if let index = order.orderItems.firstIndex(where: {$0.id == item.order_detail_id}) {
+                        order.orderItems[index].quantity = item.quantity
+                        order.orderItems[index].isChange = false
+                    }
+                }
                 break
-
                 
             case .failure(let error):
                dLog("Error: \(error)")
@@ -291,7 +284,7 @@ extension OrderDetailViewModel{
     
 
 
-   private func repairUpdateFoods(items:[OrderItem]) -> [OrderItemUpdate]{
+    func repairUpdateFoods(items:[OrderItem]) -> [OrderItemUpdate]{
         var itemArrayNeedToUpdate:[OrderItemUpdate] = []
         let foods = items.filter{$0.isChange}
         for food in foods{

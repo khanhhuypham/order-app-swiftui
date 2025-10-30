@@ -9,19 +9,32 @@
 
 final class OrderDetailService: OrderDetailServiceProtocol {
 
+
     
     func getOrder(orderId: Int, branchId: Int) async -> Result<APIResponse<OrderDetail>, Error> {
         await NetworkManager.callAPIResultAsync(netWorkManger: .order(order_id: orderId, branch_id: branchId))
     }
-
-    func getFoodsNeedPrint(orderId: Int) async -> Result<APIResponse<[PrintItem]>, Error> {
-        await NetworkManager.callAPIResultAsync(netWorkManger: .foodsNeedPrint(order_id: orderId))
-    }
-
+    
     func getBookingOrder(orderId: Int) async -> Result<APIResponse<[PrintItem]>, Error> {
         await NetworkManager.callAPIResultAsync(netWorkManger: .getFoodsBookingStatus(order_id: orderId))
     }
 
+
+    func getFoodsNeedPrint(orderId: Int) async -> Result<APIResponse<[PrintItem]>, Error> {
+        await NetworkManager.callAPIResultAsync(netWorkManger: .foodsNeedPrint(order_id: orderId))
+    }
+    
+    func updateAlreadyPrinted(orderId:Int, order_detail_ids: [Int]) async -> Result<PlainAPIResponse, any Error> {
+        await NetworkManager.callAPIResultAsync(netWorkManger: .updateAlreadyPrinted(order_id: orderId, order_detail_ids: order_detail_ids))
+    }
+    
+    func sendRequestPrintOrderItem(branchId: Int, orderId: Int, printType: Int) async -> Result<PlainAPIResponse, any Error> {
+        await NetworkManager.callAPIResultAsync(netWorkManger: .sendRequestPrintOrderItem(order_id: orderId, branch_id: branchId, print_type: printType))
+    }
+    
+    
+    
+  
     func cancelItem(branchId: Int, orderId: Int, reason: String, orderDetailId: Int, quantity: Int) async -> Result<PlainAPIResponse, Error> {
         await NetworkManager.callAPIResultAsync(netWorkManger: .cancelFood(branch_id: branchId, order_id: orderId, reason: reason, order_detail_id: orderDetailId, quantity: quantity))
     }

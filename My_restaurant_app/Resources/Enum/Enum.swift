@@ -279,8 +279,7 @@ enum FOOD_CATEGORY:Int,Codable{
 }
 
 
-enum FOOD_STATUS:Int,Codable{
-    
+enum ORDER_ITEM_STATUS:Int,Codable{
     
     case pending = 0; //Mon moi goi
     case cooking = 1; // Dang nau
@@ -309,8 +308,6 @@ enum FOOD_STATUS:Int,Codable{
                 return "ĐANG TẠM DỪNG"
         }
     }
-    
-    
     
     
     var fgColor: Color {
@@ -362,7 +359,6 @@ enum FOOD_STATUS:Int,Codable{
                 return Color(ColorUtils.white())
         }
     }
-    
     
 }
 

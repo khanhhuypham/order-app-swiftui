@@ -131,19 +131,19 @@ public class ManageCacheObject {
     }
 
 
-    
-    // MARK: - PUSH_TOKEN
-    static func setPushToken(_ push_token:String){
-        UserDefaults.standard.set(push_token, forKey: Constants.KEY_DEFAULT_STORAGE.KEY_PUSH_TOKEN)
-    }
-    
-    static func getPushToken()->String{
-        if let push_token : String = UserDefaults.standard.object(forKey: Constants.KEY_DEFAULT_STORAGE.KEY_PUSH_TOKEN) as? String{
-            return push_token
-        }else{
-            return ""
-        }
-    }
+//    
+//    // MARK: - PUSH_TOKEN
+//    static func setPushToken(_ push_token:String){
+//        UserDefaults.standard.set(push_token, forKey: Constants.KEY_DEFAULT_STORAGE.KEY_PUSH_TOKEN)
+//    }
+//    
+//    static func getPushToken()->String{
+//        if let push_token : String = UserDefaults.standard.object(forKey: Constants.KEY_DEFAULT_STORAGE.KEY_PUSH_TOKEN) as? String{
+//            return push_token
+//        }else{
+//            return ""
+//        }
+//    }
 
     public static func isLogin()->Bool{
         if let account = ManageCacheObject.getUser(),account.id != 0{
@@ -245,5 +245,30 @@ public class ManageCacheObject {
         let isDevMode : Bool = UserDefaults.standard.bool(forKey: Constants.KEY_DEFAULT_STORAGE.KEY_DEV_MODE)
         return isDevMode
     }
+    
+    // MARK: - Set chef-bar Config
+    static func setPrinters(_ printers: [Printer]){
+        
+        if let json = try? JSONEncoder().encode(printers) {
+         
+            UserDefaults.standard.set(json, forKey:Constants.KEY_DEFAULT_STORAGE.KEY_PRINTERS)
+        }
+        
+    }
+    
+    static func getPrinters() -> [Printer] {
+        guard let data = UserDefaults.standard.data(forKey: Constants.KEY_DEFAULT_STORAGE.KEY_PRINTERS) else {
+            return []
+        }
+        
+        do {
+            let printers = try JSONDecoder().decode([Printer].self, from: data)
+            return printers
+        } catch {
+            print("❌ Failed to decode printers:", error)
+            return []
+        }
+    }
+
 
 }

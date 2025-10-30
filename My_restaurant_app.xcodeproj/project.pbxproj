@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1B3D5ABF674F5D94CFE2705C /* Pods_My_restaurant_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1798CE75DFD657B1C723125 /* Pods_My_restaurant_app.framework */; };
+		940DC3A62EB345CB003694B9 /* AreaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940DC3A52EB345CB003694B9 /* AreaService.swift */; };
 		942779582CF01D0B00B2F2E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 942779572CF01D0B00B2F2E6 /* Assets.xcassets */; };
 		9427795B2CF01D0B00B2F2E6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9427795A2CF01D0B00B2F2E6 /* Preview Assets.xcassets */; };
 		94277A432CF01E7B00B2F2E6 /* MethodConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942779622CF01E7B00B2F2E6 /* MethodConnectionManager.swift */; };
@@ -15,7 +16,6 @@
 		94277A452CF01E7B00B2F2E6 /* NetWorkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942779642CF01E7B00B2F2E6 /* NetWorkManager.swift */; };
 		94277A462CF01E7B00B2F2E6 /* EnvironmentModeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942779652CF01E7B00B2F2E6 /* EnvironmentModeManager.swift */; };
 		94277A472CF01E7B00B2F2E6 /* TaskConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942779662CF01E7B00B2F2E6 /* TaskConnectionManager.swift */; };
-		94277A482CF01E7B00B2F2E6 /* APIEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942779672CF01E7B00B2F2E6 /* APIEndPoint.swift */; };
 		94277A492CF01E7B00B2F2E6 /* HeaderConnectionParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942779682CF01E7B00B2F2E6 /* HeaderConnectionParameter.swift */; };
 		94277A4A2CF01E7B00B2F2E6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9427796A2CF01E7B00B2F2E6 /* Constants.swift */; };
 		94277A4B2CF01E7B00B2F2E6 /* ChatEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9427796C2CF01E7B00B2F2E6 /* ChatEnum.swift */; };
@@ -185,7 +185,6 @@
 		94589A672E9F7ED7008868F9 /* PaymentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A5E2E9F7ED7008868F9 /* PaymentViewCell.swift */; };
 		94589A692E9F7ED7008868F9 /* ItemListOfOrderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A4D2E9F7ED7008868F9 /* ItemListOfOrderDetailView.swift */; };
 		94589A6A2E9F7ED7008868F9 /* OrderListViewModel + extension + socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A5B2E9F7ED7008868F9 /* OrderListViewModel + extension + socket.swift */; };
-		94589A6B2E9F7ED7008868F9 /* OrderDetail + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A482E9F7ED7008868F9 /* OrderDetail + extension.swift */; };
 		94589A6C2E9F7ED7008868F9 /* OrderListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A5A2E9F7ED7008868F9 /* OrderListViewModel.swift */; };
 		94589A6E2E9F7ED7008868F9 /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A602E9F7ED7008868F9 /* PaymentView.swift */; };
 		94589A6F2E9F7ED7008868F9 /* BuffetOfOrderListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A4A2E9F7ED7008868F9 /* BuffetOfOrderListCell.swift */; };
@@ -257,6 +256,13 @@
 		94EB72492EB1C0AD002E9155 /* TSCPrinterTests .swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB72482EB1C0AD002E9155 /* TSCPrinterTests .swift */; };
 		94EB724D2EB1C10D002E9155 /* MockTSCPrinterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB724C2EB1C10D002E9155 /* MockTSCPrinterService.swift */; };
 		94EB724F2EB1C165002E9155 /* MockPOSPrinterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB724E2EB1C165002E9155 /* MockPOSPrinterService.swift */; };
+		94EB72562EB1CD1D002E9155 /* FoodServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB72552EB1CD1D002E9155 /* FoodServiceProtocol.swift */; };
+		94EB72582EB1CE27002E9155 /* FoodService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB72572EB1CE27002E9155 /* FoodService.swift */; };
+		94EB725D2EB1D557002E9155 /* AreaServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB725C2EB1D557002E9155 /* AreaServiceProtocol.swift */; };
+		94EB72F22EB2024A002E9155 /* OrderDetailViewModel + extension + print.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB72F12EB2024A002E9155 /* OrderDetailViewModel + extension + print.swift */; };
+		94EB72F42EB207D2002E9155 /* OrderDetailViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB72F32EB207D2002E9155 /* OrderDetailViewModelTest.swift */; };
+		94EB72F92EB214B9002E9155 /* LocationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB72F82EB214B9002E9155 /* LocationsView.swift */; };
+		94EB73552EB21A57002E9155 /* DefaultNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB73542EB21A57002E9155 /* DefaultNetworkClient.swift */; };
 		94F2CAFD2EA787E1001FD6BB /* OrderListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F2CAFB2EA787E1001FD6BB /* OrderListViewModelTest.swift */; };
 		D2BC75C93CAA0663141B99E8 /* Pods_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66210620D987AFCF12F9F41B /* Pods_UnitTests.framework */; };
 /* End PBXBuildFile section */
@@ -276,6 +282,7 @@
 		66210620D987AFCF12F9F41B /* Pods_UnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		71E7C3F77F9B25738DA7B6AC /* Pods-UnitTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.staging.xcconfig"; path = "Target Support Files/Pods-UnitTests/Pods-UnitTests.staging.xcconfig"; sourceTree = "<group>"; };
 		8A9B91CC0EA7572C2BDE3812 /* Pods-My_restaurant_app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My_restaurant_app.release.xcconfig"; path = "Target Support Files/Pods-My_restaurant_app/Pods-My_restaurant_app.release.xcconfig"; sourceTree = "<group>"; };
+		940DC3A52EB345CB003694B9 /* AreaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaService.swift; sourceTree = "<group>"; };
 		942779502CF01D0900B2F2E6 /* My_restaurant_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = My_restaurant_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		942779572CF01D0B00B2F2E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9427795A2CF01D0B00B2F2E6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -284,7 +291,6 @@
 		942779642CF01E7B00B2F2E6 /* NetWorkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorkManager.swift; sourceTree = "<group>"; };
 		942779652CF01E7B00B2F2E6 /* EnvironmentModeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentModeManager.swift; sourceTree = "<group>"; };
 		942779662CF01E7B00B2F2E6 /* TaskConnectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskConnectionManager.swift; sourceTree = "<group>"; };
-		942779672CF01E7B00B2F2E6 /* APIEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIEndPoint.swift; sourceTree = "<group>"; };
 		942779682CF01E7B00B2F2E6 /* HeaderConnectionParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderConnectionParameter.swift; sourceTree = "<group>"; };
 		9427796A2CF01E7B00B2F2E6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9427796C2CF01E7B00B2F2E6 /* ChatEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatEnum.swift; sourceTree = "<group>"; };
@@ -453,7 +459,6 @@
 		94589A382E9F7E96008868F9 /* UIColor + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + extension.swift"; sourceTree = "<group>"; };
 		94589A392E9F7E96008868F9 /* UIView + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + extension.swift"; sourceTree = "<group>"; };
 		94589A462E9F7ED7008868F9 /* TableOfCancelFoodReason.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableOfCancelFoodReason.swift; sourceTree = "<group>"; };
-		94589A482E9F7ED7008868F9 /* OrderDetail + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderDetail + extension.swift"; sourceTree = "<group>"; };
 		94589A4A2E9F7ED7008868F9 /* BuffetOfOrderListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuffetOfOrderListCell.swift; sourceTree = "<group>"; };
 		94589A4B2E9F7ED7008868F9 /* OrderListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListCell.swift; sourceTree = "<group>"; };
 		94589A4D2E9F7ED7008868F9 /* ItemListOfOrderDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListOfOrderDetailView.swift; sourceTree = "<group>"; };
@@ -527,6 +532,13 @@
 		94EB72482EB1C0AD002E9155 /* TSCPrinterTests .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TSCPrinterTests .swift"; sourceTree = "<group>"; };
 		94EB724C2EB1C10D002E9155 /* MockTSCPrinterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTSCPrinterService.swift; sourceTree = "<group>"; };
 		94EB724E2EB1C165002E9155 /* MockPOSPrinterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPOSPrinterService.swift; sourceTree = "<group>"; };
+		94EB72552EB1CD1D002E9155 /* FoodServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodServiceProtocol.swift; sourceTree = "<group>"; };
+		94EB72572EB1CE27002E9155 /* FoodService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodService.swift; sourceTree = "<group>"; };
+		94EB725C2EB1D557002E9155 /* AreaServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaServiceProtocol.swift; sourceTree = "<group>"; };
+		94EB72F12EB2024A002E9155 /* OrderDetailViewModel + extension + print.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderDetailViewModel + extension + print.swift"; sourceTree = "<group>"; };
+		94EB72F32EB207D2002E9155 /* OrderDetailViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailViewModelTest.swift; sourceTree = "<group>"; };
+		94EB72F82EB214B9002E9155 /* LocationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsView.swift; sourceTree = "<group>"; };
+		94EB73542EB21A57002E9155 /* DefaultNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNetworkClient.swift; sourceTree = "<group>"; };
 		94F2CAFB2EA787E1001FD6BB /* OrderListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListViewModelTest.swift; sourceTree = "<group>"; };
 		94F2CB042EA78F1D001FD6BB /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		94F2CB052EA78F51001FD6BB /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
@@ -620,6 +632,7 @@
 		942779612CF01E7B00B2F2E6 /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
+				94EB73532EB21A52002E9155 /* mock */,
 				942779642CF01E7B00B2F2E6 /* NetWorkManager.swift */,
 				942779682CF01E7B00B2F2E6 /* HeaderConnectionParameter.swift */,
 				9491DA0D2E9F79B300D0A0F1 /* BaseURLConnectionManager.swift */,
@@ -627,7 +640,6 @@
 				942779632CF01E7B00B2F2E6 /* PathConnectionManager.swift */,
 				942779652CF01E7B00B2F2E6 /* EnvironmentModeManager.swift */,
 				942779662CF01E7B00B2F2E6 /* TaskConnectionManager.swift */,
-				942779672CF01E7B00B2F2E6 /* APIEndPoint.swift */,
 			);
 			path = NetworkManager;
 			sourceTree = "<group>";
@@ -766,6 +778,7 @@
 		942779EC2CF01E7B00B2F2E6 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				94EB72F72EB214A7002E9155 /* Shimmer */,
 				945899612E9F7D66008868F9 /* Alert&ToastPopup */,
 				945899642E9F7D66008868F9 /* Area */,
 				945899672E9F7D66008868F9 /* BranchOptions */,
@@ -906,6 +919,8 @@
 		9437FABA2EA22F1600DAF8B1 /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
+				94EB725F2EB1D7DE002E9155 /* Area */,
+				94EB725E2EB1D7D7002E9155 /* Food */,
 				94EB72442EB1BFDD002E9155 /* PrinterCore */,
 				94EB72422EB1BFC6002E9155 /* OrderDetail */,
 				94F2CAFC2EA787E1001FD6BB /* OrderList */,
@@ -1395,6 +1410,7 @@
 		94589A0E2E9F7DD6008868F9 /* PrinterSetting */ = {
 			isa = PBXGroup;
 			children = (
+				94EB72502EB1C2A8002E9155 /* PrintFormat */,
 				94589A0A2E9F7DD6008868F9 /* PrinterDetail */,
 				94589A0D2E9F7DD6008868F9 /* PrinterList */,
 			);
@@ -1437,14 +1453,6 @@
 			path = component;
 			sourceTree = "<group>";
 		};
-		94589A492E9F7ED7008868F9 /* exentsion */ = {
-			isa = PBXGroup;
-			children = (
-				94589A482E9F7ED7008868F9 /* OrderDetail + extension.swift */,
-			);
-			path = exentsion;
-			sourceTree = "<group>";
-		};
 		94589A4C2E9F7ED7008868F9 /* cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1477,6 +1485,7 @@
 			children = (
 				94589A512E9F7ED7008868F9 /* OrderDetailViewModel.swift */,
 				94589A522E9F7ED7008868F9 /* OrderDetailViewModel + extension + socket.swift */,
+				94EB72F12EB2024A002E9155 /* OrderDetailViewModel + extension + print.swift */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -1486,7 +1495,6 @@
 			children = (
 				94EB72182EB1B0CA002E9155 /* service */,
 				94589A472E9F7ED7008868F9 /* component */,
-				94589A492E9F7ED7008868F9 /* exentsion */,
 				94589A532E9F7ED7008868F9 /* viewModel */,
 				94589A502E9F7ED7008868F9 /* view */,
 			);
@@ -1615,9 +1623,10 @@
 		94589A812E9F7F12008868F9 /* Area */ = {
 			isa = PBXGroup;
 			children = (
+				94EB72592EB1D509002E9155 /* service */,
 				94589A7C2E9F7F12008868F9 /* component */,
-				94589A7E2E9F7F12008868F9 /* view */,
 				94589A802E9F7F12008868F9 /* viewModel */,
+				94589A7E2E9F7F12008868F9 /* view */,
 			);
 			path = Area;
 			sourceTree = "<group>";
@@ -1713,6 +1722,7 @@
 		94589A972E9F7F12008868F9 /* Food */ = {
 			isa = PBXGroup;
 			children = (
+				94EB72522EB1CCF3002E9155 /* service */,
 				94589A842E9F7F12008868F9 /* extension */,
 				94589A962E9F7F12008868F9 /* viewModel */,
 				94589A922E9F7F12008868F9 /* view */,
@@ -1820,13 +1830,6 @@
 			path = ReportOfSale;
 			sourceTree = "<group>";
 		};
-		9491DA212E9F79D800D0A0F1 /* ReportOfVAT */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ReportOfVAT;
-			sourceTree = "<group>";
-		};
 		9491DA232E9F79D800D0A0F1 /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -1839,7 +1842,6 @@
 				9491DA1C2E9F79D800D0A0F1 /* ReportOfRevenueOfArea */,
 				9491DA1E2E9F79D800D0A0F1 /* ReportOfRevenueOfTable */,
 				9491DA202E9F79D800D0A0F1 /* ReportOfSale */,
-				9491DA212E9F79D800D0A0F1 /* ReportOfVAT */,
 				9491DA222E9F79D800D0A0F1 /* GeneralReportView.swift */,
 			);
 			path = view;
@@ -1886,27 +1888,27 @@
 			path = viewModel;
 			sourceTree = "<group>";
 		};
-		94EB72152EB1B0CA002E9155 /* Impl */ = {
+		94EB72152EB1B0CA002E9155 /* impl */ = {
 			isa = PBXGroup;
 			children = (
 				94EB72142EB1B0CA002E9155 /* OrderDetailService.swift */,
 			);
-			path = Impl;
+			path = impl;
 			sourceTree = "<group>";
 		};
-		94EB72172EB1B0CA002E9155 /* Protocols */ = {
+		94EB72172EB1B0CA002E9155 /* protocols */ = {
 			isa = PBXGroup;
 			children = (
 				94EB72162EB1B0CA002E9155 /* OrderDetailServiceProtocol.swift */,
 			);
-			path = Protocols;
+			path = protocols;
 			sourceTree = "<group>";
 		};
 		94EB72182EB1B0CA002E9155 /* service */ = {
 			isa = PBXGroup;
 			children = (
-				94EB72152EB1B0CA002E9155 /* Impl */,
-				94EB72172EB1B0CA002E9155 /* Protocols */,
+				94EB72152EB1B0CA002E9155 /* impl */,
+				94EB72172EB1B0CA002E9155 /* protocols */,
 			);
 			path = service;
 			sourceTree = "<group>";
@@ -1977,6 +1979,7 @@
 		94EB72422EB1BFC6002E9155 /* OrderDetail */ = {
 			isa = PBXGroup;
 			children = (
+				94EB72F32EB207D2002E9155 /* OrderDetailViewModelTest.swift */,
 				94EB72412EB1BFC6002E9155 /* MockOrderDetailService.swift */,
 			);
 			path = OrderDetail;
@@ -2007,6 +2010,93 @@
 				94EB72462EB1C07D002E9155 /* POSPrinterTests.swift */,
 			);
 			path = PosPrinter;
+			sourceTree = "<group>";
+		};
+		94EB72502EB1C2A8002E9155 /* PrintFormat */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PrintFormat;
+			sourceTree = "<group>";
+		};
+		94EB72522EB1CCF3002E9155 /* service */ = {
+			isa = PBXGroup;
+			children = (
+				94EB72542EB1CD12002E9155 /* protocols */,
+				94EB72532EB1CD0F002E9155 /* impl */,
+			);
+			path = service;
+			sourceTree = "<group>";
+		};
+		94EB72532EB1CD0F002E9155 /* impl */ = {
+			isa = PBXGroup;
+			children = (
+				94EB72572EB1CE27002E9155 /* FoodService.swift */,
+			);
+			path = impl;
+			sourceTree = "<group>";
+		};
+		94EB72542EB1CD12002E9155 /* protocols */ = {
+			isa = PBXGroup;
+			children = (
+				94EB72552EB1CD1D002E9155 /* FoodServiceProtocol.swift */,
+			);
+			path = protocols;
+			sourceTree = "<group>";
+		};
+		94EB72592EB1D509002E9155 /* service */ = {
+			isa = PBXGroup;
+			children = (
+				94EB725B2EB1D519002E9155 /* impl */,
+				94EB725A2EB1D512002E9155 /* protocols */,
+			);
+			path = service;
+			sourceTree = "<group>";
+		};
+		94EB725A2EB1D512002E9155 /* protocols */ = {
+			isa = PBXGroup;
+			children = (
+				94EB725C2EB1D557002E9155 /* AreaServiceProtocol.swift */,
+			);
+			path = protocols;
+			sourceTree = "<group>";
+		};
+		94EB725B2EB1D519002E9155 /* impl */ = {
+			isa = PBXGroup;
+			children = (
+				940DC3A52EB345CB003694B9 /* AreaService.swift */,
+			);
+			path = impl;
+			sourceTree = "<group>";
+		};
+		94EB725E2EB1D7D7002E9155 /* Food */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Food;
+			sourceTree = "<group>";
+		};
+		94EB725F2EB1D7DE002E9155 /* Area */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Area;
+			sourceTree = "<group>";
+		};
+		94EB72F72EB214A7002E9155 /* Shimmer */ = {
+			isa = PBXGroup;
+			children = (
+				94EB72F82EB214B9002E9155 /* LocationsView.swift */,
+			);
+			path = Shimmer;
+			sourceTree = "<group>";
+		};
+		94EB73532EB21A52002E9155 /* mock */ = {
+			isa = PBXGroup;
+			children = (
+				94EB73542EB21A57002E9155 /* DefaultNetworkClient.swift */,
+			);
+			path = mock;
 			sourceTree = "<group>";
 		};
 		94F2CAFC2EA787E1001FD6BB /* OrderList */ = {
@@ -2265,7 +2355,6 @@
 				94589A692E9F7ED7008868F9 /* ItemListOfOrderDetailView.swift in Sources */,
 				94589A6A2E9F7ED7008868F9 /* OrderListViewModel + extension + socket.swift in Sources */,
 				94EB72292EB1B451002E9155 /* LocalDataBaseService + extension + Printer.swift in Sources */,
-				94589A6B2E9F7ED7008868F9 /* OrderDetail + extension.swift in Sources */,
 				94589A6C2E9F7ED7008868F9 /* OrderListViewModel.swift in Sources */,
 				94589A6E2E9F7ED7008868F9 /* PaymentView.swift in Sources */,
 				94589A6F2E9F7ED7008868F9 /* BuffetOfOrderListCell.swift in Sources */,
@@ -2292,6 +2381,7 @@
 				945899DE2E9F7DA1008868F9 /* ToastUtils.swift in Sources */,
 				94589A3A2E9F7E96008868F9 /* String + extension.swift in Sources */,
 				94589A3B2E9F7E96008868F9 /* Binding + extension.swift in Sources */,
+				94EB725D2EB1D557002E9155 /* AreaServiceProtocol.swift in Sources */,
 				94589A3C2E9F7E96008868F9 /* Text + extension.swift in Sources */,
 				94589A3D2E9F7E96008868F9 /* Bundle + extension.swift in Sources */,
 				94589A3E2E9F7E96008868F9 /* DateFormatter.swift in Sources */,
@@ -2310,6 +2400,7 @@
 				945899E02E9F7DA1008868F9 /* DependencyInjection.swift in Sources */,
 				945899E12E9F7DA1008868F9 /* ColorPalette.swift in Sources */,
 				94277A4D2CF01E7B00B2F2E6 /* Enum.swift in Sources */,
+				94EB72F22EB2024A002E9155 /* OrderDetailViewModel + extension + print.swift in Sources */,
 				94277AD02CF01E7B00B2F2E6 /* FoodRequest.swift in Sources */,
 				94277AC12CF01E7B00B2F2E6 /* Media.swift in Sources */,
 				94C76FEA2EA1EC4B0051B19C /* MediaUtils.swift in Sources */,
@@ -2325,6 +2416,7 @@
 				94277AC42CF01E7B00B2F2E6 /* Category.swift in Sources */,
 				945899932E9F7D66008868F9 /* QuicklyCreateTableView.swift in Sources */,
 				945899942E9F7D66008868F9 /* LineChart.swift in Sources */,
+				94EB72562EB1CD1D002E9155 /* FoodServiceProtocol.swift in Sources */,
 				945899952E9F7D66008868F9 /* AreaCardView.swift in Sources */,
 				945899962E9F7D66008868F9 /* BranchOptionViewModel.swift in Sources */,
 				945899972E9F7D66008868F9 /* MailView.swift in Sources */,
@@ -2397,12 +2489,14 @@
 				94589AA12E9F7F12008868F9 /* FoodViewModel.swift in Sources */,
 				94589AA22E9F7F12008868F9 /* FoodViewModel + extension + AddFood.swift in Sources */,
 				94EB72252EB1B30A002E9155 /* QueuedItem.swift in Sources */,
+				940DC3A62EB345CB003694B9 /* AreaService.swift in Sources */,
 				94589AA32E9F7F12008868F9 /* FoodView + extension + popup.swift in Sources */,
 				94589AA42E9F7F12008868F9 /* SplitFood.swift in Sources */,
 				94589AA52E9F7F12008868F9 /* ConfirmToMoveTable.swift in Sources */,
 				94589AA62E9F7F12008868F9 /* BuffetListCell.swift in Sources */,
 				94589AA72E9F7F12008868F9 /* FoodView.swift in Sources */,
 				94277AB72CF01E7B00B2F2E6 /* OrderNeedToPrint.swift in Sources */,
+				94EB73552EB21A57002E9155 /* DefaultNetworkClient.swift in Sources */,
 				94277ABF2CF01E7B00B2F2E6 /* Area.swift in Sources */,
 				94277AC22CF01E7B00B2F2E6 /* Payment.swift in Sources */,
 				94277ACC2CF01E7B00B2F2E6 /* EmployeeSharePointRequest.swift in Sources */,
@@ -2414,6 +2508,7 @@
 				9458995C2E9F7D07008868F9 /* PopupExpiredSessionViewController.swift in Sources */,
 				94EB72192EB1B0CA002E9155 /* OrderDetailService.swift in Sources */,
 				94EB721A2EB1B0CA002E9155 /* OrderDetailServiceProtocol.swift in Sources */,
+				94EB72F92EB214B9002E9155 /* LocationsView.swift in Sources */,
 				94589A122E9F7DD6008868F9 /* NoteManagement.swift in Sources */,
 				94589A132E9F7DD6008868F9 /* AreaManageView.swift in Sources */,
 				94589A142E9F7DD6008868F9 /* OrderHistoryCell.swift in Sources */,
@@ -2422,6 +2517,7 @@
 				94DC1BA12EA089E700EE549C /* MoveOrderItems.swift in Sources */,
 				94589A172E9F7DD6008868F9 /* InternalSettingViewModel.swift in Sources */,
 				948CD7A62EA3372000F9803B /* Vat.swift in Sources */,
+				94EB72582EB1CE27002E9155 /* FoodService.swift in Sources */,
 				94589A182E9F7DD6008868F9 /* MenuManagementViewModel.swift in Sources */,
 				94589A192E9F7DD6008868F9 /* InvoiceManagementViewModel.swift in Sources */,
 				94589A1A2E9F7DD6008868F9 /* MenuManagement.swift in Sources */,
@@ -2444,7 +2540,6 @@
 				9458995D2E9F7D07008868F9 /* ChooseOptionView.swift in Sources */,
 				9458995E2E9F7D07008868F9 /* PopupWrapper.swift in Sources */,
 				9458995F2E9F7D07008868F9 /* ActionSheetCardItem.swift in Sources */,
-				94277A482CF01E7B00B2F2E6 /* APIEndPoint.swift in Sources */,
 				948CD7A42EA32F8100F9803B /* CreateFood.swift in Sources */,
 				94277ABE2CF01E7B00B2F2E6 /* Table.swift in Sources */,
 				94277AD62CF01E7B00B2F2E6 /* Branch.swift in Sources */,
@@ -2470,6 +2565,7 @@
 				94EB72432EB1BFC6002E9155 /* MockOrderDetailService.swift in Sources */,
 				94F2CAFD2EA787E1001FD6BB /* OrderListViewModelTest.swift in Sources */,
 				9463C10B2EAF4B3A005E4A1B /* MockOrderService.swift in Sources */,
+				94EB72F42EB207D2002E9155 /* OrderDetailViewModelTest.swift in Sources */,
 				94EB724F2EB1C165002E9155 /* MockPOSPrinterService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

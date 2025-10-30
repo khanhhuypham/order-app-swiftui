@@ -342,6 +342,21 @@ extension NetworkManager{
         case .foodsNeedPrint(let order_id):
             return APIParam(query: ["order_id":String(order_id)])
             
+        case .updateAlreadyPrinted(let order_id, let order_detail_ids):
+            return APIParam(body: [
+                    "order_id":order_id,
+                    "order_detail_ids":order_detail_ids,
+                    "branch_id": Constants.branch.id
+                ]
+            )
+            
+        case .sendRequestPrintOrderItem(let order_id, let branch_id, let print_type):
+            return APIParam(body: [
+                "id":order_id,
+                "branch_id":branch_id,
+                "type":print_type
+            ])
+            
         case .createNote(let note):
             
             return APIParam(query: [

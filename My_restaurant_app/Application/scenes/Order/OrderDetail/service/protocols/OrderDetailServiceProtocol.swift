@@ -9,12 +9,18 @@
 protocol OrderDetailServiceProtocol {
     
     func getOrder(orderId: Int, branchId: Int) async -> Result<APIResponse<OrderDetail>, Error>
+    
     func getFoodsNeedPrint(orderId: Int) async -> Result<APIResponse<[PrintItem]>, Error>
+    func updateAlreadyPrinted(orderId:Int, order_detail_ids: [Int]) async -> Result<PlainAPIResponse, any Error>
+    func sendRequestPrintOrderItem(branchId:Int,orderId:Int,printType:Int) async -> Result<PlainAPIResponse, any Error>
+    
+    
     func getBookingOrder(orderId: Int) async -> Result<APIResponse<[PrintItem]>, Error>
     func cancelItem(branchId: Int, orderId: Int, reason: String, orderDetailId: Int, quantity: Int) async -> Result<PlainAPIResponse, Error>
     func discountOrderItem(branchId: Int, orderId: Int, orderItem: OrderItem) async -> Result<PlainAPIResponse, Error>
     func addNote(branchId: Int, orderDetailId: Int, note: String) async -> Result<PlainAPIResponse, Error>
     func updateItems(branchId: Int, orderId: Int, orderItems: [OrderItemUpdate]) async -> Result<PlainAPIResponse, Error>
+    
 }
 
 /*

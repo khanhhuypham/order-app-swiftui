@@ -192,7 +192,7 @@ class MediaUtils {
     static func getFullMediaLink(string:String, media_type:media_type = .image) -> String {
         
         return media_type == .video
-        ? (String(format: "%@%@", APIEndPoint.GATEWAY_SERVER_URL, "/s3") + string)
+        ? (String(format: "%@%@", environmentMode.baseUrl, "/s3") + string)
         : (String(format: "%@", ManageCacheObject.getConfig()?.api_upload_short ?? "") + string)
     }
     

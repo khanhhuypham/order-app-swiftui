@@ -83,6 +83,10 @@ enum NetworkManager{
     case createTable(branch_id:Int, table_id:Int, table_name:String, area_id:Int, total_slot:Int,status:Int)
 
     case foodsNeedPrint(order_id:Int)
+    
+    case updateAlreadyPrinted(order_id:Int, order_detail_ids:[Int])
+    
+    case sendRequestPrintOrderItem(order_id:Int, branch_id:Int, print_type:Int)
 
     case createNote(note:Note)
     
@@ -380,16 +384,6 @@ extension NetworkManager{
         }
     }
     
-//    /// A non-throwing async variant that wraps the throwing version
-//      static func callAPIResultAsync<T: Decodable>(logRequest: Bool = true,netWorkManger: NetworkManager) async -> Result<T, Error> {
-//          do {
-//              let response: T = try await callAPIAsync(logRequest: logRequest,netWorkManger: netWorkManger)
-//              return .success(response)
-//          } catch {
-//              return .failure(error)
-//          }
-//      }
-
 }
 
 enum NetworkError: Error {
@@ -430,3 +424,6 @@ enum NetworkError: Error {
         }
     }
 }
+
+
+

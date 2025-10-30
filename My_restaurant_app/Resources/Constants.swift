@@ -49,35 +49,36 @@ struct Constants {
 
     
     struct KEY_DEFAULT_STORAGE{
+        static let KEY_PRINTERS = "KEY_PRINTERS"
         static let KEY_ACCOUNT = "KEY_ACCOUNT"
         static let KEY_ACCOUNT_SETTING = "KEY_ACCOUNT_SETTING"
-        static let KEY_ACCOUNT_ID = "KEY_ACCOUNT_ID"
-        static let KEY_TOKEN = "KEY_TOKEN"
-        static let KEY_PUSH_TOKEN = "KEY_PUSH_TOKEN"
+//        static let KEY_ACCOUNT_ID = "KEY_ACCOUNT_ID"
+//        static let KEY_TOKEN = "KEY_TOKEN"
+//        static let KEY_PUSH_TOKEN = "KEY_PUSH_TOKEN"
         static let KEY_CONFIG = "KEY_CONFIG"
-        static let KEY_SETTING = "KEY_SETTING"
-        static let KEY_PHONE = "KEY_PHONE"
-        static let KEY_PASSWORD = "KEY_PASSWORD"
-        static let KEY_BIOMETRIC = "KEY_BIOMETRIC"
-        static let KEY_LOGIN = "KEY_LOGIN"
-        static let KEY_LOCATION = "KEY_LOCATION"
-        static let KEY_PERMISION_CONTACT = "KEY_PERMISION_CONTACT"
-        static let KEY_TIME = "KEY_TIME"
-        static let KEY_ACCOUNT_NODE = "KEY_ACCOUNT_NODE"
-        static let KEY_TAB_INDEX = "KEY_TAB_INDEX"
-        static let KEY_NUMBER_UNREAD_MESSAGE = "KEY_NUMBER_UNREAD_MESSAGE"
-        
-        static let KEY_BRANCH_RIGHTS = "KEY_BRAND_RIGHTS"
+//        static let KEY_SETTING = "KEY_SETTING"
+//        static let KEY_PHONE = "KEY_PHONE"
+//        static let KEY_PASSWORD = "KEY_PASSWORD"
+//        static let KEY_BIOMETRIC = "KEY_BIOMETRIC"
+//        static let KEY_LOGIN = "KEY_LOGIN"
+//        static let KEY_LOCATION = "KEY_LOCATION"
+//        static let KEY_PERMISION_CONTACT = "KEY_PERMISION_CONTACT"
+//        static let KEY_TIME = "KEY_TIME"
+//        static let KEY_ACCOUNT_NODE = "KEY_ACCOUNT_NODE"
+//        static let KEY_TAB_INDEX = "KEY_TAB_INDEX"
+//        static let KEY_NUMBER_UNREAD_MESSAGE = "KEY_NUMBER_UNREAD_MESSAGE"
+//        
+//        static let KEY_BRANCH_RIGHTS = "KEY_BRAND_RIGHTS"
         static let KEY_BRAND = "KEY_BRAND"
         static let KEY_BRANCH = "KEY_BRANCH"
-        static let KEY_RESTAURANT_NAME = "KEY_RESTAURANT_NAME"
-        static let KEY_PAYMENT_METHOD = "KEY_PAYMENT_METHOD"
-        static let KEY_ORDER_METHOD = "KEY_ORDER_METHOD"
+//        static let KEY_RESTAURANT_NAME = "KEY_RESTAURANT_NAME"
+//        static let KEY_PAYMENT_METHOD = "KEY_PAYMENT_METHOD"
+//        static let KEY_ORDER_METHOD = "KEY_ORDER_METHOD"
         static let KEY_DEV_MODE = "KEY_DEV_MODE"
         static let KEY_IDLE_TIMER = "KEY_IDLE_TIMER"
-        static let KEY_BANK_ACCOUNT = "KEY_BANK_ACCOUNT"
-        
-        
+//        static let KEY_BANK_ACCOUNT = "KEY_BANK_ACCOUNT"
+//        
+//        
         static let KEY_ENVIRONMENT_MODE = "KEY_ENVIRONMENT_MODE"
         static let KEY_SAVED_LOGIN_INFOR = "KEY_SAVED_LOGIN_INFOR"
     }
@@ -246,6 +247,13 @@ struct Constants {
             return ManageCacheObject.getUser() ?? Account()
         }
     }
+    
+    static var printers:[Printer]{
+        get{
+            return ManageCacheObject.getPrinters() 
+        }
+    }
+    
     
 
     static var REPORT_TYPE_DICTIONARY:[Int:String]{
