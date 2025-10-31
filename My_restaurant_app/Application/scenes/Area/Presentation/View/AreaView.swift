@@ -1,21 +1,22 @@
-//
-//  AreaView.swift
-//  DAIHY-ORDER
-//
-//  Created by Pham Khanh Huy on 03/09/2024.
-//
 
 import SwiftUI
 
 
+
+/*
+ 
+ Presentation           --->  Domain            --->  Data
+ (View, ViewModel)          (Use Cases)     (Repositories / API)
+ */
 struct AreaView: View {
     @Injected(\.colors) var color: ColorPalette
     @Injected(\.fonts) var font: Fonts
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var viewModel:AreaViewModel = AreaViewModel()
+    @StateObject var viewModel:AreaViewModel = AreaViewModel()
+    
     @State private var routeLink:(tag:String?,data:Table) = (tag:nil,data:Table())
     
-
+    
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible()),
@@ -40,11 +41,10 @@ struct AreaView: View {
             
             if let title = self.title{
                 Text(title)
-                    .foregroundColor(.white)
-                    .font(font.b_18)
-                    .frame(maxWidth: .infinity,maxHeight: 50)
-                    .background(color.orange_brand_900)
-                
+                .foregroundColor(.white)
+                .font(font.b_18)
+                .frame(maxWidth: .infinity,maxHeight: 50)
+                .background(color.orange_brand_900)
             }
             
             Divider()
@@ -242,7 +242,7 @@ struct AreaView: View {
                
                 if let order = viewModel.order{
                     Task{
-                        await viewModel.mergeTable(destination_table_id: order.table_id, target_table_ids: viewModel.table.filter{$0.is_selected}.map{$0.id ?? 0})
+                        await viewModel.mergeTable(destinationTableId: order.table_id, targetTableIds: viewModel.table.filter{$0.is_selected}.map{$0.id ?? 0})
                     }
                 }
                 

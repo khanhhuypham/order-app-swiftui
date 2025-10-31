@@ -28,7 +28,7 @@ struct PaymentView:View{
         
         VStack{
             
-            NavigationLink(destination: OrderLog(orderId: viewModel.order.id), tag: "OrderLog", selection: $linkTag) { EmptyView() }
+            NavigationLink(destination: OrderLogView(orderId: viewModel.order.id), tag: "OrderLog", selection: $linkTag) { EmptyView() }
             
             
             ScrollView{
