@@ -41,7 +41,6 @@ struct FoodView: View {
             if viewModel.APIParameter.category_type != .buffet_ticket && viewModel.APIParameter.is_out_stock == ALL && !viewModel.categories.isEmpty{
                 Divider()
                 categoryCollection
-               
             }
             
             Divider()
@@ -181,7 +180,7 @@ struct FoodView: View {
                 }else{
                     Task{
                         if viewModel.order.table_id == 0{
-                            await viewModel.createTakeOutOder()
+                            await viewModel.createTakeOutOrder()
                         }else{
                             await viewModel.createDineInOrder()
                         }

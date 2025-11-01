@@ -162,9 +162,7 @@ enum TableStatus:Int,Codable {
     case booking = 1
     case mergered = 3
     
-
-    
-    
+        
     var fgColor:Color {
         switch self {
             case .using:

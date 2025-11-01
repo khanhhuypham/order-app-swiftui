@@ -96,7 +96,6 @@ extension FoodView{
                 (id:enumOfOutStock,title:"Hết món",isSelected:false),
             ]
         }
-         
         
         btnArray = array
        
@@ -124,7 +123,6 @@ extension FoodView{
             case FOOD_CATEGORY.service.rawValue:
                 p.category_type = .service
             
-           
             case FOOD_CATEGORY.buffet_ticket.rawValue:
                 p.category_type = .buffet_ticket
             
@@ -145,7 +143,6 @@ extension FoodView{
         }
         viewModel.APIParameter = p
         Task{
-            await self.viewModel.reloadContent()
             await self.viewModel.getCategories()
         }
 

@@ -9,23 +9,25 @@
 import XCTest
 @testable import My_restaurant_app
 
-
 final class MockAreaRepository: AreaRepository {
-    var getAreasResult: Result<[Area], Error> = .success([])
-    var getTablesResult: Result<[Table], Error> = .success([])
-    var moveTableResult: Result<Void, Error> = .success(())
-    var mergeTableResult: Result<Void, Error> = .success(())
-
-    func getAreas(branchId: Int, status: Int) async -> Result<[Area], Error> {
-        getAreasResult
+    var getAreasResult: Result<APIResponse<[Area]>, Error>!
+    var getTablesResult: Result<APIResponse<[Table]>, Error>!
+    var moveTableResult: Result<PlainAPIResponse, Error>!
+    var mergeTableResult: Result<PlainAPIResponse, Error>!
+    
+    func getAreas(branchId: Int, status: Int) async -> Result<APIResponse<[Area]>, Error> {
+        return getAreasResult
     }
-    func getTables(branchId: Int, areaId: Int, status: String, excludeTableId: Int) async -> Result<[Table], Error> {
-        getTablesResult
+    
+    func getTables(branchId: Int, areaId: Int, status: String, exclude_table_id: Int) async -> Result<APIResponse<[Table]>, Error> {
+        return getTablesResult
     }
-    func moveTable(branchId: Int, from: Int, to: Int) async -> Result<Void, Error> {
-        moveTableResult
+    
+    func moveTable(branchId: Int, from: Int, to: Int) async -> Result<PlainAPIResponse, Error> {
+        return moveTableResult
     }
-    func mergeTable(branchId: Int, destinationTableId: Int, targetTableIds: [Int]) async -> Result<Void, Error> {
-        mergeTableResult
+    
+    func mergeTable(branchId: Int, destination_table_id: Int, target_table_ids: [Int]) async -> Result<PlainAPIResponse, Error> {
+        return mergeTableResult
     }
 }

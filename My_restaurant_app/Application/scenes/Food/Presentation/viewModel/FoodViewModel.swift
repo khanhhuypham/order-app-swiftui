@@ -1,6 +1,20 @@
 import SwiftUI
 import Combine
 
+struct FoodAPIParameter: Equatable {
+    var categoryId: Int = -1
+    var categoryType: FOOD_CATEGORY = .all
+    var isAllowEmployeeGift: Int = -1
+    var isSellByWeight: Int = ALL
+    var isOutStock: Int = -1
+    var isUsePoint: Int = 0
+    var keyWord: String = ""
+    var limit: Int = 50
+    var page: Int = 1
+    var totalRecord: Int = 0
+    var buffetTicketId: Int? = nil
+}
+
 @MainActor
 final class FoodViewModel: ObservableObject {
     private let useCase: FoodUseCaseProtocol
@@ -46,7 +60,7 @@ final class FoodViewModel: ObservableObject {
     @Published var presentSheet: (present: Bool, item: Food?) = (false, nil)
     
     // MARK: - Init
-    init(useCase: FoodUseCase = FoodUseCase(repository: FoodRepository())) {
+    init(useCase: FoodUseCaseProtocol = FoodUseCase(repository: FoodRepository())) {
         self.useCase = useCase
         
         setupBindings()
@@ -57,8 +71,11 @@ final class FoodViewModel: ObservableObject {
             .map { $0.key_word }
             .debounce(for: .milliseconds(300), scheduler: RunLoop.main)
             .removeDuplicates()
+            .dropFirst() // 👈 Ignore the initial emission
             .sink { [weak self] _ in
-                Task { await self?.reloadContent() }
+                Task {
+                    await self?.reloadContent()
+                }
             }
             .store(in: &cancellables)
         
@@ -82,21 +99,39 @@ final class FoodViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
+    //MARK: - PAGINATION
+    func loadMoreContent(currentItem item: Food){
+
+        if self.foods.endIndex < APIParameter.total_record {
+            APIParameter.page += 1
+            Task{
+                await getFoods()
+            }
+        }
+        
+    }
+    
+    
     // MARK: - Pagination
-    func reloadContent() async {
+    func reloadContent() async{
         APIParameter.page = 1
         foods.removeAll()
         buffets.removeAll()
-        
-        switch APIParameter.category_type {
-        case .buffet_ticket:
-//            await getBuffetTickets()
-            break
-            
-        default:
-            break
+        switch APIParameter.category_type{
+
+            case .buffet_ticket:
+                await getBuffetTickets()
+
+            default:
+                if let buffet = order.buffet, APIParameter.buffet_ticket_id != nil  {
+                    await self.getDetailOfBuffetTicket(buffet: buffet)
+                }else{
+                    await self.getFoods()
+                }
+
         }
     }
+    
     
     
     func getCategories() async {
@@ -107,9 +142,15 @@ final class FoodViewModel: ObservableObject {
         )
         
         switch result {
-            case .success(let data):
-                dLog(data)
-                break
+            case .success(var data):
+                var cate = Category()
+                cate.id = -1
+                cate.name = "Tất cả"
+                cate.isSelect = true
+                data.insert(cate, at: 0)
+                self.categories = data
+                self.APIParameter.category_id = cate.id
+                await self.reloadContent()
                 
             case .failure(let error):
                 dLog("Error: \(error)")
@@ -132,19 +173,34 @@ final class FoodViewModel: ObservableObject {
         )
         
         switch result {
-            case .success(let data):
-                break
+            case .success(var data):
+                self.APIParameter.total_record = data.total_record
                 
+                for (i,element) in data.list.enumerated(){
+                    if let selectedItem = self.selectedFoods.first(where: {$0.id == element.id}){
+                        data.list[i] = selectedItem
+                    }
+                }
+            
+                self.foods.append(contentsOf: data.list)
+                    
             case .failure(let error):
                 dLog("Error: \(error)")
         }
     }
-    
-    private func addFoods(items: [FoodRequest]) async {
+}
+
+
+
+
+extension FoodViewModel {
+     func addFoods(items: [FoodRequest]) async {
         let result = await useCase.addFoods(branchId: Constants.branch.id, orderId: order.id, items: items)
         
         switch result {
             case .success(let newOrder):
+                order.id = newOrder.order_id
+                self.navigateTag = 0
                 break
             
             case .failure(let error):
@@ -152,12 +208,12 @@ final class FoodViewModel: ObservableObject {
         }
     }
 
-    private func addGiftFoods(items: [FoodRequest]) async {
+     func addGiftFoods(items: [FoodRequest]) async {
         let result = await useCase.addGiftFoods(branchId: Constants.branch.id, orderId: order.id, items: items)
         
         switch result {
             case .success:
-               break
+                self.navigateTag = 0
             
             case .failure(let error):
                 dLog("Error: \(error)")
@@ -170,12 +226,16 @@ final class FoodViewModel: ObservableObject {
         
         switch result {
             case .success(let table):
-                break
+                order = OrderDetail(table: table)
+                processToAddFood()
+                self.navigateTag = 1
 
             case .failure(let error):
                 dLog("Error: \(error)")
         }
     }
+
+    
 
     func createTakeOutOrder() async {
         let result = await useCase.createTakeOutOrder(
@@ -192,5 +252,69 @@ final class FoodViewModel: ObservableObject {
                 dLog("Error: \(error)")
         }
     }
-    
 }
+
+
+extension FoodViewModel {
+    func getBuffetTickets() async{
+        
+        let result:Result<BuffetResponse, Error> = try await NetworkManager.callAPIResultAsync(netWorkManger: .getBuffetTickets(
+            brand_id: Constants.brand.id,
+            status: ACTIVE,
+            key_search:APIParameter.key_word,
+            limit: APIParameter.limit,
+            page: APIParameter.page
+        ))
+        
+        switch result {
+
+            case .success(var data):
+                for (i,buffet) in data.list.enumerated() {
+                    data.list[i].updateTickets()
+                }
+                
+                if let selectedItem = self.selectedBuffet,
+                   let p = data.list.firstIndex(where: {$0.id == selectedItem.id}){
+                    data.list[p] = selectedItem
+                }
+                
+                self.buffets = data.list
+                
+            case .failure(let error):
+               dLog("Error: \(error)")
+        }
+    }
+    
+    func getDetailOfBuffetTicket(buffet:Buffet) async {
+        
+        let result:Result<FoodResponse, Error> = try await NetworkManager.callAPIResultAsync(netWorkManger: .getDetailOfBuffetTicket(
+            branch_id: Constants.branch.id,
+            category_id: APIParameter.category_id,
+            buffet_ticket_id: buffet.buffet_ticket_id ?? 0,
+            key_search: APIParameter.key_word,
+            limit: APIParameter.limit,
+            page: APIParameter.page
+        ))
+
+        switch result {
+
+            case .success(var data):
+            
+              self.APIParameter.total_record = data.total_record
+              
+            
+              for (i,element) in data.list.enumerated(){
+                  if let selectedItem = self.selectedFoods.first(where: {$0.id == element.id}){
+                      data.list[i] = selectedItem
+                  }
+              }
+              self.foods.append(contentsOf: data.list)
+                
+            case .failure(let error):
+               dLog("Error: \(error)")
+        }
+    }
+    
+   
+}
+
