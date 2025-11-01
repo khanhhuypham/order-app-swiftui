@@ -156,21 +156,22 @@ struct BuffetListCell: View {
     
 }
 
-#Preview {
-
-    if let data = Buffet.getDummyData() {
-        return ZStack{
-            
-            Rectangle()
-            
-            BuffetListCell(viewModel:FoodViewModel(), item: .constant(data))
-                .frame(maxHeight:100).background(.white)
-            
-        }
-    }else{
-        return Text("Error of parsing JSON data")
-    }
-    
-   
-
-}
+//#Preview {
+//
+//    if let data = Buffet.getDummyData() {
+//        
+//        return ZStack{
+//            
+//            Rectangle()
+//            
+//            BuffetListCell(viewModel:FoodViewModel(), item: .constant(data))
+//                .frame(maxHeight:100).background(.white)
+//            
+//        }
+//    }else{
+//        return Text("Error of parsing JSON data")
+//    }
+//    
+//   
+//
+//}

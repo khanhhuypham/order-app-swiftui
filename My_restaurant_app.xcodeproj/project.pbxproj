@@ -200,9 +200,7 @@
 		94589A9C2E9F7F12008868F9 /* FoodList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A8F2E9F7F12008868F9 /* FoodList.swift */; };
 		94589A9E2E9F7F12008868F9 /* ChildrenOfFoodListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A892E9F7F12008868F9 /* ChildrenOfFoodListCell.swift */; };
 		94589A9F2E9F7F12008868F9 /* FoodView + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A822E9F7F12008868F9 /* FoodView + extension.swift */; };
-		94589AA02E9F7F12008868F9 /* FoodViewModel + extension + buffet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A952E9F7F12008868F9 /* FoodViewModel + extension + buffet.swift */; };
 		94589AA12E9F7F12008868F9 /* FoodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A932E9F7F12008868F9 /* FoodViewModel.swift */; };
-		94589AA22E9F7F12008868F9 /* FoodViewModel + extension + AddFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A942E9F7F12008868F9 /* FoodViewModel + extension + AddFood.swift */; };
 		94589AA32E9F7F12008868F9 /* FoodView + extension + popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A832E9F7F12008868F9 /* FoodView + extension + popup.swift */; };
 		94589AA52E9F7F12008868F9 /* ConfirmToMoveTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A7B2E9F7F12008868F9 /* ConfirmToMoveTable.swift */; };
 		94589AA62E9F7F12008868F9 /* BuffetListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A872E9F7F12008868F9 /* BuffetListCell.swift */; };
@@ -236,6 +234,8 @@
 		9491DA302E9F79D800D0A0F1 /* ReportOfSale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9491DA1F2E9F79D800D0A0F1 /* ReportOfSale.swift */; };
 		94925C2A2EAF7179008BBCE8 /* OrderListViewModel + extension + api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94925C292EAF7179008BBCE8 /* OrderListViewModel + extension + api.swift */; };
 		94B677512EB49B8F001F8691 /* AreaUseCasesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B677502EB49B8F001F8691 /* AreaUseCasesTests.swift */; };
+		94B677622EB49EE7001F8691 /* FoodUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B677612EB49EE7001F8691 /* FoodUsecase.swift */; };
+		94B677642EB49F19001F8691 /* FoodRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B677632EB49F19001F8691 /* FoodRepository.swift */; };
 		94C76FEA2EA1EC4B0051B19C /* MediaUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C76FE92EA1EC4B0051B19C /* MediaUtils.swift */; };
 		94DC1BA12EA089E700EE549C /* MoveOrderItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DC1BA02EA089E700EE549C /* MoveOrderItems.swift */; };
 		94DC1BA32EA08CBF00EE549C /* MoveOrderItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DC1BA22EA08CB600EE549C /* MoveOrderItemsViewModel.swift */; };
@@ -259,8 +259,6 @@
 		94EB72492EB1C0AD002E9155 /* TSCPrinterTests .swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB72482EB1C0AD002E9155 /* TSCPrinterTests .swift */; };
 		94EB724D2EB1C10D002E9155 /* MockTSCPrinterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB724C2EB1C10D002E9155 /* MockTSCPrinterService.swift */; };
 		94EB724F2EB1C165002E9155 /* MockPOSPrinterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB724E2EB1C165002E9155 /* MockPOSPrinterService.swift */; };
-		94EB72562EB1CD1D002E9155 /* FoodServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB72552EB1CD1D002E9155 /* FoodServiceProtocol.swift */; };
-		94EB72582EB1CE27002E9155 /* FoodService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB72572EB1CE27002E9155 /* FoodService.swift */; };
 		94EB72F22EB2024A002E9155 /* OrderDetailViewModel + extension + print.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB72F12EB2024A002E9155 /* OrderDetailViewModel + extension + print.swift */; };
 		94EB72F42EB207D2002E9155 /* OrderDetailViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB72F32EB207D2002E9155 /* OrderDetailViewModelTest.swift */; };
 		94EB72F92EB214B9002E9155 /* LocationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB72F82EB214B9002E9155 /* LocationsView.swift */; };
@@ -483,8 +481,6 @@
 		94589A8F2E9F7F12008868F9 /* FoodList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodList.swift; sourceTree = "<group>"; };
 		94589A912E9F7F12008868F9 /* FoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodView.swift; sourceTree = "<group>"; };
 		94589A932E9F7F12008868F9 /* FoodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewModel.swift; sourceTree = "<group>"; };
-		94589A942E9F7F12008868F9 /* FoodViewModel + extension + AddFood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoodViewModel + extension + AddFood.swift"; sourceTree = "<group>"; };
-		94589A952E9F7F12008868F9 /* FoodViewModel + extension + buffet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoodViewModel + extension + buffet.swift"; sourceTree = "<group>"; };
 		94589AB32E9F7F54008868F9 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		94589AB42E9F7F54008868F9 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		9463C10A2EAF4B3A005E4A1B /* MockOrderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOrderService.swift; sourceTree = "<group>"; };
@@ -514,6 +510,8 @@
 		9491DA242E9F79D800D0A0F1 /* GeneralReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralReportViewModel.swift; sourceTree = "<group>"; };
 		94925C292EAF7179008BBCE8 /* OrderListViewModel + extension + api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderListViewModel + extension + api.swift"; sourceTree = "<group>"; };
 		94B677502EB49B8F001F8691 /* AreaUseCasesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaUseCasesTests.swift; sourceTree = "<group>"; };
+		94B677612EB49EE7001F8691 /* FoodUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodUsecase.swift; sourceTree = "<group>"; };
+		94B677632EB49F19001F8691 /* FoodRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodRepository.swift; sourceTree = "<group>"; };
 		94C76FE92EA1EC4B0051B19C /* MediaUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaUtils.swift; sourceTree = "<group>"; };
 		94DC1BA02EA089E700EE549C /* MoveOrderItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveOrderItems.swift; sourceTree = "<group>"; };
 		94DC1BA22EA08CB600EE549C /* MoveOrderItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveOrderItemsViewModel.swift; sourceTree = "<group>"; };
@@ -537,8 +535,6 @@
 		94EB72482EB1C0AD002E9155 /* TSCPrinterTests .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TSCPrinterTests .swift"; sourceTree = "<group>"; };
 		94EB724C2EB1C10D002E9155 /* MockTSCPrinterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTSCPrinterService.swift; sourceTree = "<group>"; };
 		94EB724E2EB1C165002E9155 /* MockPOSPrinterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPOSPrinterService.swift; sourceTree = "<group>"; };
-		94EB72552EB1CD1D002E9155 /* FoodServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodServiceProtocol.swift; sourceTree = "<group>"; };
-		94EB72572EB1CE27002E9155 /* FoodService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodService.swift; sourceTree = "<group>"; };
 		94EB72F12EB2024A002E9155 /* OrderDetailViewModel + extension + print.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderDetailViewModel + extension + print.swift"; sourceTree = "<group>"; };
 		94EB72F32EB207D2002E9155 /* OrderDetailViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailViewModelTest.swift; sourceTree = "<group>"; };
 		94EB72F82EB214B9002E9155 /* LocationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsView.swift; sourceTree = "<group>"; };
@@ -1691,8 +1687,6 @@
 			isa = PBXGroup;
 			children = (
 				94589A932E9F7F12008868F9 /* FoodViewModel.swift */,
-				94589A942E9F7F12008868F9 /* FoodViewModel + extension + AddFood.swift */,
-				94589A952E9F7F12008868F9 /* FoodViewModel + extension + buffet.swift */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -1700,10 +1694,9 @@
 		94589A972E9F7F12008868F9 /* Food */ = {
 			isa = PBXGroup;
 			children = (
-				94EB72522EB1CCF3002E9155 /* service */,
-				94589A842E9F7F12008868F9 /* extension */,
-				94589A962E9F7F12008868F9 /* viewModel */,
-				94589A922E9F7F12008868F9 /* view */,
+				94B677602EB49EC2001F8691 /* Presentation */,
+				94B6775F2EB49EBD001F8691 /* Data */,
+				94B6775E2EB49EB8001F8691 /* Domain */,
 			);
 			path = Food;
 			sourceTree = "<group>";
@@ -1899,6 +1892,32 @@
 			path = viewModel;
 			sourceTree = "<group>";
 		};
+		94B6775E2EB49EB8001F8691 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				94B677612EB49EE7001F8691 /* FoodUsecase.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		94B6775F2EB49EBD001F8691 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				94B677632EB49F19001F8691 /* FoodRepository.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		94B677602EB49EC2001F8691 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				94589A842E9F7F12008868F9 /* extension */,
+				94589A962E9F7F12008868F9 /* viewModel */,
+				94589A922E9F7F12008868F9 /* view */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
 		94DC1B9F2EA089C800EE549C /* MoveOrderItem */ = {
 			isa = PBXGroup;
 			children = (
@@ -2037,31 +2056,6 @@
 			children = (
 			);
 			path = PrintFormat;
-			sourceTree = "<group>";
-		};
-		94EB72522EB1CCF3002E9155 /* service */ = {
-			isa = PBXGroup;
-			children = (
-				94EB72542EB1CD12002E9155 /* protocols */,
-				94EB72532EB1CD0F002E9155 /* impl */,
-			);
-			path = service;
-			sourceTree = "<group>";
-		};
-		94EB72532EB1CD0F002E9155 /* impl */ = {
-			isa = PBXGroup;
-			children = (
-				94EB72572EB1CE27002E9155 /* FoodService.swift */,
-			);
-			path = impl;
-			sourceTree = "<group>";
-		};
-		94EB72542EB1CD12002E9155 /* protocols */ = {
-			isa = PBXGroup;
-			children = (
-				94EB72552EB1CD1D002E9155 /* FoodServiceProtocol.swift */,
-			);
-			path = protocols;
 			sourceTree = "<group>";
 		};
 		94EB725E2EB1D7D7002E9155 /* Food */ = {
@@ -2414,7 +2408,7 @@
 				94277AC42CF01E7B00B2F2E6 /* Category.swift in Sources */,
 				945899932E9F7D66008868F9 /* QuicklyCreateTableView.swift in Sources */,
 				945899942E9F7D66008868F9 /* LineChart.swift in Sources */,
-				94EB72562EB1CD1D002E9155 /* FoodServiceProtocol.swift in Sources */,
+				94B677622EB49EE7001F8691 /* FoodUsecase.swift in Sources */,
 				945899952E9F7D66008868F9 /* AreaCardView.swift in Sources */,
 				945899962E9F7D66008868F9 /* BranchOptionViewModel.swift in Sources */,
 				945899972E9F7D66008868F9 /* MailView.swift in Sources */,
@@ -2440,6 +2434,7 @@
 				945899A82E9F7D66008868F9 /* Confirm_Cancel_Btn_Group.swift in Sources */,
 				945899A92E9F7D66008868F9 /* CreateAreaView.swift in Sources */,
 				945899AA2E9F7D66008868F9 /* CreateTableView.swift in Sources */,
+				94B677642EB49F19001F8691 /* FoodRepository.swift in Sources */,
 				945899AB2E9F7D66008868F9 /* MailHomeViewModel.swift in Sources */,
 				945899AC2E9F7D66008868F9 /* NoteView.swift in Sources */,
 				945899AD2E9F7D66008868F9 /* EnterTextView.swift in Sources */,
@@ -2482,9 +2477,7 @@
 				94DC1BA32EA08CBF00EE549C /* MoveOrderItemsViewModel.swift in Sources */,
 				94589A9E2E9F7F12008868F9 /* ChildrenOfFoodListCell.swift in Sources */,
 				94589A9F2E9F7F12008868F9 /* FoodView + extension.swift in Sources */,
-				94589AA02E9F7F12008868F9 /* FoodViewModel + extension + buffet.swift in Sources */,
 				94589AA12E9F7F12008868F9 /* FoodViewModel.swift in Sources */,
-				94589AA22E9F7F12008868F9 /* FoodViewModel + extension + AddFood.swift in Sources */,
 				94EB72252EB1B30A002E9155 /* QueuedItem.swift in Sources */,
 				94589AA32E9F7F12008868F9 /* FoodView + extension + popup.swift in Sources */,
 				94589AA52E9F7F12008868F9 /* ConfirmToMoveTable.swift in Sources */,
@@ -2512,7 +2505,6 @@
 				94DC1BA12EA089E700EE549C /* MoveOrderItems.swift in Sources */,
 				94589A172E9F7DD6008868F9 /* InternalSettingViewModel.swift in Sources */,
 				948CD7A62EA3372000F9803B /* Vat.swift in Sources */,
-				94EB72582EB1CE27002E9155 /* FoodService.swift in Sources */,
 				94589A182E9F7DD6008868F9 /* MenuManagementViewModel.swift in Sources */,
 				94589A192E9F7DD6008868F9 /* InvoiceManagementViewModel.swift in Sources */,
 				94589A1A2E9F7DD6008868F9 /* MenuManagement.swift in Sources */,

@@ -229,21 +229,21 @@ struct FoodListCell: View {
 
 }
 
-#Preview {
-
-    if let data = Food.getDummyData() {
-        return ZStack{
-            
-            Rectangle()
-            
-            FoodListCell(viewModel:FoodViewModel(),item: .constant(data))
-                .frame(maxHeight:100).background(.white)
-            
-        }
-    }else{
-        return Text("Error of parsing JSON data")
-    }
-    
-   
-
-}
+//#Preview {
+//
+//    if let data = Food.getDummyData() {
+//        return ZStack{
+//            
+//            Rectangle()
+//            
+//            FoodListCell(viewModel:FoodViewModel(),item: .constant(data))
+//                .frame(maxHeight:100).background(.white)
+//            
+//        }
+//    }else{
+//        return Text("Error of parsing JSON data")
+//    }
+//    
+//   
+//
+//}

@@ -58,7 +58,7 @@ class AreaViewModel: ObservableObject {
                 if orderAction == nil {
                      self.table = data
                  } else {
-                     self.table = data.filter { $0.status != .booking && $0.status != .mergered && $0.order_status != 1 && $0.order_status != 4 }
+                     self.table = data.filter({$0.status != .booking && $0.status != .mergered && $0.order_status != 1 && $0.order_status != 4})
                  }
             
             case .failure(let err):
