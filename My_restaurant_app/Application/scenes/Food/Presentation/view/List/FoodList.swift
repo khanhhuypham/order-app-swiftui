@@ -11,23 +11,22 @@ struct FoodList: View {
 
     @ObservedObject var viewModel:FoodViewModel
     @State private var isPresented = false
-    
+
     var body: some View {
         
         
         
-        if (viewModel.APIParameter.category_type == .buffet_ticket && viewModel.buffets.isEmpty) ||  
-            (viewModel.APIParameter.category_type != .buffet_ticket && viewModel.foods.isEmpty)
+        if (viewModel.APIParameter.categoryType == .buffet_ticket && viewModel.buffets.isEmpty) ||
+            (viewModel.APIParameter.categoryType != .buffet_ticket && viewModel.foods.isEmpty)
         {
             EmptyData()
-        }else{
+            
+        }
+        else{
             List {
-
-                viewModel.APIParameter.category_type == .buffet_ticket
+                viewModel.APIParameter.categoryType == .buffet_ticket
                 ? AnyView(buffetSection)
                 : AnyView(foodSection)
-
-     
             }
             .background(.white)
             .listStyle(.plain)
@@ -39,6 +38,7 @@ struct FoodList: View {
         Section {
             ForEach($viewModel.foods) { item in
                 FoodListCell(viewModel: viewModel, item: item)
+                    .redacted(reason: .placeholder)
                     .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                         let disable = (item.wrappedValue.category_type != .service && item.wrappedValue.restaurant_kitchen_place_id == 0) || (item.wrappedValue.is_out_stock == ACTIVE)
                         
@@ -71,7 +71,7 @@ struct FoodList: View {
     
     private var buffetSection:some View{
         
-        Section(header: Text(viewModel.APIParameter.category_type.description)) {
+        Section(header: Text(viewModel.APIParameter.categoryType.description)) {
             ForEach($viewModel.buffets) { item in
              
                 BuffetListCell(viewModel:viewModel,item: item)

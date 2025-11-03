@@ -33,12 +33,12 @@ struct FoodView: View {
                 .fill(Color(.systemGray6))
                 .frame(maxHeight: 8)
             
-            HeaderView(searchText:$viewModel.APIParameter.key_word,btnArray: $btnArray){id in
+            HeaderView(searchText:$viewModel.APIParameter.keyWord,btnArray: $btnArray){id in
                 handleChooseCategory(id: id)
             }
             
         
-            if viewModel.APIParameter.category_type != .buffet_ticket && viewModel.APIParameter.is_out_stock == ALL && !viewModel.categories.isEmpty{
+            if viewModel.APIParameter.categoryType != .buffet_ticket && viewModel.APIParameter.isOutStock == ALL && !viewModel.categories.isEmpty{
                 Divider()
                 categoryCollection
             }
@@ -48,8 +48,8 @@ struct FoodView: View {
             
             FoodList(viewModel: viewModel)
             
-            if (viewModel.APIParameter.category_type == .buffet_ticket && !viewModel.buffets.filter{$0.isSelect}.isEmpty) ||
-                (viewModel.APIParameter.category_type != .buffet_ticket && !viewModel.foods.filter{$0.isSelect}.isEmpty)
+            if (viewModel.APIParameter.categoryType == .buffet_ticket && !viewModel.buffets.filter{$0.isSelect}.isEmpty) ||
+                (viewModel.APIParameter.categoryType != .buffet_ticket && !viewModel.foods.filter{$0.isSelect}.isEmpty)
             {
                 
                 bottomBtn
@@ -133,7 +133,7 @@ struct FoodView: View {
                             viewModel.categories[i].isSelect = cate.id == category.id ? true : false
                         }
     
-                        viewModel.APIParameter.category_id = cate.id
+                        viewModel.APIParameter.categoryId = cate.id
                         Task{
                             await viewModel.reloadContent()
                         }

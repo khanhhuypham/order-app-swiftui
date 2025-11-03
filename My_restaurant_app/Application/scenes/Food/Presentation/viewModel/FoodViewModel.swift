@@ -30,32 +30,8 @@ final class FoodViewModel: ObservableObject {
     var selectedFoods: [Food] = []
     var selectedBuffet: Buffet? = nil
     
-    @Published var APIParameter: (
-        category_id: Int,
-        category_type: FOOD_CATEGORY,
-        is_allow_employee_gift: Int,
-        is_sell_by_weight: Int,
-        is_out_stock: Int,
-        is_use_point: Int,
-        key_word: String,
-        limit: Int,
-        page: Int,
-        total_record: Int,
-        buffet_ticket_id: Int?
-    ) = (
-        category_id: -1,
-        category_type: .all,
-        is_allow_employee_gift: -1,
-        is_sell_by_weight: ALL,
-        is_out_stock: -1,
-        is_use_point: 0,
-        key_word: "",
-        limit: 50,
-        page: 1,
-        total_record: 0,
-        buffet_ticket_id: nil
-    )
-    
+    @Published var APIParameter: FoodAPIParameter = FoodAPIParameter()
+    @Published var isLoading = false
     @Published var presentFullScreen: (show: Bool, popupType: PopupType, item: Food?) = (false, .cancel, nil)
     @Published var presentSheet: (present: Bool, item: Food?) = (false, nil)
     
@@ -68,7 +44,7 @@ final class FoodViewModel: ObservableObject {
     
     private func setupBindings() {
         $APIParameter
-            .map { $0.key_word }
+            .map { $0.keyWord }
             .debounce(for: .milliseconds(300), scheduler: RunLoop.main)
             .removeDuplicates()
             .dropFirst() // 👈 Ignore the initial emission
@@ -102,7 +78,7 @@ final class FoodViewModel: ObservableObject {
     //MARK: - PAGINATION
     func loadMoreContent(currentItem item: Food){
 
-        if self.foods.endIndex < APIParameter.total_record {
+        if self.foods.endIndex < APIParameter.totalRecord {
             APIParameter.page += 1
             Task{
                 await getFoods()
@@ -117,13 +93,13 @@ final class FoodViewModel: ObservableObject {
         APIParameter.page = 1
         foods.removeAll()
         buffets.removeAll()
-        switch APIParameter.category_type{
+        switch APIParameter.categoryType{
 
             case .buffet_ticket:
                 await getBuffetTickets()
 
             default:
-                if let buffet = order.buffet, APIParameter.buffet_ticket_id != nil  {
+                if let buffet = order.buffet, APIParameter.buffetTicketId != nil  {
                     await self.getDetailOfBuffetTicket(buffet: buffet)
                 }else{
                     await self.getFoods()
@@ -138,7 +114,7 @@ final class FoodViewModel: ObservableObject {
         let result = await useCase.getCategories(
             branchId: Constants.brand.id,
             status: ACTIVE,
-            categoryType: APIParameter.category_type == .all ? "" : APIParameter.category_type.rawValue.description
+            categoryType: APIParameter.categoryType == .all ? "" : APIParameter.categoryType.rawValue.description
         )
         
         switch result {
@@ -149,7 +125,7 @@ final class FoodViewModel: ObservableObject {
                 cate.isSelect = true
                 data.insert(cate, at: 0)
                 self.categories = data
-                self.APIParameter.category_id = cate.id
+                self.APIParameter.categoryId = cate.id
                 await self.reloadContent()
                 
             case .failure(let error):
@@ -159,22 +135,25 @@ final class FoodViewModel: ObservableObject {
     
     
     func getFoods() async {
+        isLoading = true
+        defer { isLoading = false }
+    
         let result = await useCase.getFoods(
             branchId: Constants.branch.id,
             areaId: PermissionUtils.GPBH_1 ? -1 : order.area_id,
-            categoryId: APIParameter.category_id,
-            categoryType: APIParameter.category_type.rawValue,
-            is_allow_employee_gift: APIParameter.is_allow_employee_gift,
-            is_sell_by_weight: APIParameter.is_sell_by_weight,
-            is_out_stock: APIParameter.is_out_stock,
-            key_word: APIParameter.key_word,
+            categoryId: APIParameter.categoryId,
+            categoryType: APIParameter.categoryType.rawValue,
+            is_allow_employee_gift: APIParameter.isAllowEmployeeGift,
+            is_sell_by_weight: APIParameter.isSellByWeight,
+            is_out_stock: APIParameter.isOutStock,
+            key_word: APIParameter.keyWord,
             limit: APIParameter.limit,
             page: APIParameter.page
         )
         
         switch result {
             case .success(var data):
-                self.APIParameter.total_record = data.total_record
+                self.APIParameter.totalRecord = data.total_record
                 
                 for (i,element) in data.list.enumerated(){
                     if let selectedItem = self.selectedFoods.first(where: {$0.id == element.id}){
@@ -261,7 +240,7 @@ extension FoodViewModel {
         let result:Result<BuffetResponse, Error> = try await NetworkManager.callAPIResultAsync(netWorkManger: .getBuffetTickets(
             brand_id: Constants.brand.id,
             status: ACTIVE,
-            key_search:APIParameter.key_word,
+            key_search:APIParameter.keyWord,
             limit: APIParameter.limit,
             page: APIParameter.page
         ))
@@ -289,9 +268,9 @@ extension FoodViewModel {
         
         let result:Result<FoodResponse, Error> = try await NetworkManager.callAPIResultAsync(netWorkManger: .getDetailOfBuffetTicket(
             branch_id: Constants.branch.id,
-            category_id: APIParameter.category_id,
+            category_id: APIParameter.categoryId,
             buffet_ticket_id: buffet.buffet_ticket_id ?? 0,
-            key_search: APIParameter.key_word,
+            key_search: APIParameter.keyWord,
             limit: APIParameter.limit,
             page: APIParameter.page
         ))
@@ -300,7 +279,7 @@ extension FoodViewModel {
 
             case .success(var data):
             
-              self.APIParameter.total_record = data.total_record
+              self.APIParameter.totalRecord = data.total_record
               
             
               for (i,element) in data.list.enumerated(){

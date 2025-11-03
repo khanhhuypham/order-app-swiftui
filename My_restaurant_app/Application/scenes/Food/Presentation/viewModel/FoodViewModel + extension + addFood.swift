@@ -43,7 +43,7 @@ extension FoodViewModel {
             }
             
             Task{
-                await APIParameter.is_allow_employee_gift == ADD_GIFT ? addGiftFoods(items:items) : addFoods(items:items)
+                await APIParameter.isAllowEmployeeGift == ADD_GIFT ? addGiftFoods(items:items) : addFoods(items:items)
             }
         }
         

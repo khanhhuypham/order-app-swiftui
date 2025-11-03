@@ -60,7 +60,7 @@ extension FoodView{
                 ]
             
             }
-            if viewModel.APIParameter.is_allow_employee_gift == ACTIVE{
+            if viewModel.APIParameter.isAllowEmployeeGift == ACTIVE{
                
                 array = [
                     (id:FOOD_CATEGORY.food.rawValue,title:"Món ăn",isSelected:false),
@@ -104,40 +104,40 @@ extension FoodView{
     
     func handleChooseCategory(id:Int){
         var p = viewModel.APIParameter
-        p.is_out_stock = ALL
-        p.buffet_ticket_id = nil
-        p.key_word = ""
+        p.isOutStock = ALL
+        p.buffetTicketId = nil
+        p.keyWord = ""
         switch id {
             case FOOD_CATEGORY.all.rawValue:
-                p.category_type = .all
+                p.categoryType = .all
             
             case FOOD_CATEGORY.food.rawValue:
-                p.category_type = .food
+                p.categoryType = .food
             
             case FOOD_CATEGORY.drink.rawValue:
-                p.category_type = .drink
+                p.categoryType = .drink
             
             case FOOD_CATEGORY.other.rawValue:
-                p.category_type = .other
+                p.categoryType = .other
             
             case FOOD_CATEGORY.service.rawValue:
-                p.category_type = .service
+                p.categoryType = .service
             
             case FOOD_CATEGORY.buffet_ticket.rawValue:
-                p.category_type = .buffet_ticket
+                p.categoryType = .buffet_ticket
             
             case viewModel.order.buffet?.id:
                 if let buffet = viewModel.order.buffet {
-                    p.category_type = .food
-                    p.buffet_ticket_id = buffet.buffet_ticket_id
+                    p.categoryType = .food
+                    p.buffetTicketId = buffet.buffet_ticket_id
                     
                 }
             
                 break
             
             default:
-                p.category_type = .all
-                p.is_out_stock = ACTIVE
+                p.categoryType = .all
+                p.isOutStock = ACTIVE
           
             
         }
