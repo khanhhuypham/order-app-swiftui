@@ -20,7 +20,6 @@ struct ConfirmToMoveTable: View {
     @State private var peformConpletion = false
     var completion:(() -> Void)? = nil
     
-    
     var body: some View {
         
         VStack(spacing:0) {
