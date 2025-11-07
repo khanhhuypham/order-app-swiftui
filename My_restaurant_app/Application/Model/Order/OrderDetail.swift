@@ -162,7 +162,12 @@ struct OrderDetail: Codable {
 
 struct NewOrder:Codable {
     var order_id = 0
-    init() {}
+    
+    init(order_id:Int) {
+        self.order_id = order_id
+    }
+    
+    
     enum CodingKeys: String, CodingKey {
         case order_id
      

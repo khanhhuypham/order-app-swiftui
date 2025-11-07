@@ -205,7 +205,7 @@ struct OrderListView<Model>: View where Model: OrderListViewModel{
            let action = viewModel.presentSheet.action {
             switch action {
             case .orderHistory:
-                OrderLog(orderId: order.id)
+                OrderLogView(orderId: order.id)
 
             case .moveTable:
                 AreaView(

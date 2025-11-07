@@ -20,7 +20,7 @@ struct ShimmerSwiftUIView: View {
 }
 
 public struct Shimmer: ViewModifier {
-    
+
     @State var isInitialState: Bool = true
     
     public func body(content: Content) -> some View {
@@ -36,6 +36,44 @@ public struct Shimmer: ViewModifier {
             .onAppear() {
                 isInitialState = false
             }
+    }
+}
+
+
+//struct Shimmer: ViewModifier {
+//    @State private var phase: CGFloat = 0
+//    
+//    func body(content: Content) -> some View {
+//        content
+//            .overlay(
+//                LinearGradient(
+//                    gradient: Gradient(colors: [.clear, Color.white.opacity(0.4), .clear]),
+//                    startPoint: .topLeading,
+//                    endPoint: .bottomTrailing
+//                )
+//                .rotationEffect(.degrees(30))
+//                .offset(x: phase * 200)
+//                .blendMode(.overlay)
+//            )
+//            .mask(content)
+//            .onAppear {
+//                withAnimation(.linear(duration: 1.5).repeatForever(autoreverses: false)) {
+//                    phase = 1
+//                }
+//            }
+//    }
+//}
+
+struct ShimmerListPlaceholder: View {
+    let rows: Int
+    var body: some View {
+        List(0..<rows, id: \.self) { _ in
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.gray.opacity(0.5))
+                .frame(height: 60)
+                .modifier(Shimmer())
+        }
+        .listStyle(.plain)
     }
 }
 
