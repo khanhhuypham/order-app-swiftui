@@ -10,16 +10,9 @@ import AlertToast
 import Combine
 class ToastUtils {
 
-//    @Published var alertToast = AlertToast(type: .regular)
-//    {
-//        didSet{
-//            showAlert.toggle()
-//        }
-//    }
     
     var loadingToast = AlertToast(type: .loading)
     
-//    @Published var showAlert:Bool = false
     var subject = PassthroughSubject<Bool, Never>()
     var cancellables = Set<AnyCancellable>()
     

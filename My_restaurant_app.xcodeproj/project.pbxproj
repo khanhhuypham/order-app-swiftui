@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -263,7 +263,6 @@
 		94EB72F22EB2024A002E9155 /* OrderDetailViewModel + extension + print.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB72F12EB2024A002E9155 /* OrderDetailViewModel + extension + print.swift */; };
 		94EB72F42EB207D2002E9155 /* OrderDetailViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB72F32EB207D2002E9155 /* OrderDetailViewModelTest.swift */; };
 		94EB72F92EB214B9002E9155 /* LocationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB72F82EB214B9002E9155 /* LocationsView.swift */; };
-		94EB73552EB21A57002E9155 /* DefaultNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB73542EB21A57002E9155 /* DefaultNetworkClient.swift */; };
 		94F2CAFD2EA787E1001FD6BB /* OrderListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F2CAFB2EA787E1001FD6BB /* OrderListViewModelTest.swift */; };
 		D2BC75C93CAA0663141B99E8 /* Pods_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66210620D987AFCF12F9F41B /* Pods_UnitTests.framework */; };
 /* End PBXBuildFile section */
@@ -540,7 +539,6 @@
 		94EB72F12EB2024A002E9155 /* OrderDetailViewModel + extension + print.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderDetailViewModel + extension + print.swift"; sourceTree = "<group>"; };
 		94EB72F32EB207D2002E9155 /* OrderDetailViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailViewModelTest.swift; sourceTree = "<group>"; };
 		94EB72F82EB214B9002E9155 /* LocationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsView.swift; sourceTree = "<group>"; };
-		94EB73542EB21A57002E9155 /* DefaultNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNetworkClient.swift; sourceTree = "<group>"; };
 		94F2CAFB2EA787E1001FD6BB /* OrderListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListViewModelTest.swift; sourceTree = "<group>"; };
 		94F2CB042EA78F1D001FD6BB /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		94F2CB052EA78F51001FD6BB /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
@@ -553,17 +551,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		9463C1072EAF3E6A005E4A1B /* service */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
-			explicitFileTypes = {
-			};
-			explicitFolders = (
-			);
-			path = service;
-			sourceTree = "<group>";
-		};
+		9463C1072EAF3E6A005E4A1B /* service */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = service; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -644,7 +632,6 @@
 		942779612CF01E7B00B2F2E6 /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
-				94EB73532EB21A52002E9155 /* mock */,
 				942779642CF01E7B00B2F2E6 /* NetWorkManager.swift */,
 				942779682CF01E7B00B2F2E6 /* HeaderConnectionParameter.swift */,
 				9491DA0D2E9F79B300D0A0F1 /* BaseURLConnectionManager.swift */,
@@ -2096,14 +2083,6 @@
 			path = Shimmer;
 			sourceTree = "<group>";
 		};
-		94EB73532EB21A52002E9155 /* mock */ = {
-			isa = PBXGroup;
-			children = (
-				94EB73542EB21A57002E9155 /* DefaultNetworkClient.swift */,
-			);
-			path = mock;
-			sourceTree = "<group>";
-		};
 		94F2CAFC2EA787E1001FD6BB /* OrderList */ = {
 			isa = PBXGroup;
 			children = (
@@ -2270,9 +2249,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-My_restaurant_app/Pods-My_restaurant_app-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-My_restaurant_app/Pods-My_restaurant_app-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2493,7 +2476,6 @@
 				94589AA62E9F7F12008868F9 /* BuffetListCell.swift in Sources */,
 				94589AA72E9F7F12008868F9 /* FoodView.swift in Sources */,
 				94277AB72CF01E7B00B2F2E6 /* OrderNeedToPrint.swift in Sources */,
-				94EB73552EB21A57002E9155 /* DefaultNetworkClient.swift in Sources */,
 				94277ABF2CF01E7B00B2F2E6 /* Area.swift in Sources */,
 				94277AC22CF01E7B00B2F2E6 /* Payment.swift in Sources */,
 				94277ACC2CF01E7B00B2F2E6 /* EmployeeSharePointRequest.swift in Sources */,
