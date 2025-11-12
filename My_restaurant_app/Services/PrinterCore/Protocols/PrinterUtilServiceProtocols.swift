@@ -17,7 +17,6 @@ protocol PrinterCoreProtocol {
 }
 
 
-
 protocol PrinterCommandBuilderProtocol {
     func buildOrderCommand(order: OrderDetail) -> Data
 }

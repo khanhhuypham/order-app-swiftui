@@ -610,6 +610,7 @@
 		942779522CF01D0900B2F2E6 /* My_restaurant_app */ = {
 			isa = PBXGroup;
 			children = (
+				94B961E62EC17EE800C28928 /* Services */,
 				94589A2C2E9F7E55008868F9 /* Protocol */,
 				942779712CF01E7B00B2F2E6 /* Helpers */,
 				942779692CF01E7B00B2F2E6 /* Resources */,
@@ -1231,7 +1232,6 @@
 			isa = PBXGroup;
 			children = (
 				94EB72202EB1B12F002E9155 /* LocalDB */,
-				94EB72212EB1B12F002E9155 /* PrinterCore */,
 				94C76FE92EA1EC4B0051B19C /* MediaUtils.swift */,
 				945899C32E9F7DA1008868F9 /* Injection */,
 				945899C42E9F7DA1008868F9 /* ChartUtils.swift */,
@@ -1918,6 +1918,38 @@
 				94589A922E9F7F12008868F9 /* view */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		94B961E62EC17EE800C28928 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				94EB72212EB1B12F002E9155 /* PrinterCore */,
+				94B961E92EC17F9D00C28928 /* Notification */,
+				94B961E82EC17F2200C28928 /* CoreData */,
+				94B961E72EC17F1E00C28928 /* Realm */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		94B961E72EC17F1E00C28928 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		94B961E82EC17F2200C28928 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		94B961E92EC17F9D00C28928 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		94DC1B9F2EA089C800EE549C /* MoveOrderItem */ = {

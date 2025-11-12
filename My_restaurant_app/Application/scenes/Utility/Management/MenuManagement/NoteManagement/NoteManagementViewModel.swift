@@ -8,9 +8,8 @@
 import SwiftUI
 
 
-class NoteManagementViewModel: ObservableObject, NotFoodDelegate {
+class NoteManagementViewModel: ObservableObject {
    
-    
     let branchId = Constants.branch.id
     let brandId = Constants.brand.id
     
