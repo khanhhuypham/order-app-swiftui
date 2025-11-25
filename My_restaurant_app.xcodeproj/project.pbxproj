@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1B3D5ABF674F5D94CFE2705C /* Pods_My_restaurant_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1798CE75DFD657B1C723125 /* Pods_My_restaurant_app.framework */; };
+		94156F502ED56B0900F6B276 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94156F4F2ED56B0900F6B276 /* GoogleService-Info.plist */; };
 		9420BE4C2EB5A66D00EBC76B /* FoodViewModel + extension + addFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9420BE4B2EB5A66D00EBC76B /* FoodViewModel + extension + addFood.swift */; };
 		9420BE502EB5B23800EBC76B /* FoodViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9420BE4F2EB5B23800EBC76B /* FoodViewModelTests.swift */; };
 		9420BE522EB5B3C500EBC76B /* MockFoodUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9420BE512EB5B3C500EBC76B /* MockFoodUseCase.swift */; };
@@ -240,6 +241,8 @@
 		94C76FEA2EA1EC4B0051B19C /* MediaUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C76FE92EA1EC4B0051B19C /* MediaUtils.swift */; };
 		94DC1BA12EA089E700EE549C /* MoveOrderItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DC1BA02EA089E700EE549C /* MoveOrderItems.swift */; };
 		94DC1BA32EA08CBF00EE549C /* MoveOrderItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DC1BA22EA08CB600EE549C /* MoveOrderItemsViewModel.swift */; };
+		94DD4CFF2EC49D9700D710AA /* FoodEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DD4CFE2EC49D9700D710AA /* FoodEntity.swift */; };
+		94DD4D032EC49E4000D710AA /* CategoryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DD4D022EC49E4000D710AA /* CategoryEntity.swift */; };
 		94EB72112EB1B092002E9155 /* OrderLogRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB720B2EB1B092002E9155 /* OrderLogRepo.swift */; };
 		94EB72122EB1B092002E9155 /* OrderLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB720D2EB1B092002E9155 /* OrderLogView.swift */; };
 		94EB72132EB1B092002E9155 /* OrderLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EB720F2EB1B092002E9155 /* OrderLogViewModel.swift */; };
@@ -283,6 +286,8 @@
 		66210620D987AFCF12F9F41B /* Pods_UnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		71E7C3F77F9B25738DA7B6AC /* Pods-UnitTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.staging.xcconfig"; path = "Target Support Files/Pods-UnitTests/Pods-UnitTests.staging.xcconfig"; sourceTree = "<group>"; };
 		8A9B91CC0EA7572C2BDE3812 /* Pods-My_restaurant_app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My_restaurant_app.release.xcconfig"; path = "Target Support Files/Pods-My_restaurant_app/Pods-My_restaurant_app.release.xcconfig"; sourceTree = "<group>"; };
+		94156F3C2ED54F8A00F6B276 /* My_restaurant_appRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = My_restaurant_appRelease.entitlements; sourceTree = "<group>"; };
+		94156F4F2ED56B0900F6B276 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9420BE4B2EB5A66D00EBC76B /* FoodViewModel + extension + addFood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoodViewModel + extension + addFood.swift"; sourceTree = "<group>"; };
 		9420BE4F2EB5B23800EBC76B /* FoodViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewModelTests.swift; sourceTree = "<group>"; };
 		9420BE512EB5B3C500EBC76B /* MockFoodUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFoodUseCase.swift; sourceTree = "<group>"; };
@@ -517,6 +522,8 @@
 		94C76FE92EA1EC4B0051B19C /* MediaUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaUtils.swift; sourceTree = "<group>"; };
 		94DC1BA02EA089E700EE549C /* MoveOrderItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveOrderItems.swift; sourceTree = "<group>"; };
 		94DC1BA22EA08CB600EE549C /* MoveOrderItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveOrderItemsViewModel.swift; sourceTree = "<group>"; };
+		94DD4CFE2EC49D9700D710AA /* FoodEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodEntity.swift; sourceTree = "<group>"; };
+		94DD4D022EC49E4000D710AA /* CategoryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEntity.swift; sourceTree = "<group>"; };
 		94EB720B2EB1B092002E9155 /* OrderLogRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderLogRepo.swift; sourceTree = "<group>"; };
 		94EB720D2EB1B092002E9155 /* OrderLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderLogView.swift; sourceTree = "<group>"; };
 		94EB720F2EB1B092002E9155 /* OrderLogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderLogViewModel.swift; sourceTree = "<group>"; };
@@ -595,6 +602,7 @@
 				942779512CF01D0900B2F2E6 /* Products */,
 				CD7902FC612E0D466CC0190F /* Pods */,
 				0712570ED3FFD609257A1CB8 /* Frameworks */,
+				94156F4F2ED56B0900F6B276 /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -610,6 +618,7 @@
 		942779522CF01D0900B2F2E6 /* My_restaurant_app */ = {
 			isa = PBXGroup;
 			children = (
+				94156F3C2ED54F8A00F6B276 /* My_restaurant_appRelease.entitlements */,
 				94B961E62EC17EE800C28928 /* Services */,
 				94589A2C2E9F7E55008868F9 /* Protocol */,
 				942779712CF01E7B00B2F2E6 /* Helpers */,
@@ -938,6 +947,21 @@
 				9437FABE2EA22F3D00DAF8B1 /* LoginTest.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		9445F8E52EC47B0A001250AF /* remote */ = {
+			isa = PBXGroup;
+			children = (
+				94B677632EB49F19001F8691 /* FoodRepository.swift */,
+			);
+			path = remote;
+			sourceTree = "<group>";
+		};
+		9445F8E62EC47B0E001250AF /* local */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = local;
 			sourceTree = "<group>";
 		};
 		945899172E9F7B36008868F9 /* Account */ = {
@@ -1905,7 +1929,8 @@
 		94B6775F2EB49EBD001F8691 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				94B677632EB49F19001F8691 /* FoodRepository.swift */,
+				9445F8E62EC47B0E001250AF /* local */,
+				9445F8E52EC47B0A001250AF /* remote */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1941,6 +1966,9 @@
 		94B961E82EC17F2200C28928 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				94DD4CFC2EC49D7000D710AA /* PersistenceController */,
+				94DD4CFB2EC49D6000D710AA /* NSManageObject */,
+				94DD4CFA2EC49D5500D710AA /* DataManager */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -1959,6 +1987,53 @@
 				94DC1BA02EA089E700EE549C /* MoveOrderItems.swift */,
 			);
 			path = MoveOrderItem;
+			sourceTree = "<group>";
+		};
+		94DD4CFA2EC49D5500D710AA /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataManager;
+			sourceTree = "<group>";
+		};
+		94DD4CFB2EC49D6000D710AA /* NSManageObject */ = {
+			isa = PBXGroup;
+			children = (
+				94DD4D012EC49E2500D710AA /* FoodAddition */,
+				94DD4D002EC49DCF00D710AA /* Category */,
+				94DD4CFD2EC49D8A00D710AA /* Food */,
+			);
+			path = NSManageObject;
+			sourceTree = "<group>";
+		};
+		94DD4CFC2EC49D7000D710AA /* PersistenceController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PersistenceController;
+			sourceTree = "<group>";
+		};
+		94DD4CFD2EC49D8A00D710AA /* Food */ = {
+			isa = PBXGroup;
+			children = (
+				94DD4CFE2EC49D9700D710AA /* FoodEntity.swift */,
+			);
+			path = Food;
+			sourceTree = "<group>";
+		};
+		94DD4D002EC49DCF00D710AA /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				94DD4D022EC49E4000D710AA /* CategoryEntity.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		94DD4D012EC49E2500D710AA /* FoodAddition */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FoodAddition;
 			sourceTree = "<group>";
 		};
 		94EB72152EB1B0CA002E9155 /* impl */ = {
@@ -2247,6 +2322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				945899572E9F7D07008868F9 /* PopupExpiredSessionViewController.xib in Resources */,
+				94156F502ED56B0900F6B276 /* GoogleService-Info.plist in Resources */,
 				9427795B2CF01D0B00B2F2E6 /* Preview Assets.xcassets in Resources */,
 				942779582CF01D0B00B2F2E6 /* Assets.xcassets in Resources */,
 			);
@@ -2451,6 +2527,7 @@
 				945899982E9F7D66008868F9 /* PieChart.swift in Sources */,
 				945899992E9F7D66008868F9 /* TagListView.swift in Sources */,
 				9458999A2E9F7D66008868F9 /* BtnGroupOfReportType.swift in Sources */,
+				94DD4D032EC49E4000D710AA /* CategoryEntity.swift in Sources */,
 				947C6C3A2EB3735D00DB0731 /* AreaUsecase.swift in Sources */,
 				9458999B2E9F7D66008868F9 /* NoteViewModel.swift in Sources */,
 				9458999C2E9F7D66008868F9 /* SwipeActionView.swift in Sources */,
@@ -2494,6 +2571,7 @@
 				94277A442CF01E7B00B2F2E6 /* PathConnectionManager.swift in Sources */,
 				94277A9A2CF01E7B00B2F2E6 /* TabbarRouter.swift in Sources */,
 				94277AB52CF01E7B00B2F2E6 /* CancelReason.swift in Sources */,
+				94DD4CFF2EC49D9700D710AA /* FoodEntity.swift in Sources */,
 				94EB72342EB1BA7E002E9155 /* POSPrinter.swift in Sources */,
 				945899262E9F7B47008868F9 /* FoodReportData.swift in Sources */,
 				945899272E9F7B47008868F9 /* EmployeeRevenueReport.swift in Sources */,
@@ -2772,6 +2850,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = My_restaurant_app/My_restaurant_appRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"My_restaurant_app/Preview Content\"";

@@ -19,6 +19,8 @@ struct TechresOrder: App {
     
     @ObservedObject var appState = AppState.shared
     
+ 
+    
     var body: some Scene {
         
         WindowGroup {

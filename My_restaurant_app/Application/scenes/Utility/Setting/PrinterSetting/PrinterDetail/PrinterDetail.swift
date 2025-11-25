@@ -84,6 +84,21 @@ struct PrinterDetail: View {
                     }
                 
                 }
+                
+                VStack(alignment:.leading,spacing: 15){
+                    
+                    Text("Chiều khổ giấy").foregroundColor(color.gray_600)
+                    
+                    RadioButton(id:0, label: "0(degree)", isSelected: viewModel.printer.direction == 0) {
+                        viewModel.printer.direction = 0
+                    }
+                    
+                    RadioButton(id:1, label: "180(degree)", isSelected: viewModel.printer.direction == 1) {
+                        viewModel.printer.direction = 1
+                    }
+                    
+                 
+                }
             }else if viewModel.printer.type == .chef || viewModel.printer.type == .bar{
                 
                 VStack(alignment:.leading,spacing: 15){

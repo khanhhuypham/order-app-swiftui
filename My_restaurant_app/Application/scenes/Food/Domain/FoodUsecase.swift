@@ -30,10 +30,12 @@ final class FoodUseCase: FoodUseCaseProtocol {
     func getCategories(branchId: Int, status: Int, categoryType: String) async -> Result<[Category], Error> {
         let result = await repository.getCategories(branchId: branchId, status: status, categoryType: categoryType)
         switch result {
-        case .success(let response):
-            return .success(response.data ?? [])
-        case .failure(let error):
-            return .failure(error)
+            
+            case .success(let response):
+                return .success(response.data ?? [])
+            
+            case .failure(let error):
+                return .failure(error)
         }
     }
     

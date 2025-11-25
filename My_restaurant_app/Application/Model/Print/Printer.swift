@@ -19,6 +19,7 @@ struct Printer: Codable,Identifiable {
     var connection_type:CONNECTION_TYPE = .wifi
     var number_of_copies:Int = 0
     var print_each_paper:Bool = false
+    var direction:Int = 0
     var status = 0
     var active:Bool = false
     var type:PRINTER_TYPE = .chef
@@ -44,7 +45,7 @@ struct Printer: Codable,Identifiable {
         } else {
             print_each_paper = try container.decodeIfPresent(Bool.self, forKey: .print_each_paper) ?? false
         }
-        
+        direction = try container.decodeIfPresent(Int.self, forKey: .direction) ?? 0
         let intValue = try container.decode(Int.self, forKey: .active)
         active = (intValue == 1) // Convert 1 to true, anything else to false
         status = try container.decodeIfPresent(Int.self, forKey: .status) ?? 0
@@ -61,6 +62,7 @@ struct Printer: Codable,Identifiable {
         case connection_type
         case number_of_copies = "print_number"
         case print_each_paper = "is_print_each_food"
+        case direction = "location_stamp"
         case status
         case active = "is_have_printer"
         case type
