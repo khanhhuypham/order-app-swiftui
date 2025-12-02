@@ -9,9 +9,10 @@
 // https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project
 
 
-FX_APP_NAME = Project (Staging)
-FX_APP_VERSION = 0.2.0
-FX_APP_BUNDLE_ID = com.fx.thelastproject
+APP_NAME = Project (Staging)
+APP_VERSION = 0.2.0
+APP_BUNDLE_ID = com.fx.thelastproject
+APP_ICON = AppIconDebug
 
 BACKEND_URL = http:\/\/api.intensifystudio.com/staging
 CONSUMER_KEY = ck_a57e4fa2e14c12f400371cf2951ec3dea5_staging

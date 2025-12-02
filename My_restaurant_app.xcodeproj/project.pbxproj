@@ -210,6 +210,7 @@
 		94589AA72E9F7F12008868F9 /* FoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A912E9F7F12008868F9 /* FoodView.swift */; };
 		94589AB62E9F7F54008868F9 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589AB32E9F7F54008868F9 /* LoginView.swift */; };
 		94589AB72E9F7F54008868F9 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589AB42E9F7F54008868F9 /* LoginViewModel.swift */; };
+		945DC18D2EDED11900060A44 /* travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = 945DC18C2EDED11100060A44 /* travis.yml */; };
 		9463C10B2EAF4B3A005E4A1B /* MockOrderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9463C10A2EAF4B3A005E4A1B /* MockOrderService.swift */; };
 		9473BA972CF9CBAB009F3C67 /* ChildrenItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9473BA962CF9CBAB009F3C67 /* ChildrenItem.swift */; };
 		947C6BE42EB3593400DB0731 /* MockAreaRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947C6BE32EB3593400DB0731 /* MockAreaRepo.swift */; };
@@ -491,6 +492,7 @@
 		94589A932E9F7F12008868F9 /* FoodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewModel.swift; sourceTree = "<group>"; };
 		94589AB32E9F7F54008868F9 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		94589AB42E9F7F54008868F9 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		945DC18C2EDED11100060A44 /* travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = travis.yml; sourceTree = "<group>"; };
 		9463C10A2EAF4B3A005E4A1B /* MockOrderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOrderService.swift; sourceTree = "<group>"; };
 		9473BA962CF9CBAB009F3C67 /* ChildrenItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenItem.swift; sourceTree = "<group>"; };
 		947C6BE32EB3593400DB0731 /* MockAreaRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAreaRepo.swift; sourceTree = "<group>"; };
@@ -595,6 +597,7 @@
 		942779472CF01D0900B2F2E6 = {
 			isa = PBXGroup;
 			children = (
+				945DC18C2EDED11100060A44 /* travis.yml */,
 				94F2CB1A2EA793B7001FD6BB /* Info.plist */,
 				94F2CB032EA78EFF001FD6BB /* Configs */,
 				942779522CF01D0900B2F2E6 /* My_restaurant_app */,
@@ -1455,6 +1458,7 @@
 		94589A112E9F7DD6008868F9 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				94D406872ED69C5500831426 /* FoodApp */,
 				945899E72E9F7DD6008868F9 /* AccountSetting */,
 				94589A032E9F7DD6008868F9 /* Management */,
 				94589A0F2E9F7DD6008868F9 /* Setting */,
@@ -1626,7 +1630,6 @@
 				947C6C222EB36F8C00DB0731 /* Data */,
 				947C6C292EB36F8C00DB0731 /* Domain */,
 				947C6C2E2EB36F8C00DB0731 /* Presentation */,
-				94589A7C2E9F7F12008868F9 /* component */,
 			);
 			path = Area;
 			sourceTree = "<group>";
@@ -1796,6 +1799,7 @@
 		947C6C2E2EB36F8C00DB0731 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				94589A7C2E9F7F12008868F9 /* component */,
 				947C6C2B2EB36F8C00DB0731 /* ViewModel */,
 				947C6C2D2EB36F8C00DB0731 /* View */,
 			);
@@ -1978,6 +1982,109 @@
 			children = (
 			);
 			path = Notification;
+			sourceTree = "<group>";
+		};
+		94D406872ED69C5500831426 /* FoodApp */ = {
+			isa = PBXGroup;
+			children = (
+				94D4068A2ED69CA100831426 /* FoodAppReport */,
+				94D406892ED69C8700831426 /* FoodAppOrder */,
+				94D406882ED69C7700831426 /* OrderHistoryOfFoodApp */,
+			);
+			path = FoodApp;
+			sourceTree = "<group>";
+		};
+		94D406882ED69C7700831426 /* OrderHistoryOfFoodApp */ = {
+			isa = PBXGroup;
+			children = (
+				94D4068D2ED69D0200831426 /* Presentation */,
+				94D4068C2ED69CFD00831426 /* Domain */,
+				94D4068B2ED69CF800831426 /* Data */,
+			);
+			path = OrderHistoryOfFoodApp;
+			sourceTree = "<group>";
+		};
+		94D406892ED69C8700831426 /* FoodAppOrder */ = {
+			isa = PBXGroup;
+			children = (
+				94D4068E2ED69D4A00831426 /* Presentation */,
+				94D4068F2ED69D4A00831426 /* Domain */,
+				94D406902ED69D4A00831426 /* Data */,
+			);
+			path = FoodAppOrder;
+			sourceTree = "<group>";
+		};
+		94D4068A2ED69CA100831426 /* FoodAppReport */ = {
+			isa = PBXGroup;
+			children = (
+				94D406912ED69D4B00831426 /* Presentation */,
+				94D406922ED69D4B00831426 /* Domain */,
+				94D406932ED69D4B00831426 /* Data */,
+			);
+			path = FoodAppReport;
+			sourceTree = "<group>";
+		};
+		94D4068B2ED69CF800831426 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		94D4068C2ED69CFD00831426 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		94D4068D2ED69D0200831426 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		94D4068E2ED69D4A00831426 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		94D4068F2ED69D4A00831426 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		94D406902ED69D4A00831426 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		94D406912ED69D4B00831426 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		94D406922ED69D4B00831426 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		94D406932ED69D4B00831426 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		94DC1B9F2EA089C800EE549C /* MoveOrderItem */ = {
@@ -2323,6 +2430,7 @@
 			files = (
 				945899572E9F7D07008868F9 /* PopupExpiredSessionViewController.xib in Resources */,
 				94156F502ED56B0900F6B276 /* GoogleService-Info.plist in Resources */,
+				945DC18D2EDED11900060A44 /* travis.yml in Resources */,
 				9427795B2CF01D0B00B2F2E6 /* Preview Assets.xcassets in Resources */,
 				942779582CF01D0B00B2F2E6 /* Assets.xcassets in Resources */,
 			);
@@ -2692,6 +2800,7 @@
 			baseConfigurationReference = 94F2CB042EA78F1D001FD6BB /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "${APP_ICON}";
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -2758,6 +2867,7 @@
 			baseConfigurationReference = 94F2CB062EA78F62001FD6BB /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "${APP_ICON}";
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -2816,7 +2926,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3D751C39DCAF27E41DC2B5AC /* Pods-My_restaurant_app.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "${APP_ICON}";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -2848,7 +2958,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8A9B91CC0EA7572C2BDE3812 /* Pods-My_restaurant_app.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "${APP_ICON}";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = My_restaurant_app/My_restaurant_appRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -2929,6 +3039,7 @@
 			baseConfigurationReference = 94F2CB052EA78F51001FD6BB /* Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "${APP_ICON}";
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -2994,7 +3105,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FCDD630944C4D375DC74C20A /* Pods-My_restaurant_app.staging.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "${APP_ICON}";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

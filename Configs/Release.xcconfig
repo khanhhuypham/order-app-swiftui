@@ -7,9 +7,10 @@
 
 // Configuration settings file format documentation can be found at:
 // https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project
-FX_APP_NAME = The Last Project
-FX_APP_VERSION = 1.0.0
-FX_APP_BUNDLE_ID = com.fx.thelastproject
+APP_NAME = The Last Project
+APP_VERSION = 1.0.0
+APP_BUNDLE_ID = com.fx.thelastproject
+APP_ICON = AppIconRelease
 
 BACKEND_URL = http:\/\/api.intensifystudio.com/
 CONSUMER_KEY = ck_a57e4fa2e14c12f400371cf2951ec3dea5
