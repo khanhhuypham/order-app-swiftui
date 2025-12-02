@@ -16,13 +16,13 @@ import SwiftUI
 import AlertToast
 import Combine
 
+
 struct TabBar: View {
     @Injected(\.colors) var color: ColorPalette
     @StateObject var viewModel = TabBarViewModel()
     @State var toast = InjectedValues[\.utils.toastUtils]
     @State private var isSheetPresented = false
     @State var isAlertPresented = false
-    
     
     @State var alertToast = AlertToast(type: .regular, title: "SOME TITLE"){
         didSet{
@@ -39,7 +39,7 @@ struct TabBar: View {
         switch viewModel.currentPage {
             case .generalReport:
                 GeneralReportView().environmentObject(viewModel)
-           
+            
             case .order:
                 OrderListView(viewModel: OrderListViewModel()).environmentObject(viewModel)
                

@@ -37,6 +37,8 @@ struct OrderListView<Model>: View where Model: OrderListViewModel{
             sheetContent
         }
         .onAppear {
+            let temp = infoForKey("Backend Url")
+            dLog(temp)
             viewModel.setupSocketIO()
             Task {
                 await viewModel.clearDataAndCallAPI()
@@ -46,6 +48,10 @@ struct OrderListView<Model>: View where Model: OrderListViewModel{
             viewModel.socketIOLeaveRoom()
         }
     }
+    
+    func infoForKey(_ key: String) -> String? {
+            return (Bundle.main.infoDictionary?[key] as? String)?.replacingOccurrences(of: "\\", with: "")
+     }
     
     private var navigationLinks: some View {
         Group {

@@ -197,6 +197,7 @@ extension NetworkManager{
                 "printer_port":printer.port,
                 "printer_paper_size":printer.paper_size,
                 "print_number":printer.number_of_copies,
+                "location_stamp":printer.direction,
                 "is_have_printer":printer.active ? ACTIVE : DEACTIVE,
                 "is_print_each_food":printer.print_each_paper ? ACTIVE : DEACTIVE,
                 "status":printer.status,

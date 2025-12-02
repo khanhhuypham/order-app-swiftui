@@ -16,6 +16,11 @@ target 'My_restaurant_app' do
     # Pods for testing
   end
 
+  
+  pod 'Firebase/Core', '~> 10.0'
+  pod 'Firebase/Messaging', '~> 10.0'
+
+  
 end
 
 post_install do |installer|
