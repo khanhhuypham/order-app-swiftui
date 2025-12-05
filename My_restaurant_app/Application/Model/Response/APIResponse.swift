@@ -19,8 +19,15 @@ struct APIResponse<T: Codable>: Codable {
         case message
     }
     
-   
 }
+//
+enum AppResult<T> {
+    case success(T?)
+    case failure(Error?)
+}
+
+
+
 
 struct PlainAPIResponse: Codable {
 

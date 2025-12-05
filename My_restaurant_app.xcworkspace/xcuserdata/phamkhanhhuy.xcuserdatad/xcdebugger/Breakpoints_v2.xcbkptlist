@@ -72,7 +72,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "F3C5C6F4-8E1C-47FE-A698-C5E648213DB2"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "My_restaurant_app/Application/scenes/Utility/Management/MenuManagement/CategoryManagement/CategoryManagementViewModel.swift"
@@ -88,7 +88,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "D05A796E-774A-44C3-A60B-A82B26123E39"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "My_restaurant_app/Application/scenes/Utility/Management/MenuManagement/FoodManagement/createFood/CreateFoodViewModel.swift"
@@ -120,7 +120,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "F66C8233-F3C7-4B5D-9207-C827BF8EE0CC"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "My_restaurant_app/Application/scenes/Utility/Management/AreaTableManagement/component/Table/CreateTableView.swift"
@@ -136,7 +136,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "23027D5B-0532-453D-B6C5-79C844569AC7"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "My_restaurant_app/Application/scenes/Utility/Setting/PrinterSetting/PrinterList/PrinterSetting.swift"
@@ -152,7 +152,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "C83193C3-1D95-4B7C-9C58-77C9626F776C"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "My_restaurant_app/Extension/UIView + extension.swift"
@@ -168,7 +168,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "0A0AFE91-12C4-4E54-BA55-4A37964F78DD"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "My_restaurant_app/Extension/UIView + extension.swift"
@@ -184,7 +184,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "7467F182-5878-4FD1-BE93-839342E7634B"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "My_restaurant_app/Extension/UIView + extension.swift"
@@ -210,6 +210,36 @@
             endingLineNumber = "143"
             landmarkName = "presentDialog(isPresented:showWithAnimation:dismissWithAnimation:afterDismiss:content:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "93B7AD27-C3A3-4190-864E-4CD76E7723D0 - fe3e59dfe2a8275b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SwiftUI.View.presentDialog&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(isPresented: SwiftUI.Binding&lt;Swift.Bool&gt;, showWithAnimation: Swift.Bool, dismissWithAnimation: Swift.Bool, afterDismiss: Swift.Optional&lt;() -&gt; ()&gt;, content: () -&gt; &#x3c4;_1_0) -&gt; some"
+                  moduleName = "My_restaurant_app.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/order-swiftui/My_restaurant_app/Extension/UIView%20+%20extension.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "144"
+                  endingLineNumber = "144">
+               </Location>
+               <Location
+                  uuid = "93B7AD27-C3A3-4190-864E-4CD76E7723D0 - 4f6b04713a9fd471"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool) -&gt; () in SwiftUI.View.presentDialog&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(isPresented: SwiftUI.Binding&lt;Swift.Bool&gt;, showWithAnimation: Swift.Bool, dismissWithAnimation: Swift.Bool, afterDismiss: Swift.Optional&lt;() -&gt; ()&gt;, content: () -&gt; &#x3c4;_1_0) -&gt; some"
+                  moduleName = "My_restaurant_app.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/order-swiftui/My_restaurant_app/Extension/UIView%20+%20extension.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "145"
+                  endingLineNumber = "145">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -446,10 +476,40 @@
             filePath = "My_restaurant_app/Application/scenes/Area/Presentation/View/AreaView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "body"
             landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "DF1ED95F-9F72-4B04-9450-3CF6881661C0 - 9c2b11d065d3da06"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 () -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.NavigationLink&lt;SwiftUI.EmptyView, My_restaurant_app.OrderDetailView&gt;, SwiftUI.NavigationLink&lt;SwiftUI.EmptyView, My_restaurant_app.FoodView&gt;, Swift.Optional&lt;&lt;&lt;opaque return type of SwiftUI.View.background&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ShapeStyle&gt;(_: &#x3c4;_1_0, ignoresSafeAreaEdges: SwiftUI.Edge.Set) -&gt; some&gt;&gt;.0&gt;, SwiftUI.Divider, My_restaurant_app.AreaHeader, SwiftUI.Divider, Swift.Optional&lt;&lt;&lt;opaque return type of My_restaurant_app.AreaView.hintView : some&gt;&gt;.0&gt;, SwiftUI._ConditionalContent&lt;&lt;&lt;opaque return type of My_restaurant_app.AreaView.TableList : some&gt;&gt;.0, My_restaurant_app.EmptyData&gt;, Swift.Optional&lt;SwiftUI.TupleView&lt;(SwiftUI.Divider, &lt;&lt;opaque return type of My_restaurant_app.AreaView.bottomBtn : some&gt;&gt;.0)&gt;&gt;)&gt; in My_restaurant_app.AreaView.body.getter : some"
+                  moduleName = "My_restaurant_app.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/order-swiftui/My_restaurant_app/Application/scenes/Area/Presentation/View/AreaView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48">
+               </Location>
+               <Location
+                  uuid = "DF1ED95F-9F72-4B04-9450-3CF6881661C0 - 4bb30931fbb21525"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (My_restaurant_app.Area) -&gt; Swift.Bool in closure #3 () -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.NavigationLink&lt;SwiftUI.EmptyView, My_restaurant_app.OrderDetailView&gt;, SwiftUI.NavigationLink&lt;SwiftUI.EmptyView, My_restaurant_app.FoodView&gt;, Swift.Optional&lt;&lt;&lt;opaque return type of SwiftUI.View.background&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ShapeStyle&gt;(_: &#x3c4;_1_0, ignoresSafeAreaEdges: SwiftUI.Edge.Set) -&gt; some&gt;&gt;.0&gt;, SwiftUI.Divider, My_restaurant_app.AreaHeader, SwiftUI.Divider, Swift.Optional&lt;&lt;&lt;opaque return type of My_restaurant_app.AreaView.hintView : some&gt;&gt;.0&gt;, SwiftUI._ConditionalContent&lt;&lt;&lt;opaque return type of My_restaurant_app.AreaView.TableList : some&gt;&gt;.0, My_restaurant_app.EmptyData&gt;, Swift.Optional&lt;SwiftUI.TupleView&lt;(SwiftUI.Divider, &lt;&lt;opaque return type of My_restaurant_app.AreaView.bottomBtn : some&gt;&gt;.0)&gt;&gt;)&gt; in My_restaurant_app.AreaView.body.getter : some"
+                  moduleName = "My_restaurant_app.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phamkhanhhuy/Documents/OVERATE-VNTECH/TECHRES-PROJECTS/MOBILES/iOS/my-project/order-swiftui/My_restaurant_app/Application/scenes/Area/Presentation/View/AreaView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

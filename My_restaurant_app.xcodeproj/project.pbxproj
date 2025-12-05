@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1B3D5ABF674F5D94CFE2705C /* Pods_My_restaurant_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1798CE75DFD657B1C723125 /* Pods_My_restaurant_app.framework */; };
+		940974AE2EE0032500128670 /* FoodRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940974AD2EE0032500128670 /* FoodRepositoryProtocol.swift */; };
 		94156F502ED56B0900F6B276 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94156F4F2ED56B0900F6B276 /* GoogleService-Info.plist */; };
 		9420BE4C2EB5A66D00EBC76B /* FoodViewModel + extension + addFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9420BE4B2EB5A66D00EBC76B /* FoodViewModel + extension + addFood.swift */; };
 		9420BE502EB5B23800EBC76B /* FoodViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9420BE4F2EB5B23800EBC76B /* FoodViewModelTests.swift */; };
@@ -210,7 +211,6 @@
 		94589AA72E9F7F12008868F9 /* FoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589A912E9F7F12008868F9 /* FoodView.swift */; };
 		94589AB62E9F7F54008868F9 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589AB32E9F7F54008868F9 /* LoginView.swift */; };
 		94589AB72E9F7F54008868F9 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94589AB42E9F7F54008868F9 /* LoginViewModel.swift */; };
-		945DC18D2EDED11900060A44 /* travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = 945DC18C2EDED11100060A44 /* travis.yml */; };
 		9463C10B2EAF4B3A005E4A1B /* MockOrderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9463C10A2EAF4B3A005E4A1B /* MockOrderService.swift */; };
 		9473BA972CF9CBAB009F3C67 /* ChildrenItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9473BA962CF9CBAB009F3C67 /* ChildrenItem.swift */; };
 		947C6BE42EB3593400DB0731 /* MockAreaRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947C6BE32EB3593400DB0731 /* MockAreaRepo.swift */; };
@@ -287,6 +287,7 @@
 		66210620D987AFCF12F9F41B /* Pods_UnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		71E7C3F77F9B25738DA7B6AC /* Pods-UnitTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.staging.xcconfig"; path = "Target Support Files/Pods-UnitTests/Pods-UnitTests.staging.xcconfig"; sourceTree = "<group>"; };
 		8A9B91CC0EA7572C2BDE3812 /* Pods-My_restaurant_app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My_restaurant_app.release.xcconfig"; path = "Target Support Files/Pods-My_restaurant_app/Pods-My_restaurant_app.release.xcconfig"; sourceTree = "<group>"; };
+		940974AD2EE0032500128670 /* FoodRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodRepositoryProtocol.swift; sourceTree = "<group>"; };
 		94156F3C2ED54F8A00F6B276 /* My_restaurant_appRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = My_restaurant_appRelease.entitlements; sourceTree = "<group>"; };
 		94156F4F2ED56B0900F6B276 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9420BE4B2EB5A66D00EBC76B /* FoodViewModel + extension + addFood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoodViewModel + extension + addFood.swift"; sourceTree = "<group>"; };
@@ -492,7 +493,6 @@
 		94589A932E9F7F12008868F9 /* FoodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewModel.swift; sourceTree = "<group>"; };
 		94589AB32E9F7F54008868F9 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		94589AB42E9F7F54008868F9 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		945DC18C2EDED11100060A44 /* travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = travis.yml; sourceTree = "<group>"; };
 		9463C10A2EAF4B3A005E4A1B /* MockOrderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOrderService.swift; sourceTree = "<group>"; };
 		9473BA962CF9CBAB009F3C67 /* ChildrenItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenItem.swift; sourceTree = "<group>"; };
 		947C6BE32EB3593400DB0731 /* MockAreaRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAreaRepo.swift; sourceTree = "<group>"; };
@@ -594,10 +594,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		940974A52EDFFFBB00128670 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				94B677612EB49EE7001F8691 /* FoodUsecase.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		940974A62EDFFFD400128670 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				940974AD2EE0032500128670 /* FoodRepositoryProtocol.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
 		942779472CF01D0900B2F2E6 = {
 			isa = PBXGroup;
 			children = (
-				945DC18C2EDED11100060A44 /* travis.yml */,
 				94F2CB1A2EA793B7001FD6BB /* Info.plist */,
 				94F2CB032EA78EFF001FD6BB /* Configs */,
 				942779522CF01D0900B2F2E6 /* My_restaurant_app */,
@@ -1925,7 +1940,8 @@
 		94B6775E2EB49EB8001F8691 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				94B677612EB49EE7001F8691 /* FoodUsecase.swift */,
+				940974A62EDFFFD400128670 /* Repository */,
+				940974A52EDFFFBB00128670 /* UseCase */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -2430,7 +2446,6 @@
 			files = (
 				945899572E9F7D07008868F9 /* PopupExpiredSessionViewController.xib in Resources */,
 				94156F502ED56B0900F6B276 /* GoogleService-Info.plist in Resources */,
-				945DC18D2EDED11900060A44 /* travis.yml in Resources */,
 				9427795B2CF01D0B00B2F2E6 /* Preview Assets.xcassets in Resources */,
 				942779582CF01D0B00B2F2E6 /* Assets.xcassets in Resources */,
 			);
@@ -2681,6 +2696,7 @@
 				94277AB52CF01E7B00B2F2E6 /* CancelReason.swift in Sources */,
 				94DD4CFF2EC49D9700D710AA /* FoodEntity.swift in Sources */,
 				94EB72342EB1BA7E002E9155 /* POSPrinter.swift in Sources */,
+				940974AE2EE0032500128670 /* FoodRepositoryProtocol.swift in Sources */,
 				945899262E9F7B47008868F9 /* FoodReportData.swift in Sources */,
 				945899272E9F7B47008868F9 /* EmployeeRevenueReport.swift in Sources */,
 				945899282E9F7B47008868F9 /* DailyOrderReport.swift in Sources */,

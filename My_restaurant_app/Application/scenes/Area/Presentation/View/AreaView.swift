@@ -3,17 +3,12 @@ import SwiftUI
 
 
 
-/*
- 
- Presentation           --->  Domain            --->  Data
- (View, ViewModel)          (Use Cases)     (Repositories / API)
- */
 struct AreaView: View {
     @Injected(\.colors) var color: ColorPalette
     @Injected(\.fonts) var font: Fonts
     @Environment(\.presentationMode) var presentationMode
     @StateObject var viewModel:AreaViewModel = AreaViewModel()
-    
+
     @State private var routeLink:(tag:String?,data:Table) = (tag:nil,data:Table())
     
     

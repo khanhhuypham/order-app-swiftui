@@ -17,7 +17,6 @@ protocol AreaRepository {
 }
 
 
-
 final class AreaRepositoryImpl: AreaRepository {
     func getAreas(branchId: Int, status: Int) async -> Result<APIResponse<[Area]>, Error> {
         await NetworkManager.callAPIResultAsync(netWorkManger: .areas(branch_id: branchId, status: status))

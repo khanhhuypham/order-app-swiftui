@@ -1,6 +1,6 @@
 import Foundation
 protocol FoodUseCaseProtocol {
-    func getCategories(branchId: Int, status: Int, categoryType: String) async -> Result<[Category], Error>
+    func getCategories(branchId: Int, status: Int, categoryType: String) async -> AppResult<[Category]>
     func getFoods(
         branchId: Int,
         areaId: Int,
@@ -13,11 +13,15 @@ protocol FoodUseCaseProtocol {
         limit: Int,
         page: Int
     ) async -> Result<FoodResponse, Error>
-    func addFoods(branchId: Int, orderId: Int, items: [FoodRequest]) async -> Result<NewOrder, Error>
-    func addGiftFoods(branchId: Int, orderId: Int, items: [FoodRequest]) async -> Result<Void, Error>
-    func createDineInOrder(tableId: Int) async -> Result<Table, Error>
-    func createTakeOutOrder(branchId: Int, tableId: Int, note: String) async -> Result<Void, Error>
+    
+    
+    func addFoods(branchId: Int, orderId: Int, items: [FoodRequest]) async -> AppResult<NewOrder>
+    func addGiftFoods(branchId: Int, orderId: Int, items: [FoodRequest]) async -> AppResult<Void>
+    func createDineInOrder(tableId: Int) async -> AppResult<Table>
+    func createTakeOutOrder(branchId: Int, tableId: Int, note: String) async -> AppResult<Void>
 }
+
+
 
 final class FoodUseCase: FoodUseCaseProtocol {
     
@@ -27,16 +31,30 @@ final class FoodUseCase: FoodUseCaseProtocol {
         self.repository = repository
     }
     
-    func getCategories(branchId: Int, status: Int, categoryType: String) async -> Result<[Category], Error> {
+    func getCategories(branchId: Int, status: Int, categoryType: String) async -> AppResult<[Category]>{
+        
         let result = await repository.getCategories(branchId: branchId, status: status, categoryType: categoryType)
+        
         switch result {
             
-            case .success(let response):
-                return .success(response.data ?? [])
+            case .success(let data):
+                return .success(data) // data can be nil if repository returns nil
             
-            case .failure(let error):
+            case .failure(let error as NSError):
+            
+                if error.code == 400 {
+                    return .failure(error) // real error
+                }
+
+                if error.code > 500 {
+                    print("🔥 Server error \(error.code): \(error.localizedDescription)")
+                    return .failure(nil) // your "nil error" case
+                }
+
                 return .failure(error)
+                
         }
+        
     }
     
     func getFoods(
@@ -65,6 +83,7 @@ final class FoodUseCase: FoodUseCaseProtocol {
         )
         switch result {
             case .success(let res):
+            
                 if res.status == .ok, let data = res.data{
                     return .success(data)
                 }else{
@@ -76,59 +95,76 @@ final class FoodUseCase: FoodUseCaseProtocol {
         }
     }
     
-    func addFoods(branchId: Int, orderId: Int, items: [FoodRequest]) async -> Result<NewOrder, Error> {
+    func addFoods(branchId: Int, orderId: Int, items: [FoodRequest]) async -> AppResult<NewOrder> {
         let result = await repository.addFoods(branchId: branchId, orderId: orderId, items: items)
+        
         switch result {
             case .success(let res):
-                if res.status == .ok,let data = res.data{
-                    return .success(data)
-                }else{
-                    return .failure(NSError(domain: res.message, code:res.status.rawValue))
+                if res.status == .ok, let data = res.data {
+                   return .success(data)
+                } else if res.status == .badRequest {
+                   let error = NSError(domain: res.message, code: res.status.rawValue)
+                   return .failure(error)
+                } else {
+                   // Other status (e.g., server error > 500)
+                   return .failure(nil)
                 }
              
-            
             case .failure(let error):
-                return .failure(error)
+                return .failure(nil)
         }
+        
     }
     
-    func addGiftFoods(branchId: Int, orderId: Int, items: [FoodRequest]) async -> Result<Void, Error> {
+    func addGiftFoods(branchId: Int, orderId: Int, items: [FoodRequest]) async -> AppResult<Void> {
+
         let result = await repository.addGiftFoods(branchId: branchId, orderId: orderId, items: items)
+
         switch result {
-            case .success(let res):
-                if res.status == .ok{
-                    return .success(())
-                }else{
-                    return .failure(NSError(domain: res.message, code:res.status.rawValue))
-                }
-           
-            
-            case .failure(let error):
+
+        case .success(let res):
+            if res.status == .ok {
+                return .success(nil)  // Void success
+            } else {
+                let error = NSError(domain: res.message, code: res.status.rawValue)
                 return .failure(error)
+            }
+
+        case .failure(let error):
+            dLog(error)
+            return .failure(nil)  // server error or unknown
         }
     }
+
     
-    func createDineInOrder(tableId: Int) async -> Result<Table, Error> {
+    func createDineInOrder(tableId: Int) async -> AppResult<Table> {
+        
         let result = await repository.createDineInOrder(tableId: tableId)
+        
         switch result {
-            case .success(let res):
-                if res.status == .ok,let data = res.data{
-                    return .success(data)
-                }else{
-                    return .failure(NSError(domain: res.message, code:res.status.rawValue))
-                }
+            case .success(let table):
+                return .success(table)
             
-            case .failure(let error):
-                return .failure(error)
+            case .failure(let error as NSError):
+                if error.code == 400 {
+                    return .failure(error) // real error
+                }
+
+                if error.code > 500 {
+                    print("🔥 Server error \(error.code): \(error.localizedDescription)")
+                    return .failure(nil) // your "nil error" case
+                }
+
+                return .failure(nil)
         }
     }
     
-    func createTakeOutOrder(branchId: Int, tableId: Int, note: String) async -> Result<Void, Error> {
+    func createTakeOutOrder(branchId: Int, tableId: Int, note: String) async -> AppResult<Void>{
         let result = await repository.createTakeOutOder(branchId: branchId, tableId: tableId, note: note)
         switch result {
             case .success(let res):
                 if res.status == .ok{
-                    return .success(())
+                    return .success(nil)
                 }else{
                     return .failure(NSError(domain: res.message, code:res.status.rawValue))
                 }

@@ -38,7 +38,7 @@ struct FoodList: View {
         Section {
             ForEach($viewModel.foods) { item in
                 FoodListCell(viewModel: viewModel, item: item)
-                    .redacted(reason: .placeholder)
+//                    .redacted(reason: .placeholder)
                     .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                         let disable = (item.wrappedValue.category_type != .service && item.wrappedValue.restaurant_kitchen_place_id == 0) || (item.wrappedValue.is_out_stock == ACTIVE)
                         

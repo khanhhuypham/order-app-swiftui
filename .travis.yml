@@ -1,0 +1,28 @@
+languague: objective-c
+osx_image: xcode15.0
+
+env:
+    global:
+        - WORKSPACE="MY_RESTAURANT_APP.xcworkspace"
+        - SCHEME="MY_RESTAURANT_APP"
+        - DESTINATION="platform=iOS Simulator,OS=16.0,name=iPhone 10"
+
+before_install:
+    - gem install cocoapods --no-document
+    - pod install
+
+script:
+    - xcodebuild clean buid
+        -workspace "$WORKSPACE"
+        -scheme "$SCHEME"
+        -destination "$DESTINATION"
+        ONLY_ACTIVE_ARCH=NO
+
+    - xcodebuild test
+        -workspace "$WORKSPACE"
+        -scheme "$SCHEME"
+        -destination "$DESTINATION"
+        ONLY_ACTIVE_ARCH=NO
+        
+        
+        

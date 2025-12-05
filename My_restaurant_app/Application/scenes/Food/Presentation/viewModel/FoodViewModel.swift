@@ -111,26 +111,36 @@ final class FoodViewModel: ObservableObject {
     
     
     func getCategories() async {
+        
         let result = await useCase.getCategories(
             branchId: Constants.brand.id,
             status: ACTIVE,
             categoryType: APIParameter.categoryType == .all ? "" : APIParameter.categoryType.rawValue.description
         )
         
+        
         switch result {
-            case .success(var data):
-                var cate = Category()
-                cate.id = -1
-                cate.name = "Tất cả"
-                cate.isSelect = true
-                data.insert(cate, at: 0)
-                self.categories = data
-                self.APIParameter.categoryId = cate.id
-                await self.reloadContent()
-                
-            case .failure(let error):
-                dLog("Error: \(error)")
-        }
+             case .success(let data):
+                 // data might be nil if server returned empty
+                 var categories: [Category] = data ?? []
+
+                 // Insert "All" category at the top
+                 let allCategory = Category(id: -1, name: "Tất cả", isSelect: true)
+                 categories.insert(allCategory, at: 0)
+
+                 // Update state
+                 self.categories = categories
+                 self.APIParameter.categoryId = allCategory.id
+
+                 // Reload content
+                 await self.reloadContent()
+
+             case .failure(let error):
+                 if let error = error {
+                     // Real error (e.g., code 400)
+                     dLog("Error: \(error.localizedDescription)")
+                 }
+             }
     }
     
     
@@ -173,18 +183,22 @@ final class FoodViewModel: ObservableObject {
 
 
 extension FoodViewModel {
-     func addFoods(items: [FoodRequest]) async {
-        let result = await useCase.addFoods(branchId: Constants.branch.id, orderId: order.id, items: items)
+    func addFoods(items: [FoodRequest]) async {
+         let result = await useCase.addFoods(branchId: Constants.branch.id, orderId: order.id, items: items)
         
-        switch result {
-            case .success(let newOrder):
-                order.id = newOrder.order_id
-                self.navigateTag = 0
-                break
-            
-            case .failure(let error):
-                dLog("Error: \(error)")
-        }
+         switch result {
+             case .success(let newOrder):
+                 if let newOrder = newOrder {
+                     order.id = newOrder.order_id
+                     self.navigateTag = 0
+                 }
+
+             case .failure(let error):
+                 if let error = error {
+                     dLog("Error: \(error.localizedDescription)")
+                 }
+         }
+         
     }
 
      func addGiftFoods(items: [FoodRequest]) async {
@@ -195,7 +209,10 @@ extension FoodViewModel {
                 self.navigateTag = 0
             
             case .failure(let error):
-                dLog("Error: \(error)")
+                if let error = error {
+                    // Real error (e.g., code 400)
+                    dLog("Error: \(error.localizedDescription)")
+                }
         }
     }
 
@@ -204,13 +221,18 @@ extension FoodViewModel {
         let result = await useCase.createDineInOrder(tableId: order.table_id)
         
         switch result {
-            case .success(let table):
-                order = OrderDetail(table: table)
-                processToAddFood()
-                self.navigateTag = 1
+            case .success(let data):
+                if let table = data{
+                    order = OrderDetail(table: table)
+                    processToAddFood()
+                    self.navigateTag = 1
+                }
 
             case .failure(let error):
-                dLog("Error: \(error)")
+                if let error = error {
+                    // Real error (e.g., code 400)
+                    dLog("Error: \(error.localizedDescription)")
+                }
         }
     }
 

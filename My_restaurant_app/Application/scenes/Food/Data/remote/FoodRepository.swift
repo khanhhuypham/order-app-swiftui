@@ -8,40 +8,33 @@
 import UIKit
 
 
-protocol FoodRepositoryProtocol {
-    
-    func getCategories(branchId:Int,status:Int,categoryType:String) async -> Result<APIResponse<[Category]>, Error>
-    
-    func getFoods(
-        branchId:Int,
-        areaId:Int,
-        categoryId:Int,
-        categoryType:Int,
-        is_allow_employee_gift:Int,
-        is_sell_by_weight:Int,
-        is_out_stock:Int,
-        key_word:String,
-        limit:Int,
-        page:Int
-    ) async -> Result<APIResponse<FoodResponse>, Error>
-    
-    func addFoods(branchId:Int,orderId:Int,items:[FoodRequest]) async -> Result<APIResponse<NewOrder>, Error>
-    func addGiftFoods(branchId:Int,orderId:Int,items:[FoodRequest]) async -> Result<PlainAPIResponse, Error>
-    func createDineInOrder(tableId:Int) async -> Result<APIResponse<Table>, Error>
-    func createTakeOutOder(branchId:Int,tableId:Int,note:String) async -> Result<PlainAPIResponse, Error>
-    
-}
-
-
-
 final class FoodRepository:FoodRepositoryProtocol {
  
-    func getCategories(branchId:Int,status:Int,categoryType:String) async -> Result<APIResponse<[Category]>, Error>{
-        await NetworkManager.callAPIResultAsync(netWorkManger: .categories(
+    func getCategories(branchId:Int,status:Int,categoryType:String) async -> Result<[Category], Error>{
+        
+
+        let result:Result<APIResponse<[Category]>, Error> = await NetworkManager.callAPIResultAsync(netWorkManger: .categories(
             brand_id: branchId,
             status: status,
             category_types: categoryType
         ))
+        
+        switch result {
+            
+            case .success(let response):
+                
+                if response.status == .ok{
+                    return .success(response.data ?? [])
+                }else{
+                    dLog(response)
+                    return .failure(NSError(domain: response.message, code:response.status.rawValue))
+                }
+                
+            case .failure(let error):
+                return .failure(NSError(domain: error.localizedDescription, code:500))
+        }
+        
+        
     }
     
     func getFoods(
@@ -90,8 +83,24 @@ final class FoodRepository:FoodRepositoryProtocol {
         ))
     }
     
-    func createDineInOrder(tableId:Int) async -> Result<APIResponse<Table>, Error>{
-        await NetworkManager.callAPIResultAsync(netWorkManger: .openTable(table_id: tableId))
+    func createDineInOrder(tableId:Int) async -> Result<Table, Error>{
+        let result:Result<APIResponse<Table>, Error> = await NetworkManager.callAPIResultAsync(netWorkManger: .openTable(table_id: tableId))
+        
+        switch result {
+            
+            case .success(let response):
+                
+                if response.status == .ok, let data = response.data{
+                    return .success(data)
+                }else{
+                    dLog(response)
+                    return .failure(NSError(domain: response.message, code:response.status.rawValue))
+                }
+                
+            case .failure(let error):
+                return .failure(NSError(domain: error.localizedDescription, code:500))
+        }
+        
     }
     
     func createTakeOutOder(branchId:Int,tableId:Int,note:String) async -> Result<PlainAPIResponse, Error>{
