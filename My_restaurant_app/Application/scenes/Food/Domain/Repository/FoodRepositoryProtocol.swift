@@ -14,8 +14,8 @@ protocol FoodProviderRepositoryProtocol {       // Public API
 
 
 protocol FoodServiceRepositoryProtocol {          // Calls Local DB only
-    func addFoods(branchId:Int,orderId:Int,items:[FoodRequest]) async -> Result<APIResponse<NewOrder>, Error>
+    func addFoods(branchId:Int,orderId:Int,items:[FoodRequest]) async -> Result<NewOrder, Error>
     func addGiftFoods(branchId:Int,orderId:Int,items:[FoodRequest]) async -> Result<PlainAPIResponse, Error>
     func createDineInOrder(tableId:Int) async -> Result<Table, Error>
-    func createTakeOutOder(branchId:Int,tableId:Int,note:String) async -> Result<PlainAPIResponse, Error>
+    func createTakeOutOder(branchId:Int,tableId:Int,note:String) async -> Result<Void, Error>
 }

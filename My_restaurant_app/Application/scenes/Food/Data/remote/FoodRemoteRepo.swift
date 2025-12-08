@@ -68,13 +68,27 @@ final class FoodRemoteRepo:FoodProviderRepositoryProtocol,FoodServiceRepositoryP
         
     }
 
-    func addFoods(branchId:Int,orderId:Int,items:[FoodRequest]) async -> Result<APIResponse<NewOrder>, Error>{
-        await NetworkManager.callAPIResultAsync(netWorkManger: .addFoods(
+    func addFoods(branchId:Int,orderId:Int,items:[FoodRequest]) async -> Result<NewOrder, Error>{
+        let result:Result<APIResponse<NewOrder>,Error> = await NetworkManager.callAPIResultAsync(netWorkManger: .addFoods(
             branch_id: branchId,
             order_id: orderId,
             foods: items,
             is_use_point: DEACTIVE
         ))
+        
+        switch result {
+            
+            case .success(let response):
+                
+                if response.status == .ok, let data = response.data{
+                    return .success(data)
+                }
+            
+                return .failure(NSError(domain: response.message, code:response.status.rawValue))
+            
+            case .failure(let error):
+                return .failure(NSError(domain: error.localizedDescription, code:500))
+        }
     }
     
     func addGiftFoods(branchId:Int,orderId:Int,items:[FoodRequest]) async -> Result<PlainAPIResponse, Error>{
@@ -107,8 +121,24 @@ final class FoodRemoteRepo:FoodProviderRepositoryProtocol,FoodServiceRepositoryP
         
     }
     
-    func createTakeOutOder(branchId:Int,tableId:Int,note:String) async -> Result<PlainAPIResponse, Error>{
-        await NetworkManager.callAPIResultAsync(netWorkManger: .postCreateOrder(branch_id:branchId, table_id:tableId, note:note))
+    func createTakeOutOder(branchId:Int,tableId:Int,note:String) async -> Result<Void, Error>{
+        
+        let result:Result<PlainAPIResponse, Error> = await NetworkManager.callAPIResultAsync(netWorkManger: .postCreateOrder(branch_id:branchId, table_id:tableId, note:note))
+        
+        switch result {
+            
+            case .success(let response):
+                
+                if response.status == .ok{
+                    return .success(())
+                }else{
+                    dLog(response)
+                    return .failure(NSError(domain: response.message, code:response.status.rawValue))
+                }
+                
+            case .failure(let error):
+                return .failure(NSError(domain: error.localizedDescription, code:500))
+        }
     }
     
 }
