@@ -15,6 +15,7 @@ struct FoodAPIParameter: Equatable {
     var buffetTicketId: Int? = nil
 }
 
+
 @MainActor
 final class FoodViewModel: ObservableObject {
     private let useCase: FoodUseCaseProtocol
@@ -36,8 +37,13 @@ final class FoodViewModel: ObservableObject {
     @Published var presentSheet: (present: Bool, item: Food?) = (false, nil)
     
     // MARK: - Init
-    init(useCase: FoodUseCaseProtocol = FoodUseCase(repository: FoodRepository())) {
-        self.useCase = useCase
+    init() {
+        
+        self.useCase = FoodUseCase(
+            foodProviderLocalRepo:FoodLocalRepo(),
+            foodProviderRemoteRepo: FoodRemoteRepo(),
+            foodServiceRepo:FoodRemoteRepo()
+        )
         
         setupBindings()
     }
@@ -137,7 +143,6 @@ final class FoodViewModel: ObservableObject {
 
              case .failure(let error):
                  if let error = error {
-                     // Real error (e.g., code 400)
                      dLog("Error: \(error.localizedDescription)")
                  }
              }
@@ -151,27 +156,23 @@ final class FoodViewModel: ObservableObject {
         let result = await useCase.getFoods(
             branchId: Constants.branch.id,
             areaId: PermissionUtils.GPBH_1 ? -1 : order.area_id,
-            categoryId: APIParameter.categoryId,
-            categoryType: APIParameter.categoryType.rawValue,
-            is_allow_employee_gift: APIParameter.isAllowEmployeeGift,
-            is_sell_by_weight: APIParameter.isSellByWeight,
-            is_out_stock: APIParameter.isOutStock,
-            key_word: APIParameter.keyWord,
-            limit: APIParameter.limit,
-            page: APIParameter.page
+            parameter: APIParameter
         )
         
         switch result {
-            case .success(var data):
-                self.APIParameter.totalRecord = data.total_record
-                
-                for (i,element) in data.list.enumerated(){
-                    if let selectedItem = self.selectedFoods.first(where: {$0.id == element.id}){
-                        data.list[i] = selectedItem
-                    }
-                }
+            case .success(let data):
             
-                self.foods.append(contentsOf: data.list)
+                if var data = data{
+                    self.APIParameter.totalRecord = data.total_record
+                    
+                    for (i,element) in data.list.enumerated(){
+                        if let selectedItem = self.selectedFoods.first(where: {$0.id == element.id}){
+                            data.list[i] = selectedItem
+                        }
+                    }
+                    
+                    self.foods.append(contentsOf: data.list)
+                }
                     
             case .failure(let error):
                 dLog("Error: \(error)")

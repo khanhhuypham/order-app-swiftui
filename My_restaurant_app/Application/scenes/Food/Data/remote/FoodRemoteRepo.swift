@@ -8,11 +8,10 @@
 import UIKit
 
 
-final class FoodRepository:FoodRepositoryProtocol {
+final class FoodRemoteRepo:FoodProviderRepositoryProtocol,FoodServiceRepositoryProtocol {
  
     func getCategories(branchId:Int,status:Int,categoryType:String) async -> Result<[Category], Error>{
         
-
         let result:Result<APIResponse<[Category]>, Error> = await NetworkManager.callAPIResultAsync(netWorkManger: .categories(
             brand_id: branchId,
             status: status,
@@ -25,10 +24,9 @@ final class FoodRepository:FoodRepositoryProtocol {
                 
                 if response.status == .ok{
                     return .success(response.data ?? [])
-                }else{
-                    dLog(response)
-                    return .failure(NSError(domain: response.message, code:response.status.rawValue))
                 }
+            
+                return .failure(NSError(domain: response.message, code:response.status.rawValue))
                 
             case .failure(let error):
                 return .failure(NSError(domain: error.localizedDescription, code:500))
@@ -37,31 +35,37 @@ final class FoodRepository:FoodRepositoryProtocol {
         
     }
     
-    func getFoods(
-        branchId:Int,
-        areaId:Int,
-        categoryId:Int,
-        categoryType:Int,
-        is_allow_employee_gift:Int,
-        is_sell_by_weight:Int,
-        is_out_stock:Int,
-        key_word:String,
-        limit:Int,
-        page:Int
-    ) async -> Result<APIResponse<FoodResponse>, Error>{
+    func getFoods(branchId:Int,areaId:Int,parameter:FoodAPIParameter) async -> Result<Pagination<[Food]>, Error>{
        
-        await NetworkManager.callAPIResultAsync(netWorkManger: .foods(
+        let result:Result<APIResponse<Pagination<[Food]>>, Error> = await NetworkManager.callAPIResultAsync(netWorkManger: .foods(
             branch_id: branchId,
             area_id: areaId,
-            category_id: categoryId,
-            category_type: categoryType,
-            is_allow_employee_gift: is_allow_employee_gift,
-            is_sell_by_weight: is_sell_by_weight,
-            is_out_stock: is_out_stock,
-            key_word: key_word,
-            limit: limit,
-            page:page
+            category_id: parameter.categoryId,
+            category_type: parameter.categoryType.rawValue,
+            is_allow_employee_gift: parameter.isAllowEmployeeGift,
+            is_sell_by_weight: parameter.isSellByWeight,
+            is_out_stock: parameter.isOutStock,
+            key_word: parameter.keyWord,
+            limit: parameter.limit,
+            page: parameter.page
         ))
+        
+        switch result {
+            
+            case .success(let response):
+                
+                if response.status == .ok, let data = response.data{
+                    return .success(data)
+                }
+            
+                return .failure(NSError(domain: response.message, code:response.status.rawValue))
+            
+            case .failure(let error):
+                return .failure(NSError(domain: error.localizedDescription, code:500))
+        }
+        
+        
+        
     }
 
     func addFoods(branchId:Int,orderId:Int,items:[FoodRequest]) async -> Result<APIResponse<NewOrder>, Error>{
