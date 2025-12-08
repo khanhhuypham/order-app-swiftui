@@ -110,10 +110,9 @@ final class FoodRemoteRepo:FoodProviderRepositoryProtocol,FoodServiceRepositoryP
                 
                 if response.status == .ok, let data = response.data{
                     return .success(data)
-                }else{
-                    dLog(response)
-                    return .failure(NSError(domain: response.message, code:response.status.rawValue))
                 }
+            
+                return .failure(NSError(domain: response.message, code:response.status.rawValue))
                 
             case .failure(let error):
                 return .failure(NSError(domain: error.localizedDescription, code:500))
@@ -131,11 +130,9 @@ final class FoodRemoteRepo:FoodProviderRepositoryProtocol,FoodServiceRepositoryP
                 
                 if response.status == .ok{
                     return .success(())
-                }else{
-                    dLog(response)
-                    return .failure(NSError(domain: response.message, code:response.status.rawValue))
                 }
-                
+                return .failure(NSError(domain: response.message, code:response.status.rawValue))
+            
             case .failure(let error):
                 return .failure(NSError(domain: error.localizedDescription, code:500))
         }
